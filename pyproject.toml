@@ -1,0 +1,35 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "csv2shex"
+author = "Tom Baker"
+author-email = "tom@tombaker.org"
+home-page = "https://github.com/tombaker/csv2shex"
+requires = [
+    "click",
+    "dataclasses",
+    "ruamel.base",
+    "ruamel.yaml",
+]
+classifiers = [
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3.7",
+]
+description-file = 'README.rst'
+requires-python = '>=3.7'
+
+[tool.flit.metadata.requires-extra]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+doc = [
+    "sphinx",
+    "sphinx_rtd_theme",
+]
+
+[tool.flit.scripts]
+csv2shex = "csv2shex.cli:cli"
