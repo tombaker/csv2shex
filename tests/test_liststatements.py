@@ -38,7 +38,7 @@ def test_liststatements_without_shapeids():
 
 
 def test_liststatements_with_shape_in_first_statement_only():
-    """Shape IDs from previous statements added to statements without Shape IDs."""
+    """If shape IDs used previously, used for subsequent statements if no Shape ID."""
     input = [
         {"shape_id": "@a", "prop_id": "dct:creator", "value_type": "URI"},
         {"shape_id": None, "prop_id": "dct:subject", "value_type": "URI"},

@@ -33,18 +33,20 @@ def list_statements(csvreader=None):
         for (key, value) in row.items():
             if key == "shape_id":
                 if value:
+                    # print(f"stat.shape_id = {value}:")
                     stat.shape_id = value
-                elif not value:
+                # print(f"elif not {value}:")
+                else:
                     if shape_ids:
-                        stat.shape_id = shape_ids[-1:]
+                        stat.shape_id = shape_ids[-1]
                     elif not shape_ids:
                         stat.shape_id = '@default'
             if key == "prop_id":
                 stat.prop_id = value
             if key == "value_type":
                 stat.value_type = value
-            shape_ids.extend(stat.shape_id)
-            print(shape_ids)
+            if stat.shape_id not in shape_ids:
+                shape_ids.append(stat.shape_id)
         statements_list.append(stat)
     return statements_list
 
