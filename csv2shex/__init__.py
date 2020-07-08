@@ -1,3 +1,3 @@
-"""Generate ShEx schemas from application profiles in CSV."""
+"""Generate ShEx schemas from CSV-formatted application profiles."""
 
 __version__ = "0.1"

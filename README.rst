@@ -1,4 +1,11 @@
-Seepy documentation
--------------------
+Csv2shex documentation
+----------------------
 
-Documentation here
+Generate ShEx schemas from application profiles in CSV.
+
+Installation
+```bash
+pip install flit
+flit install -s
+```
+

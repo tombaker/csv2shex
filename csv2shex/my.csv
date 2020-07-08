@@ -1,0 +1,4 @@
+shape_id,prop_id,value_type
+@photo,dcterms:creator,URI
+@photo,dcterms:subject,URI
+@photo,dcterms:date,String
