@@ -7,7 +7,7 @@ from csv2shex.csvparser import Statement
 
 def test_statement_initialized_from_positional_arguments():
     """Statement instance initialized from positional arguments."""
-    assert Statement("@photo", "dcterms:creator", "URI") == Statement(
+    assert Statement(False, "@photo", "dcterms:creator", "URI") == Statement(
         shape_id="@photo", prop_id="dcterms:creator", value_type="URI"
     )
 
@@ -21,7 +21,7 @@ def test_statement_initialized_from_positional_arguments_but_order_is_insignfica
 
 def test_statement_attributes_individually_addressable():
     """Statement instance attributes individually addressable."""
-    x = Statement("@photo", "dcterms:creator", "URI")
+    x = Statement(False, "@photo", "dcterms:creator", "URI")
     assert x.shape_id == "@photo"
     assert x.prop_id == "dcterms:creator"
     assert x.value_type == "URI"

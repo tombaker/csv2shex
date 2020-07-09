@@ -13,13 +13,13 @@ def list_shapes(statements_list):
     """@@@Docstring"""
     shapes = []
     shape_ids = []
-#            if not shape_ids:
-#                stat.start = True
     for statement in statements_list:
         if statement.shape_id not in shapes:
             shapes.append(statement)
 #            if stat.shape_id not in shape_ids:
 #                shape_ids.append(stat.shape_id)
+#            if not shape_ids:
+#                stat.start = True
     print(shapes)
     return shapes
 
@@ -28,21 +28,24 @@ def list_statements(csvreader=None):
     """Return list of statements from csv.DictReader object."""
     statements_list = []
     shape_ids = []
+    # breakpoint()
     for row in csvreader:
+        if not dict(row.items())["prop_id"]:
+            if dict(row.items())["shape_id"]:
+                shape_ids.append(dict(row.items())["shape_id"])
+            continue
         stat = Statement()
         for (key, value) in row.items():
+            if key == "prop_id":
+                stat.prop_id = value
             if key == "shape_id":
                 if value:
-                    # print(f"stat.shape_id = {value}:")
                     stat.shape_id = value
-                # print(f"elif not {value}:")
                 else:
                     if shape_ids:
                         stat.shape_id = shape_ids[-1]
                     elif not shape_ids:
                         stat.shape_id = '@default'
-            if key == "prop_id":
-                stat.prop_id = value
             if key == "value_type":
                 stat.value_type = value
             if stat.shape_id not in shape_ids:
