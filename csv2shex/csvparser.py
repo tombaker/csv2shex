@@ -11,17 +11,36 @@ from .exceptions import StatementError
 
 def list_shapes(statements_list):
     """@@@Docstring"""
+    statements = [asdict(s) for s in statements_list]
     shapes = []
-    shape_ids = []
-    for statement in statements_list:
-        if statement.shape_id not in shapes:
-            shapes.append(statement)
+    for statement in statements:
+
+
+@dataclass
+class Shape:
+    """Holds state and self-validation methods for a statement."""
+
+    shape_name
+    start: str = False
+    shape_id: str = None
+    prop_id: str = None
+    value_type: str = None
+
+
+#    shape_ids = []
+#    print(statements_list)
+#    print(statements)
+#    return statements
+
+#        statement_dict = asdict(statement)
+#        if statement.shape_id not in shapes:
+#            shapes.append(statement)
 #            if stat.shape_id not in shape_ids:
 #                shape_ids.append(stat.shape_id)
 #            if not shape_ids:
 #                stat.start = True
-    print(shapes)
-    return shapes
+#    print(shapes)
+#    return shapes
 
 
 def list_statements(csvreader=None):
@@ -59,9 +78,6 @@ def csvreader(csvfile):
     return list(csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig")))
 
 
-@dataclass
-class Shape:
-    """Holds state and self-validation methods for a shape."""
 
 
 @dataclass
