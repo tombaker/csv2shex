@@ -51,3 +51,16 @@ def test_liststatements_with_shape_in_first_statement_only():
     ]
 
 
+def test_liststatements_with_shape_on_its_own_line():
+    """If shape IDs used previously, used for subsequent statements if no Shape ID."""
+    input = [
+        {"shape_id": "@a", "prop_id": None, "value_type": None},
+        {"shape_id": None, "prop_id": "dct:creator", "value_type": "URI"},
+        {"shape_id": None, "prop_id": "dct:subject", "value_type": "URI"},
+    ]
+    assert list_statements(input) == [
+        Statement(shape_id='@a', prop_id="dct:creator", value_type="URI"),
+        Statement(shape_id='@a', prop_id="dct:subject", value_type="URI"),
+    ]
+
+
