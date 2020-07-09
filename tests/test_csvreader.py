@@ -3,7 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.csvparser import csvreader, Statement
+from csv2shex.csv2stats import csvreader, Statement
 
 CSV_CONTENTS = """\
 shape_id,prop_id,value_type

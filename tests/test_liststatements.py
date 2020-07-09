@@ -3,7 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.csvparser import list_statements, Statement
+from csv2shex.csv2stats import list_statements, Statement
 
 
 

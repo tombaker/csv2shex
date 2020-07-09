@@ -1,0 +1,4 @@
+[MESSAGES CONTROL]
+# disable=W0611,protected-access,duplicate-code,invalid-name,bad-continuation
+# disable=W0102
+# bad-continuation: Black disagrees
