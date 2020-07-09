@@ -10,17 +10,7 @@ class Shape:
 
     shape_id: str = None
     is_start_shape: bool = False
-    property_value_pairs: list = field(default_factory=list)
-
-#    shape_id: str = None
-#    prop_id: str = None
-#    value_type: str = None
-
-
-#    shape_ids = []
-#    print(statements_list)
-#    print(statements)
-#    return statements
+    property_values: list = field(default_factory=list)
 
 #        statement_dict = asdict(statement)
 #        if statement.shape_id not in shapes:
@@ -35,7 +25,8 @@ class Shape:
 
 def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
-    statements = [asdict(s) for s in statements_list]
+    # statements = [asdict(s) for s in statements_list]
     shapes = []
-    for statement in statements:
-        pass
+    for statement in statements_list:
+        print(statements_list)
+        

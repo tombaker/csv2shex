@@ -16,10 +16,10 @@ def cli(config):
 
 
 @cli.command()
-@click.argument("csvfile", type=click.Path(exists=False), nargs=1, required=False)
+@click.argument("csvfile", type=click.File('r'))
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def parse(config, csvfile):
-    """Parse and display CSV file."""
+    """Parse and display CSV file for debugging."""
     print(f"csvfile: {csvfile}")
 
