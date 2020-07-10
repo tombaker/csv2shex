@@ -11,7 +11,7 @@ class Statement:
     """Holds state and self-validation methods for a statement."""
 
     start: bool = False
-    shapeid: str = None
+    shape_id: str = None
     prop_id: str = None
     v_type: str = None
     shape_ref: str = None
@@ -31,27 +31,27 @@ def csvreader(csvfile):
 def list_statements(csvreader=None):
     """Return list of Statement objects from csv.DictReader object."""
     statements_list = []
-    shapeids = []
+    shape_ids = []
     for row in csvreader:
         if not dict(row.items())["prop_id"]:
-            if dict(row.items())["shapeid"]:
-                shapeids.append(dict(row.items())["shapeid"])
+            if dict(row.items())["shape_id"]:
+                shape_ids.append(dict(row.items())["shape_id"])
             continue
         stat = Statement()
         for (key, value) in row.items():
             if key == "prop_id":
                 stat.prop_id = value
-            if key == "shapeid":
+            if key == "shape_id":
                 if value:
-                    stat.shapeid = value
+                    stat.shape_id = value
                 else:
-                    if shapeids:
-                        stat.shapeid = shapeids[-1]
-                    elif not shapeids:
-                        stat.shapeid = "@default"
+                    if shape_ids:
+                        stat.shape_id = shape_ids[-1]
+                    elif not shape_ids:
+                        stat.shape_id = "@default"
             if key == "v_type":
                 stat.v_type = value
-            if stat.shapeid not in shapeids:
-                shapeids.append(stat.shapeid)
+            if stat.shape_id not in shape_ids:
+                shape_ids.append(stat.shape_id)
         statements_list.append(stat)
     return statements_list
