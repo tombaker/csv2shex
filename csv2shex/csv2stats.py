@@ -33,7 +33,10 @@ class Statement:
 
 def csvreader(csvfile):
     """Open CSV file and return csv.DictReader object as list."""
-    return list(csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig")))
+    list_of_odicts = csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig"))
+    list_of_dicts = [dict(r) for r in list_of_odicts]
+    return list_of_dicts
+#    return list(csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig")))
 
 
 def list_statements(csvreader=None):
