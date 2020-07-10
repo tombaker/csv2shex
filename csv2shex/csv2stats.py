@@ -12,14 +12,22 @@ class Statement:
 
     start: bool = False
     shape_id: str = None
+    shape_label: str = None
     prop_id: str = None
-    v_type: str = None
+    prop_label: str = None
+    mand: str = None
+    repeat: str = None
+    value_type: str = None
+    value_datatype: str = None
+    constraint_value: str = None
+    constraint_type: str = None
     shape_ref: str = None
+    annot: str = None
 
     def is_valid(self):
         """Returns True if Statement instance is valid."""
         self._property_id_is_mandatory()
-        self._v_type_is_valid_type()
+        self._value_type_is_valid_type()
         return True
 
 
@@ -49,8 +57,8 @@ def list_statements(csvreader=None):
                         stat.shape_id = shape_ids[-1]
                     elif not shape_ids:
                         stat.shape_id = "@default"
-            if key == "v_type":
-                stat.v_type = value
+            if key == "value_type":
+                stat.value_type = value
             if stat.shape_id not in shape_ids:
                 shape_ids.append(stat.shape_id)
         statements_list.append(stat)
