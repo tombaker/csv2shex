@@ -6,7 +6,7 @@ from pathlib import Path
 from csv2shex.csv2stats import csvreader, Statement
 
 CSV_CONTENTS = """\
-shape_id,prop_id,value_type
+shapeid,prop_id,v_type
 @a,dct:creator,URI
 @a,dct:subject,URI
 @a,dct:date,String
@@ -19,7 +19,7 @@ def test_csvreader(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(CSV_CONTENTS)
     assert csvreader(csvfile) == [
-        { 'shape_id': '@a', 'prop_id': 'dct:creator', 'value_type': 'URI'},
-        { 'shape_id': '@a', 'prop_id': 'dct:subject', 'value_type': 'URI'},
-        { 'shape_id': '@a', 'prop_id': 'dct:date', 'value_type': 'String'},
+        { 'shapeid': '@a', 'prop_id': 'dct:creator', 'v_type': 'URI'},
+        { 'shapeid': '@a', 'prop_id': 'dct:subject', 'v_type': 'URI'},
+        { 'shapeid': '@a', 'prop_id': 'dct:date', 'v_type': 'String'},
     ]

@@ -11,14 +11,15 @@ class Statement:
     """Holds state and self-validation methods for a statement."""
 
     start: bool = False
-    shape_id: str = None
+    shapeid: str = None
     prop_id: str = None
-    value_type: str = None
+    v_type: str = None
+    shape_ref: str = None
 
     def is_valid(self):
         """Returns True if Statement instance is valid."""
         self._property_id_is_mandatory()
-        self._value_type_is_valid_type()
+        self._v_type_is_valid_type()
         return True
 
 
@@ -30,27 +31,27 @@ def csvreader(csvfile):
 def list_statements(csvreader=None):
     """Return list of Statement objects from csv.DictReader object."""
     statements_list = []
-    shape_ids = []
+    shapeids = []
     for row in csvreader:
         if not dict(row.items())["prop_id"]:
-            if dict(row.items())["shape_id"]:
-                shape_ids.append(dict(row.items())["shape_id"])
+            if dict(row.items())["shapeid"]:
+                shapeids.append(dict(row.items())["shapeid"])
             continue
         stat = Statement()
         for (key, value) in row.items():
             if key == "prop_id":
                 stat.prop_id = value
-            if key == "shape_id":
+            if key == "shapeid":
                 if value:
-                    stat.shape_id = value
+                    stat.shapeid = value
                 else:
-                    if shape_ids:
-                        stat.shape_id = shape_ids[-1]
-                    elif not shape_ids:
-                        stat.shape_id = "@default"
-            if key == "value_type":
-                stat.value_type = value
-            if stat.shape_id not in shape_ids:
-                shape_ids.append(stat.shape_id)
+                    if shapeids:
+                        stat.shapeid = shapeids[-1]
+                    elif not shapeids:
+                        stat.shapeid = "@default"
+            if key == "v_type":
+                stat.v_type = value
+            if stat.shapeid not in shapeids:
+                shapeids.append(stat.shapeid)
         statements_list.append(stat)
     return statements_list

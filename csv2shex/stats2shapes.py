@@ -8,16 +8,16 @@ from .exceptions import StatementError
 class Shape:
     """Holds state and self-validation methods for a Shape."""
 
-    shape_id: str = None
+    shapeid: str = None
     is_start_shape: bool = False
     property_values: list = field(default_factory=list)
 
 #        statement_dict = asdict(statement)
-#        if statement.shape_id not in shapes:
+#        if statement.shapeid not in shapes:
 #            shapes.append(statement)
-#            if stat.shape_id not in shape_ids:
-#                shape_ids.append(stat.shape_id)
-#            if not shape_ids:
+#            if stat.shapeid not in shapeids:
+#                shapeids.append(stat.shapeid)
+#            if not shapeids:
 #                stat.start = True
 #    print(shapes)
 #    return shapes
