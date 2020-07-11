@@ -17,54 +17,64 @@ SHAPE_OBJECT = Shape(
 )
 
 
+def test_shape_fields_individually_addressable():
+    """Shape fields individually addressable."""
+    x = SHAPE_OBJECT
+    assert x.start
+    assert x.shape_id == "@a"
+    assert x.property_values[1] == {"prop_id": "dct:subject", "value_type": "URI"}
 
 
-# def test_shape_initialized_from_positional_arguments():
-#     """Shape instance initialized from positional arguments."""
-#     assert Shape("@photo", True) is False
-#
-#
-# def test_statement_initialized_from_positional_arguments_but_order_is_insignficant():
-#     """Order of arguments is insignificant (just a reminder to self)."""
-#     assert Statement(
-#         shape_id="@photo", prop_id="dcterms:creator", value_type="URI"
-#     ) == Statement(prop_id="dcterms:creator", shape_id="@photo", value_type="URI")
+def test_shape_initialized_by_assignment():
+    """Shape fields created by assignment."""
+    x = Shape()
+    x.start = True
+    x.shape_id = "@a"
+    x.property_values = []
+    x.property_values.append({"prop_id": "dct:creator", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:subject", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:date", "value_type": "String"})
+    assert x == SHAPE_OBJECT
 
 
-# def test_statement_attributes_individually_addressable():
-#     """Statement instance attributes individually addressable."""
-#     x = Statement(False, "@photo", "dcterms:creator", "URI")
-#     assert x.shape_id == "@photo"
-#     assert x.prop_id == "dcterms:creator"
-#     assert x.value_type == "URI"
-#
-#
-# def test_statement_initialized_by_assignment():
-#     """Statement attributes created by assignment."""
-#     x = Statement()
-#     x.shape_id = "@photo"
-#     x.prop_id = "dcterms:creator"
-#     x.value_type = "URI"
-#     assert x == Statement(
-#         shape_id="@photo", prop_id="dcterms:creator", value_type="URI"
-#     )
-#
-#
-# def test_statement_initialized_by_assignment_with_some_None():
-#     """Statement attributes created by assignment."""
-#     x = Statement()
-#     x.prop_id = "dcterms:creator"
-#     x.value_type = "URI"
-#     assert x == Statement(shape_id=None, prop_id="dcterms:creator", value_type="URI")
-#
-#
-# def test_statement_bad_attribute_initialized_by_assignment():
-#     """Attempted assignment to bad attribute raises TypeError."""
-#     x = Statement()
-#     x.foobar = "@photo"
-#     x.prop_id = "dcterms:creator"
-#     x.value_type = "URI"
-#     with pytest.raises(TypeError):
-#         assert x == Statement(
-#             foobar="@photo", prop_id="dcterms:creator", value_type="URI"
-#         )
+def test_shape_initialized_with_no_propertyvalues_field_should_pass_FOR_NOW():
+    """Test should pass for now but this condition should raise exception."""
+    x = Shape()
+    x.start = True
+    x.shape_id = "@a"
+    assert x == Shape(start=True, shape_id="@a")
+
+
+def test_shape_initialized_with_no_start_field_should_pass_FOR_NOW():
+    """Test should pass for now but this condition should raise exception."""
+    x = Shape()
+    x.shape_id = "@a"
+    x.property_values = []
+    x.property_values.append({"prop_id": "dct:creator", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:subject", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:date", "value_type": "String"})
+    assert x == Shape(
+        shape_id="@a",
+        property_values=[
+            {"prop_id": "dct:creator", "value_type": "URI"},
+            {"prop_id": "dct:subject", "value_type": "URI"},
+            {"prop_id": "dct:date", "value_type": "String"},
+        ],
+    )
+
+def test_shape_initialized_with_no_shapeid_field_should_pass_FOR_NOW():
+    """Test should pass for now but this condition should raise exception."""
+    x = Shape()
+    x.start = True
+    x.property_values = []
+    x.property_values.append({"prop_id": "dct:creator", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:subject", "value_type": "URI"})
+    x.property_values.append({"prop_id": "dct:date", "value_type": "String"})
+    assert x == Shape(
+        start=True,
+        property_values=[
+            {"prop_id": "dct:creator", "value_type": "URI"},
+            {"prop_id": "dct:subject", "value_type": "URI"},
+            {"prop_id": "dct:date", "value_type": "String"},
+        ],
+    )

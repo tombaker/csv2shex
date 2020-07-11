@@ -39,7 +39,16 @@ LIST_OF_SHAPE_OBJECTS = [
 
 def test_listshapes():
     """Turn list of Statement objects into list of Shapes."""
-    assert True
+    assert list_shapes(MINIMAL_LIST_OF_STATEMENT_OBJECTS) == [
+        Shape(
+            start=True,
+            shape_id="@a",
+            property_values=[
+                {"prop_id": "dct:creator", "value_type": "URI"},
+                {"prop_id": "dct:date", "value_type": "String"},
+            ],
+        ),
+    ]
 
 #    assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
 #    Shape(shape_id="@a", start=True, property_values=[

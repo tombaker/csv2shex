@@ -48,8 +48,8 @@ def test_statement_initialized_from_named_arguments_and_order_is_insignficant():
     ) == Statement(prop_id="dcterms:creator", shape_id="@photo", value_type="URI")
 
 
-def test_statement_attributes_individually_addressable():
-    """Statement instance attributes individually addressable."""
+def test_statement_fields_individually_addressable():
+    """Statement instance fields individually addressable."""
     x = Statement(shape_id="@photo", prop_id="dcterms:creator", value_type="URI")
     assert x.shape_id == "@photo"
     assert x.prop_id == "dcterms:creator"
@@ -57,7 +57,7 @@ def test_statement_attributes_individually_addressable():
 
 
 def test_statement_initialized_by_assignment():
-    """Statement attributes created by assignment."""
+    """Statement instance fields created by assignment."""
     x = Statement(shape_id="@photo", prop_id="dcterms:creator", value_type="URI")
     y = Statement()
     y.shape_id = "@photo"
@@ -67,7 +67,7 @@ def test_statement_initialized_by_assignment():
 
 
 def test_statement_initialized_by_assignment_with_some_None():
-    """Statement attributes created by assignment."""
+    """Statement instance fields created by assignment, others have default None."""
     x = Statement()
     x.prop_id = "dcterms:creator"
     x.value_type = "URI"
@@ -76,8 +76,8 @@ def test_statement_initialized_by_assignment_with_some_None():
     assert not x.mand
 
 
-def test_statement_bad_attribute_initialized_by_assignment():
-    """Attempted assignment to bad attribute raises TypeError."""
+def test_statement_bad_field_initialized_by_assignment():
+    """Attempted assignment to bad field raises TypeError."""
     x = Statement()
     x.foobar = "@photo"
     x.prop_id = "dcterms:creator"
