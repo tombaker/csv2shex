@@ -43,6 +43,7 @@ def list_statements(csvreader=None):
     """Return list of Statement objects from csv.DictReader object."""
     statements_list = []
     shape_ids = []
+    first_shape_encountered = True
     for row in csvreader:
         if not dict(row.items())["prop_id"]:
             if dict(row.items())["shape_id"]:
@@ -60,9 +61,15 @@ def list_statements(csvreader=None):
                         stat.shape_id = shape_ids[-1]
                     elif not shape_ids:
                         stat.shape_id = "@default"
+                if stat.shape_id not in shape_ids:
+                    shape_ids.append(stat.shape_id)
+                if first_shape_encountered:
+                    stat.start = True
+                    first_shape = stat.shape_id
+                    first_shape_encountered = False
+                if stat.shape_id == first_shape:
+                    stat.start = True
             if key == "value_type":
                 stat.value_type = value
-            if stat.shape_id not in shape_ids:
-                shape_ids.append(stat.shape_id)
         statements_list.append(stat)
     return statements_list
