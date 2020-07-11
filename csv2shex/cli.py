@@ -22,16 +22,15 @@ def cli(config):
 @click.pass_context
 def parse(config, csvfile):
     """Parse and display CSV file for debugging."""
-    print(f"csvfile: {csvfile}")
 
 
 @cli.command()
-@click.argument("csvfile", type=click.File('r'))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def prefixes(config, csvfile):
-    """Write config file in working directory."""
+def prefixes(config):
+    """Write and display prefixes."""
 
-    print(f"Writing {prefixfile} - edit at will.")
+    print(f"Writing starter prefix.yml.")
     write_starter_prefixfile()
+    print(f"Reading prefix.yml.")
 
