@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import click
+from .config import write_starter_configfile
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
@@ -22,4 +23,15 @@ def cli(config):
 def parse(config, csvfile):
     """Parse and display CSV file for debugging."""
     print(f"csvfile: {csvfile}")
+
+
+@cli.command()
+@click.argument("csvfile", type=click.File('r'))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def configure(config, csvfile):
+    """Write configuration file."""
+
+    print(f"Writing {configfile} - edit at will.")
+    write_starter_configfile()
 
