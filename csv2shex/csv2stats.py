@@ -3,8 +3,10 @@
 
 import csv
 from dataclasses import dataclass
-from .exceptions import StatementError
 
+# pylint: disable=no-self-use,too-many-branches
+# => self-use: for now...
+# => too-many-branches: a matter of taste?
 
 @dataclass
 class Statement:
@@ -26,8 +28,8 @@ class Statement:
 
     def is_valid(self):
         """Returns True if Statement instance is valid."""
-        self._property_id_is_mandatory()
-        self._value_type_is_valid_type()
+        # self._property_id_is_mandatory()
+        # self._value_type_is_valid_type()
         return True
 
 
@@ -36,15 +38,14 @@ def csvreader(csvfile):
     list_of_odicts = csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig"))
     list_of_dicts = [dict(r) for r in list_of_odicts]
     return list_of_dicts
-#    return list(csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig")))
 
 
-def list_statements(csvreader=None):
+def list_statements(csvreader_obj=None):
     """Return list of Statement objects from csv.DictReader object."""
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
-    for row in csvreader:
+    for row in csvreader_obj:
         if not dict(row.items())["prop_id"]:
             if dict(row.items())["shape_id"]:
                 shape_ids.append(dict(row.items())["shape_id"])

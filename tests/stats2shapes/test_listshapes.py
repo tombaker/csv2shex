@@ -1,11 +1,7 @@
 """Turn list of Statements into list of Shapes."""
 
-import os
-import pytest
-from pathlib import Path
 from csv2shex.stats2shapes import list_shapes, Shape
 from csv2shex.csv2stats import Statement
-from dataclasses import asdict
 
 LIST_OF_STATEMENT_OBJECTS = [
     Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
@@ -17,11 +13,11 @@ LIST_OF_STATEMENT_OBJECTS = [
 
 def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
-    input = [
+    as_input = [
         Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
         Statement(start=True, shape_id="@a", prop_id="dct:date", value_type="String"),
     ]
-    assert list_shapes(input) == [
+    assert list_shapes(as_input) == [
         Shape(
             start=True,
             shape_id="@a",
@@ -35,7 +31,7 @@ def test_listshapes_one_shape():
 
 def test_listshapes_one_shape_and_shape_label():
     """One Shape with shape label."""
-    input = [
+    as_input = [
         Statement(
             start=True,
             shape_id="@a",
@@ -51,7 +47,7 @@ def test_listshapes_one_shape_and_shape_label():
             value_type="String",
         ),
     ]
-    assert list_shapes(input) == [
+    assert list_shapes(as_input) == [
         Shape(
             start=True,
             shape_id="@a",

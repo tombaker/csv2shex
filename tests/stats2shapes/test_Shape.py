@@ -1,7 +1,6 @@
 """Shape object holds statements sharing a common shape_id."""
 
-from csv2shex.stats2shapes import list_shapes, Shape
-from dataclasses import asdict
+from csv2shex.stats2shapes import Shape
 
 SHAPE_OBJECT = Shape(
     start=True,

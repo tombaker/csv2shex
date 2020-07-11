@@ -1,7 +1,6 @@
 """Write and read configuration file."""
 
 
-import datetime
 import os
 from pathlib import Path
 import ruamel.yaml
@@ -25,14 +24,14 @@ PREFIXFILE_CONTENT = (
 def write_starter_prefixfile(
     rootdir=None, prefixfile=PREFIXFILE_NAME, config_content=PREFIXFILE_CONTENT
 ):
-    """Write initial config file (prefixes.yml) to current directory."""
+    """Write initial config file (prefixes.yml) if not yet exists."""
     if not rootdir:
         rootdir = Path.cwd()
     file_tobewritten_pathname = Path(rootdir) / prefixfile
-    if os.path.exists(file_tobewritten_pathname):
-        raise ConfigWarning(f"Config file already initialized.")
-    with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(config_content)
+    if not os.path.exists(file_tobewritten_pathname):
+        with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
+            print(f"Writing {prefixfile}")
+            outfile.write(config_content)
 
 
 

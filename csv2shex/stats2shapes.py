@@ -1,7 +1,6 @@
 """Class for Python objects derived from CSV files."""
 
-from dataclasses import dataclass, asdict, field
-from .exceptions import StatementError
+from dataclasses import dataclass, field
 
 # start: bool = False
 # shape_id: str = None
@@ -36,7 +35,6 @@ def list_shapes(statements_list):
     shap = Shape()
     row_dict = dict()
     for statement in statements_list:
-        """When new shape_id, append Shape to shapes_list and initialize new Shape."""
         if shap.shape_id != statement.shape_id:
             if shap.shape_id is not None:
                 shapes_list.append(shap)
@@ -51,4 +49,3 @@ def list_shapes(statements_list):
         row_dict = dict()
     shapes_list.append(shap)
     return shapes_list
-        

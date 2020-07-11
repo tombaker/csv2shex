@@ -1,12 +1,12 @@
 """Generate ShEx schemas from CSV-formatted application profiles."""
 
-import os
 from pathlib import Path
 import click
-from .config import write_starter_prefixfile
+from .config import write_starter_prefixfile, PREFIXFILE_NAME
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
+
 
 @click.group()
 @click.version_option("0.1", help="Show version and exit")
@@ -17,7 +17,7 @@ def cli(config):
 
 
 @cli.command()
-@click.argument("csvfile", type=click.File('r'))
+@click.argument("csvfile", type=click.File("r"))
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def parse(config, csvfile):
@@ -30,7 +30,6 @@ def parse(config, csvfile):
 def prefixes(config):
     """Write and display prefixes."""
 
-    print(f"Writing starter prefix.yml.")
-    write_starter_prefixfile()
-    print(f"Reading prefix.yml.")
-
+    write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
+    for line in Path(PREFIXFILE_NAME).open():
+        print(line, end="")

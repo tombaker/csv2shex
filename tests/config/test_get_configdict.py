@@ -1,9 +1,10 @@
 """Return config dictionary from reading config file."""
 
 import os
-import pytest
 from pathlib import Path
+import pytest
 from csv2shex.config import PREFIXFILE_NAME, get_configdict
+
 
 PREFIXFILE_CONTENT = (
     "prefixes:\n"
