@@ -1,0 +1,6 @@
+Entity_ID,Property,Value
+book,dct:creator,entity:person
+,dct:title,Flower arranging simplified
+,dct::date,xsd:2017
+person,foaf:name,John Smith
+,foaf:mbox,mbox:john@example.org
