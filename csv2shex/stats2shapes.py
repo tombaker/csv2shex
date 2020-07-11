@@ -3,7 +3,20 @@
 from dataclasses import dataclass, asdict, field
 from .exceptions import StatementError
 
-property_value_fields = []
+# start: bool = False
+# shape_id: str = None
+# shape_label: str = None
+# prop_id: str = None
+# prop_label: str = None
+# mand: str = None
+# repeat: str = None
+# value_type: str = None
+# value_datatype: str = None
+# constraint_value: str = None
+# constraint_type: str = None
+# shape_ref: str = None
+# annot: str = None
+
 
 @dataclass
 class Shape:
@@ -11,6 +24,7 @@ class Shape:
 
     start: bool = False
     shape_id: str = None
+    shape_label: str = None
     property_values: list = field(default_factory=list)
 
 
@@ -29,6 +43,7 @@ def list_shapes(statements_list):
             shap = Shape()
             shap.start = statement.start
             shap.shape_id = statement.shape_id
+            shap.shape_label = statement.shape_label
             shap.property_values = list()
         row_dict["prop_id"] = statement.prop_id
         row_dict["value_type"] = statement.value_type
@@ -37,13 +52,3 @@ def list_shapes(statements_list):
     shapes_list.append(shap)
     return shapes_list
         
-
-#        statement_dict = asdict(statement)
-#        if statement.shape_id not in shapes:
-#            shapes.append(statement)
-#            if stat.shape_id not in shape_ids:
-#                shape_ids.append(stat.shape_id)
-#            if not shape_ids:
-#                stat.start = True
-#    print(shapes)
-#    return shapes
