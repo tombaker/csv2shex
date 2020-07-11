@@ -19,26 +19,9 @@ LIST_OF_STATEMENT_OBJECTS = [
     Statement(start=False, shape_id="@b", prop_id="foaf:name", value_type="String"),
 ]
 
-LIST_OF_SHAPE_OBJECTS = [
-    Shape(
-        start=True,
-        shape_id="@a",
-        property_values=[
-            {"prop_id": "dct:creator", "value_type": "URI"},
-            {"prop_id": "dct:subject", "value_type": "URI"},
-            {"prop_id": "dct:date", "value_type": "String"},
-        ],
-    ),
-    Shape(
-        start=False,
-        shape_id="@b",
-        property_values=[{"prop_id": "foaf:name", "value_type": "String"}],
-    ),
-]
 
-
-def test_listshapes():
-    """Turn list of Statement objects into list of Shapes."""
+def test_listshapes_one_shape():
+    """Turn list of Statement objects into list with one Shape."""
     assert list_shapes(MINIMAL_LIST_OF_STATEMENT_OBJECTS) == [
         Shape(
             start=True,
@@ -50,25 +33,23 @@ def test_listshapes():
         ),
     ]
 
-#    assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
-#    Shape(start=True, shape_id="@a", property_values=[
-#            {
-#                "prop_id": "dct:creator",
-#                "value_type": "URI",
-#            },
-#            {
-#                "prop_id": "dct:subject",
-#                "value_type": "URI",
-#            },
-#            {
-#                "prop_id": "dct:date",
-#                "value_type": "String",
-#            }, 
-#    ]),
-#    Shape(shape_id="@b", start=False, property_values=[
-#            {
-#                "prop_id": "foaf:name",
-#                "value_type": "String",
-#            },
-#    ])
-#    ]
+
+def test_listshapes_two_shapes():
+    """Turn list of Statement objects into list with two Shapes."""
+    assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
+            Shape(
+                start=True,
+                shape_id="@a",
+                property_values=[
+                    {"prop_id": "dct:creator", "value_type": "URI"},
+                    {"prop_id": "dct:subject", "value_type": "URI"},
+                    {"prop_id": "dct:date", "value_type": "String"},
+                ],
+            ),
+            Shape(
+                start=False,
+                shape_id="@b",
+                property_values=[{"prop_id": "foaf:name", "value_type": "String"}],
+            ),
+        ]
+
