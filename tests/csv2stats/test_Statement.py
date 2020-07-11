@@ -1,4 +1,4 @@
-"""@@@Docstring"""
+"""Initialize instances of Statement."""
 
 
 import pytest
@@ -12,6 +12,24 @@ def test_statement_initialized_with_just_one_field():
     assert x.shape_id == None
     assert x.shape_label == None
     assert x.prop_id == "dcterms:creator"
+    assert x.prop_label == None
+    assert x.mand == None
+    assert x.repeat == None
+    assert x.value_type == None
+    assert x.value_datatype == None
+    assert x.constraint_value == None
+    assert x.constraint_type == None
+    assert x.shape_ref == None
+    assert x.annot == None
+
+
+def test_statement_initialized_without_property_id():
+    """Statement instance initialized without property ID. Shouldn't this fail?"""
+    x = Statement()
+    assert x.start == False
+    assert x.shape_id == None
+    assert x.shape_label == None
+    assert x.prop_id == None
     assert x.prop_label == None
     assert x.mand == None
     assert x.repeat == None

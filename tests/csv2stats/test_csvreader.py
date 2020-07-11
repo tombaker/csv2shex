@@ -31,12 +31,9 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile.write_text((
         "shape_id,shape_label,prop_id,prop_label,mand,repeat,value_type,"
         "value_datatype,constraint_value,constraint_type,shape_ref,annot\n"
-        "@a,Book,dct:creator,Creator,Y,N,URI,"
-        ",,,@b,Typically the author.\n"
-        "@b,Book,dct:date,Date,Y,N,String,,"
-        "xsd:date\n,'(\d+/\d+/\d+)',Regex,"
-        "@a,Person,foaf:name,Name,Y,N,String,,,"
-        ",,\n"))
+        "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
+        "@a,Book,dct:date,Date,Y,N,String,xsd:date,(\d+/\d+/\d+),Regex,,\n"
+        "@b,Person,foaf:name,Name,Y,N,String,,,,,\n"))
     expected_output = [
         { 
             'shape_id': '@a', 
@@ -46,11 +43,11 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             'mand': 'Y',
             'repeat': 'N',
             'value_type': 'URI',
-            'value_datatype': None,
-            'constraint_value': None,
-            'constraint_type': None,
+            'value_datatype': '',
+            'constraint_value': '',
+            'constraint_type': '',
             'shape_ref': '@b',
-            'annot': None,
+            'annot': 'Typically the author.',
         },
         { 
             'shape_id': '@a', 
@@ -63,8 +60,8 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             'value_datatype': 'xsd:date',
             'constraint_value': '(\d+/\d+/\d+)',
             'constraint_type': 'Regex',
-            'shape_ref': None,
-            'annot': None,
+            'shape_ref': '',
+            'annot': '',
         },
         { 
             'shape_id': '@b', 
@@ -74,11 +71,11 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             'mand': 'Y',
             'repeat': 'N',
             'value_type': 'String',
-            'value_datatype': None,
-            'constraint_value': None,
-            'constraint_type': None,
-            'shape_ref': None,
-            'annot': None,
+            'value_datatype': '',
+            'constraint_value': '',
+            'constraint_type': '',
+            'shape_ref': '',
+            'annot': '',
         },
     ]
     assert type(csvreader(csvfile)) == list
@@ -86,3 +83,4 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     assert len(csvreader(csvfile)) == 3
     assert len(expected_output) == 3
     assert type(csvreader(csvfile)[0]) == dict
+    assert csvreader(csvfile) == expected_output
