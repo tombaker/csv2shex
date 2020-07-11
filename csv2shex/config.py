@@ -10,8 +10,8 @@ from .exceptions import ConfigWarning, BadYamlError
 # pylint: disable=bad-continuation
 # => black disagrees
 
-CONFIGFILE_NAME = "csv2shex.yml"
-CONFIGFILE_CONTENT = (
+PREFIXFILE_NAME = "prefixes.yml"
+PREFIXFILE_CONTENT = (
     "prefixes:\n"
     "    dc: http://purl.org/dc/elements/1.1/\n"
     "    dcterms: http://purl.org/dc/terms/\n"
@@ -22,29 +22,30 @@ CONFIGFILE_CONTENT = (
 )
 
 
-def write_starter_configfile(
-    rootdir=None, configfile=CONFIGFILE_NAME, config_content=CONFIGFILE_CONTENT
+def write_starter_prefixfile(
+    rootdir=None, prefixfile=PREFIXFILE_NAME, config_content=PREFIXFILE_CONTENT
 ):
-    """Write initial config file (csv2shex.yml) to current directory."""
+    """Write initial config file (prefixes.yml) to current directory."""
     if not rootdir:
         rootdir = Path.cwd()
-    file_tobewritten_pathname = Path(rootdir) / configfile
+    file_tobewritten_pathname = Path(rootdir) / prefixfile
     if os.path.exists(file_tobewritten_pathname):
         raise ConfigWarning(f"Config file already initialized.")
     with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
         outfile.write(config_content)
 
 
-def get_configdict(rootdir=None, configfile=CONFIGFILE_NAME):
+
+def get_configdict(rootdir=None, prefixfile=PREFIXFILE_NAME):
     """Returns config dictionary from YAML config file (or errors out)."""
     if not rootdir:
         rootdir = Path.cwd()
-    configfile = Path(rootdir) / configfile
+    prefixfile = Path(rootdir) / prefixfile
     try:
-        configfile_contents = Path(configfile).read_text()
+        prefixfile_contents = Path(prefixfile).read_text()
     except FileNotFoundError:
-        raise ConfigWarning(f"Config file {repr(configfile)} not found.")
+        raise ConfigWarning(f"Config file {repr(prefixfile)} not found.")
     try:
-        return ruamel.yaml.safe_load(configfile_contents)
+        return ruamel.yaml.safe_load(prefixfile_contents)
     except ruamel.yaml.YAMLError:
-        raise BadYamlError(f"YAML in {repr(configfile)} does not parse.")
+        raise BadYamlError(f"YAML in {repr(prefixfile)} does not parse.")

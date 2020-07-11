@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 import click
-from .config import write_starter_configfile
+from .config import write_starter_prefixfile
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
@@ -29,9 +29,9 @@ def parse(config, csvfile):
 @click.argument("csvfile", type=click.File('r'))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def configure(config, csvfile):
-    """Write configuration file."""
+def prefixes(config, csvfile):
+    """Write config file in working directory."""
 
-    print(f"Writing {configfile} - edit at will.")
-    write_starter_configfile()
+    print(f"Writing {prefixfile} - edit at will.")
+    write_starter_prefixfile()
 
