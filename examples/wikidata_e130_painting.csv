@@ -1,4 +1,4 @@
-﻿Entity_name,Property,Property_label,Mand,Repeat,Value,Value_type,Annotation
+﻿shape_id,shape_label,prop_id,mand,repeat,constraint_value,value_type,annot
 painting,wdt:P31,Is a,yes,no,wd:Q3305213,URI,"Instance of ""painting"""
 ,wdt:P571,Date of inception,no,no,,DateTime,
 ,wdt:P276,Location,yes,yes,,,

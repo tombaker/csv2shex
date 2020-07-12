@@ -6,7 +6,7 @@ from dataclasses import asdict
 import click
 from .prefixes import write_starter_prefixfile, PREFIXFILE_NAME
 from .mkstatements import csvreader, list_statements
-from .mkshapes import pprint_shapes, list_shapes
+from .mkshapes import pprint_shapes, list_shapes, SHAPE_KEYS, STATEMENT_KEYS
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
@@ -19,6 +19,21 @@ from .mkshapes import pprint_shapes, list_shapes
 def cli(config):
     """Generate ShEx schemas from CSV-formatted application profiles."""
 
+
+@cli.command()
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def fields(config):
+    """Display CSV column headings."""
+
+    print(f"Shape")
+    for key in SHAPE_KEYS:
+        print(f"    {key}")
+
+    print("")
+    print(f"    Statement")
+    for key in STATEMENT_KEYS:
+        print(f"        {key}")
 
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))

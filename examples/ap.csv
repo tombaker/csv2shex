@@ -1,11 +1,4 @@
-ID,URI,Label,Mandatory,Repeatable,Type,Value Space,Comment
-sdo:,http://schema.org/,schema.org,,,,,
-foaf:,http://xmlns.com/foaf/,FOAF,,,,,
-wd:,http://www.wikidata.org/entity/,Wikidata Entities,,,,,
-wdt:,http://www.wikidata.org/prop/direct/,Wikidata Properties,,,,,
-xsd:,http://www.w3.org/2001/XMLSchema#,XML Schema,,,,,
-rdf:,http://www.w3.org/1999/02/22-rdf-syntax-ns#,RDF,,,,,
-,,,,,,,
+shape_id,prop_id,prop_label,mand,repeat,value_type,constraint_value,annot
 @book,,Book,y,y,,,
 ,rdf:type,instance of,y,n,URI,sdo:Book,must be schema.org/Book 
 ,rdf:type,instance of,y,n,URI,wd:Q571,must be wikidata Book

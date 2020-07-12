@@ -1,47 +1,37 @@
-Entity,label,cardinality,property?,value?,Notes
-descriptionSet,,"0,1",dsp:descriptionSet,,
-,descSetID,"1,1",,xsd:literal,
+shape_id,shape_label,mand,repeat,prop_id,constraint_value,annot
+descriptionSet,,N,N,dsp:descriptionSet,,
+,descSetID,Y,N,,xsd:literal,
 ,display name,"1,-1",rdfs:label,xsd:literal,one value per language
-,descriptions,"0,-1",dsp:description,xsd:literal (array),
-description,,"0,-1",dsp:description,,
-,descID,"1,1",dct:identifier,xsd:literal,
+,descriptions,N,Y,dsp:description,xsd:literal (array),
+description,,N,Y,dsp:description,,
+,descID,Y,N,dct:identifier,xsd:literal,
 ,display name,"1,-1",rdfs:label,xsd:literal,one value per language?
-,description,"0,1",dct:description,xsd:literal,
-,example,"0,-1",vann:example,xsd:literal,
-,usage note,"0,1",vann:usageNote,xsd:literal,
-,class,"0,-1",rdf:type,rdfs:Class,The valid RDF  class(es) for this description; only for RDF data 
-,min. occurrence,"0,1",sx:min,xsd:integer,Default 0
-,max. occurrence,"0,1",sx:max,xsd:integer,Default -1
-,statements,"0,-1",dsp:statement,xsd:literal (array),
-statement,,"0,-1",dsp:statement,,
-,statementID,"1,1",dct:identifier,xsd:literal,
-,property name,"1,1",?,xsd:literal or URI,Expected to be a URI but minimally can just be the name of a metadata element recognized by a community
-,display name,"0,-1",rdfs:label,xsd:literal,one value per language
-,description,"0,-1",dct:description,xsd:literal,
-,usage note,"0,-1",vann:usageNote,xsd:literal,
-,min. occurrence,"0,1",sx:minInclusive,xsd:integer,Default 0
-,max. occurrence,"0,1",sx:maxInclusive,xsd:integer,Default -1
-,value link,"0,1",sx:valueExpr,xsd:literal,Assuming a statement can be reused within a set
+,description,N,N,dct:description,xsd:literal,
+,example,N,Y,vann:example,xsd:literal,
+,usage note,N,N,vann:usageNote,xsd:literal,
+,class,N,Y,rdf:type,rdfs:Class,The valid RDF  class(es) for this description; only for RDF data 
+,min. occurrence,N,N,sx:min,xsd:integer,Default 0
+,max. occurrence,N,N,sx:max,xsd:integer,Default -1
+,statements,N,Y,dsp:statement,xsd:literal (array),
+statement,,N,Y,dsp:statement,,
+,statementID,Y,N,dct:identifier,xsd:literal,
+,property name,Y,N,?,xsd:literal or URI,Expected to be a URI but minimally can just be the name of a metadata element recognized by a community
+,display name,N,Y,rdfs:label,xsd:literal,one value per language
+,description,N,Y,dct:description,xsd:literal,
+,usage note,N,Y,vann:usageNote,xsd:literal,
+,min. occurrence,N,N,sx:minInclusive,xsd:integer,Default 0
+,max. occurrence,N,N,sx:maxInclusive,xsd:integer,Default -1
+,value link,N,N,sx:valueExpr,xsd:literal,Assuming a statement can be reused within a set
 value,,*,dsp:value (?),,* requires a statement; 1-1 with statement 
-,valueID,"1,1",dct:identifier,xsd:literal,
-,display name,"0,-1",rdfs:label,literal or language literal,one value per language
-,short description,"0,-1",dct:description,xsd:literal,
-,usage note,"0,-1",vann:usageNote,xsd:literal,
-,example,"0,-1",vann:example,,
-,data type ,"1,1",sx:datatype,any xsd datatype,
-,datatype value constraint,"0,1",sx:pattern,Grep-like string,"this needs to be a shex statement, e.g. <= today's date, or a regex?"
-,max length,"0,1",sx:maxLength,,default unlimited
-,min  length,"0,1",sx:minLength,,Default (?)
-,language tag constraint,"0,1",,,one or more language tags that are considered valid
-,unique language constraint,"0,1",,ShEx issue #47 - may be available in the future,only one occurrence of each language tag is allowed
-,literal value list,"0,1",,xsd:literal,"Eg:red, blue, green"
-,,,,,
-,,,,,
-namespaces,http://vocab.org/vann/,vann,,,
-,http://purl.org/dc/terms/,dct,,,
-,http://www.w3.org/ns/dcat,dcat,,,
-,http://www.w3.org/2001/XMLSchema,xsd,,,
-,http://www.w3.org/ns/shex,sx,,,
-,http://www.w3.org/1999/02/22-rdf-syntax-ns#,rdf,,,
-,http://www.w3.org/2000/01/rdf-schema#,rdfs,,,
-,http://example.com/dsp,dsp,,,
+,valueID,Y,N,dct:identifier,xsd:literal,
+,display name,N,Y,rdfs:label,literal or language literal,one value per language
+,short description,N,Y,dct:description,xsd:literal,
+,usage note,N,Y,vann:usageNote,xsd:literal,
+,example,N,Y,vann:example,,
+,data type ,Y,N,sx:datatype,any xsd datatype,
+,datatype value constraint,N,N,sx:pattern,Grep-like string,"this needs to be a shex statement, e.g. <= today's date, or a regex?"
+,max length,N,N,sx:maxLength,,default unlimited
+,min  length,N,N,sx:minLength,,Default (?)
+,language tag constraint,N,N,,,one or more language tags that are considered valid
+,unique language constraint,N,N,,ShEx issue #47 - may be available in the future,only one occurrence of each language tag is allowed
+,literal value list,N,N,,xsd:literal,"Eg:red, blue, green"
