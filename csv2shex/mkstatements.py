@@ -9,6 +9,7 @@ from pathlib import Path
 # => self-use: for now...
 # => too-many-branches: a matter of taste?
 
+
 @dataclass
 class Statement:
     """Holds state and self-validation methods for a statement."""

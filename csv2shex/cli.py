@@ -19,7 +19,6 @@ def cli(config):
     """Generate ShEx schemas from CSV-formatted application profiles."""
 
 
-
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")

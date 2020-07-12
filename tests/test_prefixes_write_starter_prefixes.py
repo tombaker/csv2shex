@@ -1,7 +1,11 @@
 """Writes prefixes.yml to current directory."""
 
 import os
-from csv2shex.prefixes import write_starter_prefixfile, PREFIXFILE_CONTENT, PREFIXFILE_NAME
+from csv2shex.prefixes import (
+    write_starter_prefixfile,
+    PREFIXFILE_CONTENT,
+    PREFIXFILE_NAME,
+)
 
 
 def test_write_starter_prefixfile(tmp_path):

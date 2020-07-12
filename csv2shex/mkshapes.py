@@ -33,7 +33,7 @@ def list_shapes(statements_list):
     shapes_list = list()
     shap = Shape()
     row_dict = dict()
-    # breakpoint() 
+    # breakpoint()
     for statement in statements_list:
         if shap.shape_id != statement.shape_id:
             if shap.shape_id:
