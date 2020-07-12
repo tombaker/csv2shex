@@ -2,7 +2,6 @@
 
 from pathlib import Path
 import click
-from pprint import pprint
 from .prefixes import write_starter_prefixfile, PREFIXFILE_NAME
 from .mkstatements import csvreader, list_statements
 from .mkshapes import list_shapes
