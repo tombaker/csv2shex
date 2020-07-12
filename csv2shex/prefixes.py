@@ -35,7 +35,7 @@ def write_starter_prefixfile(
 
 
 
-def get_configdict(rootdir=None, prefixfile=PREFIXFILE_NAME):
+def get_prefixes(rootdir=None, prefixfile=PREFIXFILE_NAME):
     """Returns config dictionary from YAML config file (or errors out)."""
     if not rootdir:
         rootdir = Path.cwd()

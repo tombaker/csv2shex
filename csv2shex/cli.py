@@ -3,7 +3,7 @@
 from pathlib import Path
 import click
 from pprint import pprint
-from .config import write_starter_prefixfile, PREFIXFILE_NAME
+from .prefixes import write_starter_prefixfile, PREFIXFILE_NAME
 from .csv2stats import csvreader, list_statements
 from .stats2shapes import list_shapes
 
@@ -19,18 +19,17 @@ def cli(config):
     """Generate ShEx schemas from CSV-formatted application profiles."""
 
 
+
 @cli.command()
-@click.argument("csvfile", type=click.File("r"))
+@click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def parse(config, csvfile):
     """Parse and display CSV file for debugging."""
 
-    print(type(csvreader(csvfile=csvfile)))
-#    pprint(statements_list)
-    
-#    shapes = list_shapes(statements)
-#    print(shapes)
+    statements = list_statements(csvreader(csvfile))
+    shapes = list_shapes(statements)
+    print(shapes)
 
 
 @cli.command()

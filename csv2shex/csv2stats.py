@@ -37,16 +37,18 @@ class Statement:
 def csvreader(csvfile):
     """Open CSV file and return csv.DictReader object as list."""
     list_of_odicts = list(csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig")))
-    list_of_dicts = [dict(r) for r in list_of_odicts]
-    return list_of_dicts
+    csvrows = [dict(r) for r in list_of_odicts]
+    #for row in csvrows:
+    #    row["start"] = False
+    return csvrows
 
 
-def list_statements(csvreader_obj=None):
+def list_statements(csvrow_list=None):
     """Return list of Statement objects from csv.DictReader object."""
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
-    for row in csvreader_obj:
+    for row in csvrow_list:
         if not dict(row.items())["prop_id"]:
             if dict(row.items())["shape_id"]:
                 shape_ids.append(dict(row.items())["shape_id"])

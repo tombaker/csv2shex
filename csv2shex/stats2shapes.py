@@ -1,5 +1,6 @@
 """Class for Python objects derived from CSV files."""
 
+
 from dataclasses import dataclass, field
 
 # start: bool = False
@@ -29,18 +30,16 @@ class Shape:
 
 def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
-    # statements_as_dicts = [asdict(s) for s in statements_list]
-    # for statement in statements_as_dicts:
     shapes_list = list()
     shap = Shape()
     row_dict = dict()
+    # breakpoint() 
     for statement in statements_list:
         if shap.shape_id != statement.shape_id:
-            if shap.shape_id is not None:
+            if shap.shape_id:
                 shapes_list.append(shap)
             shap = Shape()
             shap.start = statement.start
-            shap.shape_id = statement.shape_id
             shap.shape_label = statement.shape_label
             shap.property_values = list()
         row_dict["prop_id"] = statement.prop_id
