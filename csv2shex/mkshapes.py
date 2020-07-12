@@ -16,10 +16,7 @@ from dataclasses import dataclass, field, asdict
 #     "annot",
 # ]
 
-PVPAIR_KEYS = [
-    "prop_id",
-    "value_type",
-]
+PVPAIR_KEYS = ["prop_id", "value_type"]
 
 
 @dataclass
@@ -39,7 +36,7 @@ def list_shapes(statements_list):
     shape_pvpairs_item = dict()
     for statement in statements_list:
         statement = asdict(statement)
-        # breakpoint() 
+        # breakpoint()
         # if new shape is encountered
         if shap.shape_id != statement["shape_id"]:
             # if shap.shape_id is not None

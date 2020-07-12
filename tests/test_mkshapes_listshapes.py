@@ -1,6 +1,5 @@
 """Turn list of Statements into list of Shapes."""
 
-import pytest
 from csv2shex.mkshapes import list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
