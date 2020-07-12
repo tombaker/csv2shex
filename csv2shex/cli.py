@@ -35,6 +35,7 @@ def fields(config):
     for key in STATEMENT_KEYS:
         print(f"        {key}")
 
+
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")

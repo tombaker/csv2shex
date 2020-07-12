@@ -28,11 +28,7 @@ def pprint_shapes(shapes):
         for shape_key in SHAPE_KEYS:
             if shape[shape_key]:
                 pprint_output.append(
-                    "    " 
-                    + str(shape_key) 
-                    + ": " 
-                    + str(shape[shape_key]) 
-                    + "\n"
+                    "    " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
                 )
         for statement in shape["shape_statements"]:
             pprint_output.append("    Statement\n")
