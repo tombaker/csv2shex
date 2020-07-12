@@ -3,20 +3,20 @@
 
 from dataclasses import dataclass, field, asdict
 
-# PVPAIR_KEYS = [
-#     "prop_id",
-#     "prop_label",
-#     "mand",
-#     "repeat",
-#     "value_type",
-#     "value_datatype",
-#     "constraint_value",
-#     "constraint_type",
-#     "shape_ref",
-#     "annot",
-# ]
+PVPAIR_KEYS = [
+    "prop_id",
+    "prop_label",
+    "mand",
+    "repeat",
+    "value_type",
+    "value_datatype",
+    "constraint_value",
+    "constraint_type",
+    "shape_ref",
+    "annot",
+]
 
-PVPAIR_KEYS = ["prop_id", "value_type"]
+# PVPAIR_KEYS = ["prop_id", "value_type"]
 
 
 @dataclass
