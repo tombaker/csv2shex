@@ -1,21 +1,25 @@
 """Class for Python objects derived from CSV files."""
 
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 
-# start: bool = False
-# shape_id: str = None
-# shape_label: str = None
-# prop_id: str = None
-# prop_label: str = None
-# mand: str = None
-# repeat: str = None
-# value_type: str = None
-# value_datatype: str = None
-# constraint_value: str = None
-# constraint_type: str = None
-# shape_ref: str = None
-# annot: str = None
+# PVPAIR_KEYS = [
+#     "prop_id",
+#     "prop_label",
+#     "mand",
+#     "repeat",
+#     "value_type",
+#     "value_datatype",
+#     "constraint_value",
+#     "constraint_type",
+#     "shape_ref",
+#     "annot",
+# ]
+
+PVPAIR_KEYS = [
+    "prop_id",
+    "value_type",
+]
 
 
 @dataclass
@@ -32,19 +36,22 @@ def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
     shapes_list = list()
     shap = Shape()
-    row_dict = dict()
-    #breakpoint()
     for statement in statements_list:
-        if shap.shape_id != statement.shape_id:
+        statement = asdict(statement)
+        # breakpoint() 
+        if shap.shape_id != statement["shape_id"]:
             if shap.shape_id:
                 shapes_list.append(shap)
             shap = Shape()
-            shap.start = statement.start
-            shap.shape_label = statement.shape_label
-            shap.shape_pvpairs = list()
-        row_dict["prop_id"] = statement.prop_id
-        row_dict["value_type"] = statement.value_type
+            shap.start = statement["start"]
+            shap.shape_id = statement["shape_id"]
+            shap.shape_label = statement["shape_label"]
+            row_dict = dict()
+
+        for pvpair_key in PVPAIR_KEYS:
+            row_dict[pvpair_key] = statement[pvpair_key]
+
         shap.shape_pvpairs.append(row_dict)
-        row_dict = dict()
-    shapes_list.append(shap)
+        shapes_list.append(shap)
+
     return shapes_list
