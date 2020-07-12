@@ -3,6 +3,7 @@
 
 import csv
 from dataclasses import dataclass
+from pathlib import Path
 
 # pylint: disable=no-self-use,too-many-branches
 # => self-use: for now...
@@ -35,7 +36,7 @@ class Statement:
 
 def csvreader(csvfile):
     """Open CSV file and return csv.DictReader object as list."""
-    list_of_odicts = csv.DictReader(open(csvfile, newline="", encoding="utf-8-sig"))
+    list_of_odicts = list(csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig")))
     list_of_dicts = [dict(r) for r in list_of_odicts]
     return list_of_dicts
 

@@ -2,7 +2,10 @@
 
 from pathlib import Path
 import click
+from pprint import pprint
 from .config import write_starter_prefixfile, PREFIXFILE_NAME
+from .csv2stats import csvreader, list_statements
+from .stats2shapes import list_shapes
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
@@ -22,6 +25,12 @@ def cli(config):
 @click.pass_context
 def parse(config, csvfile):
     """Parse and display CSV file for debugging."""
+
+    print(type(csvreader(csvfile=csvfile)))
+#    pprint(statements_list)
+    
+#    shapes = list_shapes(statements)
+#    print(shapes)
 
 
 @cli.command()
