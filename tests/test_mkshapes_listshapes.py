@@ -12,7 +12,6 @@ LIST_OF_STATEMENT_OBJECTS = [
 ]
 
 
-@pytest.mark.skip
 def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
     as_input = [
@@ -23,7 +22,7 @@ def test_listshapes_one_shape():
         Shape(
             start=True,
             shape_id="@a",
-            property_values=[
+            shape_pvpairs=[
                 {"prop_id": "dct:creator", "value_type": "URI"},
                 {"prop_id": "dct:date", "value_type": "String"},
             ],
@@ -55,7 +54,7 @@ def test_listshapes_one_shape_and_shape_label():
             start=True,
             shape_id="@a",
             shape_label="Author",
-            property_values=[
+            shape_pvpairs=[
                 {"prop_id": "dct:creator", "value_type": "URI"},
                 {"prop_id": "dct:date", "value_type": "String"},
             ],
@@ -70,7 +69,7 @@ def test_listshapes_two_shapes():
         Shape(
             start=True,
             shape_id="@a",
-            property_values=[
+            shape_pvpairs=[
                 {"prop_id": "dct:creator", "value_type": "URI"},
                 {"prop_id": "dct:subject", "value_type": "URI"},
                 {"prop_id": "dct:date", "value_type": "String"},
@@ -79,6 +78,6 @@ def test_listshapes_two_shapes():
         Shape(
             start=False,
             shape_id="@b",
-            property_values=[{"prop_id": "foaf:name", "value_type": "String"}],
+            shape_pvpairs=[{"prop_id": "foaf:name", "value_type": "String"}],
         ),
     ]

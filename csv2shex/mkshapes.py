@@ -25,7 +25,7 @@ class Shape:
     start: bool = False
     shape_id: str = None
     shape_label: str = None
-    property_values: list = field(default_factory=list)
+    shape_pvpairs: list = field(default_factory=list)
 
 
 def list_shapes(statements_list):
@@ -33,7 +33,7 @@ def list_shapes(statements_list):
     shapes_list = list()
     shap = Shape()
     row_dict = dict()
-    # breakpoint()
+    #breakpoint()
     for statement in statements_list:
         if shap.shape_id != statement.shape_id:
             if shap.shape_id:
@@ -41,10 +41,10 @@ def list_shapes(statements_list):
             shap = Shape()
             shap.start = statement.start
             shap.shape_label = statement.shape_label
-            shap.property_values = list()
+            shap.shape_pvpairs = list()
         row_dict["prop_id"] = statement.prop_id
         row_dict["value_type"] = statement.value_type
-        shap.property_values.append(row_dict)
+        shap.shape_pvpairs.append(row_dict)
         row_dict = dict()
     shapes_list.append(shap)
     return shapes_list
