@@ -22,7 +22,7 @@ def test_listshapes_one_shape():
             start=True,
             shape_id="@a",
             shape_label=None,
-            shape_pvpairs=[
+            shape_statements=[
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
@@ -75,7 +75,7 @@ def test_listshapes_one_shape_and_shape_label():
             start=True,
             shape_id="@a",
             shape_label="Author",
-            shape_pvpairs=[
+            shape_statements=[
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
@@ -111,7 +111,7 @@ def test_listshapes_two_shapes():
         Shape(
             start=True,
             shape_id="@a",
-            shape_pvpairs=[
+            shape_statements=[
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
@@ -153,7 +153,7 @@ def test_listshapes_two_shapes():
         Shape(
             start=False,
             shape_id="@b",
-            shape_pvpairs=[
+            shape_statements=[
                 {
                     "prop_id": "foaf:name",
                     "value_type": "String",

@@ -3,7 +3,9 @@
 
 from dataclasses import dataclass, field, asdict
 
-PVPAIR_KEYS = [
+SHAPE_KEYS = ["start", "shape_id", "shape_label"]
+
+STATEMENT_KEYS = [
     "prop_id",
     "prop_label",
     "mand",
@@ -16,7 +18,34 @@ PVPAIR_KEYS = [
     "annot",
 ]
 
-# PVPAIR_KEYS = ["prop_id", "value_type"]
+
+def pprint_shapes(shapes):
+    """Pretty-print Shape objects to console."""
+    pprint_output = []
+    for shape in shapes:
+        shape = asdict(shape)
+        pprint_output.append("Shape\n")
+        for shape_key in SHAPE_KEYS:
+            if shape[shape_key]:
+                pprint_output.append(
+                    "    " 
+                    + str(shape_key) 
+                    + ": " 
+                    + str(shape[shape_key]) 
+                    + "\n"
+                )
+        for statement in shape["shape_statements"]:
+            pprint_output.append("    Statement\n")
+            for statement_key in STATEMENT_KEYS:
+                if statement[statement_key]:
+                    pprint_output.append(
+                        "        "
+                        + str(statement_key)
+                        + ": "
+                        + str(statement[statement_key])
+                        + "\n"
+                    )
+    return "".join(pprint_output)
 
 
 @dataclass
@@ -26,14 +55,14 @@ class Shape:
     start: bool = False
     shape_id: str = None
     shape_label: str = None
-    shape_pvpairs: list = field(default_factory=list)
+    shape_statements: list = field(default_factory=list)
 
 
 def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
     shapes_list = list()
     shap = Shape()
-    shape_pvpairs_item = dict()
+    shape_statements_item = dict()
     for statement in statements_list:
         statement = asdict(statement)
         # breakpoint()
@@ -47,10 +76,10 @@ def list_shapes(statements_list):
             shap.shape_id = statement["shape_id"]
             shap.shape_label = statement["shape_label"]
 
-        for pvpair_key in PVPAIR_KEYS:
-            shape_pvpairs_item[pvpair_key] = statement[pvpair_key]
+        for pvpair_key in STATEMENT_KEYS:
+            shape_statements_item[pvpair_key] = statement[pvpair_key]
 
-        shap.shape_pvpairs.append(shape_pvpairs_item)
-        shape_pvpairs_item = dict()
+        shap.shape_statements.append(shape_statements_item)
+        shape_statements_item = dict()
     shapes_list.append(shap)
     return shapes_list
