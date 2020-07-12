@@ -46,32 +46,30 @@ def list_statements(csvrow_list=None):
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
-    #breakpoint() 
     for row in csvrow_list:
         if not row["prop_id"]:
             if row["shape_id"]:
                 shape_ids.append(row["shape_id"])
             continue
+
         stat = Statement()
-        for (key, value) in row.items():
-            if key == "prop_id":
-                stat.prop_id = value
-            if key == "shape_id":
-                if value:
-                    stat.shape_id = value
-                else:
-                    if shape_ids:
-                        stat.shape_id = shape_ids[-1]
-                    elif not shape_ids:
-                        stat.shape_id = "@default"
-                if stat.shape_id not in shape_ids:
-                    shape_ids.append(stat.shape_id)
-                if first_shape_encountered:
-                    first_shape = stat.shape_id
-                    first_shape_encountered = False
-                if stat.shape_id == first_shape:
-                    stat.start = True
-            if key == "value_type":
-                stat.value_type = value
+        stat.prop_id = row["prop_id"]
+        stat.value_type = row["value_type"]
+
+        if row["shape_id"]:
+            stat.shape_id = row["shape_id"]
+        else:
+            if shape_ids:
+                stat.shape_id = shape_ids[-1]
+            elif not shape_ids:
+                stat.shape_id = "@default"
+        if stat.shape_id not in shape_ids:
+            shape_ids.append(stat.shape_id)
+        if first_shape_encountered:
+            first_shape = stat.shape_id
+            first_shape_encountered = False
+        if stat.shape_id == first_shape:
+            stat.start = True
+
         statements_list.append(stat)
     return statements_list
