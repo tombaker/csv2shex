@@ -36,22 +36,24 @@ def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
     shapes_list = list()
     shap = Shape()
+    shape_pvpairs_item = dict()
     for statement in statements_list:
         statement = asdict(statement)
         # breakpoint() 
+        # if new shape is encountered
         if shap.shape_id != statement["shape_id"]:
+            # if shap.shape_id is not None
             if shap.shape_id:
                 shapes_list.append(shap)
             shap = Shape()
             shap.start = statement["start"]
             shap.shape_id = statement["shape_id"]
             shap.shape_label = statement["shape_label"]
-            row_dict = dict()
 
         for pvpair_key in PVPAIR_KEYS:
-            row_dict[pvpair_key] = statement[pvpair_key]
+            shape_pvpairs_item[pvpair_key] = statement[pvpair_key]
 
-        shap.shape_pvpairs.append(row_dict)
-        shapes_list.append(shap)
-
+        shap.shape_pvpairs.append(shape_pvpairs_item)
+        shape_pvpairs_item = dict()
+    shapes_list.append(shap)
     return shapes_list

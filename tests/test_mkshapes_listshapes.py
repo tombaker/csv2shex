@@ -30,7 +30,6 @@ def test_listshapes_one_shape():
     ]
 
 
-@pytest.mark.skip
 def test_listshapes_one_shape_and_shape_label():
     """One Shape with shape label."""
     as_input = [
@@ -62,7 +61,6 @@ def test_listshapes_one_shape_and_shape_label():
     ]
 
 
-@pytest.mark.skip
 def test_listshapes_two_shapes():
     """Turn list of Statement objects into list with two Shapes."""
     assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
