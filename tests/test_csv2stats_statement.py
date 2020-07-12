@@ -2,7 +2,7 @@
 
 
 import pytest
-from csv2shex.csv2stats import Statement
+from csv2shex.mkstatements import Statement
 
 
 def test_statement_initialized_with_just_one_field():

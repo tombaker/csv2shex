@@ -4,8 +4,8 @@ from pathlib import Path
 import click
 from pprint import pprint
 from .prefixes import write_starter_prefixfile, PREFIXFILE_NAME
-from .csv2stats import csvreader, list_statements
-from .stats2shapes import list_shapes
+from .mkstatements import csvreader, list_statements
+from .mkshapes import list_shapes
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.

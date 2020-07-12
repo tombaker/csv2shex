@@ -3,7 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.csv2stats import csvreader, Statement
+from csv2shex.mkstatements import csvreader, Statement
 
 
 def test_csvreader_with_simple_csvfile(tmp_path):

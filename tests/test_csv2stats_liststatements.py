@@ -1,6 +1,6 @@
 """Use list of dictionaries to initialize list of Statement objects."""
 
-from csv2shex.csv2stats import list_statements, Statement
+from csv2shex.mkstatements import list_statements, Statement
 
 
 def test_liststatements():

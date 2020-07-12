@@ -1,6 +1,6 @@
 """Shape object holds statements sharing a common shape_id."""
 
-from csv2shex.stats2shapes import Shape
+from csv2shex.mkshapes import Shape
 
 SHAPE_OBJECT = Shape(
     start=True,

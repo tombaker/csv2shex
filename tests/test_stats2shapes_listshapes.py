@@ -1,8 +1,8 @@
 """Turn list of Statements into list of Shapes."""
 
 import pytest
-from csv2shex.stats2shapes import list_shapes, Shape
-from csv2shex.csv2stats import Statement
+from csv2shex.mkshapes import list_shapes, Shape
+from csv2shex.mkstatements import Statement
 
 LIST_OF_STATEMENT_OBJECTS = [
     Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
