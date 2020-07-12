@@ -1,0 +1,15 @@
+[flake8]
+# See http://flake8.pycqa.org/en/latest/user/configuration.html
+# Ignore E501 to allow Black line length of 88 instead of 79
+max-line-length = 88
+# ignore = E501,F401,F841
+ignore = E203,W503,W605
+exclude =
+    .git,
+    .html,
+    .idea,
+    .cache,
+    .pytest_cache,
+    build,
+    dist,
+    mklists.egg-info
