@@ -36,11 +36,9 @@ class Statement:
 
 def csvreader(csvfile):
     """Open CSV file and return csv.DictReader object as list."""
-    list_of_odicts = list(csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig")))
-    csvrows = [dict(r) for r in list_of_odicts]
-    #for row in csvrows:
-    #    row["start"] = False
-    return csvrows
+    rows_odict = csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
+    rows = [dict(r) for r in rows_odict]
+    return rows
 
 
 def list_statements(csvrow_list=None):
@@ -48,10 +46,11 @@ def list_statements(csvrow_list=None):
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
+    #breakpoint() 
     for row in csvrow_list:
-        if not dict(row.items())["prop_id"]:
-            if dict(row.items())["shape_id"]:
-                shape_ids.append(dict(row.items())["shape_id"])
+        if not row["prop_id"]:
+            if row["shape_id"]:
+                shape_ids.append(row["shape_id"])
             continue
         stat = Statement()
         for (key, value) in row.items():
@@ -68,7 +67,6 @@ def list_statements(csvrow_list=None):
                 if stat.shape_id not in shape_ids:
                     shape_ids.append(stat.shape_id)
                 if first_shape_encountered:
-                    stat.start = True
                     first_shape = stat.shape_id
                     first_shape_encountered = False
                 if stat.shape_id == first_shape:
