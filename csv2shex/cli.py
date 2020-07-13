@@ -4,9 +4,10 @@ from pathlib import Path
 from pprint import pprint
 from dataclasses import asdict
 import click
-from .prefixes import write_starter_prefixfile, PREFIXFILE_NAME
+from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
+from .prefixes import write_starter_prefixfile
 from .mkstatements import csvreader, list_statements
-from .mkshapes import pprint_shapes, list_shapes, SHAPE_KEYS, STATEMENT_KEYS
+from .mkshapes import pprint_shapes, list_shapes
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.

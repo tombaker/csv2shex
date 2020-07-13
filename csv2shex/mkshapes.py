@@ -2,21 +2,7 @@
 
 
 from dataclasses import dataclass, field, asdict
-
-SHAPE_KEYS = ["start", "shape_id", "shape_label"]
-
-STATEMENT_KEYS = [
-    "prop_id",
-    "prop_label",
-    "mand",
-    "repeat",
-    "value_type",
-    "value_datatype",
-    "constraint_value",
-    "constraint_type",
-    "shape_ref",
-    "annot",
-]
+from .constants import STATEMENT_KEYS, SHAPE_KEYS
 
 
 def pprint_shapes(shapes):
