@@ -1,0 +1,331 @@
+- !Shape
+  start: true
+  shape_id: descriptionSet
+  shape_label: ''
+  shape_statements:
+  - prop_id: dsp:descriptionSet
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: xsd:literal
+    prop_label:
+    mand: 1,-1
+    repeat: rdfs:label
+    value_type:
+    value_datatype:
+    constraint_value: one value per language
+    constraint_type:
+    shape_ref:
+    annot:
+  - prop_id: dsp:description
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal (array)
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: description
+  shape_label: ''
+  shape_statements:
+  - prop_id: dsp:description
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: dct:identifier
+    prop_label:
+    mand: Y
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: xsd:literal
+    prop_label:
+    mand: 1,-1
+    repeat: rdfs:label
+    value_type:
+    value_datatype:
+    constraint_value: one value per language?
+    constraint_type:
+    shape_ref:
+    annot:
+  - prop_id: dct:description
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: vann:example
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: vann:usageNote
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: rdf:type
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: rdfs:Class
+    constraint_type:
+    shape_ref:
+    annot: 'The valid RDF  class(es) for this description; only for RDF data '
+  - prop_id: sx:min
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Default 0
+  - prop_id: sx:max
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Default -1
+  - prop_id: dsp:statement
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal (array)
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: statement
+  shape_label: ''
+  shape_statements:
+  - prop_id: dsp:statement
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: dct:identifier
+    prop_label:
+    mand: Y
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: '?'
+    prop_label:
+    mand: Y
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal or URI
+    constraint_type:
+    shape_ref:
+    annot: Expected to be a URI but minimally can just be the name of a metadata element
+      recognized by a community
+  - prop_id: rdfs:label
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: one value per language
+  - prop_id: dct:description
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: vann:usageNote
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sx:minInclusive
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Default 0
+  - prop_id: sx:maxInclusive
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Default -1
+  - prop_id: sx:valueExpr
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: Assuming a statement can be reused within a set
+- !Shape
+  start: false
+  shape_id: value
+  shape_label: valueID
+  shape_statements:
+  - prop_id: dct:identifier
+    prop_label:
+    mand: Y
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: rdfs:label
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: literal or language literal
+    constraint_type:
+    shape_ref:
+    annot: one value per language
+  - prop_id: dct:description
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: vann:usageNote
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: xsd:literal
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: vann:example
+    prop_label:
+    mand: N
+    repeat: Y
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sx:datatype
+    prop_label:
+    mand: Y
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: any xsd datatype
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sx:pattern
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: Grep-like string
+    constraint_type:
+    shape_ref:
+    annot: this needs to be a shex statement, e.g. <= today's date, or a regex?
+  - prop_id: sx:maxLength
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: default unlimited
+  - prop_id: sx:minLength
+    prop_label:
+    mand: N
+    repeat: N
+    value_type:
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Default (?)

@@ -1,0 +1,581 @@
+- !Shape
+  start: true
+  shape_id: '@Recipe'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: sdo:Recipe
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:image
+    prop_label: image
+    mand: y
+    repeat: y
+    value_type: ' '
+    value_datatype:
+    constraint_value: xsd:anyURI @Image
+    constraint_type:
+    shape_ref:
+    annot: Image of the completed dish.
+  - prop_id: sdo:name
+    prop_label: name
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: The name of the dish.
+  - prop_id: sdo:url
+    prop_label: page URL
+    mand: n
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: The URL of the recipe's web page
+  - prop_id: sdo:aggregateRating
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@AggregateRating'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:author
+    prop_label: ''
+    mand: n
+    repeat: y
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@Author'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:cookTime
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:duration
+    constraint_type:
+    shape_ref:
+    annot: Use ISO 8601 duration format
+  - prop_id: sdo:datePublished
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:date
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:description
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:keywords
+    prop_label: ''
+    mand: n
+    repeat: y
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:nutrition
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@NutritionInformation'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:prepTime
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:duration
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:recipeCategory
+    prop_label: ''
+    mand: n
+    repeat: y
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:recipeCuisine
+    prop_label: ''
+    mand: n
+    repeat: y
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:recipeIngredient
+    prop_label: ''
+    mand: y
+    repeat: y
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:recipeInstructions
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: ''
+    value_datatype:
+    constraint_value: '@HowToStep @HowToSection xsd:string'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:recipeYield
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:totalTime
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:duration
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:video
+    prop_label: ''
+    mand: n
+    repeat: y
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@Video'
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@Image'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: sdo:ImageObject
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:contentUrl
+    prop_label: location
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:caption
+    prop_label: image caption
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@AggregateRating'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:AggregateRating
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:itemReviewed
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:ratingCount
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: The total number of ratings
+  - prop_id: sdo:reviewCount
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Specifies the number of people who provided a review with or without an
+      accompanying rating.
+  - prop_id: sdo:ratingValue
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:float xsd:string
+    constraint_type:
+    shape_ref:
+    annot: The aggregate rating, e.g. 4.1 or 82%
+  - prop_id: sdo:bestRating
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:float
+    constraint_type:
+    shape_ref:
+    annot: The best rating possible
+  - prop_id: sdo:worstRating
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:float
+    constraint_type:
+    shape_ref:
+    annot: The worst rating possible
+- !Shape
+  start: false
+  shape_id: '@Author'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: sdo:Person :Organization
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:name
+    prop_label: Name
+    mand: y
+    repeat: y
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@NutritionInformation'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:NutritionInformation
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:calories
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: Energy per serving in form <number> <unit> e.g. 420kCal
+  - prop_id: sdo:servingSize
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@HowToSection'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: 'instance of '
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:HowToSection
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:name
+    prop_label: title for this section
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:text
+    prop_label: summary of this section
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:itemListElement
+    prop_label: instruction
+    mand: y
+    repeat: y
+    value_type: ''
+    value_datatype:
+    constraint_value: '@HowToStep'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:itemListOrder
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:ItemListOrderAscending
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@HowToStep'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:HowToStep
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:name
+    prop_label: heading for instructions
+    mand: y
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:text
+    prop_label: detailed instructions
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:url
+    prop_label: link to this step
+    mand: n
+    repeat: y
+    value_type: URI
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:image
+    prop_label: image(s) for this step
+    mand: n
+    repeat: y
+    value_type: ''
+    value_datatype:
+    constraint_value: xsd:anyURI @image
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:video
+    prop_label: a video of this step
+    mand: ''
+    repeat: ''
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@Video'
+    constraint_type:
+    shape_ref:
+    annot: ''
+- !Shape
+  start: false
+  shape_id: '@Video'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label: instance of
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: sdo:VideoObject
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:name
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: ''
+    value_datatype:
+    constraint_value: xsd:string
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:contentUrl
+    prop_label: location
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:embedUrl
+    prop_label: ''
+    mand: y
+    repeat: y
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:url
+    prop_label: ''
+    mand: y
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:hasPart
+    prop_label: A clip from a video
+    mand: n
+    repeat: y
+    value_type: Entity
+    value_datatype:
+    constraint_value: '@VideoObject'
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:thumbnailUrl
+    prop_label: ''
+    mand: n
+    repeat: n
+    value_type: 'URI '
+    value_datatype:
+    constraint_value: xsd:anyURI
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: sdo:startOffset
+    prop_label: The start of a clip
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Required for clips
+  - prop_id: sdo:endOffset
+    prop_label: The end of a clip
+    mand: n
+    repeat: n
+    value_type: Literal
+    value_datatype:
+    constraint_value: xsd:integer
+    constraint_type:
+    shape_ref:
+    annot: Required for clips

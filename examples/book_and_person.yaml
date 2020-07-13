@@ -1,0 +1,70 @@
+- !Shape
+  start: true
+  shape_id: book
+  shape_label: Book
+  shape_statements:
+  - prop_id: dct:creator
+    prop_label: Author
+    mand: N
+    repeat: Y
+    value_type: entity
+    value_datatype:
+    constraint_value: person
+    constraint_type:
+    shape_ref:
+    annot: Author is not required; no limit on the number
+  - prop_id: dct:title
+    prop_label: Title
+    mand: Y
+    repeat: N
+    value_type: literal
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Each book must have a title
+  - prop_id: dct:date
+    prop_label: Year of publication
+    mand: Y
+    repeat: N
+    value_type: xsd:year
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Only the year, 9999
+- !Shape
+  start: false
+  shape_id: person
+  shape_label: Person
+  shape_statements:
+  - prop_id: foaf:Name
+    prop_label: Name
+    mand: Y
+    repeat: N
+    value_type: literal
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Each person has one name
+  - prop_id: foaf:mbox
+    prop_label: Email
+    mand: N
+    repeat: N
+    value_type: URI
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Email is optional but only one allowed
+  - prop_id: dct:date
+    prop_label: Birth year
+    mand: Y
+    repeat: N
+    value_type: xsd:year
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Only the year, 9999

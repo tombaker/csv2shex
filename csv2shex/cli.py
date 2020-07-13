@@ -44,10 +44,8 @@ def fields(config):
 @click.pass_context
 def yaml(config, csvfile):
     """Parse CSV file and print contents as YAML."""
-    statements = list_statements(csvreader(csvfile))
-    shapes = list_shapes(statements)
-    csv2yaml(shapes)
 
+    csv2yaml(csvfile)
 
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))

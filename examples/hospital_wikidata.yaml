@@ -1,0 +1,85 @@
+- !Shape
+  start: true
+  shape_id: '@hospital'
+  shape_label:
+  shape_statements:
+  - prop_id: wdt:P31
+    prop_label: is a
+    mand: y
+    repeat: n
+    value_type: URI
+    value_datatype:
+    constraint_value: wd:Q16917
+    constraint_type:
+    shape_ref:
+    annot: instance of a hospital
+  - prop_id: wdt:P17
+    prop_label: country
+    mand: y
+    repeat: n
+    value_type: URISTEM
+    value_datatype:
+    constraint_value: 'wd:'
+    constraint_type:
+    shape_ref:
+    annot: Country in which the hospital is located
+  - prop_id: wdt:P131
+    prop_label: located in administrative territorial entity
+    mand: y
+    repeat: y
+    value_type: URISTEM
+    value_datatype:
+    constraint_value: 'wd:'
+    constraint_type:
+    shape_ref:
+    annot: City
+  - prop_id: wdt:P625
+    prop_label: geographical coordinates
+    mand: y
+    repeat: y
+    value_type: ''
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: wdt:P856
+    prop_label: web site
+    mand: n
+    repeat: y
+    value_type: URI
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: The primary hospital web site
+  - prop_id: wdt:P1705
+    prop_label: name in native language
+    mand: n
+    repeat: y
+    value_type: LITERAL
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: wdt:P6375
+    prop_label: street address
+    mand: n
+    repeat: y
+    value_type: LITERAL
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: ''
+  - prop_id: wdt:P571
+    prop_label: inception date
+    mand: n
+    repeat: n
+    value_type: xsd:year
+    value_datatype:
+    constraint_value: ''
+    constraint_type:
+    shape_ref:
+    annot: Date the hospital was founded; yyyy
