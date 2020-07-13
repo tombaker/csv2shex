@@ -93,3 +93,63 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
         Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
         Statement(start=True, shape_id="@a", prop_id="dct:subject", value_type="URI"),
     ]
+
+
+def test_liststatements_with_missing_value_type():
+    """Should parse even if input lacks field 'value_type'."""
+    as_input = [
+        {
+            "shape_id": "@book",
+            "prop_id": "",
+            "prop_label": "Book",
+            "constraint_value": "",
+            "annot": "",
+        },
+        {
+            "shape_id": "",
+            "prop_id": "rdf:type",
+            "prop_label": "instance of",
+            "constraint_value": "sdo:Book",
+            "annot": "must be schema.org/Book",
+        },
+        {
+            "shape_id": "",
+            "prop_id": "rdf:type",
+            "prop_label": "instance of",
+            "constraint_value": "wd:Q571",
+            "annot": "must be wikidata Book",
+        },
+    ]
+    expected = [
+        Statement(
+            start=True,
+            shape_id="@book",
+            shape_label=None,
+            prop_id="rdf:type",
+            prop_label="instance of",
+            mand=None,
+            repeat=None,
+            value_type=None,
+            value_datatype=None,
+            constraint_value="sdo:Book",
+            constraint_type=None,
+            shape_ref=None,
+            annot="must be schema.org/Book",
+        ),
+        Statement(
+            start=True,
+            shape_id="@book",
+            shape_label=None,
+            prop_id="rdf:type",
+            prop_label="instance of",
+            mand=None,
+            repeat=None,
+            value_type=None,
+            value_datatype=None,
+            constraint_value="wd:Q571",
+            constraint_type=None,
+            shape_ref=None,
+            annot="must be wikidata Book",
+        ),
+    ]
+    assert list_statements(as_input) == expected

@@ -39,7 +39,7 @@ def test_pprint_shapes():
             ],
         )
     ]
-    as_output = dedent("""\
+    expected = dedent("""\
     Shape
         start: True
         shape_id: @a
@@ -51,7 +51,7 @@ def test_pprint_shapes():
             value_type: String
     """)
     print(pprint_shapes(as_input))
-    assert pprint_shapes(as_input) == as_output
+    assert pprint_shapes(as_input) == expected
 
 
 as_input = [

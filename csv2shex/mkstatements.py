@@ -4,6 +4,7 @@
 import csv
 from dataclasses import dataclass
 from pathlib import Path
+from .constants import SHAPE_KEYS, STATEMENT_KEYS
 
 # pylint: disable=no-self-use,too-many-branches
 # => self-use: for now...
@@ -36,17 +37,19 @@ class Statement:
 
 
 def csvreader(csvfile):
-    """Open CSV file and return csv.DictReader object as list."""
+    """Read CSV file and return list of dicts, one dict per CSV row."""
     rows_odict = csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
     rows = [dict(r) for r in rows_odict]
     return rows
 
 
 def list_statements(csvrow_list=None):
-    """Return list of Statement objects from csv.DictReader object."""
+    """Return list of Statement objects from list of dicts ("CSV rows")."""
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
+    keys = SHAPE_KEYS + STATEMENT_KEYS
+    keys.remove("shape_id")
     for row in csvrow_list:
         if not row["prop_id"]:
             if row["shape_id"]:
@@ -54,8 +57,6 @@ def list_statements(csvrow_list=None):
             continue
 
         stat = Statement()
-        stat.prop_id = row["prop_id"]
-        stat.value_type = row["value_type"]
 
         if row["shape_id"]:
             stat.shape_id = row["shape_id"]
@@ -71,6 +72,10 @@ def list_statements(csvrow_list=None):
             first_shape_encountered = False
         if stat.shape_id == first_shape:
             stat.start = True
+
+        for key in keys:
+            if key in row:
+                setattr(stat, key, row[key])
 
         statements_list.append(stat)
     return statements_list

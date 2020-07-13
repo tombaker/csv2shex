@@ -8,6 +8,7 @@ from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
 from .prefixes import write_starter_prefixfile
 from .mkstatements import csvreader, list_statements
 from .mkshapes import pprint_shapes, list_shapes
+from .mkyaml import csv2yaml
 
 # pylint: disable=unused-argument
 #         During development, unused arguments here.
@@ -41,9 +42,19 @@ def fields(config):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def parse(config, csvfile):
-    """Parse and display CSV file for debugging."""
+def yaml(config, csvfile):
+    """Parse CSV file and print contents as YAML."""
+    statements = list_statements(csvreader(csvfile))
+    shapes = list_shapes(statements)
+    csv2yaml(shapes)
 
+
+@cli.command()
+@click.argument("csvfile", type=click.Path(exists=True))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def parse(config, csvfile):
+    """Parse CSV file and print content."""
     statements = list_statements(csvreader(csvfile))
     shapes = list_shapes(statements)
     pprint_output = pprint_shapes(shapes)
