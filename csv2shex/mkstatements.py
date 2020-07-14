@@ -31,9 +31,24 @@ class Statement:
 
     def is_valid(self):
         """Returns True if Statement instance is valid."""
+        # self._valid_uristem()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
         return True
+
+    def _is_uristem_used_correctly(self):
+        """Returns True if constraint type URI Stem used correctly."""
+        if self.constraint_type == "URIStem":
+            if self.constraint_value:
+                print(
+                    f"Constraint type {self.constraint_type} "
+                    "used with constraint value - ok."
+                )
+            else:
+                print(
+                    f"Warning: Constraint type {self.constraint_type} "
+                    "requires corresponding constraint value."
+                )
 
 
 def csvreader(csvfile):

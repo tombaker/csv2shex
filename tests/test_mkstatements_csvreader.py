@@ -22,7 +22,6 @@ def test_csvreader_with_simple_csvfile(tmp_path):
         {"shape_id": "@a", "prop_id": "dct:subject", "value_type": "URI"},
         {"shape_id": "@a", "prop_id": "dct:date", "value_type": "String"},
     ]
-    # assert type(csvreader(csvfile)[0]) == dict
     assert csvreader(csvfile) == expected_output
 
 

@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import click
+from .check import check
 from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
 from .prefixes import write_starter_prefixfile
 from .mkstatements import csvreader, list_statements
@@ -18,7 +19,7 @@ from .mkyaml import csv2yaml
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def cli(config):
-    """Generate ShEx schemas from CSV-formatted application profiles"""
+    """Generate ShEx schemas from tabular (CSV) application profiles"""
 
 
 @cli.command()
@@ -41,8 +42,8 @@ def fields(config):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def csvcheck(config, csvfile):
-    """Check CSV file for anomalies"""
+def yamlparse(config, csvfile):
+    """Show CSV file contents as YAML"""
     csv2yaml(csvfile)
 
 
@@ -50,8 +51,8 @@ def csvcheck(config, csvfile):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def yamlparse(config, csvfile):
-    """Show CSV file contents as YAML"""
+def yaml2csv(config, csvfile):
+    """Show YAML file as CSV (for round-tripping?)"""
     csv2yaml(csvfile)
 
 
@@ -80,3 +81,12 @@ def prefixes(config, defaults, write):
         write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
         for line in Path(PREFIXFILE_NAME).open():
             print(line, end="")
+
+
+@cli.command()
+@click.argument("csvfile", type=click.Path(exists=True))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def csvcheck(config, csvfile):
+    """Check CSV file structure for anomalies"""
+    check(csvfile)

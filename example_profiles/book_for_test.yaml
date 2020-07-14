@@ -1,0 +1,30 @@
+- !Shape
+  start: true
+  shape_id: '@book'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label:
+    mand:
+    repeat:
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:Book
+    constraint_type:
+    shape_ref:
+    annot:
+- !Shape
+  start: false
+  shape_id: '@author'
+  shape_label:
+  shape_statements:
+  - prop_id: rdf:type
+    prop_label:
+    mand:
+    repeat:
+    value_type: URI
+    value_datatype:
+    constraint_value: sdo:Person
+    constraint_type:
+    shape_ref:
+    annot:
