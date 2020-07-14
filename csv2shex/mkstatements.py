@@ -50,7 +50,6 @@ def list_statements(csvrow_list=None):
     first_shape_encountered = True
     keys = SHAPE_KEYS + STATEMENT_KEYS
     keys.remove("shape_id")
-    # breakpoint() 
     for row in csvrow_list:
         if not row.get("prop_id") and row.get("shape_id"):
             shape_ids.append(row["shape_id"])
@@ -58,7 +57,7 @@ def list_statements(csvrow_list=None):
 
         stat = Statement()
 
-        if "shape_id" in row and row["shape_id"]:
+        if row.get("shape_id"):
             stat.shape_id = row["shape_id"]
         else:
             if shape_ids:
