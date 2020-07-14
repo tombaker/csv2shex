@@ -2,7 +2,7 @@
 
 
 from textwrap import dedent
-from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
+from csv2shex.mkshapes import pprint_shapes, Shape
 
 
 def test_pprint_shapes():

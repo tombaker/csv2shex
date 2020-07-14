@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: book
+  shape_id: '@book'
   shape_label:
   shape_statements:
   - prop_id: dct:creator
@@ -9,7 +9,7 @@
     repeat:
     value_type:
     value_datatype:
-    constraint_value: entity:person
+    constraint_value: '@person'
     constraint_type:
     shape_ref:
     annot:
@@ -23,7 +23,7 @@
     constraint_type:
     shape_ref:
     annot:
-  - prop_id: dct::date
+  - prop_id: dct:date
     prop_label:
     mand:
     repeat:
@@ -35,7 +35,7 @@
     annot:
 - !Shape
   start: false
-  shape_id: person
+  shape_id: '@person'
   shape_label:
   shape_statements:
   - prop_id: foaf:name

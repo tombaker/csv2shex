@@ -18,14 +18,14 @@ from .mkyaml import csv2yaml
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def cli(config):
-    """Generate ShEx schemas from CSV-formatted application profiles."""
+    """Generate ShEx schemas from CSV-formatted application profiles"""
 
 
 @cli.command()
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def fields(config):
-    """Display CSV column headings."""
+    """Show built-in CSV column headings"""
 
     print(f"Shape")
     for key in SHAPE_KEYS:
@@ -42,7 +42,7 @@ def fields(config):
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def csvcheck(config, csvfile):
-    """Parse CSV file and print ."""
+    """Check CSV file for anomalies"""
     csv2yaml(csvfile)
 
 
@@ -50,8 +50,8 @@ def csvcheck(config, csvfile):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def csv_to_yaml(config, csvfile):
-    """Parse CSV file and print contents as YAML."""
+def yamlparse(config, csvfile):
+    """Show CSV file contents as YAML"""
     csv2yaml(csvfile)
 
 
@@ -60,7 +60,7 @@ def csv_to_yaml(config, csvfile):
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def csvparse(config, csvfile):
-    """Parse CSV file and print content."""
+    """Show CSV file contents"""
     statements = list_statements(csvreader(csvfile))
     shapes = list_shapes(statements)
     pprint_output = pprint_shapes(shapes)
@@ -69,11 +69,14 @@ def csvparse(config, csvfile):
 
 
 @cli.command()
+@click.option("--defaults", "Show built-in defaults", is_flag=True)
+@click.option("--write", "Write prefixes to ./prefixes.yml", is_flag=True)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def prefixes(config):
-    """Write and display prefixes."""
+def prefixes(config, defaults, write):
+    """Show prefixes, from prefixes.yml if available"""
 
-    write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
-    for line in Path(PREFIXFILE_NAME).open():
-        print(line, end="")
+    if write:
+        write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
+        for line in Path(PREFIXFILE_NAME).open():
+            print(line, end="")

@@ -22,6 +22,28 @@ def test_liststatements():
 def test_liststatements_without_shape_ids():
     """Not shape IDs specified, so shape is '@default'."""
     csvrows_list = [
+        {"prop_id": "dct:creator", "value_type": "URI"},
+        {"prop_id": "dct:subject", "value_type": "URI"},
+        {"prop_id": "dct:date", "value_type": "String"},
+    ]
+    assert list_statements(csvrows_list) == [
+        Statement(
+            start=True, shape_id="@default", prop_id="dct:creator", value_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@default", prop_id="dct:subject", value_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@default", prop_id="dct:date", value_type="String"
+        ),
+    ]
+
+
+def test_liststatements_with_shape_ids_specified_as_none():
+    """Shape IDs specified as 'None', so shape is '@default'.
+    When "shape_id" specified as 'None', row["shape_id"] will be False.
+    General case: when field specified as None."""
+    csvrows_list = [
         {"shape_id": None, "prop_id": "dct:creator", "value_type": "URI"},
         {"shape_id": None, "prop_id": "dct:subject", "value_type": "URI"},
         {"shape_id": None, "prop_id": "dct:date", "value_type": "String"},
