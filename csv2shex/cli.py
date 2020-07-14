@@ -42,16 +42,25 @@ def fields(config):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def yaml(config, csvfile):
-    """Parse CSV file and print contents as YAML."""
-
+def csvcheck(config, csvfile):
+    """Parse CSV file and print ."""
     csv2yaml(csvfile)
+
 
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def parse(config, csvfile):
+def csv2yaml(config, csvfile):
+    """Parse CSV file and print contents as YAML."""
+    csv2yaml(csvfile)
+
+
+@cli.command()
+@click.argument("csvfile", type=click.Path(exists=True))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def csvparse(config, csvfile):
     """Parse CSV file and print content."""
     statements = list_statements(csvreader(csvfile))
     shapes = list_shapes(statements)

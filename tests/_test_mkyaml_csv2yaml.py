@@ -63,9 +63,9 @@ def test_csv2yaml():
                     "constraint_type": None,
                     "shape_ref": None,
                     "annot": None,
-                },
+                }
             ],
-        )
+        ),
     ]
     expected = None
     assert csv2yaml(as_input) == expected

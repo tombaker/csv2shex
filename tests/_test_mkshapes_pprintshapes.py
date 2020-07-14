@@ -4,6 +4,7 @@ from textwrap import dedent
 from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
+
 def test_pprint_shapes():
     """@@@Docstring"""
     as_input = [
@@ -39,7 +40,8 @@ def test_pprint_shapes():
             ],
         )
     ]
-    expected = dedent("""\
+    expected = dedent(
+        """\
     Shape
         start: True
         shape_id: @a
@@ -49,7 +51,8 @@ def test_pprint_shapes():
         Statement
             prop_id: dct:date
             value_type: String
-    """)
+    """
+    )
     print(pprint_shapes(as_input))
     assert pprint_shapes(as_input) == expected
 
@@ -87,4 +90,3 @@ as_input = [
         ],
     )
 ]
-

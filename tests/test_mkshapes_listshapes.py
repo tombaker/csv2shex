@@ -165,9 +165,7 @@ def test_listshapes_two_shapes():
                     "constraint_type": None,
                     "shape_ref": None,
                     "annot": None,
-                },
+                }
             ],
-        )
+        ),
     ]
-
-
