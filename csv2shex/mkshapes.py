@@ -2,7 +2,9 @@
 
 
 from dataclasses import dataclass, field, asdict
+from typing import List
 from .constants import STATEMENT_KEYS, SHAPE_KEYS
+from .mkstatements import Statement
 
 
 def pprint_shapes(shapes):
@@ -37,7 +39,7 @@ class Shape:
     start: bool = False
     shape_id: str = None
     shape_label: str = None
-    shape_statements: list = field(default_factory=list)
+    shape_statements: List(Statement) = field(default_factory=list)
 
 
 def list_shapes(statements_list):
@@ -47,8 +49,6 @@ def list_shapes(statements_list):
     shape_statements_item = dict()
     for statement in statements_list:
         statement = asdict(statement)
-        # breakpoint()
-        # if new shape is encountered
         if shap.shape_id != statement["shape_id"]:
             # if shap.shape_id is not None
             if shap.shape_id:
