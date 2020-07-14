@@ -2,7 +2,6 @@
 
 from pathlib import Path
 import click
-from .check import check
 from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
 from .prefixes import write_starter_prefixfile
 from .mkstatements import csvreader, list_statements
@@ -89,4 +88,4 @@ def prefixes(config, defaults, write):
 @click.pass_context
 def csvcheck(config, csvfile):
     """Check CSV file structure for anomalies"""
-    check(csvfile)
+    pass
