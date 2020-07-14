@@ -39,7 +39,7 @@ class Shape:
     start: bool = False
     shape_id: str = None
     shape_label: str = None
-    shape_statements: List(Statement) = field(default_factory=list)
+    shape_statements: List[Statement] = field(default_factory=list)
 
 
 def list_shapes(statements_list):
