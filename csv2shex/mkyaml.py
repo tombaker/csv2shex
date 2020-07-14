@@ -4,7 +4,7 @@
 import sys
 from ruamel.yaml import YAML
 from .mkstatements import csvreader, list_statements
-from .mkshapes import pprint_shapes, list_shapes, Shape
+from .mkshapes import list_shapes, Shape
 
 
 def shapes2yaml(shapes_list):

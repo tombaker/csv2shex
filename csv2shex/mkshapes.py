@@ -61,6 +61,8 @@ def list_shapes(statements_list):
         for pvpair_key in STATEMENT_KEYS:
             shape_statements_item[pvpair_key] = statement[pvpair_key]
 
+        # pylint: disable=no-member
+        # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
         shap.shape_statements.append(shape_statements_item)
         shape_statements_item = dict()
     shapes_list.append(shap)

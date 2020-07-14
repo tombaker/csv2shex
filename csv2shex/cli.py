@@ -1,8 +1,6 @@
 """Generate ShEx schemas from CSV-formatted application profiles."""
 
 from pathlib import Path
-from pprint import pprint
-from dataclasses import asdict
 import click
 from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
 from .prefixes import write_starter_prefixfile
@@ -10,8 +8,9 @@ from .mkstatements import csvreader, list_statements
 from .mkshapes import pprint_shapes, list_shapes
 from .mkyaml import csv2yaml
 
-# pylint: disable=unused-argument
-#         During development, unused arguments here.
+# pylint: disable=unused-argument,no-value-for-parameter
+# => unused-argument: Allows placeholders for now.
+# => no-value-for-parameter: Okay in cli.py
 
 
 @click.group()
@@ -51,7 +50,7 @@ def csvcheck(config, csvfile):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def csv2yaml(config, csvfile):
+def csv_to_yaml(config, csvfile):
     """Parse CSV file and print contents as YAML."""
     csv2yaml(csvfile)
 

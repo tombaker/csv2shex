@@ -1,12 +1,12 @@
 """Pretty-print Shapes to console."""
 
+
 from textwrap import dedent
 from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
-from csv2shex.mkstatements import Statement
 
 
 def test_pprint_shapes():
-    """@@@Docstring"""
+    """Pretty-print list of shapes."""
     as_input = [
         Shape(
             start=True,
