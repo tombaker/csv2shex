@@ -19,7 +19,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'CSV2ShEx'
+project = 'csv2shex'
 copyright = '2020, Tom Baker'
 author = 'Tom Baker'
 

@@ -1,20 +1,12 @@
-.. CSV2ShEx documentation master file, created by
-   sphinx-quickstart on Mon Jul 20 13:36:52 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+csv2shex documentation
+======================
 
-Welcome to CSV2ShEx's documentation!
-====================================
+Csv2shex is a command-line utility for converting files, formatted as CSV tables according to the DCMI Simple Application Profile specification, into ShEx schemas usable for validating RDF data.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :hidden:
+
+   Command_line_utility
 
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
