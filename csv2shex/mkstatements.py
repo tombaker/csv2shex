@@ -6,9 +6,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from .constants import SHAPE_KEYS, STATEMENT_KEYS
 
-# pylint: disable=no-self-use,too-many-branches
+# pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
 # => too-many-branches: a matter of taste?
+# => too-many-instance-attributes: disagree!
 
 
 @dataclass

@@ -27,12 +27,12 @@ def cli(config):
 def fields(config):
     """Show built-in CSV column headings"""
 
-    print(f"Shape")
+    print("Shape")
     for key in SHAPE_KEYS:
         print(f"    {key}")
 
     print("")
-    print(f"    Statement")
+    print("    Statement")
     for key in STATEMENT_KEYS:
         print(f"        {key}")
 
@@ -88,4 +88,3 @@ def prefixes(config, defaults, write):
 @click.pass_context
 def csvcheck(config, csvfile):
     """Check CSV file structure for anomalies"""
-    pass
