@@ -1,0 +1,4 @@
+prop_id,prop_label,value_datatype
+dct:creator,Author,anyURI
+dct:date,Publication date,date
+dct:extent,Pages,decimal
