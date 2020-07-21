@@ -1,7 +1,12 @@
-Csv2shex documentation
-======================
+Csv2shex
+========
 
 Generate ShEx schemas from application profiles in CSV.
+
+Documentation
+-------------
+
+See https://csv2shex.readthedocs.io/en/latest/ (not much there yet)
 
 Installation
 ------------
