@@ -6,8 +6,8 @@ Csv2shex is a command-line utility for converting files, formatted as CSV tables
 .. toctree::
 
    Install
-   Command_line
    Examples
+   Command_line
 
 
 
