@@ -22,6 +22,14 @@ def cli(config):
 
 
 @cli.command()
+@click.argument("rootdir", type=click.Path(exists=True))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def init(config, init):
+    """Initialize configuration file"""
+
+
+@cli.command()
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def fields(config):
