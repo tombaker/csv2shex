@@ -14,7 +14,35 @@ from .constants import SHAPE_KEYS, STATEMENT_KEYS
 
 @dataclass
 class Statement:
-    """Holds state and self-validation methods for a statement."""
+    """Holds state and self-validation methods for a statement.
+
+    :param start: First shape ID encountered is True (default: False).
+    :type start: bool, optional
+    :param shape_id: Identifier of shape; default: False.
+    :type shape_id: str, optional
+    :param shape_label: Label of shape; default: None.
+    :type shape_label: str, optional
+    :param prop_id: URI of property; default: None.
+    :type prop_id: str, optional
+    :param prop_label: Label of property; default: None.
+    :type prop_label: str, optional
+    :param mand: Whether property is mandatory (Y/y/N/n); default: None.
+    :type mand: str, optional
+    :param repeat: Whether property is repeatable (Y/y/N/n); default: None.
+    :type repeat: str, optional
+    :param value_type: URI, BNode, Literal or Non-Literal.
+    :type value_type: str, optional
+    :param value_datatype: Datatype of value; default: None.
+    :type value_datatype: str, optional
+    :param constraint_value: Enumerated value; default: None.
+    :type constraint_value: str, optional
+    :param constraint_type: Type of enumerated value; default: None.
+    :type constraint_type: str, optional
+    :param shape_ref: Reference to shape ID (default: None).
+    :type shape_ref: str, optional
+    :param annot: Annotation (default: None).
+    :type annot: str, optional
+    """
 
     start: bool = False
     shape_id: str = None
