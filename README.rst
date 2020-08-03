@@ -8,6 +8,8 @@ Documentation
 
 See https://csv2shex.readthedocs.io/en/latest/ (not much there yet)
 
+|Docs Badge|
+
 Installation
 ------------
 
@@ -20,3 +22,7 @@ Installation
    $ pip install flit
    $ flit install -s
 
+.. |Docs Badge| image:: https://readthedocs.org/projects/csv2shex/badge/
+       :alt: Documentation Status
+       :scale: 100%
+       :target: http://csv2shex.readthedocs.io

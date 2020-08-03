@@ -16,32 +16,47 @@ from .constants import SHAPE_KEYS, STATEMENT_KEYS
 class Statement:
     """Holds state and self-validation methods for a statement.
 
-    :param start: First shape ID encountered is True (default: False).
-    :type start: bool, optional
-    :param shape_id: Identifier of shape; default: False.
-    :type shape_id: str, optional
-    :param shape_label: Label of shape; default: None.
-    :type shape_label: str, optional
-    :param prop_id: URI of property; default: None.
-    :type prop_id: str, optional
-    :param prop_label: Label of property; default: None.
-    :type prop_label: str, optional
-    :param mand: Whether property is mandatory (Y/y/N/n); default: None.
-    :type mand: str, optional
-    :param repeat: Whether property is repeatable (Y/y/N/n); default: None.
-    :type repeat: str, optional
-    :param value_type: URI, BNode, Literal or Non-Literal.
-    :type value_type: str, optional
-    :param value_datatype: Datatype of value; default: None.
-    :type value_datatype: str, optional
-    :param constraint_value: Enumerated value; default: None.
-    :type constraint_value: str, optional
-    :param constraint_type: Type of enumerated value; default: None.
-    :type constraint_type: str, optional
-    :param shape_ref: Reference to shape ID (default: None).
-    :type shape_ref: str, optional
-    :param annot: Annotation (default: None).
-    :type annot: str, optional
+    Dataclass fields:
+
+        shape_id (str, assigned if not provided):
+          Identifier of the shape to which the statement 
+          (property-value pair) belongs. 
+          If no shape identifier is provided in the CSV, 
+          a default identifier is assigned.
+        shape_label (str, optional):
+          Human-readable label for the shape. Default: None.
+        start (bool, assigned):
+          If True, shape is a "start" shape. Default: False.
+        prop_id (str, mandatory):
+          Identifier of the property (of the property-value 
+          pair) as a URI string or prefixed URI string. 
+          Default: None.
+        prop_label (str, optional):
+          Human-readable label for the property. Default: None.
+        mand (str, optional):
+          If True, use of the property is mandatory in the 
+          context of the shape. Values interpreted as True 
+          include `Y`, `y`, `Yes`, and `yes`. Default: False.
+        repeat (str, optional):
+          If True, property may be used multiple times in the 
+          context of the shape. Values interpreted as True 
+          include `Y`, `y`, `Yes`, and `yes`. Default: False.
+        value_type (str, optional):
+          Value of the property-value pair is one of the type 
+          `URI`, `BNode`, `Literal`, or `Non-Literal`. 
+          Default: None. Value type `IRI` is normalized to `URI`.
+        value_datatype (str, optional):
+          The specific datatype of the literal value, 
+          identified by a URI string or prefixed URI string, 
+          typically from the XML Schema namespace.
+        constraint_value (str, optional):
+          Etc.
+        constraint_type (str, optional):
+          Etc.
+        shape_ref (str):
+          Etc.
+        annot (str):
+          Etc.
     """
 
     start: bool = False
@@ -59,7 +74,7 @@ class Statement:
     annot: str = None
 
     def is_valid(self):
-        """Returns True if Statement instance is valid."""
+        """Returns True if instance of Statement is valid."""
         # self._valid_uristem()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()

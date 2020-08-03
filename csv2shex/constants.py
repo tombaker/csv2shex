@@ -1,7 +1,7 @@
 """Constants used within the module."""
 
 
-SHAPE_KEYS = ["start", "shape_id", "shape_label"]
+SHAPE_KEYS = ["shape_id", "shape_label", "start"]
 
 STATEMENT_KEYS = [
     "prop_id",
