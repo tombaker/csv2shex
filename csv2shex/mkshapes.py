@@ -10,20 +10,21 @@ from .mkstatements import Statement
 def pprint_shapes(shapes):
     """Pretty-print Shape objects to console."""
     pprint_output = []
+    pprint_output.append("DCAP\n")
     for shape in shapes:
         shape = asdict(shape)
-        pprint_output.append("Shape\n")
+        pprint_output.append("    Shape\n")
         for shape_key in SHAPE_KEYS:
             if shape[shape_key]:
                 pprint_output.append(
-                    "    " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
+                    "        " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
                 )
         for statement in shape["shape_statements"]:
-            pprint_output.append("    Statement\n")
+            pprint_output.append("        Statement\n")
             for statement_key in STATEMENT_KEYS:
                 if statement[statement_key]:
                     pprint_output.append(
-                        "        "
+                        "            "
                         + str(statement_key)
                         + ": "
                         + str(statement[statement_key])

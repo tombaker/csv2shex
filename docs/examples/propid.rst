@@ -1,5 +1,5 @@
-Minimal Application Profile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Minimal DCAP
+^^^^^^^^^^^^
 
 The most minimal application profile simply provides a list of properties used.
 
@@ -9,14 +9,15 @@ The most minimal application profile simply provides a list of properties used.
 
 Interpreted as::
 
-    Shape
-        shape_id: @default
-        start: True
-        Statement
-            prop_id: dct:creator
-        Statement
-            prop_id: dct:title
-        Statement
-            prop_id: dct:publisher
-        Statement
-            prop_id: dct:date
+    DCAP
+        Shape
+            shape_id: @default
+            start: True
+            Statement
+                prop_id: dct:creator
+            Statement
+                prop_id: dct:title
+            Statement
+                prop_id: dct:publisher
+            Statement
+                prop_id: dct:date
