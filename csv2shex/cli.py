@@ -2,7 +2,7 @@
 
 from pathlib import Path
 import click
-from .constants import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
+from .config import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
 from .prefixes import write_starter_prefixfile
 from .mkstatements import csvreader, list_statements
 from .mkshapes import pprint_shapes, list_shapes

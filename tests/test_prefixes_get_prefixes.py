@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 import pytest
-from csv2shex.constants import PREFIXFILE_NAME
+from csv2shex.config import PREFIXFILE_NAME
 from csv2shex.prefixes import get_prefixes
 
 

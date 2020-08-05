@@ -3,7 +3,7 @@
 
 from dataclasses import dataclass, field, asdict
 from typing import List
-from .constants import STATEMENT_KEYS, SHAPE_KEYS
+from .config import STATEMENT_KEYS, SHAPE_KEYS
 from .mkstatements import Statement
 
 

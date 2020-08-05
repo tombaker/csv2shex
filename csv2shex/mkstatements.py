@@ -4,7 +4,7 @@
 import csv
 from dataclasses import dataclass
 from pathlib import Path
-from .constants import SHAPE_KEYS, STATEMENT_KEYS
+from .config import SHAPE_KEYS, STATEMENT_KEYS
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...

@@ -4,7 +4,7 @@
 import os
 from pathlib import Path
 import ruamel.yaml
-from .constants import PREFIXFILE_NAME, PREFIXFILE_CONTENT
+from .config import PREFIXFILE_NAME, PREFIXFILE_CONTENT
 from .exceptions import ConfigWarning, BadYamlError
 
 # pylint: disable=bad-continuation
