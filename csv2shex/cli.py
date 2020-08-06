@@ -1,6 +1,8 @@
 """Generate ShEx schemas from CSV-formatted application profiles."""
 
-from pathlib import Path
+# from pathlib import Path
+from pprint import pprint
+import ruamel.yaml as yaml
 import click
 from .config import CONFIG_DEFAULTS
 from .mkstatements import csvreader, list_statements
@@ -21,16 +23,15 @@ def cli(context):
 
 
 @cli.command()
-@click.option("--read-from", "Read settings from file", type=click.Path(exists=True))
+@click.option("--show-from", "Show settings from file", type=click.Path(exists=True))
 @click.option("--write-to", "Write settings to file", type=click.Path(exists=False))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def settings(context, read_from, write_to):
+def settings(context, show_from, write_to):
     """Write default settings; read settings from defaults or file."""
 
     print("Built-in default settings:")
     pprint(yaml.safe_load(CONFIG_DEFAULTS))
-
 
 
 @cli.command()
@@ -72,10 +73,11 @@ def csvparse(context, csvfile):
 def prefixes(context, defaults, write):
     """Show prefixes, from prefixes.yml if available"""
 
-    if write:
-        write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
-        for line in Path(PREFIXFILE_NAME).open():
-            print(line, end="")
+#     if write:
+#         write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
+#         for line in Path(PREFIXFILE_NAME).open():
+#             print(line, end="")
+#
 
 
 @cli.command()

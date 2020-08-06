@@ -2,14 +2,14 @@
 
 import os
 from pathlib import Path
-from warnings import warn
-import ruamel.yaml as yaml
+# from warnings import warn
+# import ruamel.yaml as yaml
 from .exceptions import ConfigWarning
 
 CONFIGFILE_NAME = ".c2src"
 
 CONFIG_DEFAULTS = """\
-shape_elements: 
+shape_elements:
 - shape_id
 - shape_label
 - start
@@ -26,7 +26,7 @@ statement_elements:
 - annot
 mandatory_repeatable_values:
 - Y
-- y 
+- y
 - N
 - n
 value_types:
@@ -52,6 +52,7 @@ prefixes:
     xsd: http://www.w3.org/2001/XMLSchema
 """
 
+
 def write_configfile(
     configfile_name=CONFIGFILE_NAME,
     config_defaults=CONFIG_DEFAULTS,
@@ -59,9 +60,9 @@ def write_configfile(
     """Write initial config file to current directory."""
     file_tobewritten_pathname = Path(Path.cwd()) / configfile_name
     if os.path.exists(file_tobewritten_pathname):
-        raise ConfigWarning(f"Repo already initialized.")
+        raise ConfigWarning("Repo already initialized.")
     with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(configfile_content)
+        outfile.write(config_defaults)
 
 # return ruamel.yaml.safe_load(prefixfile_contents)
 # except ruamel.yaml.YAMLError:

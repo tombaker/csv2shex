@@ -14,9 +14,6 @@ SHAPE_ELEMENTS = settings['shape_elements']
 STATEMENT_ELEMENTS = settings['statement_elements']
 
 
-
-
-
 def pprint_shapes(shapes):
     """Pretty-print Shape objects to console."""
     pprint_output = []
