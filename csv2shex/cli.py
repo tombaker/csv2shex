@@ -2,8 +2,7 @@
 
 from pathlib import Path
 import click
-from .config import PREFIXFILE_NAME, SHAPE_KEYS, STATEMENT_KEYS
-from .prefixes import write_starter_prefixfile
+from .config import CONFIG_DEFAULTS
 from .mkstatements import csvreader, list_statements
 from .mkshapes import pprint_shapes, list_shapes
 from .mkyaml import csv2yaml
@@ -17,39 +16,28 @@ from .mkyaml import csv2yaml
 @click.version_option("0.1", help="Show version and exit")
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def cli(config):
+def cli(context):
     """Generate ShEx schemas from tabular (CSV) application profiles"""
 
 
 @cli.command()
-@click.argument("rootdir", type=click.Path(exists=True))
+@click.option("--read-from", "Read settings from file", type=click.Path(exists=True))
+@click.option("--write-to", "Write settings to file", type=click.Path(exists=False))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def init(config, rootdir):
-    """Initialize configuration file"""
+def settings(context, read_from, write_to):
+    """Write default settings; read settings from defaults or file."""
 
+    print("Built-in default settings:")
+    pprint(yaml.safe_load(CONFIG_DEFAULTS))
 
-@cli.command()
-@click.help_option(help="Show help and exit")
-@click.pass_context
-def fields(config):
-    """Show built-in CSV column headings"""
-
-    print("Shape")
-    for key in SHAPE_KEYS:
-        print(f"    {key}")
-
-    print("")
-    print("    Statement")
-    for key in STATEMENT_KEYS:
-        print(f"        {key}")
 
 
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def yamlparse(config, csvfile):
+def yamlparse(context, csvfile):
     """Show CSV file contents as YAML"""
     csv2yaml(csvfile)
 
@@ -58,7 +46,7 @@ def yamlparse(config, csvfile):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def yaml2csv(config, csvfile):
+def yaml2csv(context, csvfile):
     """Show YAML file as CSV (for round-tripping?)"""
     csv2yaml(csvfile)
 
@@ -67,7 +55,7 @@ def yaml2csv(config, csvfile):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def csvparse(config, csvfile):
+def csvparse(context, csvfile):
     """Show CSV file contents"""
     statements = list_statements(csvreader(csvfile))
     shapes = list_shapes(statements)
@@ -81,7 +69,7 @@ def csvparse(config, csvfile):
 @click.option("--write", "Write prefixes to ./prefixes.yml", is_flag=True)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def prefixes(config, defaults, write):
+def prefixes(context, defaults, write):
     """Show prefixes, from prefixes.yml if available"""
 
     if write:
@@ -94,5 +82,5 @@ def prefixes(config, defaults, write):
 @click.argument("csvfile", type=click.Path(exists=True))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def csvcheck(config, csvfile):
+def csvcheck(context, csvfile):
     """Check CSV file structure for anomalies"""

@@ -3,8 +3,18 @@
 
 from dataclasses import dataclass, field, asdict
 from typing import List
-from .config import STATEMENT_KEYS, SHAPE_KEYS
+import ruamel.yaml as yaml
+from .config import CONFIG_DEFAULTS
 from .mkstatements import Statement
+
+settings = yaml.safe_load(CONFIG_DEFAULTS)
+
+SHAPE_ELEMENTS = settings['shape_elements']
+
+STATEMENT_ELEMENTS = settings['statement_elements']
+
+
+
 
 
 def pprint_shapes(shapes):
@@ -14,14 +24,14 @@ def pprint_shapes(shapes):
     for shape in shapes:
         shape = asdict(shape)
         pprint_output.append("    Shape\n")
-        for shape_key in SHAPE_KEYS:
+        for shape_key in SHAPE_ELEMENTS:
             if shape[shape_key]:
                 pprint_output.append(
                     "        " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
                 )
         for statement in shape["shape_statements"]:
             pprint_output.append("        Statement\n")
-            for statement_key in STATEMENT_KEYS:
+            for statement_key in STATEMENT_ELEMENTS:
                 if statement[statement_key]:
                     pprint_output.append(
                         "            "
@@ -59,7 +69,7 @@ def list_shapes(statements_list):
             shap.shape_id = statement["shape_id"]
             shap.shape_label = statement["shape_label"]
 
-        for pvpair_key in STATEMENT_KEYS:
+        for pvpair_key in STATEMENT_ELEMENTS:
             shape_statements_item[pvpair_key] = statement[pvpair_key]
 
         # pylint: disable=no-member

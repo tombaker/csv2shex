@@ -4,12 +4,17 @@
 import csv
 from dataclasses import dataclass
 from pathlib import Path
-from .config import SHAPE_KEYS, STATEMENT_KEYS
+import ruamel.yaml as yaml
+from .config import CONFIG_DEFAULTS
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
 # => too-many-branches: a matter of taste?
 # => too-many-instance-attributes: disagree!
+
+settings = yaml.safe_load(CONFIG_DEFAULTS)
+SHAPE_ELEMENTS = settings['shape_elements']
+STATEMENT_ELEMENTS = settings['statement_elements']
 
 
 @dataclass
@@ -107,7 +112,7 @@ def list_statements(csvrow_list=None):
     statements_list = []
     shape_ids = []
     first_shape_encountered = True
-    keys = SHAPE_KEYS + STATEMENT_KEYS
+    keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
     keys.remove("shape_id")
     for row in csvrow_list:
         if not row.get("prop_id") and row.get("shape_id"):
