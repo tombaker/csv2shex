@@ -54,8 +54,8 @@ prefixes:
 
 
 def write_configfile(
-    configfile_name=CONFIGFILE_NAME,
-    config_defaults=CONFIG_DEFAULTS,
+        configfile_name=CONFIGFILE_NAME,
+        config_defaults=CONFIG_DEFAULTS,
 ):
     """Write initial config file to current directory."""
     file_tobewritten_pathname = Path(Path.cwd()) / configfile_name
