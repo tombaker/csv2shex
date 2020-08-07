@@ -87,7 +87,7 @@ class Statement:
 
     def _uristem_minus_angle_brackets(self):
         if self.constraint_type:
-            self.constrain_value = self.constraint_value.lstrip('<').rstrip('>')
+            self.constraint_value = self.constraint_value.lstrip('<').rstrip('>')
 
     def is_valid(self):
         """Returns True if Statement instance is valid, else exits with errors."""
@@ -98,6 +98,7 @@ class Statement:
 
     def _uristem_is_used_correctly(self):
         """True if constraint type 'URIStem' is used correctly."""
+        # Will have to remove the following line...
         uristem_value = self.constraint_value.lstrip('<').rstrip('>')
         if self.constraint_type == "URIStem":
             if uristem_value:
@@ -105,10 +106,11 @@ class Statement:
                     return True
                 if is_url(uristem_value):
                     return True
-                else:
+                if not re.match('[A-Za-z0-9_]+:', uristem_value):
                     print(f"Warning: {repr(uristem_value)} "
-                           "is not a valid URIStem.", file=sys.stderr)
+                          "is not a valid URIStem.", file=sys.stderr)
                     return False
+        return True
 
 
 def csvreader(csvfile):
