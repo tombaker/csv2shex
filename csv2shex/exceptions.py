@@ -13,6 +13,10 @@ class StatementError(Csv2shexError):
     """Exceptions related to a single Statement."""
 
 
+class UristemValueError(Csv2shexError):
+    """Exceptions related to URIStem value."""
+
+
 class CsvError(Csv2shexError):
     """Exceptions related to an entire CSV-derived object."""
 

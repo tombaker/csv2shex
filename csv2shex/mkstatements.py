@@ -1,11 +1,14 @@
 """Class for Python objects derived from CSV files."""
 
 
+import re
 import csv
 from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
+from .exceptions import UristemValueError
+from .utils import is_url
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
@@ -78,26 +81,32 @@ class Statement:
     shape_ref: str = None
     annot: str = None
 
+    def self_normalize(self):
+        """Returns self with field values normalized."""
+        self._uristem_minus_angle_brackets()
+
+    def _uristem_minus_angle_brackets(self):
+        if self.constraint_type:
+            self.constrain_value = self.constraint_value.lstrip('<').rstrip('>')
+
     def is_valid(self):
-        """Returns True if instance of Statement is valid."""
-        # self._valid_uristem()
+        """Returns True if Statement instance is valid, else exits with errors."""
+        self._uristem_is_used_correctly()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
         return True
 
-    def _is_uristem_used_correctly(self):
-        """Returns True if constraint type URI Stem used correctly."""
+    def _uristem_is_used_correctly(self):
+        """True if constraint type 'URIStem' is used correctly."""
+        uristem_value = self.constraint_value.lstrip('<').rstrip('>')
         if self.constraint_type == "URIStem":
-            if self.constraint_value:
-                print(
-                    f"Constraint type {self.constraint_type} "
-                    "used with constraint value - ok."
-                )
-            else:
-                print(
-                    f"Warning: Constraint type {self.constraint_type} "
-                    "requires corresponding constraint value."
-                )
+            if uristem_value:
+                if re.match('[A-Za-z0-9_]+:', uristem_value):
+                    return True
+                if is_url(uristem_value):
+                    return True
+                else:
+                    raise UristemValueError(f"{repr(uristem_value)} not a valid URIStem.")
 
 
 def csvreader(csvfile):
