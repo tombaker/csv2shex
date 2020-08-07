@@ -50,7 +50,6 @@ def test_pprint_shapes():
         Statement
             prop_id: dct:date
             value_type: String
-    """
-    )
+    """)
     print(pprint_shapes(as_input))
     assert pprint_shapes(as_input) == expected
