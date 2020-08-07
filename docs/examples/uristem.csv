@@ -1,0 +1,4 @@
+shape_id,prop_id,constraint_value,constraint_type
+:book,dct:creator,https://id.loc.gov/subjects,URIStem
+:book,dct:creator,<https://id.loc.gov/subjects>,URIStem
+:book,dct:title,loc_subjects:,URIStem

@@ -83,11 +83,11 @@ class Statement:
 
     def self_normalize(self):
         """Returns self with field values normalized."""
-        self._uristem_minus_angle_brackets()
-
-    def _uristem_minus_angle_brackets(self):
-        if self.constraint_type:
-            self.constraint_value = self.constraint_value.lstrip('<').rstrip('>')
+        if self.constraint_type == "URIStem":
+            if self.constraint_value is not None:
+                uristem = self.constraint_value
+                self.constraint_value = uristem.lstrip('<').rstrip('>')
+        return self
 
     def is_valid(self):
         """Returns True if Statement instance is valid, else exits with errors."""
@@ -98,9 +98,8 @@ class Statement:
 
     def _uristem_is_used_correctly(self):
         """True if constraint type 'URIStem' is used correctly."""
-        # Will have to remove the following line...
-        uristem_value = self.constraint_value.lstrip('<').rstrip('>')
         if self.constraint_type == "URIStem":
+            uristem_value = self.constraint_value
             if uristem_value:
                 if re.match('[A-Za-z0-9_]+:', uristem_value):
                     return True

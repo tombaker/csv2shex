@@ -9,3 +9,4 @@ Examples
    shape.rst
    shape_variant.rst
    shape_referenced.rst
+   uristem.rst
