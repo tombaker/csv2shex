@@ -1,13 +1,13 @@
 """Class for Python objects derived from CSV files."""
 
 
+import sys
 import re
 import csv
 from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
-from .exceptions import UristemValueError
 from .utils import is_url
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
@@ -106,7 +106,9 @@ class Statement:
                 if is_url(uristem_value):
                     return True
                 else:
-                    raise UristemValueError(f"{repr(uristem_value)} not a valid URIStem.")
+                    print(f"Warning: {repr(uristem_value)} "
+                           "is not a valid URIStem.", file=sys.stderr)
+                    return False
 
 
 def csvreader(csvfile):

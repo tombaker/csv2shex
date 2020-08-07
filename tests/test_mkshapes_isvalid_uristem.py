@@ -45,5 +45,4 @@ def test_mkshapes_isvalid_uristem_is_not_valid_URL():
         constraint_value="foobar",
         constraint_type="URIStem",
     )
-    with pytest.raises(SystemExit):
-        statement._uristem_is_used_correctly()
+    assert not statement._uristem_is_used_correctly()
