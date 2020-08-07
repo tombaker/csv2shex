@@ -1,7 +1,6 @@
 """Sanity check for URI as value_type."""
 
 
-import pytest
 from csv2shex.mkstatements import Statement
 
 

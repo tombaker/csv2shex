@@ -1,14 +1,12 @@
 """Class for Python objects derived from CSV files."""
 
 
-import sys
-import re
 import csv
 from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
-from .utils import is_uri, is_valid_uri_or_prefixed_uri
+from .utils import is_valid_uri_or_prefixed_uri
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
