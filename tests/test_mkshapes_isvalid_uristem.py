@@ -34,7 +34,7 @@ def test_mkshapes_isvalid_uristem_is_url_with_angle_brackets():
         constraint_value="<http://www.gmd.de/>",
         constraint_type="URIStem",
     )
-    statement.self_normalize()
+    statement._normalize_uristem_stripping_angle_brackets()
     assert statement._uristem_is_used_correctly()
 
 
@@ -46,5 +46,5 @@ def test_mkshapes_isvalid_uristem_is_not_valid_URL():
         constraint_value="foobar",
         constraint_type="URIStem",
     )
-    statement.self_normalize()
+    statement._normalize_uristem_stripping_angle_brackets()
     assert not statement._uristem_is_used_correctly()
