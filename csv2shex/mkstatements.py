@@ -5,16 +5,16 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
-from .config import CONFIG_DEFAULTS
+from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
 # => too-many-branches: a matter of taste?
 # => too-many-instance-attributes: disagree!
 
-settings = yaml.safe_load(CONFIG_DEFAULTS)
-SHAPE_ELEMENTS = settings['shape_elements']
-STATEMENT_ELEMENTS = settings['statement_elements']
+elements = yaml.safe_load(CSV_ELEMENTS)
+SHAPE_ELEMENTS = elements['shape_elements']
+STATEMENT_ELEMENTS = elements['statement_elements']
 
 
 @dataclass

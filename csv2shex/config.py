@@ -1,14 +1,8 @@
-"""Initialize config files."""
-
-import os
-from pathlib import Path
-# from warnings import warn
-# import ruamel.yaml as yaml
-from .exceptions import ConfigWarning
+"""Constants."""
 
 CONFIGFILE_NAME = ".c2src"
 
-CONFIG_DEFAULTS = """\
+CSV_ELEMENTS = """\
 shape_elements:
 - shape_id
 - shape_label
@@ -24,12 +18,16 @@ statement_elements:
 - constraint_type
 - shape_ref
 - annot
-mandatory_repeatable_values:
+"""
+
+ELEMENT_PICKLISTS = """\
+mand:
 - Y
-- y
 - N
-- n
-value_types:
+repeat:
+- Y
+- N
+value_type:
 - URI
 - BNode
 - Literal
@@ -38,6 +36,9 @@ constraint_type:
 - URIStem
 - Regex
 - Date
+"""
+
+PREFIXES = """\
 prefixes:
     dc: http://purl.org/dc/elements/1.1/
     dcat: http://www.w3.org/ns/dcat
@@ -51,18 +52,3 @@ prefixes:
     sx: http://www.w3.org/ns/shex
     xsd: http://www.w3.org/2001/XMLSchema
 """
-
-
-def write_configfile(
-        configfile_name=CONFIGFILE_NAME,
-        config_defaults=CONFIG_DEFAULTS,
-):
-    """Write initial config file to current directory."""
-    file_tobewritten_pathname = Path(Path.cwd()) / configfile_name
-    if os.path.exists(file_tobewritten_pathname):
-        raise ConfigWarning("Repo already initialized.")
-    with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(config_defaults)
-
-# return ruamel.yaml.safe_load(prefixfile_contents)
-# except ruamel.yaml.YAMLError:

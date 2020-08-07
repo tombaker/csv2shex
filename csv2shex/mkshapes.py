@@ -4,14 +4,12 @@
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
-from .config import CONFIG_DEFAULTS
+from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .mkstatements import Statement
 
-settings = yaml.safe_load(CONFIG_DEFAULTS)
-
-SHAPE_ELEMENTS = settings['shape_elements']
-
-STATEMENT_ELEMENTS = settings['statement_elements']
+elements = yaml.safe_load(CSV_ELEMENTS)
+SHAPE_ELEMENTS = elements['shape_elements']
+STATEMENT_ELEMENTS = elements['statement_elements']
 
 
 def pprint_shapes(shapes):

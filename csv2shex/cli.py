@@ -4,7 +4,7 @@
 from pprint import pprint
 import ruamel.yaml as yaml
 import click
-from .config import CONFIG_DEFAULTS
+from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .mkstatements import csvreader, list_statements
 from .mkshapes import pprint_shapes, list_shapes
 from .mkyaml import csv2yaml
@@ -23,15 +23,43 @@ def cli(context):
 
 
 @cli.command()
-@click.option("--show-from", "Show settings from file", type=click.Path(exists=True))
-@click.option("--write-to", "Write settings to file", type=click.Path(exists=False))
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def settings(context, show_from, write_to):
-    """Write default settings; read settings from defaults or file."""
+def elements(context):
+    """Show elements of model (CSV column headers)."""
 
-    print("Built-in default settings:")
-    pprint(yaml.safe_load(CONFIG_DEFAULTS))
+    elements = yaml.safe_load(CSV_ELEMENTS)
+    print('DCAP')
+    for element_group in ['shape_elements', 'statement_elements']:
+        print(f"    {element_group}:")
+        for element in elements[element_group]:
+            print(f"        {element}")
+
+
+@cli.command()
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def picklists(context):
+    """Show built-in picklists for specific elements."""
+
+    picklists = yaml.safe_load(ELEMENT_PICKLISTS)
+    print("Built-in value picklists:")
+    for element in picklists:
+        print(f"    {element}:")
+        for picklist in picklists[element]:
+            print(f"        {picklist}")
+
+
+@cli.command()
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def prefixes(context):
+    """Show built-in prefix bindings."""
+
+    prefix_dict = yaml.safe_load(PREFIXES)['prefixes']
+    for prefix in prefix_dict:
+        prefix_colon = prefix + ":"
+        print(f"{prefix_colon:10} {prefix_dict[prefix]}")
 
 
 @cli.command()
@@ -63,21 +91,6 @@ def csvparse(context, csvfile):
     pprint_output = pprint_shapes(shapes)
     for line in pprint_output.splitlines():
         print(line)
-
-
-@cli.command()
-@click.option("--defaults", "Show built-in defaults", is_flag=True)
-@click.option("--write", "Write prefixes to ./prefixes.yml", is_flag=True)
-@click.help_option(help="Show help and exit")
-@click.pass_context
-def prefixes(context, defaults, write):
-    """Show prefixes, from prefixes.yml if available"""
-
-#     if write:
-#         write_starter_prefixfile(prefixfile=PREFIXFILE_NAME)
-#         for line in Path(PREFIXFILE_NAME).open():
-#             print(line, end="")
-#
 
 
 @cli.command()
