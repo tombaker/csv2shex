@@ -1,7 +1,6 @@
 """Check CSV file structure for anomalies"""
 
 
-import pytest
 from csv2shex.mkstatements import Statement
 
 
@@ -25,6 +24,7 @@ def test_mkshapes_isvalid_uristem_is_url():
         constraint_type="URIStem",
     )
     assert statement._uristem_is_used_correctly()
+
 
 def test_mkshapes_isvalid_uristem_is_url_with_angle_brackets():
     """@@@"""
