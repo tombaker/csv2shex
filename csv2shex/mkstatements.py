@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
-from .utils import is_url
+from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
@@ -83,31 +83,48 @@ class Statement:
 
     def self_normalize(self):
         """Returns self with field values normalized."""
+        self._normalize_uristem_uri()
+        self._normalize_value_type_uri()
+
+    def _normalize_uristem_uri(self):
+        """Strip angle brackets from URIs."""
         if self.constraint_type == "URIStem":
             if self.constraint_value is not None:
                 uristem = self.constraint_value
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
         return self
 
+    def _normalize_value_type_uri(self):
+        """Strip angle brackets from URIs."""
+        if self.value_type == "URI":
+            if self.constraint_value is not None:
+                uri_as_value = self.constraint_value
+                self.constraint_value = uri_as_value.lstrip('<').rstrip('>')
+        return self
+
     def is_valid(self):
-        """Returns True if Statement instance is valid, else exits with errors."""
-        self._uristem_is_used_correctly()
+        """True if Statement instance is valid, else exit with errors."""
+        self._uristem_is_valid_quri()
+        self._value_type_uri_is_valid_quri()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
         return True
 
-    def _uristem_is_used_correctly(self):
-        """True if constraint type 'URIStem' is used correctly."""
+    def _uristem_is_valid_quri(self):
+        """True if constraint value for constraint type URIStem is a valid URI."""
         if self.constraint_type == "URIStem":
             uristem_value = self.constraint_value
             if uristem_value:
-                if re.match('[A-Za-z0-9_]+:', uristem_value):
-                    return True
-                if is_url(uristem_value):
-                    return True
-                if not re.match('[A-Za-z0-9_]+:', uristem_value):
-                    print(f"Warning: {repr(uristem_value)} "
-                          "is not a valid URIStem.", file=sys.stderr)
+                if not is_valid_uri_or_prefixed_uri(uristem_value):
+                    return False
+        return True
+
+    def _value_type_uri_is_valid_quri(self):
+        """True if constraint value for value type URI is a valid URI."""
+        if self.value_type == "URI":
+            uri_value = self.constraint_value
+            if uri_value:
+                if not is_valid_uri_or_prefixed_uri(uri_value):
                     return False
         return True
 

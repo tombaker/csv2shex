@@ -4,7 +4,7 @@
 from csv2shex.mkstatements import Statement
 
 
-def test_mkshapes_isvalid_uristem_is_uri_prefix():
+def test_mkshapes_isvalid_uristem_uri_prefix():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -12,10 +12,10 @@ def test_mkshapes_isvalid_uristem_is_uri_prefix():
         constraint_value="wd:",
         constraint_type="URIStem",
     )
-    assert statement._uristem_is_used_correctly()
+    assert statement._uristem_is_valid_quri()
 
 
-def test_mkshapes_isvalid_uristem_is_url():
+def test_mkshapes_isvalid_uristem_normal_uri():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -23,10 +23,10 @@ def test_mkshapes_isvalid_uristem_is_url():
         constraint_value="http://www.gmd.de/",
         constraint_type="URIStem",
     )
-    assert statement._uristem_is_used_correctly()
+    assert statement._uristem_is_valid_quri()
 
 
-def test_mkshapes_isvalid_uristem_is_url_with_angle_brackets():
+def test_mkshapes_isvalid_uristem_uri_with_angle_brackets():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -34,11 +34,11 @@ def test_mkshapes_isvalid_uristem_is_url_with_angle_brackets():
         constraint_value="<http://www.gmd.de/>",
         constraint_type="URIStem",
     )
-    statement._normalize_uristem_stripping_angle_brackets()
-    assert statement._uristem_is_used_correctly()
+    statement._normalize_uristem_uri()
+    assert statement._uristem_is_valid_quri()
 
 
-def test_mkshapes_isvalid_uristem_is_not_valid_URL():
+def test_mkshapes_isvalid_uristem_not():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -46,5 +46,5 @@ def test_mkshapes_isvalid_uristem_is_not_valid_URL():
         constraint_value="foobar",
         constraint_type="URIStem",
     )
-    statement._normalize_uristem_stripping_angle_brackets()
-    assert not statement._uristem_is_used_correctly()
+    statement._normalize_uristem_uri()
+    assert not statement._uristem_is_valid_quri()
