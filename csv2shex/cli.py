@@ -1,7 +1,5 @@
 """Generate ShEx schemas from CSV-formatted application profiles."""
 
-# from pathlib import Path
-from pprint import pprint
 import ruamel.yaml as yaml
 import click
 from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
@@ -28,11 +26,11 @@ def cli(context):
 def elements(context):
     """Show elements of model (CSV column headers)."""
 
-    elements = yaml.safe_load(CSV_ELEMENTS)
+    csv_elements = yaml.safe_load(CSV_ELEMENTS)
     print('DCAP')
     for element_group in ['shape_elements', 'statement_elements']:
         print(f"    {element_group}:")
-        for element in elements[element_group]:
+        for element in csv_elements[element_group]:
             print(f"        {element}")
 
 
@@ -42,11 +40,11 @@ def elements(context):
 def picklists(context):
     """Show built-in picklists for specific elements."""
 
-    picklists = yaml.safe_load(ELEMENT_PICKLISTS)
+    element_picklists = yaml.safe_load(ELEMENT_PICKLISTS)
     print("Built-in value picklists:")
-    for element in picklists:
+    for element in element_picklists:
         print(f"    {element}:")
-        for picklist in picklists[element]:
+        for picklist in element_picklists[element]:
             print(f"        {picklist}")
 
 

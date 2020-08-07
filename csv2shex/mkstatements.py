@@ -5,7 +5,7 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
-from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
+from .config import CSV_ELEMENTS
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...

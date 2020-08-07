@@ -4,7 +4,7 @@
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
-from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
+from .config import CSV_ELEMENTS
 from .mkstatements import Statement
 
 elements = yaml.safe_load(CSV_ELEMENTS)
