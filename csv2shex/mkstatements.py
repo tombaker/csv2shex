@@ -99,6 +99,12 @@ class Statement:
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
         return self
 
+    def _normalize_literal_picklist(self):
+        """@@@"""
+        if self.constraint_type == "LitPicklist":
+            self.constraint_value = self.constraint_value.split()
+        return self
+
     def _normalize_value_type_uri(self):
         """Strip angle brackets from URIs."""
         if self.value_type == "URI":
@@ -112,6 +118,7 @@ class Statement:
         self._propid_is_valid_quri()
         self._uristem_is_valid_quri()
         self._value_type_uri_is_valid_quri()
+        self._literal_picklist_is_valid()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
         return True
@@ -120,6 +127,15 @@ class Statement:
         """True if property ID is a valid URI."""
         if not is_valid_uri_or_prefixed_uri(self.prop_id):
             return False
+        return True
+
+    def _literal_picklist_is_valid(self):
+        """@@@"""
+        if self.constraint_type == "LitPicklist":
+            if all([type(i) for i in self.constraint_value]):
+                return True
+            else:
+                return False
         return True
 
     def _uristem_is_valid_quri(self):
