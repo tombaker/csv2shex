@@ -79,7 +79,7 @@ class Statement:
     shape_ref: str = None
     annot: str = None
 
-    def self_normalize(self):
+    def normalize(self):
         """Returns self with field values normalized."""
         self._normalize_property_uri()
         self._normalize_uristem_uri()

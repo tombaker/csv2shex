@@ -54,7 +54,7 @@ def list_shapes(statements_list):
     shap = Shape()
     shape_statements_item = dict()
     for statement in statements_list:
-        statement.self_normalize()
+        statement.normalize()
         statement.is_valid()
         statement = asdict(statement)
         if shap.shape_id != statement["shape_id"]:

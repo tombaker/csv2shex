@@ -10,6 +10,6 @@ def test_statement_angle_brackets_stripped_from_uristem():
         constraint_value="<http://ibm.com>",
         constraint_type="URIStem",
     )
-    shap.self_normalize()
+    shap.normalize()
     assert shap.constraint_value == "http://ibm.com"
     assert shap.constraint_type == "URIStem"
