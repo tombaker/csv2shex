@@ -72,7 +72,7 @@
     prop_label:
     mand: yes
     repeat: no
-    value_type: URIStem
+    value_type: UriStem
     value_datatype:
     constraint_value: 'wd:'
     constraint_type:

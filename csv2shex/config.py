@@ -33,7 +33,9 @@ value_type:
 - Literal
 - Nonliteral
 constraint_type:
-- URIStem
+- UriStem
+- UriPicklist
+- LitPicklist
 - Regex
 - Date
 """

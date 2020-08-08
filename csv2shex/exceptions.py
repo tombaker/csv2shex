@@ -14,7 +14,7 @@ class StatementError(Csv2shexError):
 
 
 class UristemValueError(Csv2shexError):
-    """Exceptions related to URIStem value."""
+    """Exceptions related to UriStem value."""
 
 
 class CsvError(Csv2shexError):

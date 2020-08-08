@@ -16,7 +16,7 @@ This is interpreted as::
             Statement
                 prop_id: dct:subject
                 constraint_value: https://id.loc.gov/subjects
-                constraint_type: URIStem
+                constraint_type: UriStem
             Statement
                 prop_id: dct:creator
                 value_type: URI

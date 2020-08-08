@@ -95,7 +95,7 @@ class Statement:
 
     def _normalize_uristem_uri(self):
         """Strip angle brackets from URIs."""
-        if self.constraint_type == "URIStem":
+        if self.constraint_type == "UriStem":
             if self.constraint_value is not None:  # is "is not None" necessary?
                 uristem = self.constraint_value
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
@@ -151,8 +151,8 @@ class Statement:
         return True
 
     def _uristem_is_valid_quri(self):
-        """True if constraint value for constraint type URIStem is a valid URI."""
-        if self.constraint_type == "URIStem":
+        """True if constraint value for constraint type UriStem is a valid URI."""
+        if self.constraint_type == "UriStem":
             uristem_value = self.constraint_value
             if uristem_value:
                 if not is_valid_uri_or_prefixed_uri(uristem_value):

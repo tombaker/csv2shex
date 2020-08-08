@@ -1,3 +1,3 @@
 shape_id,prop_id,value_type,constraint_value,constraint_type
-:book,dct:subject,,<https://id.loc.gov/subjects>,URIStem
+:book,dct:subject,,<https://id.loc.gov/subjects>,UriStem
 :book,dct:creator,URI,<https://www.wikidata.org/wiki/Q46914185>,

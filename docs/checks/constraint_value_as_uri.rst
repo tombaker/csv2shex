@@ -12,7 +12,7 @@ The base URI of the DCAP can be depicted as a bare colon (`:`).
 The Statement class performs some normalization of URI values (stripping out enclosing angle brackets) and checks whether URIs and prefixed URIs are basically well-formed. No attempt is made to cover all edge cases; the sanity checks are no substitute for careful modeling. There is also an attempt to catch inconsistencies in cases where one element depends on, or implies, another. For example:
 
 - With a value type of `URI`, a constraint value (if provided) should be a URI or prefixed URI.
-- A constraint type of `URIStem` implies that a constraint value is provided and is a URI or prefixed URI.
+- A constraint type of `UriStem` implies that a constraint value is provided and is a URI or prefixed URI.
 
 The following table shows various valid uses of URIs as constraint values.
 
@@ -29,15 +29,15 @@ This is interpreted as::
             Statement
                 prop_id: dct:subject
                 constraint_value: https://id.loc.gov/subjects
-                constraint_type: URIStem
+                constraint_type: UriStem
             Statement
                 prop_id: dct:subject
                 constraint_value: https://id.loc.gov/subjects
-                constraint_type: URIStem
+                constraint_type: UriStem
             Statement
                 prop_id: dct:subject
                 constraint_value: nalt:
-                constraint_type: URIStem
+                constraint_type: UriStem
             Statement
                 prop_id: dct:creator
                 value_type: URI
@@ -56,4 +56,4 @@ The following table illustrates a few simple inconsistencies that will be detect
 Note:
 
 - The string 'some_string' is not valid as a URI or as a prefixed URI.
-- The constraint value `URIStem` implies a constraint value that is a URI or prefixed URI, but none is provided.
+- The constraint value `UriStem` implies a constraint value that is a URI or prefixed URI, but none is provided.

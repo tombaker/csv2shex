@@ -1,4 +1,4 @@
 shape_id,prop_id,value_type,constraint_value,constraint_type
-:book,dct:subject,,some_string,URIStem
+:book,dct:subject,,some_string,UriStem
 :book,dct:creator,URI,some_string,
-:book,dct:subject,,,URIStem
+:book,dct:subject,,,UriStem
