@@ -2,7 +2,7 @@ Properties and value types
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
-   :file: ../examples/propid_valuetype.csv
+   :file: ../basics/propid_valuetype.csv
    :header-rows: 1
 
 Interpreted as::

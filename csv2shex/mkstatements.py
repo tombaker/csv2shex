@@ -80,7 +80,7 @@ class Statement:
     annot: str = None
 
     def normalize(self):
-        """Returns self with field values normalized."""
+        """Normalize specific elements."""
         self._normalize_propid()
         self._normalize_uripicklist()
         self._normalize_litpicklist()
@@ -88,13 +88,13 @@ class Statement:
         self._normalize_valueuri()
 
     def _normalize_propid(self):
-        """Strip angle brackets from URIs."""
+        """Normalize URIs by stripping angle brackets."""
         propid = self.prop_id
         self.prop_id = propid.lstrip('<').rstrip('>')
         return self
 
     def _normalize_uristem(self):
-        """Strip angle brackets from URIs."""
+        """Normalize URI stems as constraint values."""
         if self.constraint_type == "UriStem":
             if self.constraint_value is not None:  # is "is not None" necessary?
                 uristem = self.constraint_value
@@ -114,7 +114,7 @@ class Statement:
         return self
 
     def _normalize_valueuri(self):
-        """Strip angle brackets from URIs."""
+        """Normalize value URIs by stripping angle brackets."""
         if self.value_type == "URI":
             if self.constraint_value is not None:
                 uri_as_value = self.constraint_value
@@ -128,12 +128,11 @@ class Statement:
         self._validate_valueuri()
         self._validate_litpicklist()
         self._validate_uripicklist()
-        # self._propid_is_mandatory()
-        # self._value_type_validate_type()
         return True
 
     def _validate_propid(self):
-        """True if property ID is a valid URI."""
+        """True if property ID is a URI or prefixed URI."""
+        # propid is mandatory. If this returns False, exit with error?
         if not is_valid_uri_or_prefixed_uri(self.prop_id):
             return False
         return True

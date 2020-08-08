@@ -1,5 +1,5 @@
-Sanity checks
--------------
+Validations
+-----------
 
 .. toctree::
 

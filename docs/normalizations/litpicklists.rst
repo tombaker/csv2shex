@@ -4,7 +4,7 @@ Literal picklists as lists
 Constraint values of constraint type `LitPicklist` are interpreted as lists.
 
 .. csv-table:: 
-   :file: ../normalizations/litpicklist_items_are_strings.csv
+   :file: ../normalizations/litpicklists.csv
    :header-rows: 1
 
 This is interpreted as::

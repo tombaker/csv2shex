@@ -4,7 +4,7 @@ URIs stripped of angle brackets
 If URIs are enclosed URIs in angle brackets, the brackets are stripped away.
 
 .. csv-table:: 
-   :file: ../normalizations/uris_minus_angle_brackets.csv
+   :file: ../normalizations/uris.csv
    :header-rows: 1
 
 This is interpreted as::

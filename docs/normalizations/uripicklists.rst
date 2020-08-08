@@ -1,10 +1,10 @@
 URI picklists as lists of URIs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Constraint values of constraint type `UriPicklist` are interpreted as lists of strings.
+Constraint values of constraint type `UriPicklist` are interpreted as lists of URIs or prefixed URIs.
 
 .. csv-table:: 
-   :file: ../normalizations/uripicklist_items_are_lists_of_uris.csv
+   :file: ../normalizations/uripicklists.csv
    :header-rows: 1
 
 This is interpreted as::

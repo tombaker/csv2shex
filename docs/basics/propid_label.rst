@@ -2,7 +2,7 @@ Properties and labels
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table:: 
-   :file: ../examples/propid_label.csv
+   :file: ../basics/propid_label.csv
    :header-rows: 1
 
 Interpreted as::

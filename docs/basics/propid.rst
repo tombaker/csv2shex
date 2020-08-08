@@ -4,7 +4,7 @@ Minimal DCAP
 The most minimal application profile simply provides a list of properties used.
 
 .. csv-table:: 
-   :file: ../examples/propid.csv
+   :file: ../basics/propid.csv
    :header-rows: 1
 
 Interpreted as::
