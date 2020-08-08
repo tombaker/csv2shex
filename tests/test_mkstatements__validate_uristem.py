@@ -4,7 +4,7 @@
 from csv2shex.mkstatements import Statement
 
 
-def test_mkshapes_isvalid_uristem_uri_prefixed():
+def test_mkshapes_validate_uristem_prefixed():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -12,10 +12,10 @@ def test_mkshapes_isvalid_uristem_uri_prefixed():
         constraint_value="wd:",
         constraint_type="UriStem",
     )
-    assert statement._uristem_is_valid_quri()
+    assert statement._validate_uristem()
 
 
-def test_mkshapes_isvalid_uristem_normal_uri():
+def test_mkshapes_validate_uristem_normal_uri():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -23,10 +23,10 @@ def test_mkshapes_isvalid_uristem_normal_uri():
         constraint_value="http://www.gmd.de/",
         constraint_type="UriStem",
     )
-    assert statement._uristem_is_valid_quri()
+    assert statement._validate_uristem()
 
 
-def test_mkshapes_isvalid_uristem_uri_with_angle_brackets():
+def test_mkshapes_validate_uristem_with_angle_brackets():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -34,11 +34,11 @@ def test_mkshapes_isvalid_uristem_uri_with_angle_brackets():
         constraint_value="<http://www.gmd.de/>",
         constraint_type="UriStem",
     )
-    statement._normalize_uristem_uri()
-    assert statement._uristem_is_valid_quri()
+    statement._normalize_uristem()
+    assert statement._validate_uristem()
 
 
-def test_mkshapes_isvalid_uristem_uri_colon_only():
+def test_mkshapes_validate_uristem_colon_only():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -46,11 +46,11 @@ def test_mkshapes_isvalid_uristem_uri_colon_only():
         constraint_value=":",
         constraint_type="UriStem",
     )
-    statement._normalize_uristem_uri()
-    assert statement._uristem_is_valid_quri()
+    statement._normalize_uristem()
+    assert statement._validate_uristem()
 
 
-def test_mkshapes_isvalid_uristem_not():
+def test_mkshapes_validate_uristem_not():
     """@@@"""
     statement = Statement(
         shape_id="@default",
@@ -58,5 +58,5 @@ def test_mkshapes_isvalid_uristem_not():
         constraint_value="foobar",
         constraint_type="UriStem",
     )
-    statement._normalize_uristem_uri()
-    assert not statement._uristem_is_valid_quri()
+    statement._normalize_uristem()
+    assert not statement._validate_uristem()

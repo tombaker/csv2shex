@@ -81,19 +81,19 @@ class Statement:
 
     def normalize(self):
         """Returns self with field values normalized."""
-        self._normalize_property_uri()
-        self._normalize_uripicklist_as_list()
-        self._normalize_litpicklist_as_list()
-        self._normalize_uristem_uri()
-        self._normalize_value_type_uri()
+        self._normalize_propid()
+        self._normalize_uripicklist()
+        self._normalize_litpicklist()
+        self._normalize_uristem()
+        self._normalize_valueuri()
 
-    def _normalize_property_uri(self):
+    def _normalize_propid(self):
         """Strip angle brackets from URIs."""
         propid = self.prop_id
         self.prop_id = propid.lstrip('<').rstrip('>')
         return self
 
-    def _normalize_uristem_uri(self):
+    def _normalize_uristem(self):
         """Strip angle brackets from URIs."""
         if self.constraint_type == "UriStem":
             if self.constraint_value is not None:  # is "is not None" necessary?
@@ -101,19 +101,19 @@ class Statement:
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
         return self
 
-    def _normalize_uripicklist_as_list(self):
+    def _normalize_uripicklist(self):
         """@@@"""
         if self.constraint_type == "UriPicklist":
             self.constraint_value = self.constraint_value.split()
         return self
 
-    def _normalize_litpicklist_as_list(self):
+    def _normalize_litpicklist(self):
         """@@@"""
         if self.constraint_type == "LitPicklist":
             self.constraint_value = self.constraint_value.split()
         return self
 
-    def _normalize_value_type_uri(self):
+    def _normalize_valueuri(self):
         """Strip angle brackets from URIs."""
         if self.value_type == "URI":
             if self.constraint_value is not None:
@@ -121,36 +121,36 @@ class Statement:
                 self.constraint_value = uri_as_value.lstrip('<').rstrip('>')
         return self
 
-    def is_valid(self):
+    def validate(self):
         """True if Statement instance is valid, else exit with errors."""
-        self._propid_is_valid_quri()
-        self._uristem_is_valid_quri()
-        self._value_type_uri_is_valid_quri()
-        self._litpicklist_is_valid()
-        self._uripicklist_is_valid()
-        # self._property_id_is_mandatory()
-        # self._value_type_is_valid_type()
+        self._validate_propid()
+        self._validate_uristem()
+        self._validate_valueuri()
+        self._validate_litpicklist()
+        self._validate_uripicklist()
+        # self._propid_is_mandatory()
+        # self._value_type_validate_type()
         return True
 
-    def _propid_is_valid_quri(self):
+    def _validate_propid(self):
         """True if property ID is a valid URI."""
         if not is_valid_uri_or_prefixed_uri(self.prop_id):
             return False
         return True
 
-    def _uripicklist_is_valid(self):
+    def _validate_uripicklist(self):
         """True if all members of UriPicklist are URIs."""
         if self.constraint_type == "UriPicklist":
             return all([is_uri(item) for item in self.constraint_value])
         return True
 
-    def _litpicklist_is_valid(self):
+    def _validate_litpicklist(self):
         """True if all members of LitPicklist are strings."""
         if self.constraint_type == "LitPicklist":
             return all([isinstance(item, str) for item in self.constraint_value])
         return True
 
-    def _uristem_is_valid_quri(self):
+    def _validate_uristem(self):
         """True if constraint value for constraint type UriStem is a valid URI."""
         if self.constraint_type == "UriStem":
             uristem_value = self.constraint_value
@@ -159,7 +159,7 @@ class Statement:
                     return False
         return True
 
-    def _value_type_uri_is_valid_quri(self):
+    def _validate_valueuri(self):
         """True if constraint value for value type URI is a valid URI."""
         if self.value_type == "URI":
             uri_value = self.constraint_value

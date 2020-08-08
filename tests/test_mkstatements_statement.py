@@ -23,7 +23,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.annot is None
 
 
-def test_statement_initialized_without_property_id():
+def test_statement_initialized_without_propid():
     """Statement instance initialized without property ID. Shouldn't this fail?"""
     shap = Statement()
     assert not shap.start

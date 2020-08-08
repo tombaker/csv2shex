@@ -6,7 +6,7 @@ from csv2shex.mkstatements import Statement
 
 
 @pytest.mark.skip
-def test_mkshapes_isvalid_uripicklist():
+def test_mkshapes_validate_uripicklist():
     """@@@"""
     stat = Statement(
         shape_id="@default",
@@ -14,11 +14,11 @@ def test_mkshapes_isvalid_uripicklist():
         constraint_value=[":red", ":green", ":yellow"],
         constraint_type="UriPicklist",
     )
-    assert stat._uripicklist_is_valid()
+    assert stat._validate_uripicklist()
 
 
 @pytest.mark.skip
-def test_mkshapes_isvalid_uripicklist_normalized():
+def test_mkshapes_validate_uripicklist_normalized():
     """@@@"""
     stat = Statement(
         shape_id="@default",
@@ -26,12 +26,12 @@ def test_mkshapes_isvalid_uripicklist_normalized():
         constraint_value=":red :green :yellow",
         constraint_type="UriPicklist",
     )
-    stat._normalize_uripicklist_as_list()
-    assert stat._uripicklist_is_valid()
+    stat._normalize_uripicklist()
+    assert stat._validate_uripicklist()
 
 
 @pytest.mark.skip
-def test_mkshapes_isvalid_uripicklist_just_one_item():
+def test_mkshapes_validate_uripicklist_just_one_item():
     """@@@"""
     stat = Statement(
         shape_id="@default",
@@ -39,10 +39,10 @@ def test_mkshapes_isvalid_uripicklist_just_one_item():
         constraint_value=["wd:Q46914185"],
         constraint_type="UriPicklist",
     )
-    assert stat._uripicklist_is_valid()
+    assert stat._validate_uripicklist()
 
 
-def test_mkshapes_isvalid_uripicklist_just_one_item_normalized():
+def test_mkshapes_validate_uripicklist_just_one_item_normalized():
     """@@@"""
     stat = Statement(
         shape_id="@default",
@@ -50,5 +50,5 @@ def test_mkshapes_isvalid_uripicklist_just_one_item_normalized():
         constraint_value="https://www.wikidata.org/wiki/Q46914185",
         constraint_type="UriPicklist",
     )
-    stat._normalize_uripicklist_as_list()
-    assert stat._uripicklist_is_valid()
+    stat._normalize_uripicklist()
+    assert stat._validate_uripicklist()
