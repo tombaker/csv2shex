@@ -130,12 +130,9 @@ class Statement:
         return True
 
     def _literal_picklist_is_valid(self):
-        """@@@"""
+        """True if all members of literal picklist are strings."""
         if self.constraint_type == "LitPicklist":
-            if all([type(i) for i in self.constraint_value]):
-                return True
-            else:
-                return False
+            return all([isinstance(item, str) for item in self.constraint_value])
         return True
 
     def _uristem_is_valid_quri(self):

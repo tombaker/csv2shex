@@ -26,6 +26,7 @@ def test_mkshapes_isvalid_literal_picklist_just_one_item():
     stat._normalize_literal_picklist()
     assert stat._literal_picklist_is_valid()
 
+
 def test_mkshapes_normalize_literal_picklist():
     """@@@"""
     stat = Statement(
@@ -36,6 +37,7 @@ def test_mkshapes_normalize_literal_picklist():
     stat._normalize_literal_picklist()
     assert stat.constraint_value == ["red", "green", "yellow"]
 
+
 def test_mkshapes_normalize_literal_picklist_just_one_item():
     """@@@"""
     stat = Statement(
@@ -45,4 +47,3 @@ def test_mkshapes_normalize_literal_picklist_just_one_item():
     )
     stat._normalize_literal_picklist()
     assert stat.constraint_value == ["red"]
-
