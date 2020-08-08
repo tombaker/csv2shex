@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
-from .utils import is_valid_uri_or_prefixed_uri
+from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
@@ -82,6 +82,8 @@ class Statement:
     def normalize(self):
         """Returns self with field values normalized."""
         self._normalize_property_uri()
+        self._normalize_uripicklist_as_list()
+        self._normalize_litpicklist_as_list()
         self._normalize_uristem_uri()
         self._normalize_value_type_uri()
 
@@ -94,12 +96,18 @@ class Statement:
     def _normalize_uristem_uri(self):
         """Strip angle brackets from URIs."""
         if self.constraint_type == "URIStem":
-            if self.constraint_value is not None:
+            if self.constraint_value is not None:  # is "is not None" necessary?
                 uristem = self.constraint_value
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
         return self
 
-    def _normalize_literal_picklist(self):
+    def _normalize_uripicklist_as_list(self):
+        """@@@"""
+        if self.constraint_type == "UriPicklist":
+            self.constraint_value = self.constraint_value.split()
+        return self
+
+    def _normalize_litpicklist_as_list(self):
         """@@@"""
         if self.constraint_type == "LitPicklist":
             self.constraint_value = self.constraint_value.split()
@@ -118,7 +126,8 @@ class Statement:
         self._propid_is_valid_quri()
         self._uristem_is_valid_quri()
         self._value_type_uri_is_valid_quri()
-        self._literal_picklist_is_valid()
+        self._litpicklist_is_valid()
+        self._uripicklist_is_valid()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
         return True
@@ -129,8 +138,14 @@ class Statement:
             return False
         return True
 
-    def _literal_picklist_is_valid(self):
-        """True if all members of literal picklist are strings."""
+    def _uripicklist_is_valid(self):
+        """True if all members of UriPicklist are URIs."""
+        if self.constraint_type == "UriPicklist":
+            return all([is_uri(item) for item in self.constraint_value])
+        return True
+
+    def _litpicklist_is_valid(self):
+        """True if all members of LitPicklist are strings."""
         if self.constraint_type == "LitPicklist":
             return all([isinstance(item, str) for item in self.constraint_value])
         return True
