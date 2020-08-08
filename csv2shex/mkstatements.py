@@ -81,8 +81,15 @@ class Statement:
 
     def self_normalize(self):
         """Returns self with field values normalized."""
+        self._normalize_property_uri()
         self._normalize_uristem_uri()
         self._normalize_value_type_uri()
+
+    def _normalize_property_uri(self):
+        """Strip angle brackets from URIs."""
+        propid = self.prop_id
+        self.prop_id = propid.lstrip('<').rstrip('>')
+        return self
 
     def _normalize_uristem_uri(self):
         """Strip angle brackets from URIs."""
@@ -102,10 +109,17 @@ class Statement:
 
     def is_valid(self):
         """True if Statement instance is valid, else exit with errors."""
+        self._propid_is_valid_quri()
         self._uristem_is_valid_quri()
         self._value_type_uri_is_valid_quri()
         # self._property_id_is_mandatory()
         # self._value_type_is_valid_type()
+        return True
+
+    def _propid_is_valid_quri(self):
+        """True if property ID is a valid URI."""
+        if not is_valid_uri_or_prefixed_uri(self.prop_id):
+            return False
         return True
 
     def _uristem_is_valid_quri(self):

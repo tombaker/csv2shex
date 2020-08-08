@@ -4,7 +4,7 @@
 from csv2shex.mkstatements import Statement
 
 
-def test_mkshapes_isvalid_uristem_uri_prefix():
+def test_mkshapes_isvalid_uristem_uri_prefixed():
     """@@@"""
     statement = Statement(
         shape_id="@default",
