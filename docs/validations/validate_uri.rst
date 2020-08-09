@@ -17,7 +17,7 @@ The Statement class performs some normalization of URI values (stripping out enc
 The following table shows various valid uses of URIs as constraint values.
 
 .. csv-table:: 
-   :file: ../validations/constraint_value_as_uri.csv
+   :file: ../validations/validate_uri.csv
    :header-rows: 1
 
 This is interpreted as::
@@ -50,7 +50,7 @@ This is interpreted as::
 The following table illustrates a few simple inconsistencies that will be detected.
 
 .. csv-table:: 
-   :file: ../validations/constraint_value_as_uri_bad.csv
+   :file: ../validations/validate_uri_bad.csv
    :header-rows: 1
 
 Note:

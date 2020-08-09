@@ -7,3 +7,4 @@ Normalizations
    litpicklists
    uripicklists
    mandrepeat
+   regex

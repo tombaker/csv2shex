@@ -1,6 +1,8 @@
 """Class for Python objects derived from CSV files."""
 
 
+import re
+import sys
 import csv
 from dataclasses import dataclass
 from pathlib import Path
@@ -59,9 +61,9 @@ class Statement:
           Etc.
         constraint_type (str, optional):
           Etc.
-        shape_ref (str):
+        shape_ref (str, optional):
           Etc.
-        annot (str):
+        annot (str, optional):
           Etc.
     """
 
@@ -81,15 +83,25 @@ class Statement:
 
     def normalize(self):
         """Normalize specific elements."""
-        self._normalize_propid()
-        self._normalize_uripicklist()
         self._normalize_litpicklist()
-        self._normalize_uristem()
         self._normalize_mandrepeat()
+        self._normalize_propid()
+        self._normalize_regex()
+        self._normalize_uripicklist()
+        self._normalize_uristem()
         self._normalize_valueuri()
 
+    def validate(self):
+        """True if Statement instance is valid, else exit with errors."""
+        self._validate_litpicklist()
+        self._validate_propid()
+        self._validate_uripicklist()
+        self._validate_uristem()
+        self._validate_valueuri()
+        return True
+
     def _normalize_mandrepeat(self):
-        """@@@"""
+        """Elements 'mand' or 'repeat' are True if any value provided."""
         if self.mand:
             self.mand = True
         if self.repeat:
@@ -104,7 +116,7 @@ class Statement:
     def _normalize_uristem(self):
         """Normalize URI stems as constraint values."""
         if self.constraint_type == "UriStem":
-            if self.constraint_value is not None:  # is "is not None" necessary?
+            if self.constraint_value:
                 uristem = self.constraint_value
                 self.constraint_value = uristem.lstrip('<').rstrip('>')
         return self
@@ -121,6 +133,16 @@ class Statement:
             self.constraint_value = self.constraint_value.split()
         return self
 
+    def _normalize_regex(self):
+        """True if Regex is valid (Python) regex."""
+        if self.constraint_type == "Regex":
+            if self.constraint_value:
+                try:
+                    self.constraint_value = re.compile(self.constraint_value)
+                except (re.error, TypeError):
+                    print(f"{repr(self.constraint_value)} is not a valid (Python) regular expression.", file=sys.stderr)
+                    self.constraint_value = None
+
     def _normalize_valueuri(self):
         """Normalize value URIs by stripping angle brackets."""
         if self.value_type == "URI":
@@ -128,15 +150,6 @@ class Statement:
                 uri_as_value = self.constraint_value
                 self.constraint_value = uri_as_value.lstrip('<').rstrip('>')
         return self
-
-    def validate(self):
-        """True if Statement instance is valid, else exit with errors."""
-        self._validate_propid()
-        self._validate_uristem()
-        self._validate_valueuri()
-        self._validate_litpicklist()
-        self._validate_uripicklist()
-        return True
 
     def _validate_propid(self):
         """True if property ID is a URI or prefixed URI."""
