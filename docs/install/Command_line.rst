@@ -1,23 +1,9 @@
 Command-line utility
 --------------------
 
-As of 2020-08-09, the command-line interface is:
+To get basic help, run the command with no arguments:
 
-    Usage: csv2shex [OPTIONS] COMMAND [ARGS]...
-
-      Generate ShEx schemas from tabular (CSV) DC Application Profiles
-
-    Options:
-      --version  Show version and exit
-      --help     Show help and exit
-
-    Commands:
-      csvparse   Show CSV file contents, normalized
-      elements   Show elements of the DCAP model (CSV column headers)
-      picklists  Show built-in picklists for specific elements
-      prefixes   Show built-in prefix bindings
-      yaml2csv   Show YAML file as CSV (for round-tripping?)
-      yamlparse  Show CSV file contents as YAML
+    $ csv2shex
 
 The main subcommand used to read and display the contents of a CSV file is:
 
