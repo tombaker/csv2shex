@@ -1,7 +1,6 @@
 """@@@"""
 
 
-import pytest
 from csv2shex.mkstatements import Statement
 
 
@@ -14,6 +13,7 @@ def test_mkshapes_normalize_mandrepeat():
     stat._normalize_mandrepeat()
     assert stat.mand is True
     assert stat.repeat is False
+
 
 def test_mkshapes_normalize_mandrepeat_not_specified():
     """@@@"""
