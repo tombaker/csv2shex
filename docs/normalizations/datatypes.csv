@@ -1,0 +1,3 @@
+prop_id,value_type,constraint_value,constraint_type,annot
+:color,,xsd:string,Datatype,
+:color,,string,Datatype,Incorrect!

@@ -87,6 +87,7 @@ class Statement:
         self._normalize_mandrepeat()
         self._normalize_propid()
         self._normalize_regex()
+        self._normalize_datatype()
         self._normalize_uripicklist()
         self._normalize_uristem()
         self._normalize_valueuri()
@@ -134,8 +135,10 @@ class Statement:
         return self
 
     def _normalize_regex(self):
-        """True if Regex is valid (Python) regex."""
+        """Regex must be a valid (Python) regex."""
         if self.constraint_type == "Regex":
+            if not self.value_type:
+                self.value_type = "Literal"
             if self.constraint_value:
                 try:
                     self.constraint_value = re.compile(self.constraint_value)
@@ -145,6 +148,15 @@ class Statement:
                         "a valid (Python) regular expression.",
                         file=sys.stderr,
                     )
+                    self.constraint_value = None
+
+    def _normalize_datatype(self):
+        """Datatype must be a valid URI."""
+        if self.constraint_type == "Datatype":
+            if not self.value_type:
+                self.value_type = "Literal"
+            if self.constraint_value:
+                if not is_valid_uri_or_prefixed_uri(self.constraint_value):
                     self.constraint_value = None
 
     def _normalize_valueuri(self):

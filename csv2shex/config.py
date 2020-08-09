@@ -27,11 +27,11 @@ value_type:
 - Literal
 - Nonliteral
 constraint_type:
+- Datatype
 - UriStem
 - UriPicklist
 - LitPicklist
 - Regex
-- Date
 """
 
 PREFIXES = """\

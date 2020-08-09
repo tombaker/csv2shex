@@ -8,3 +8,4 @@ Normalizations
    uripicklists
    mandrepeat
    regex
+   datatypes
