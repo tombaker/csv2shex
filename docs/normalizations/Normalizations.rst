@@ -6,3 +6,4 @@ Normalizations
    uris
    litpicklists
    uripicklists
+   mandrepeat

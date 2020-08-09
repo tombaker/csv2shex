@@ -13,8 +13,8 @@ def test_statement_initialized_with_just_one_field():
     assert shap.shape_label is None
     assert shap.prop_id == "dcterms:creator"
     assert shap.prop_label is None
-    assert shap.mand is None
-    assert shap.repeat is None
+    assert shap.mand is False
+    assert shap.repeat is False
     assert shap.value_type is None
     assert shap.value_datatype is None
     assert shap.constraint_value is None
@@ -31,8 +31,8 @@ def test_statement_initialized_without_propid():
     assert shap.shape_label is None
     assert shap.prop_id is None
     assert shap.prop_label is None
-    assert shap.mand is None
-    assert shap.repeat is None
+    assert shap.mand is False
+    assert shap.repeat is False
     assert shap.value_type is None
     assert shap.value_datatype is None
     assert shap.constraint_value is None

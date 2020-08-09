@@ -70,8 +70,8 @@ class Statement:
     shape_label: str = None
     prop_id: str = None
     prop_label: str = None
-    mand: str = None
-    repeat: str = None
+    mand: bool = False
+    repeat: bool = False
     value_type: str = None
     value_datatype: str = None
     constraint_value: str = None
@@ -85,7 +85,15 @@ class Statement:
         self._normalize_uripicklist()
         self._normalize_litpicklist()
         self._normalize_uristem()
+        self._normalize_mandrepeat()
         self._normalize_valueuri()
+
+    def _normalize_mandrepeat(self):
+        """@@@"""
+        if self.mand:
+            self.mand = True
+        if self.repeat:
+            self.repeat = True
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""

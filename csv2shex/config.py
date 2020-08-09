@@ -21,12 +21,6 @@ statement_elements:
 """
 
 ELEMENT_PICKLISTS = """\
-mand:
-- Y
-- N
-repeat:
-- Y
-- N
 value_type:
 - URI
 - BNode
