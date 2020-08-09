@@ -1,5 +1,5 @@
-Literal picklists as lists
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Picklists of literals
+^^^^^^^^^^^^^^^^^^^^^
 
 Constraint values of constraint type `LitPicklist` are interpreted as lists.
 

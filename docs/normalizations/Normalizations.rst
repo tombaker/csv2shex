@@ -3,7 +3,7 @@ Normalizations
 
 .. toctree::
 
-   uris
+   validate_uri
    litpicklists
    uripicklists
    mandrepeat

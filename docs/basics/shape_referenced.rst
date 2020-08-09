@@ -1,5 +1,5 @@
 Named shapes, referenced
-^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""
 
 A statement may include a reference back to a shape to which the object value of a property must conform.
 

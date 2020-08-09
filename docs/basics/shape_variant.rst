@@ -1,5 +1,5 @@
 Named shapes (in statement row)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""
 
 Shape IDs can be specified on the same row as a statement.
 

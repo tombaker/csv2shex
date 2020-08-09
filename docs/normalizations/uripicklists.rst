@@ -1,5 +1,5 @@
-URI picklists as lists of URIs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Picklists of URIs
+^^^^^^^^^^^^^^^^^
 
 Constraint values of constraint type `UriPicklist` are interpreted as lists of URIs or prefixed URIs.
 

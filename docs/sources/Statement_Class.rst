@@ -1,5 +1,5 @@
 Statement class
----------------
+^^^^^^^^^^^^^^^
 
 As defined in the DC Application Profile model (DCAP), a Statement is a property-value pair in the context of a Shape. An instance of the class :class:`csv2shex.mkstatements.Statement`:
 

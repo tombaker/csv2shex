@@ -1,7 +1,7 @@
-URIs as constraint values
-^^^^^^^^^^^^^^^^^^^^^^^^^
+URIs
+^^^^
 
-In the DCAP model, URIs can be depicted in three possible ways:
+In the CSV file of a DCAP, URIs can be represented in three possible ways:
 
 - as full URIs
 - as full URIs enclosed in angle brackets
@@ -17,7 +17,7 @@ The Statement class performs some normalization of URI values (stripping out enc
 The following table shows various valid uses of URIs as constraint values.
 
 .. csv-table:: 
-   :file: ../validations/validate_uri.csv
+   :file: ../normalizations/validate_uri.csv
    :header-rows: 1
 
 This is interpreted as::
@@ -50,10 +50,31 @@ This is interpreted as::
 The following table illustrates a few simple inconsistencies that will be detected.
 
 .. csv-table:: 
-   :file: ../validations/validate_uri_bad.csv
+   :file: ../normalizations/validate_uri_bad.csv
    :header-rows: 1
 
 Note:
 
 - The string 'some_string' is not valid as a URI or as a prefixed URI.
 - The constraint value `UriStem` implies a constraint value that is a URI or prefixed URI, but none is provided.
+
+If URIs are enclosed URIs in angle brackets, the brackets are stripped away.
+
+.. csv-table:: 
+   :file: ../normalizations/uris.csv
+   :header-rows: 1
+
+This is interpreted as::
+
+    DCAP
+        Shape
+            shape_id: :book
+            start: True
+            Statement
+                prop_id: dct:subject
+                constraint_value: https://id.loc.gov/subjects
+                constraint_type: UriStem
+            Statement
+                prop_id: dct:creator
+                value_type: URI
+                constraint_value: https://www.wikidata.org/wiki/Q46914185
