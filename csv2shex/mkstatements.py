@@ -16,8 +16,8 @@ from .utils import is_uri, is_valid_uri_or_prefixed_uri
 # => too-many-instance-attributes: disagree!
 
 elements = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = elements['shape_elements']
-STATEMENT_ELEMENTS = elements['statement_elements']
+SHAPE_ELEMENTS = elements["shape_elements"]
+STATEMENT_ELEMENTS = elements["statement_elements"]
 
 
 @dataclass
@@ -110,7 +110,7 @@ class Statement:
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
         propid = self.prop_id
-        self.prop_id = propid.lstrip('<').rstrip('>')
+        self.prop_id = propid.lstrip("<").rstrip(">")
         return self
 
     def _normalize_uristem(self):
@@ -118,7 +118,7 @@ class Statement:
         if self.constraint_type == "UriStem":
             if self.constraint_value:
                 uristem = self.constraint_value
-                self.constraint_value = uristem.lstrip('<').rstrip('>')
+                self.constraint_value = uristem.lstrip("<").rstrip(">")
         return self
 
     def _normalize_uripicklist(self):
@@ -140,7 +140,11 @@ class Statement:
                 try:
                     self.constraint_value = re.compile(self.constraint_value)
                 except (re.error, TypeError):
-                    print(f"{repr(self.constraint_value)} is not a valid (Python) regular expression.", file=sys.stderr)
+                    print(
+                        f"{repr(self.constraint_value)} is not "
+                        "a valid (Python) regular expression.",
+                        file=sys.stderr,
+                    )
                     self.constraint_value = None
 
     def _normalize_valueuri(self):
@@ -148,7 +152,7 @@ class Statement:
         if self.value_type == "URI":
             if self.constraint_value is not None:
                 uri_as_value = self.constraint_value
-                self.constraint_value = uri_as_value.lstrip('<').rstrip('>')
+                self.constraint_value = uri_as_value.lstrip("<").rstrip(">")
         return self
 
     def _validate_propid(self):
