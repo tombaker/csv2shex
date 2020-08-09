@@ -31,7 +31,7 @@ constraint_type:
 - UriStem
 - UriPicklist
 - LitPicklist
-- LangTag 
+- LangTag
 - LangTagPicklist
 - Regex
 """

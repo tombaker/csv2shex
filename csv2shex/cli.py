@@ -89,4 +89,3 @@ def csvparse(context, csvfile):
     pprint_output = pprint_shapes(shapes)
     for line in pprint_output.splitlines():
         print(line)
-
