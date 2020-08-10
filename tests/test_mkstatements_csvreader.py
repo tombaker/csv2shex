@@ -32,10 +32,10 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile.write_text(
         (
             "shape_id,shape_label,prop_id,prop_label,mand,repeat,value_type,"
-            "value_datatype,constraint_value,constraint_type,shape_ref,annot\n"
-            "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
-            "@a,Book,dct:date,Date,Y,N,String,xsd:date,(\d+/\d+/\d+),Regex,,\n"
-            "@b,Person,foaf:name,Name,Y,N,String,,,,,\n"
+            "constraint_value,constraint_type,shape_ref,annot\n"
+            "@a,Book,dct:creator,Creator,Y,N,URI,,,@b,Typically the author.\n"
+            "@a,Book,dct:date,Date,Y,N,String,(\d+/\d+/\d+),Regex,,\n"
+            "@b,Person,foaf:name,Name,Y,N,String,,,,\n"
         )
     )
     expected_output = [
@@ -47,7 +47,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "mand": "Y",
             "repeat": "N",
             "value_type": "URI",
-            "value_datatype": "",
             "constraint_value": "",
             "constraint_type": "",
             "shape_ref": "@b",
@@ -61,7 +60,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "mand": "Y",
             "repeat": "N",
             "value_type": "String",
-            "value_datatype": "xsd:date",
             "constraint_value": "(\d+/\d+/\d+)",
             "constraint_type": "Regex",
             "shape_ref": "",
@@ -75,7 +73,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "mand": "Y",
             "repeat": "N",
             "value_type": "String",
-            "value_datatype": "",
             "constraint_value": "",
             "constraint_type": "",
             "shape_ref": "",

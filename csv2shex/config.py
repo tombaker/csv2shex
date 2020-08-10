@@ -13,7 +13,6 @@ statement_elements:
 - mand
 - repeat
 - value_type
-- value_datatype
 - constraint_value
 - constraint_type
 - shape_ref
