@@ -1,11 +1,11 @@
 About csv2shex
 --------------
 
-Csv2shex is a command-line utility for reading, interpreting, and verifying CSV files formatted according to the DC Application Profile (DCAP) model. The utility interprets and normalizes the contents of a CSV files and prints the results to standard outpus as an aid for debugging. The utility also experimentally converts the CSV contents into a YAML representation. The ultimate goal of this project is to convert instances of DCAP in CSV into ShEx schemas usable for data validation.
+Csv2shex is a command-line utility for reading, interpreting, and verifying CSV files formatted according to the DC Application Profile (DCAP) model. The utility interprets and normalizes the contents of a CSV file and prints the results to standard output as an aid for debugging. The utility also experimentally converts the CSV contents into a YAML representation. The ultimate goal of this project is to convert instances of DCAP in CSV into ShEx schemas usable for data validation.
 
 This project has been undertaken in parallel to, and in support of, a working group of the Dublin Core Metadata Initiative which is creating the DCAP model (@@@add links).
 
-The motivation for this project is to make the ShEx data validation language, with its own syntax, accessible to users who are "spreadsheet-enabled", ie who are comfortable with tabular formats. The tabular format, it is hoped, will serve as an "on-ramp" to the more expressive ShEx language by providing an easy way to generate, and to understand, the first draft of a schema in ShEx. 
+The goals of this project are to make the ShEx data validation language, with its own syntax, accessible to "spreadsheet-enabled" users who are comfortable with tabular formats but do not know the ShEx syntax, and to serve as an "on-ramp" to the more expressive ShEx language by providing an easy way to generate, and to understand, the first draft of a ShEx schema.
 
 The code in this project tries to anticipate messy or incomplete CSV inputs and to fill gaps and normalize inconsistencies. For example, the code allows users to enter URIs either as full URIs (with or without enclosing angle brackets) or as abbreviated URIs written with namespace prefixes (e.g., 'dcterms:creator'), or to enter the datatypes of literal values without using an extra column to specify that the value is a Literal (since this can be inferred).
 
