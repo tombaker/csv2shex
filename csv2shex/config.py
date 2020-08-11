@@ -37,6 +37,7 @@ constraint_type:
 
 PREFIXES = """\
 prefixes:
+    : http://example.org/
     dc: http://purl.org/dc/elements/1.1/
     dcat: http://www.w3.org/ns/dcat
     dct: http://purl.org/dc/terms/
@@ -47,5 +48,6 @@ prefixes:
     skos: http://www.w3.org/2004/02/skos/core#
     skosxl: http://www.w3.org/2008/05/skos-xl#
     sx: http://www.w3.org/ns/shex
-    xsd: http://www.w3.org/2001/XMLSchema
+    xsd: http://www.w3.org/2001/XMLSchema#
+    wd: https://www.wikidata.org/wiki/
 """
