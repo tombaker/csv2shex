@@ -1,4 +1,4 @@
-"""Generate ShEx schemas from CSV-formatted application profiles."""
+"""DC Application Profile (DCAP) from CSV to ShEx"""
 
 import ruamel.yaml as yaml
 import click
@@ -17,7 +17,20 @@ from .mkyaml import csv2yaml
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def cli(context):
-    """Prepare tabular (CSV) DC Application Profiles for ShEx"""
+    """DC Application Profile (DCAP) from CSV to ShEx"""
+
+
+@cli.command()
+@click.argument("csvfile", type=click.Path(exists=True))
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def parse(context, csvfile):
+    """Show CSV file contents, normalized"""
+    statements = list_statements(csvreader(csvfile))
+    shapes = list_shapes(statements)
+    pprint_output = pprint_shapes(shapes)
+    for line in pprint_output.splitlines():
+        print(line)
 
 
 @cli.command()
@@ -59,16 +72,3 @@ def show(context, model, picklists, prefixes):
 def yamlparse(context, csvfile):
     """Show CSV file contents as YAML (experimental)"""
     csv2yaml(csvfile)
-
-
-@cli.command()
-@click.argument("csvfile", type=click.Path(exists=True))
-@click.help_option(help="Show help and exit")
-@click.pass_context
-def parse(context, csvfile):
-    """Show CSV file contents, normalized"""
-    statements = list_statements(csvreader(csvfile))
-    shapes = list_shapes(statements)
-    pprint_output = pprint_shapes(shapes)
-    for line in pprint_output.splitlines():
-        print(line)
