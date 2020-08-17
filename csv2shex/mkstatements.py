@@ -86,8 +86,8 @@ class Statement:
         self._normalize_uripicklist()
         self._normalize_uristem()
         self._normalize_valueuri()
-        # TODO self._normalize_langtag()
-        # TODO self._normalize_langtag_picklist()
+        # self._normalize_langtag()
+        # self._normalize_langtag_picklist()
 
     def validate(self):
         """True if Statement instance is valid, else exit with errors."""

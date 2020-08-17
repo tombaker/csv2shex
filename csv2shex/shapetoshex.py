@@ -1,3 +1,5 @@
+"""@@@"""
+
 from typing import Union, List, Optional
 
 from ShExJSG import Schema

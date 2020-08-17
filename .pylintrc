@@ -1,4 +1,5 @@
 [MESSAGES CONTROL]
+disable=C0103  # 2020-08-17: Harold uses some one- or two-letter variable names
 # disable=W0611,protected-access,duplicate-code,invalid-name,bad-continuation
 # disable=W0102
 # bad-continuation: Black disagrees
