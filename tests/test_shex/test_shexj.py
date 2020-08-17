@@ -1,5 +1,4 @@
 import os
-from json import loads, load
 from typing import cast
 
 from ShExJSG import ShExC, ShExJ
@@ -8,7 +7,6 @@ from ShExJSG.ShExJ import Shape, EachOf, TripleConstraint
 from pyjsg.jsglib import loader
 from pyjsg.jsglib.loader import is_valid, StringIO
 from pyshex.utils.schema_loader import SchemaLoader
-from jsonasobj import as_json, JsonObj
 from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
