@@ -45,51 +45,83 @@ def test_shexj_from_text():
     """
     shex = SchemaLoader().loads(shex_json)
     assert isinstance(shex.shapes[0].expression, EachOf)
-    assert TripleConstraint(predicate=DCTERMS.title) in shex.shapes[0].expression.expressions
+    assert (
+        TripleConstraint(predicate=DCTERMS.title)
+        in shex.shapes[0].expression.expressions
+    )
 
 
 def test_shexj_from_file():
     """ Load ShEx JSON from internal file"""
-    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, 'absolute_minimal_profile.shexj')
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"
+    )
     shex = SchemaLoader().load(shex_file)
     assert isinstance(shex.shapes[0].expression, EachOf)
-    assert TripleConstraint(predicate=DCTERMS.title) in shex.shapes[0].expression.expressions
+    assert (
+        TripleConstraint(predicate=DCTERMS.title)
+        in shex.shapes[0].expression.expressions
+    )
+
 
 def test_shexj_from_json():
     """ Load ShEx JSON from JSON file """
-    shex = cast(ShExJ.Schema,
-                loader.load(os.path.join(EXAMPLE_PROFILES_DIRECTORY, 'absolute_minimal_profile.shexj'), ShExJ))
+    shex = cast(
+        ShExJ.Schema,
+        loader.load(
+            os.path.join(EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"),
+            ShExJ,
+        ),
+    )
     assert isinstance(shex.shapes[0].expression, EachOf)
-    assert TripleConstraint(predicate=DCTERMS.title) in shex.shapes[0].expression.expressions
+    assert (
+        TripleConstraint(predicate=DCTERMS.title)
+        in shex.shapes[0].expression.expressions
+    )
 
 
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
-    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, 'absolute_minimal_profile.shex')
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+    )
     shex = SchemaLoader().load(shex_file)
-    assert """<default> {
+    assert (
+        """<default> {
     (  <http://purl.org/dc/terms/title> . ;
        <http://purl.org/dc/terms/subject> . ;
        <http://purl.org/dc/terms/date> .
     )
-}""" == (str(ShExC(shex))).strip()
+}"""
+        == (str(ShExC(shex))).strip()
+    )
+
 
 def test_python_to_shex():
     """ Generate a new ShEx Schema from Python """
     schema = Schema(
-                shapes = [
-                    Shape(
-                        id="default",
-                        expression=EachOf(
-                            expressions=[TripleConstraint(predicate=DCTERMS.title),
-                                         TripleConstraint(predicate=DCTERMS.subject),
-                                         TripleConstraint(predicate=DCTERMS.date)]))])
-    assert """<default> {
+        shapes=[
+            Shape(
+                id="default",
+                expression=EachOf(
+                    expressions=[
+                        TripleConstraint(predicate=DCTERMS.title),
+                        TripleConstraint(predicate=DCTERMS.subject),
+                        TripleConstraint(predicate=DCTERMS.date),
+                    ]
+                ),
+            )
+        ]
+    )
+    assert (
+        """<default> {
     (  <http://purl.org/dc/terms/title> . ;
        <http://purl.org/dc/terms/subject> . ;
        <http://purl.org/dc/terms/date> .
     )
-}""" == (str(ShExC(schema))).strip()
+}"""
+        == (str(ShExC(schema))).strip()
+    )
 
 
 def test_is_valid_shex_good():
@@ -99,9 +131,15 @@ def test_is_valid_shex_good():
             Shape(
                 id="default",
                 expression=EachOf(
-                    expressions=[TripleConstraint(predicate=DCTERMS.title),
-                                 TripleConstraint(predicate=DCTERMS.subject),
-                                 TripleConstraint(predicate=DCTERMS.date)]))])
+                    expressions=[
+                        TripleConstraint(predicate=DCTERMS.title),
+                        TripleConstraint(predicate=DCTERMS.subject),
+                        TripleConstraint(predicate=DCTERMS.date),
+                    ]
+                ),
+            )
+        ]
+    )
     log = StringIO()
     rval = is_valid(schema, log)
     assert rval, log.getvalue()
@@ -117,10 +155,17 @@ def test_is_valid_shex_error():
             Shape(
                 id="default",
                 expression=EachOf(
-                    expressions=[TripleConstraint(predicate=DCTERMS.title),
-                                 TripleConstraint(predicate=DCTERMS.subject)]))])
+                    expressions=[
+                        TripleConstraint(predicate=DCTERMS.title),
+                        TripleConstraint(predicate=DCTERMS.subject),
+                    ]
+                ),
+            )
+        ]
+    )
 
-    # This should turn this into an invalid entry.  Not certain why it still isn't caught in the log
+    # This should turn this into an invalid entry.
+    # Not certain why it still isn't caught in the log
     schema.shapes[0].expression.expressions.pop()
     log = StringIO()
     rval = is_valid(schema, log)

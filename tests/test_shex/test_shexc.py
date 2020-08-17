@@ -11,7 +11,7 @@ from tests import EXAMPLE_PROFILES_DIRECTORY
 def test_shexc_from_text():
     """ Load ShExC text string """
     shex_text = """PREFIX dct: <http://purl.org/dc/terms/>
-    
+
     <default> {
         dct:title . ;
         dct:subject . ;
@@ -20,24 +20,37 @@ def test_shexc_from_text():
 
     shex = SchemaLoader().loads(shex_text)
     assert isinstance(shex.shapes[0].expression, EachOf)
-    assert TripleConstraint(predicate=DCTERMS.title) in shex.shapes[0].expression.expressions
+    assert (
+        TripleConstraint(predicate=DCTERMS.title)
+        in shex.shapes[0].expression.expressions
+    )
 
 
 def test_shexc_from_file():
     """ Load ShExC from internal file"""
-    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, 'absolute_minimal_profile.shex')
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+    )
     shex = SchemaLoader().load(shex_file)
     assert isinstance(shex.shapes[0].expression, EachOf)
-    assert TripleConstraint(predicate=DCTERMS.title) in shex.shapes[0].expression.expressions
+    assert (
+        TripleConstraint(predicate=DCTERMS.title)
+        in shex.shapes[0].expression.expressions
+    )
 
 
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
-    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, 'absolute_minimal_profile.shex')
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+    )
     shex = SchemaLoader().load(shex_file)
-    assert """<default> {
+    assert (
+        """<default> {
     (  <http://purl.org/dc/terms/title> . ;
        <http://purl.org/dc/terms/subject> . ;
        <http://purl.org/dc/terms/date> .
     )
-}""" == (str(ShExC(shex))).strip()
+}"""
+        == (str(ShExC(shex))).strip()
+    )
