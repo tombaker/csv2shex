@@ -26,6 +26,7 @@ def test_listshapes_one_shape():
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -37,6 +38,7 @@ def test_listshapes_one_shape():
                 {
                     "prop_id": "dct:date",
                     "value_type": "String",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -77,6 +79,7 @@ def test_listshapes_one_shape_and_shape_label():
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -88,6 +91,7 @@ def test_listshapes_one_shape_and_shape_label():
                 {
                     "prop_id": "dct:date",
                     "value_type": "String",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -111,6 +115,7 @@ def test_listshapes_two_shapes():
                 {
                     "prop_id": "dct:creator",
                     "value_type": "URI",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -122,6 +127,7 @@ def test_listshapes_two_shapes():
                 {
                     "prop_id": "dct:subject",
                     "value_type": "URI",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -133,6 +139,7 @@ def test_listshapes_two_shapes():
                 {
                     "prop_id": "dct:date",
                     "value_type": "String",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,
@@ -150,6 +157,7 @@ def test_listshapes_two_shapes():
                 {
                     "prop_id": "foaf:name",
                     "value_type": "String",
+                    "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
                     "repeat": False,

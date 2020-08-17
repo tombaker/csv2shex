@@ -16,6 +16,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.mand is False
     assert shap.repeat is False
     assert shap.value_type is None
+    assert shap.value_datatype is None
     assert shap.constraint_value is None
     assert shap.constraint_type is None
     assert shap.shape_ref is None
@@ -33,6 +34,7 @@ def test_statement_initialized_without_propid():
     assert shap.mand is False
     assert shap.repeat is False
     assert shap.value_type is None
+    assert shap.value_datatype is None
     assert shap.constraint_value is None
     assert shap.constraint_type is None
     assert shap.shape_ref is None
@@ -52,6 +54,7 @@ def test_statement_fields_individually_addressable():
     assert shap.shape_id == "@photo"
     assert shap.prop_id == "dcterms:creator"
     assert shap.value_type == "URI"
+    assert shap.value_datatype is None
 
 
 def test_statement_initialized_by_assignment():
@@ -69,6 +72,7 @@ def test_statement_initialized_by_assignment_with_some_none():
     shap = Statement()
     shap.prop_id = "dcterms:creator"
     shap.value_type = "URI"
+    assert shap.value_datatype is None
     assert shap == Statement(shape_id=None, prop_id="dcterms:creator", value_type="URI")
     assert not shap.shape_id
     assert not shap.mand
@@ -80,6 +84,7 @@ def test_statement_bad_field_initialized_by_assignment():
     shap.foobar = "@photo"
     shap.prop_id = "dcterms:creator"
     shap.value_type = "URI"
+    assert shap.value_datatype is None
     with pytest.raises(TypeError):
         assert shap == Statement(
             foobar="@photo", prop_id="dcterms:creator", value_type="URI"
