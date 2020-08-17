@@ -12,7 +12,10 @@ requires = [
     "dataclasses",
     "ruamel.base",
     "ruamel.yaml",
-    "pyshex"
+    "PyShEx",
+    "PyShExC",
+    "ShExJSG",
+    "rdflib",
 ]
 classifiers = [
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
