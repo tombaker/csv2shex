@@ -9,7 +9,7 @@ from ShExJSG.ShExJ import (
     TripleConstraint,
     NodeConstraint,
     shapeExpr,
-    OneOf,
+    EachOf,
 )
 
 from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
@@ -73,7 +73,7 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
     )
     if shape.expression:
         if isinstance(shape.expression, TripleConstraint):
-            shape.expression = OneOf(expressions=[shape.expression, ts])
+            shape.expression = EachOf(expressions=[shape.expression, ts])
         else:
             shape.expression.expressions.append(ts)
     else:
