@@ -7,6 +7,5 @@ Installation
    $ cd csv2shex
    $ python -m venv .venv
    $ source .venv/bin/activate
-   $ pip install flit
+   $ python3 -m pip install flit Pygments
    $ flit install -s
-
