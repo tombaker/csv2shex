@@ -12,6 +12,7 @@ from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
+
 def test_shexj_from_text():
     """ Load ShEx JSON text string """
     shex_json = """
