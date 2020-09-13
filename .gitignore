@@ -1,5 +1,6 @@
 # Custom ignore rules from csv2shex project
 Session.vim
+notes/
 .idea/
 tags
 .vimrc

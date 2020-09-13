@@ -12,15 +12,15 @@ def test_csvreader_with_simple_csvfile(tmp_path):
     csvfile.write_text(
         (
             "shape_id,prop_id,value_type\n"
-            "@a,dct:creator,URI\n"
-            "@a,dct:subject,URI\n"
-            "@a,dct:date,String\n"
+            ":a,dct:creator,URI\n"
+            ":a,dct:subject,URI\n"
+            ":a,dct:date,String\n"
         )
     )
     expected_output = [
-        {"shape_id": "@a", "prop_id": "dct:creator", "value_type": "URI"},
-        {"shape_id": "@a", "prop_id": "dct:subject", "value_type": "URI"},
-        {"shape_id": "@a", "prop_id": "dct:date", "value_type": "String"},
+        {"shape_id": ":a", "prop_id": "dct:creator", "value_type": "URI"},
+        {"shape_id": ":a", "prop_id": "dct:subject", "value_type": "URI"},
+        {"shape_id": ":a", "prop_id": "dct:date", "value_type": "String"},
     ]
     assert csvreader(csvfile) == expected_output
 

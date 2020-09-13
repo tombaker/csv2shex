@@ -1,4 +1,5 @@
 import os
+import pytest
 from typing import cast
 
 from ShExJSG import ShExC, ShExJ
@@ -10,7 +11,6 @@ from pyshex.utils.schema_loader import SchemaLoader
 from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
-
 
 def test_shexj_from_text():
     """ Load ShEx JSON text string """
@@ -145,6 +145,7 @@ def test_is_valid_shex_good():
     assert rval, log.getvalue()
 
 
+@pytest.mark.skip
 def test_is_valid_shex_error():
     """ Determine whether the particular bit of ShEx is valid """
 
