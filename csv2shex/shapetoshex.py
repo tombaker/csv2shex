@@ -42,9 +42,9 @@ def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
     def get_nc() -> NodeConstraint:
         return rval if rval else NodeConstraint()
 
-    if statement.value_type:
+    if statement.value_node_type:
         #  pattern = jsg.JSGPattern(r'(iri)|(bnode)|(nonliteral)|(literal)')
-        get_nc().nodeKind = statement.value_type.lower()
+        get_nc().nodeKind = statement.value_node_type.lower()
     if statement.value_constraint:
         get_nc().values = [statement.value_constraint]
     if statement.constraint_type:

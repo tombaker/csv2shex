@@ -12,7 +12,7 @@ statement_elements:
 - prop_label
 - mand
 - repeat
-- value_type
+- value_node_type
 - value_datatype
 - value_constraint
 - constraint_type
@@ -21,7 +21,7 @@ statement_elements:
 """
 
 ELEMENT_PICKLISTS = """\
-value_type:
+value_node_type:
 - URI
 - BNode
 - Literal

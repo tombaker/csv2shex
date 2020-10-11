@@ -49,7 +49,7 @@ class Statement:
           If True, property may be used multiple times in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
-        value_type (str, optional):
+        value_node_type (str, optional):
           Value of the property-value pair is one of the type
           `URI`, `BNode`, `Literal`, or `Non-Literal`.
           Default: None. Value type `IRI` is normalized to `URI`.
@@ -74,7 +74,7 @@ class Statement:
     prop_label: str = None
     mand: bool = False
     repeat: bool = False
-    value_type: str = None
+    value_node_type: str = None
     value_datatype: str = None
     value_constraint: str = None
     constraint_type: str = None
@@ -139,8 +139,8 @@ class Statement:
     def _normalize_regex(self):
         """Regex must be a valid (Python) regex."""
         if self.constraint_type == "Regex":
-            if not self.value_type:
-                self.value_type = "Literal"
+            if not self.value_node_type:
+                self.value_node_type = "Literal"
             if self.value_constraint:
                 try:
                     self.value_constraint = re.compile(self.value_constraint)
@@ -155,15 +155,15 @@ class Statement:
     def _normalize_datatype(self):
         """Datatype must be a valid URI."""
         if self.constraint_type == "Datatype":
-            if not self.value_type:
-                self.value_type = "Literal"
+            if not self.value_node_type:
+                self.value_node_type = "Literal"
             if self.value_constraint:
                 if not is_valid_uri_or_prefixed_uri(self.value_constraint):
                     self.value_constraint = None
 
     def _normalize_valueuri(self):
         """Normalize value URIs by stripping angle brackets."""
-        if self.value_type == "URI":
+        if self.value_node_type == "URI":
             if self.value_constraint is not None:
                 uri_as_value = self.value_constraint
                 self.value_constraint = uri_as_value.lstrip("<").rstrip(">")
@@ -199,7 +199,7 @@ class Statement:
 
     def _validate_valueuri(self):
         """True if constraint value for value type URI is a valid URI."""
-        if self.value_type == "URI":
+        if self.value_node_type == "URI":
             uri_value = self.value_constraint
             if uri_value:
                 if not is_valid_uri_or_prefixed_uri(uri_value):

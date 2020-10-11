@@ -4,18 +4,18 @@ from csv2shex.mkshapes import list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
 LIST_OF_STATEMENT_OBJECTS = [
-    Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
-    Statement(start=True, shape_id="@a", prop_id="dct:subject", value_type="URI"),
-    Statement(start=True, shape_id="@a", prop_id="dct:date", value_type="String"),
-    Statement(start=False, shape_id="@b", prop_id="foaf:name", value_type="String"),
+    Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
+    Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
+    Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
+    Statement(start=False, shape_id="@b", prop_id="foaf:name", value_node_type="String"),
 ]
 
 
 def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
     as_input = [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:date", value_type="String"),
+        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
+        Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
     ]
     assert list_shapes(as_input) == [
         Shape(
@@ -25,7 +25,7 @@ def test_listshapes_one_shape():
             shape_statements=[
                 {
                     "prop_id": "dct:creator",
-                    "value_type": "URI",
+                    "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -37,7 +37,7 @@ def test_listshapes_one_shape():
                 },
                 {
                     "prop_id": "dct:date",
-                    "value_type": "String",
+                    "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -60,14 +60,14 @@ def test_listshapes_one_shape_and_shape_label():
             shape_id="@a",
             shape_label="Author",
             prop_id="dct:creator",
-            value_type="URI",
+            value_node_type="URI",
         ),
         Statement(
             start=True,
             shape_id="@a",
             shape_label="Author",
             prop_id="dct:date",
-            value_type="String",
+            value_node_type="String",
         ),
     ]
     assert list_shapes(as_input) == [
@@ -78,7 +78,7 @@ def test_listshapes_one_shape_and_shape_label():
             shape_statements=[
                 {
                     "prop_id": "dct:creator",
-                    "value_type": "URI",
+                    "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -90,7 +90,7 @@ def test_listshapes_one_shape_and_shape_label():
                 },
                 {
                     "prop_id": "dct:date",
-                    "value_type": "String",
+                    "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -114,7 +114,7 @@ def test_listshapes_two_shapes():
             shape_statements=[
                 {
                     "prop_id": "dct:creator",
-                    "value_type": "URI",
+                    "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -126,7 +126,7 @@ def test_listshapes_two_shapes():
                 },
                 {
                     "prop_id": "dct:subject",
-                    "value_type": "URI",
+                    "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -138,7 +138,7 @@ def test_listshapes_two_shapes():
                 },
                 {
                     "prop_id": "dct:date",
-                    "value_type": "String",
+                    "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
@@ -156,7 +156,7 @@ def test_listshapes_two_shapes():
             shape_statements=[
                 {
                     "prop_id": "foaf:name",
-                    "value_type": "String",
+                    "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
                     "mand": False,
