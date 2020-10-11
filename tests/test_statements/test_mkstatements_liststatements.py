@@ -154,7 +154,7 @@ def test_liststatements_with_missing_value_node_type():
             value_node_type=None,
             value_constraint="sdo:Book",
             value_constraint_type=None,
-            shape_ref=None,
+            value_shape=None,
             annot="must be schema.org/Book",
         ),
         Statement(
@@ -168,7 +168,7 @@ def test_liststatements_with_missing_value_node_type():
             value_node_type=None,
             value_constraint="wd:Q571",
             value_constraint_type=None,
-            shape_ref=None,
+            value_shape=None,
             annot="must be wikidata Book",
         ),
     ]

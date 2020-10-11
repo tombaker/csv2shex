@@ -16,7 +16,7 @@ statement_elements:
 - value_datatype
 - value_constraint
 - value_constraint_type
-- shape_ref
+- value_shape
 - annot
 """
 
