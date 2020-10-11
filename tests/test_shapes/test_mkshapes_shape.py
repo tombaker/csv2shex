@@ -18,7 +18,10 @@ def test_shape_fields_individually_addressable():
     shap = SHAPE_OBJECT
     assert shap.start
     assert shap.shape_id == "@a"
-    assert shap.shape_statements[1] == {"prop_id": "dct:subject", "value_node_type": "URI"}
+    assert shap.shape_statements[1] == {
+        "prop_id": "dct:subject",
+        "value_node_type": "URI",
+    }
 
 
 def test_shape_initialized_by_assignment():

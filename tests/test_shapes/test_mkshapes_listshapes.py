@@ -7,15 +7,21 @@ LIST_OF_STATEMENT_OBJECTS = [
     Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
     Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
     Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
-    Statement(start=False, shape_id="@b", prop_id="foaf:name", value_node_type="String"),
+    Statement(
+        start=False, shape_id="@b", prop_id="foaf:name", value_node_type="String"
+    ),
 ]
 
 
 def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
     as_input = [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"
+        ),
     ]
     assert list_shapes(as_input) == [
         Shape(

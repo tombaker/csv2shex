@@ -50,7 +50,9 @@ def test_statement_initialized_from_named_arguments_and_order_is_insignficant():
 
 def test_statement_fields_individually_addressable():
     """Statement instance fields individually addressable."""
-    shap = Statement(shape_id="@photo", prop_id="dcterms:creator", value_node_type="URI")
+    shap = Statement(
+        shape_id="@photo", prop_id="dcterms:creator", value_node_type="URI"
+    )
     assert shap.shape_id == "@photo"
     assert shap.prop_id == "dcterms:creator"
     assert shap.value_node_type == "URI"
@@ -59,7 +61,9 @@ def test_statement_fields_individually_addressable():
 
 def test_statement_initialized_by_assignment():
     """Statement instance fields created by assignment."""
-    shap = Statement(shape_id="@photo", prop_id="dcterms:creator", value_node_type="URI")
+    shap = Statement(
+        shape_id="@photo", prop_id="dcterms:creator", value_node_type="URI"
+    )
     shap2 = Statement()
     shap2.shape_id = "@photo"
     shap2.prop_id = "dcterms:creator"
@@ -73,7 +77,9 @@ def test_statement_initialized_by_assignment_with_some_none():
     shap.prop_id = "dcterms:creator"
     shap.value_node_type = "URI"
     assert shap.value_datatype is None
-    assert shap == Statement(shape_id=None, prop_id="dcterms:creator", value_node_type="URI")
+    assert shap == Statement(
+        shape_id=None, prop_id="dcterms:creator", value_node_type="URI"
+    )
     assert not shap.shape_id
     assert not shap.mand
 

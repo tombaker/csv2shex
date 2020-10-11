@@ -12,10 +12,18 @@ def test_liststatements():
         {"shape_id": "@b", "prop_id": "foaf:name", "value_node_type": "String"},
     ]
     assert list_statements(csvrows_list) == [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
-        Statement(start=False, shape_id="@b", prop_id="foaf:name", value_node_type="String"),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"
+        ),
+        Statement(
+            start=False, shape_id="@b", prop_id="foaf:name", value_node_type="String"
+        ),
     ]
 
 
@@ -28,13 +36,22 @@ def test_liststatements_without_shape_ids():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shape_id="@default", prop_id="dct:creator", value_node_type="URI"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:creator",
+            value_node_type="URI",
         ),
         Statement(
-            start=True, shape_id="@default", prop_id="dct:subject", value_node_type="URI"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:subject",
+            value_node_type="URI",
         ),
         Statement(
-            start=True, shape_id="@default", prop_id="dct:date", value_node_type="String"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:date",
+            value_node_type="String",
         ),
     ]
 
@@ -50,13 +67,22 @@ def test_liststatements_with_shape_ids_specified_as_none():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shape_id="@default", prop_id="dct:creator", value_node_type="URI"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:creator",
+            value_node_type="URI",
         ),
         Statement(
-            start=True, shape_id="@default", prop_id="dct:subject", value_node_type="URI"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:subject",
+            value_node_type="URI",
         ),
         Statement(
-            start=True, shape_id="@default", prop_id="dct:date", value_node_type="String"
+            start=True,
+            shape_id="@default",
+            prop_id="dct:date",
+            value_node_type="String",
         ),
     ]
 
@@ -69,9 +95,15 @@ def test_liststatements_with_shape_in_first_statement_only():
         {"shape_id": None, "prop_id": "dct:date", "value_node_type": "String"},
     ]
     assert list_statements(csvrows_list) == [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:date", value_node_type="String"
+        ),
     ]
 
 
@@ -83,8 +115,12 @@ def test_liststatements_with_shape_on_its_own_line():
         {"shape_id": None, "prop_id": "dct:subject", "value_node_type": "URI"},
     ]
     assert list_statements(csvrows_list) == [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"
+        ),
     ]
 
 
@@ -112,8 +148,12 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
         ),
     ]
     assert list_statements(csvrows_list) == [
-        Statement(start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"),
-        Statement(start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:creator", value_node_type="URI"
+        ),
+        Statement(
+            start=True, shape_id="@a", prop_id="dct:subject", value_node_type="URI"
+        ),
     ]
 
 
