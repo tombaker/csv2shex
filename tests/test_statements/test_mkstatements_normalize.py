@@ -8,8 +8,8 @@ def test_statement_angle_brackets_stripped_from_uristem():
     shap = Statement(
         prop_id="dc:publisher",
         value_constraint="<http://ibm.com>",
-        constraint_type="UriStem",
+        value_constraint_type="UriStem",
     )
     shap.normalize()
     assert shap.value_constraint == "http://ibm.com"
-    assert shap.constraint_type == "UriStem"
+    assert shap.value_constraint_type == "UriStem"

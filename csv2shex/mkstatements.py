@@ -59,7 +59,7 @@ class Statement:
           typically from the XML Schema namespace.
         value_constraint (str, optional):
           Etc.
-        constraint_type (str, optional):
+        value_constraint_type (str, optional):
           Etc.
         shape_ref (str, optional):
           Etc.
@@ -77,7 +77,7 @@ class Statement:
     value_node_type: str = None
     value_datatype: str = None
     value_constraint: str = None
-    constraint_type: str = None
+    value_constraint_type: str = None
     shape_ref: str = None
     annot: str = None
 
@@ -118,7 +118,7 @@ class Statement:
 
     def _normalize_uristem(self):
         """Normalize URI stems as constraint values."""
-        if self.constraint_type == "UriStem":
+        if self.value_constraint_type == "UriStem":
             if self.value_constraint:
                 uristem = self.value_constraint
                 self.value_constraint = uristem.lstrip("<").rstrip(">")
@@ -126,19 +126,19 @@ class Statement:
 
     def _normalize_uripicklist(self):
         """@@@"""
-        if self.constraint_type == "UriPicklist":
+        if self.value_constraint_type == "UriPicklist":
             self.value_constraint = self.value_constraint.split()
         return self
 
     def _normalize_litpicklist(self):
         """@@@"""
-        if self.constraint_type == "LitPicklist":
+        if self.value_constraint_type == "LitPicklist":
             self.value_constraint = self.value_constraint.split()
         return self
 
     def _normalize_regex(self):
         """Regex must be a valid (Python) regex."""
-        if self.constraint_type == "Regex":
+        if self.value_constraint_type == "Regex":
             if not self.value_node_type:
                 self.value_node_type = "Literal"
             if self.value_constraint:
@@ -154,7 +154,7 @@ class Statement:
 
     def _normalize_datatype(self):
         """Datatype must be a valid URI."""
-        if self.constraint_type == "Datatype":
+        if self.value_constraint_type == "Datatype":
             if not self.value_node_type:
                 self.value_node_type = "Literal"
             if self.value_constraint:
@@ -178,19 +178,19 @@ class Statement:
 
     def _validate_uripicklist(self):
         """True if all members of UriPicklist are URIs."""
-        if self.constraint_type == "UriPicklist":
+        if self.value_constraint_type == "UriPicklist":
             return all([is_uri(item) for item in self.value_constraint])
         return True
 
     def _validate_litpicklist(self):
         """True if all members of LitPicklist are strings."""
-        if self.constraint_type == "LitPicklist":
+        if self.value_constraint_type == "LitPicklist":
             return all([isinstance(item, str) for item in self.value_constraint])
         return True
 
     def _validate_uristem(self):
         """True if constraint value for constraint type UriStem is a valid URI."""
-        if self.constraint_type == "UriStem":
+        if self.value_constraint_type == "UriStem":
             uristem_value = self.value_constraint
             if uristem_value:
                 if not is_valid_uri_or_prefixed_uri(uristem_value):

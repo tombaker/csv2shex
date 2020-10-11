@@ -32,7 +32,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile.write_text(
         (
             "shape_id,shape_label,prop_id,prop_label,mand,repeat,value_node_type,"
-            "value_datatype,value_constraint,constraint_type,shape_ref,annot\n"
+            "value_datatype,value_constraint,value_constraint_type,shape_ref,annot\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
             "@b,Person,foaf:name,Name,Y,N,String,xsd:string,,,,\n"
@@ -49,7 +49,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_node_type": "URI",
             "value_datatype": "",
             "value_constraint": "",
-            "constraint_type": "",
+            "value_constraint_type": "",
             "shape_ref": "@b",
             "annot": "Typically the author.",
         },
@@ -63,7 +63,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_node_type": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "(\d+/\d+/\d+)",
-            "constraint_type": "Regex",
+            "value_constraint_type": "Regex",
             "shape_ref": "",
             "annot": "",
         },
@@ -77,7 +77,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_node_type": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "",
-            "constraint_type": "",
+            "value_constraint_type": "",
             "shape_ref": "",
             "annot": "",
         },

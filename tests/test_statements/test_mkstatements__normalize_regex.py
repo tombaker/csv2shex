@@ -10,7 +10,7 @@ def test_mkstatements_normalize_regex():
     stat = Statement(
         prop_id=":status",
         value_constraint="approved_*",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
@@ -22,7 +22,7 @@ def test_mkstatements_normalize_regex_does_not_compile():
     stat = Statement(
         prop_id=":status",
         value_constraint="approved_(*",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
@@ -33,7 +33,7 @@ def test_mkstatements_normalize_regex_none_value_ignored():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
@@ -45,7 +45,7 @@ def test_mkstatements_normalize_regex_forward_slashes_are_part():
     stat = Statement(
         prop_id=":status",
         value_constraint="/approved_*/",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
@@ -57,7 +57,7 @@ def test_mkstatements_normalize_regex_blanks_are_part():
     stat = Statement(
         prop_id=":status",
         value_constraint="^2020 August",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
@@ -69,7 +69,7 @@ def test_mkstatements_normalize_regex_quotes_are_part():
     stat = Statement(
         prop_id=":status",
         value_constraint="'confidential'",
-        constraint_type="Regex",
+        value_constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_node_type == "Literal"
