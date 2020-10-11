@@ -32,7 +32,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile.write_text(
         (
             "shape_id,shape_label,prop_id,prop_label,mand,repeat,value_node_type,"
-            "value_datatype,value_constraint,value_constraint_type,value_shape,annot\n"
+            "value_datatype,value_constraint,value_constraint_type,value_shape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
             "@b,Person,foaf:name,Name,Y,N,String,xsd:string,,,,\n"
@@ -51,7 +51,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_constraint": "",
             "value_constraint_type": "",
             "value_shape": "@b",
-            "annot": "Typically the author.",
+            "note": "Typically the author.",
         },
         {
             "shape_id": "@a",
@@ -65,7 +65,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_constraint": "(\d+/\d+/\d+)",
             "value_constraint_type": "Regex",
             "value_shape": "",
-            "annot": "",
+            "note": "",
         },
         {
             "shape_id": "@b",
@@ -79,7 +79,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "value_constraint": "",
             "value_constraint_type": "",
             "value_shape": "",
-            "annot": "",
+            "note": "",
         },
     ]
     assert type(csvreader(csvfile)) == list

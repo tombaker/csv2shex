@@ -63,7 +63,7 @@ class Statement:
           Etc.
         value_shape (str, optional):
           Etc.
-        annot (str, optional):
+        note (str, optional):
           Etc.
     """
 
@@ -79,7 +79,7 @@ class Statement:
     value_constraint: str = None
     value_constraint_type: str = None
     value_shape: str = None
-    annot: str = None
+    note: str = None
 
     def normalize(self):
         """Normalize specific elements."""

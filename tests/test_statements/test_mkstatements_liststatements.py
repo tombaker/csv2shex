@@ -125,7 +125,7 @@ def test_liststatements_with_shape_on_its_own_line():
 
 
 def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit():
-    """Fields with value None (here: 'annot' and 'start') are simply implicit."""
+    """Fields with value None (here: 'note' and 'start') are simply implicit."""
     csvrows_list = [
         {"shape_id": "@a", "prop_id": None, "value_node_type": None},
         {"shape_id": None, "prop_id": "dct:creator", "value_node_type": "URI"},
@@ -136,7 +136,7 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
             start=True,
             shape_id="@a",
             prop_id="dct:creator",
-            annot=None,
+            note=None,
             value_node_type="URI",
         ),
         Statement(
@@ -165,21 +165,21 @@ def test_liststatements_with_missing_value_node_type():
             "prop_id": "",
             "prop_label": "Book",
             "value_constraint": "",
-            "annot": "",
+            "note": "",
         },
         {
             "shape_id": "",
             "prop_id": "rdf:type",
             "prop_label": "instance of",
             "value_constraint": "sdo:Book",
-            "annot": "must be schema.org/Book",
+            "note": "must be schema.org/Book",
         },
         {
             "shape_id": "",
             "prop_id": "rdf:type",
             "prop_label": "instance of",
             "value_constraint": "wd:Q571",
-            "annot": "must be wikidata Book",
+            "note": "must be wikidata Book",
         },
     ]
     expected = [
@@ -195,7 +195,7 @@ def test_liststatements_with_missing_value_node_type():
             value_constraint="sdo:Book",
             value_constraint_type=None,
             value_shape=None,
-            annot="must be schema.org/Book",
+            note="must be schema.org/Book",
         ),
         Statement(
             start=True,
@@ -209,7 +209,7 @@ def test_liststatements_with_missing_value_node_type():
             value_constraint="wd:Q571",
             value_constraint_type=None,
             value_shape=None,
-            annot="must be wikidata Book",
+            note="must be wikidata Book",
         ),
     ]
     assert list_statements(as_input) == expected

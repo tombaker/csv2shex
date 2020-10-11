@@ -39,7 +39,7 @@ def test_listshapes_one_shape():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
                 {
                     "prop_id": "dct:date",
@@ -51,7 +51,7 @@ def test_listshapes_one_shape():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
             ],
         )
@@ -92,7 +92,7 @@ def test_listshapes_one_shape_and_shape_label():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
                 {
                     "prop_id": "dct:date",
@@ -104,7 +104,7 @@ def test_listshapes_one_shape_and_shape_label():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
             ],
         )
@@ -128,7 +128,7 @@ def test_listshapes_two_shapes():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
                 {
                     "prop_id": "dct:subject",
@@ -140,7 +140,7 @@ def test_listshapes_two_shapes():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
                 {
                     "prop_id": "dct:date",
@@ -152,7 +152,7 @@ def test_listshapes_two_shapes():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 },
             ],
         ),
@@ -170,7 +170,7 @@ def test_listshapes_two_shapes():
                     "value_constraint": None,
                     "value_constraint_type": None,
                     "value_shape": None,
-                    "annot": None,
+                    "note": None,
                 }
             ],
         ),

@@ -17,7 +17,7 @@ statement_elements:
 - value_constraint
 - value_constraint_type
 - value_shape
-- annot
+- note
 """
 
 ELEMENT_PICKLISTS = """\
