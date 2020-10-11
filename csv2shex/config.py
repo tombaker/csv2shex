@@ -14,7 +14,7 @@ statement_elements:
 - repeat
 - value_type
 - value_datatype
-- constraint_value
+- value_constraint
 - constraint_type
 - shape_ref
 - annot

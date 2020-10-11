@@ -11,7 +11,7 @@ def test_mkshapes_validate_uripicklist():
     stat = Statement(
         shape_id="@default",
         prop_id="wdt:P31",
-        constraint_value=[":red", ":green", ":yellow"],
+        value_constraint=[":red", ":green", ":yellow"],
         constraint_type="UriPicklist",
     )
     assert stat._validate_uripicklist()
@@ -23,7 +23,7 @@ def test_mkshapes_validate_uripicklist_normalized():
     stat = Statement(
         shape_id="@default",
         prop_id="wdt:P31",
-        constraint_value=":red :green :yellow",
+        value_constraint=":red :green :yellow",
         constraint_type="UriPicklist",
     )
     stat._normalize_uripicklist()
@@ -36,7 +36,7 @@ def test_mkshapes_validate_uripicklist_just_one_item():
     stat = Statement(
         shape_id="@default",
         prop_id="dcterms:subject",
-        constraint_value=["wd:Q46914185"],
+        value_constraint=["wd:Q46914185"],
         constraint_type="UriPicklist",
     )
     assert stat._validate_uripicklist()
@@ -47,7 +47,7 @@ def test_mkshapes_validate_uripicklist_just_one_item_normalized():
     stat = Statement(
         shape_id="@default",
         prop_id="dcterms:subject",
-        constraint_value="https://www.wikidata.org/wiki/Q46914185",
+        value_constraint="https://www.wikidata.org/wiki/Q46914185",
         constraint_type="UriPicklist",
     )
     stat._normalize_uripicklist()

@@ -10,7 +10,7 @@ def test_mkshapes_validate_uri_value_type_quri():
         shape_id="@default",
         prop_id="wdt:P31",
         value_type="URI",
-        constraint_value="wd:",
+        value_constraint="wd:",
     )
     assert statement._validate_valueuri()
 
@@ -21,7 +21,7 @@ def test_mkshapes_validate_value_type_normal_uri():
         shape_id="@default",
         prop_id="wdt:P31",
         value_type="URI",
-        constraint_value="http://www.gmd.de/",
+        value_constraint="http://www.gmd.de/",
     )
     assert statement._validate_valueuri()
 
@@ -32,7 +32,7 @@ def test_mkshapes_validate_value_type_uri_with_angle_brackets():
         shape_id="@default",
         prop_id="wdt:P31",
         value_type="URI",
-        constraint_value="<http://www.gmd.de/>",
+        value_constraint="<http://www.gmd.de/>",
     )
     statement._normalize_valueuri()
     assert statement._validate_valueuri()
@@ -44,7 +44,7 @@ def test_mkshapes_validate_value_type_quri_colon_only():
         shape_id="@default",
         prop_id="wdt:P31",
         value_type="URI",
-        constraint_value=":",
+        value_constraint=":",
     )
     statement._normalize_valueuri()
     assert statement._validate_valueuri()
@@ -56,7 +56,7 @@ def test_mkshapes_validate_uri_as_value_type_is_not_valid_uri():
         shape_id="@default",
         prop_id="wdt:P31",
         value_type="URI",
-        constraint_value="foobar",
+        value_constraint="foobar",
     )
     statement._normalize_valueuri()
     assert not statement._validate_valueuri()
