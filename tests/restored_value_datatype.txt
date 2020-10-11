@@ -6,7 +6,7 @@
  - repeat
  - value_type
 -- value_datatype
- - constraint_value
+ - value_constraint
  - constraint_type
  - shape_ref
 
@@ -21,7 +21,7 @@
 -          The specific datatype of the literal value,
 -          identified by a URI string or prefixed URI string,
 -          typically from the XML Schema namespace.
-         constraint_value (str, optional):
+         value_constraint (str, optional):
            Etc.
          constraint_type (str, optional):
 
@@ -30,7 +30,7 @@
      repeat: bool = False
      value_type: str = None
 -    value_datatype: str = None
-     constraint_value: str = None
+     value_constraint: str = None
      constraint_type: str = None
      shape_ref: str = None
 
@@ -42,7 +42,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -51,7 +51,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -60,7 +60,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -69,7 +69,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -78,7 +78,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -87,7 +87,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -96,7 +96,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -105,7 +105,7 @@
                          "mand": False,
                          "repeat": False,
     -                    "value_datatype": None,
-                         "constraint_value": None,
+                         "value_constraint": None,
                          "constraint_type": None,
                          "shape_ref": None,
 
@@ -117,7 +117,7 @@
              "repeat": "N",
              "value_type": "String",
 -            "value_datatype": "xsd:date",
-             "constraint_value": "(\d+/\d+/\d+)",
+             "value_constraint": "(\d+/\d+/\d+)",
              "constraint_type": "Regex",
              "shape_ref": "",
 
@@ -126,7 +126,7 @@
              "repeat": "N",
              "value_type": "String",
 -            "value_datatype": "",
-             "constraint_value": "",
+             "value_constraint": "",
              "constraint_type": "",
              "shape_ref": "",
 
@@ -138,7 +138,7 @@
                  repeat=False,
                  value_type=None,
     -            value_datatype=None,
-                 constraint_value="sdo:Book",
+                 value_constraint="sdo:Book",
                  constraint_type=None,
                  shape_ref=None,
 
@@ -147,7 +147,7 @@
                  repeat=False,
                  value_type=None,
     -            value_datatype=None,
-                 constraint_value="wd:Q571",
+                 value_constraint="wd:Q571",
                  constraint_type=None,
                  shape_ref=None,
 
@@ -159,7 +159,7 @@
      assert shap.repeat is False
      assert shap.value_type is None
 -    assert shap.value_datatype is None
-     assert shap.constraint_value is None
+     assert shap.value_constraint is None
      assert shap.constraint_type is None
      assert shap.shape_ref is None
 
@@ -168,6 +168,6 @@
      assert shap.repeat is False
      assert shap.value_type is None
 -    assert shap.value_datatype is None
-     assert shap.constraint_value is None
+     assert shap.value_constraint is None
      assert shap.constraint_type is None
      assert shap.shape_ref is None

@@ -8,19 +8,19 @@ def test_mkshapes_normalize_litpicklist():
     """@@@"""
     stat = Statement(
         prop_id="wdt:P31",
-        constraint_value="red green yellow",
+        value_constraint="red green yellow",
         constraint_type="LitPicklist",
     )
     stat._normalize_litpicklist()
-    assert stat.constraint_value == ["red", "green", "yellow"]
+    assert stat.value_constraint == ["red", "green", "yellow"]
 
 
 def test_mkshapes_normalize_litpicklist_just_one_item():
     """@@@"""
     stat = Statement(
         prop_id="wdt:P31",
-        constraint_value="red",
+        value_constraint="red",
         constraint_type="LitPicklist",
     )
     stat._normalize_litpicklist()
-    assert stat.constraint_value == ["red"]
+    assert stat.value_constraint == ["red"]

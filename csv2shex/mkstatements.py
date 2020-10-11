@@ -57,7 +57,7 @@ class Statement:
           The specific datatype of the literal value,
           identified by a URI string or prefixed URI string,
           typically from the XML Schema namespace.
-        constraint_value (str, optional):
+        value_constraint (str, optional):
           Etc.
         constraint_type (str, optional):
           Etc.
@@ -76,7 +76,7 @@ class Statement:
     repeat: bool = False
     value_type: str = None
     value_datatype: str = None
-    constraint_value: str = None
+    value_constraint: str = None
     constraint_type: str = None
     shape_ref: str = None
     annot: str = None
@@ -119,21 +119,21 @@ class Statement:
     def _normalize_uristem(self):
         """Normalize URI stems as constraint values."""
         if self.constraint_type == "UriStem":
-            if self.constraint_value:
-                uristem = self.constraint_value
-                self.constraint_value = uristem.lstrip("<").rstrip(">")
+            if self.value_constraint:
+                uristem = self.value_constraint
+                self.value_constraint = uristem.lstrip("<").rstrip(">")
         return self
 
     def _normalize_uripicklist(self):
         """@@@"""
         if self.constraint_type == "UriPicklist":
-            self.constraint_value = self.constraint_value.split()
+            self.value_constraint = self.value_constraint.split()
         return self
 
     def _normalize_litpicklist(self):
         """@@@"""
         if self.constraint_type == "LitPicklist":
-            self.constraint_value = self.constraint_value.split()
+            self.value_constraint = self.value_constraint.split()
         return self
 
     def _normalize_regex(self):
@@ -141,32 +141,32 @@ class Statement:
         if self.constraint_type == "Regex":
             if not self.value_type:
                 self.value_type = "Literal"
-            if self.constraint_value:
+            if self.value_constraint:
                 try:
-                    self.constraint_value = re.compile(self.constraint_value)
+                    self.value_constraint = re.compile(self.value_constraint)
                 except (re.error, TypeError):
                     print(
-                        f"{repr(self.constraint_value)} is not "
+                        f"{repr(self.value_constraint)} is not "
                         "a valid (Python) regular expression.",
                         file=sys.stderr,
                     )
-                    self.constraint_value = None
+                    self.value_constraint = None
 
     def _normalize_datatype(self):
         """Datatype must be a valid URI."""
         if self.constraint_type == "Datatype":
             if not self.value_type:
                 self.value_type = "Literal"
-            if self.constraint_value:
-                if not is_valid_uri_or_prefixed_uri(self.constraint_value):
-                    self.constraint_value = None
+            if self.value_constraint:
+                if not is_valid_uri_or_prefixed_uri(self.value_constraint):
+                    self.value_constraint = None
 
     def _normalize_valueuri(self):
         """Normalize value URIs by stripping angle brackets."""
         if self.value_type == "URI":
-            if self.constraint_value is not None:
-                uri_as_value = self.constraint_value
-                self.constraint_value = uri_as_value.lstrip("<").rstrip(">")
+            if self.value_constraint is not None:
+                uri_as_value = self.value_constraint
+                self.value_constraint = uri_as_value.lstrip("<").rstrip(">")
         return self
 
     def _validate_propid(self):
@@ -179,19 +179,19 @@ class Statement:
     def _validate_uripicklist(self):
         """True if all members of UriPicklist are URIs."""
         if self.constraint_type == "UriPicklist":
-            return all([is_uri(item) for item in self.constraint_value])
+            return all([is_uri(item) for item in self.value_constraint])
         return True
 
     def _validate_litpicklist(self):
         """True if all members of LitPicklist are strings."""
         if self.constraint_type == "LitPicklist":
-            return all([isinstance(item, str) for item in self.constraint_value])
+            return all([isinstance(item, str) for item in self.value_constraint])
         return True
 
     def _validate_uristem(self):
         """True if constraint value for constraint type UriStem is a valid URI."""
         if self.constraint_type == "UriStem":
-            uristem_value = self.constraint_value
+            uristem_value = self.value_constraint
             if uristem_value:
                 if not is_valid_uri_or_prefixed_uri(uristem_value):
                     return False
@@ -200,7 +200,7 @@ class Statement:
     def _validate_valueuri(self):
         """True if constraint value for value type URI is a valid URI."""
         if self.value_type == "URI":
-            uri_value = self.constraint_value
+            uri_value = self.value_constraint
             if uri_value:
                 if not is_valid_uri_or_prefixed_uri(uri_value):
                     return False

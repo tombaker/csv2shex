@@ -9,24 +9,24 @@ def test_mkstatements_normalize_regex():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_value="approved_*",
+        value_constraint="approved_*",
         constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert stat.constraint_value == re.compile("approved_*")
+    assert stat.value_constraint == re.compile("approved_*")
 
 
 def test_mkstatements_normalize_regex_does_not_compile():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_value="approved_(*",
+        value_constraint="approved_(*",
         constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert not stat.constraint_value
+    assert not stat.value_constraint
 
 
 def test_mkstatements_normalize_regex_none_value_ignored():
@@ -37,40 +37,40 @@ def test_mkstatements_normalize_regex_none_value_ignored():
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert not stat.constraint_value
+    assert not stat.value_constraint
 
 
 def test_mkstatements_normalize_regex_forward_slashes_are_part():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_value="/approved_*/",
+        value_constraint="/approved_*/",
         constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert stat.constraint_value == re.compile("/approved_*/")
+    assert stat.value_constraint == re.compile("/approved_*/")
 
 
 def test_mkstatements_normalize_regex_blanks_are_part():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_value="^2020 August",
+        value_constraint="^2020 August",
         constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert stat.constraint_value == re.compile("^2020 August")
+    assert stat.value_constraint == re.compile("^2020 August")
 
 
 def test_mkstatements_normalize_regex_quotes_are_part():
     """@@@"""
     stat = Statement(
         prop_id=":status",
-        constraint_value="'confidential'",
+        value_constraint="'confidential'",
         constraint_type="Regex",
     )
     stat._normalize_regex()
     assert stat.value_type == "Literal"
-    assert stat.constraint_value == re.compile("'confidential'")
+    assert stat.value_constraint == re.compile("'confidential'")
