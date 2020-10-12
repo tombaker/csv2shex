@@ -18,25 +18,25 @@ This is interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: :status
+                propertyID: :status
                 value_type: Literal
                 constraint_value: re.compile('approved_*')
                 constraint_type: Regex
             Statement
-                prop_id: :status
+                propertyID: :status
                 value_type: Literal
                 constraint_type: Regex
             Statement
-                prop_id: :status
+                propertyID: :status
                 value_type: Literal
                 constraint_type: Regex
             Statement
-                prop_id: :status
+                propertyID: :status
                 value_type: Literal
                 constraint_value: re.compile('/approved_*/')
                 constraint_type: Regex
             Statement
-                prop_id: :status
+                propertyID: :status
                 value_type: Literal
                 constraint_value: re.compile('^2020 August')
                 constraint_type: Regex

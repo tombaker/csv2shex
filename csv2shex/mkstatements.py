@@ -33,7 +33,7 @@ class Statement:
           Human-readable label for the shape. Default: None.
         start (bool, assigned):
           If True, shape is a "start" shape. Default: False.
-        prop_id (str, mandatory):
+        propertyID (str, mandatory):
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
           Default: None.
@@ -68,7 +68,7 @@ class Statement:
     start: bool = False
     shapeID: str = None
     shapeLabel: str = None
-    prop_id: str = None
+    propertyID: str = None
     prop_label: str = None
     mand: bool = False
     repeat: bool = False
@@ -110,8 +110,8 @@ class Statement:
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
-        propid = self.prop_id
-        self.prop_id = propid.lstrip("<").rstrip(">")
+        propid = self.propertyID
+        self.propertyID = propid.lstrip("<").rstrip(">")
         return self
 
     def _normalize_uristem(self):
@@ -170,7 +170,7 @@ class Statement:
     def _validate_propid(self):
         """True if property ID is a URI or prefixed URI."""
         # propid is mandatory. If this returns False, exit with error?
-        if not is_valid_uri_or_prefixed_uri(self.prop_id):
+        if not is_valid_uri_or_prefixed_uri(self.propertyID):
             return False
         return True
 
@@ -213,7 +213,7 @@ def list_statements(csvrow_dicts_list_normalized=None):
     keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
     keys.remove("shapeID")
     for row in csvrow_dicts_list_normalized:
-        if not row.get("prop_id") and row.get("shapeID"):
+        if not row.get("propertyID") and row.get("shapeID"):
             shapeIDs.append(row["shapeID"])
             continue
 

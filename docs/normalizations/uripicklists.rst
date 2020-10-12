@@ -14,10 +14,10 @@ This is interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: :color
+                propertyID: :color
                 constraint_value: [':red', ':green', ':yellow']
                 constraint_type: UriPicklist
             Statement
-                prop_id: :color
+                propertyID: :color
                 constraint_value: ['https://example.org/red']
                 constraint_type: UriPicklist

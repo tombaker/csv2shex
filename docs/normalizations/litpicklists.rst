@@ -14,10 +14,10 @@ This is interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: :color
+                propertyID: :color
                 constraint_value: ['red', 'green', 'yellow']
                 constraint_type: LitPicklist
             Statement
-                prop_id: :color
+                propertyID: :color
                 constraint_value: ['red']
                 constraint_type: LitPicklist

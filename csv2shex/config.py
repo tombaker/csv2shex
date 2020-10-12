@@ -8,7 +8,7 @@ shape_elements:
 - shapeLabel
 - start
 statement_elements:
-- prop_id
+- propertyID
 - prop_label
 - mand
 - repeat

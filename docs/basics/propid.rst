@@ -14,10 +14,10 @@ Interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
             Statement
-                prop_id: dct:title
+                propertyID: dct:title
             Statement
-                prop_id: dct:publisher
+                propertyID: dct:publisher
             Statement
-                prop_id: dct:date
+                propertyID: dct:date

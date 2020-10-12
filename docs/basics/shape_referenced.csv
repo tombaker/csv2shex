@@ -1,4 +1,4 @@
-shapeID,prop_id,shape_ref
+shapeID,propertyID,shape_ref
 :book,,
 ,dct:creator,@:person
 :person,,

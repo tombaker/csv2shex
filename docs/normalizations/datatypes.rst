@@ -19,12 +19,12 @@ This is interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: :color
+                propertyID: :color
                 value_type: Literal
                 constraint_value: xsd:string
                 constraint_type: Datatype
             Statement
-                prop_id: :color
+                propertyID: :color
                 value_type: Literal
                 constraint_value: None
                 constraint_type: Datatype

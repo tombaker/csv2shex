@@ -2,9 +2,9 @@
 def test_normalize_csvheaders3():
     """@@@Docstring."""
     input = [
-        {"shapeID": ":a", "prop_id": "dct:creator", "value_type": "URI"},
-        {"shapeID": ":a", "prop_id": "dct:subject", "value_type": "URI"},
-        {"shapeID": ":a", "prop_id": "dct:date", "value_type": "String"},
+        {"shapeID": ":a", "propertyID": "dct:creator", "value_type": "URI"},
+        {"shapeID": ":a", "propertyID": "dct:subject", "value_type": "URI"},
+        {"shapeID": ":a", "propertyID": "dct:date", "value_type": "String"},
     ]
     assert False
 
@@ -16,7 +16,7 @@ def test_normalize_csvheaders4():
         {
             "shapeID": ":a",
             "shapeLabel": "Book",
-            "prop_id": "dct:creator",
+            "propertyID": "dct:creator",
             "prop_label": "Creator",
             "mand": "Y",
             "repeat": "N",
@@ -30,7 +30,7 @@ def test_normalize_csvheaders4():
         {
             "shapeID": ":a",
             "shapeLabel": "Book",
-            "prop_id": "dct:date",
+            "propertyID": "dct:date",
             "prop_label": "Date",
             "mand": "Y",
             "repeat": "N",
@@ -44,7 +44,7 @@ def test_normalize_csvheaders4():
         {
             "shapeID": ":b",
             "shapeLabel": "Person",
-            "prop_id": "foaf:name",
+            "propertyID": "foaf:name",
             "prop_label": "Name",
             "mand": "Y",
             "repeat": "N",

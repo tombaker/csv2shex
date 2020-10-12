@@ -1,4 +1,4 @@
-shapeID,prop_id,value_type,constraint_value,constraint_type
+shapeID,propertyID,value_type,constraint_value,constraint_type
 :book,dct:subject,,https://id.loc.gov/subjects,UriStem
 :book,dct:subject,,<https://id.loc.gov/subjects>,UriStem
 :book,dct:subject,,nalt:,UriStem

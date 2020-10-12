@@ -7,7 +7,7 @@ from csv2shex.mkstatements import Statement
 def test_mkshapes_normalize_mandrepeat():
     """@@@"""
     stat = Statement(
-        prop_id="wdt:P31",
+        propertyID="wdt:P31",
         mand="Y",
     )
     stat._normalize_mandrepeat()
@@ -18,7 +18,7 @@ def test_mkshapes_normalize_mandrepeat():
 def test_mkshapes_normalize_mandrepeat_not_specified():
     """@@@"""
     stat = Statement(
-        prop_id="wdt:P31",
+        propertyID="wdt:P31",
     )
     stat._normalize_mandrepeat()
     assert stat.mand is False
@@ -28,7 +28,7 @@ def test_mkshapes_normalize_mandrepeat_not_specified():
 def test_mkshapes_normalize_mandrepeat_string_of_zero():
     """String of '0' is True!"""
     stat = Statement(
-        prop_id="wdt:P31",
+        propertyID="wdt:P31",
         mand="1",
         repeat="0",
     )

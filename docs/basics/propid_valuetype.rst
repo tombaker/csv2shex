@@ -12,11 +12,11 @@ Interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 value_type: URI
             Statement
-                prop_id: dct:date
+                propertyID: dct:date
                 value_type: Date
             Statement
-                prop_id: dct:extent
+                propertyID: dct:extent
                 value_type: Integer

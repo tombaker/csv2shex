@@ -14,6 +14,6 @@ Interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
             Statement
-                prop_id: dct:title
+                propertyID: dct:title

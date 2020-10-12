@@ -12,14 +12,14 @@ Interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 prop_label: Author
             Statement
-                prop_id: dct:title
+                propertyID: dct:title
                 prop_label: Book title
             Statement
-                prop_id: dct:publisher
+                propertyID: dct:publisher
                 prop_label: Publisher
             Statement
-                prop_id: dct:date
+                propertyID: dct:date
                 prop_label: Publication date

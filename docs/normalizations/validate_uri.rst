@@ -27,23 +27,23 @@ This is interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: dct:subject
+                propertyID: dct:subject
                 constraint_value: https://id.loc.gov/subjects
                 constraint_type: UriStem
             Statement
-                prop_id: dct:subject
+                propertyID: dct:subject
                 constraint_value: https://id.loc.gov/subjects
                 constraint_type: UriStem
             Statement
-                prop_id: dct:subject
+                propertyID: dct:subject
                 constraint_value: nalt:
                 constraint_type: UriStem
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 value_type: URI
                 constraint_value: https://www.wikidata.org/wiki/Q46914185
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 value_type: URI
                 constraint_value: wd:Q46914185
 
@@ -71,10 +71,10 @@ This is interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: dct:subject
+                propertyID: dct:subject
                 constraint_value: https://id.loc.gov/subjects
                 constraint_type: UriStem
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 value_type: URI
                 constraint_value: https://www.wikidata.org/wiki/Q46914185

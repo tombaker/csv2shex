@@ -7,7 +7,7 @@ from csv2shex.mkstatements import Statement
 def test_mkshapes_validate_litpicklist():
     """@@@"""
     stat = Statement(
-        prop_id="wdt:P31",
+        propertyID="wdt:P31",
         value_constraint="red green yellow",
         value_constraint_type="LitPicklist",
     )
@@ -19,7 +19,7 @@ def test_mkshapes_validate_litpicklist_just_one_item():
     """@@@"""
     stat = Statement(
         shapeID="@default",
-        prop_id="wdt:P31",
+        propertyID="wdt:P31",
         value_constraint="red",
         value_constraint_type="LitPicklist",
     )

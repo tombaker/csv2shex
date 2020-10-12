@@ -14,11 +14,11 @@ This is interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: dc:creator
+                propertyID: dc:creator
                 mand: False
                 repeat: True
             Statement
-                prop_id: dc:date
+                propertyID: dc:date
                 mand: True
                 repeat: False
 
@@ -35,6 +35,6 @@ This is interpreted as::
             shapeID: @default
             start: True
             Statement
-                prop_id: dc:subject
+                propertyID: dc:subject
                 mand: True
                 repeat: True

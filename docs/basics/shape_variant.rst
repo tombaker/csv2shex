@@ -16,9 +16,9 @@ Interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
             Statement
-                prop_id: dct:title
+                propertyID: dct:title
 
 The value of `shapeLabel` is taken from the row where a new `shapeID` is first encountered. In other words, subsequent labels will simply be ignored. The following CSV is therefore interpreted as shown above:
 

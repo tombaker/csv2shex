@@ -14,12 +14,12 @@ Interpreted as::
             shapeID: :book
             start: True
             Statement
-                prop_id: dct:creator
+                propertyID: dct:creator
                 shape_ref: @:person
         Shape
             shapeID: :person
             Statement
-                prop_id: foaf:name
+                propertyID: foaf:name
 
 This means:
 

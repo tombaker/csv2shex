@@ -1,4 +1,4 @@
-prop_id,value_type,constraint_value,constraint_type
+propertyID,value_type,constraint_value,constraint_type
 :status,,approved_*,Regex
 :status,,,Regex
 :status,,approved_(*,Regex
