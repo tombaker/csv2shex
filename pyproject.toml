@@ -20,10 +20,10 @@ requires = [
 classifiers = [
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "Development Status :: 3 - Alpha",
-    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
 ]
 description-file = 'README.rst'
-requires-python = '>=3.7'
+requires-python = '>=3.8'
 
 [tool.flit.metadata.requires-extra]
 test = [
