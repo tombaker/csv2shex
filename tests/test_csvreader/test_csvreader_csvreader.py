@@ -11,16 +11,16 @@ def test_csvreader_with_simple_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shape_id,prop_id,value_node_type\n"
+            "shapeID,prop_id,value_node_type\n"
             ":a,dct:creator,URI\n"
             ":a,dct:subject,URI\n"
             ":a,dct:date,String\n"
         )
     )
     expected_output = [
-        {"shape_id": ":a", "prop_id": "dct:creator", "value_node_type": "URI"},
-        {"shape_id": ":a", "prop_id": "dct:subject", "value_node_type": "URI"},
-        {"shape_id": ":a", "prop_id": "dct:date", "value_node_type": "String"},
+        {"shapeID": ":a", "prop_id": "dct:creator", "value_node_type": "URI"},
+        {"shapeID": ":a", "prop_id": "dct:subject", "value_node_type": "URI"},
+        {"shapeID": ":a", "prop_id": "dct:date", "value_node_type": "String"},
     ]
     assert csvreader(csvfile) == expected_output
 
@@ -31,7 +31,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shape_id,shape_label,prop_id,prop_label,mand,repeat,value_node_type,"
+            "shapeID,shape_label,prop_id,prop_label,mand,repeat,value_node_type,"
             "value_datatype,value_constraint,value_constraint_type,value_shape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
@@ -40,7 +40,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     )
     expected_output = [
         {
-            "shape_id": "@a",
+            "shapeID": "@a",
             "shape_label": "Book",
             "prop_id": "dct:creator",
             "prop_label": "Creator",
@@ -54,7 +54,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "note": "Typically the author.",
         },
         {
-            "shape_id": "@a",
+            "shapeID": "@a",
             "shape_label": "Book",
             "prop_id": "dct:date",
             "prop_label": "Date",
@@ -68,7 +68,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "note": "",
         },
         {
-            "shape_id": "@b",
+            "shapeID": "@b",
             "shape_label": "Person",
             "prop_id": "foaf:name",
             "prop_label": "Name",
