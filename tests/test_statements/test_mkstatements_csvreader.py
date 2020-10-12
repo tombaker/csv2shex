@@ -11,16 +11,16 @@ def test_csvreader_with_simple_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shapeID,propertyID,value_node_type\n"
+            "shapeID,propertyID,valueNodeType\n"
             ":a,dct:creator,URI\n"
             ":a,dct:subject,URI\n"
             ":a,dct:date,String\n"
         )
     )
     expected_output = [
-        {"shapeID": ":a", "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": ":a", "propertyID": "dct:subject", "value_node_type": "URI"},
-        {"shapeID": ":a", "propertyID": "dct:date", "value_node_type": "String"},
+        {"shapeID": ":a", "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": ":a", "propertyID": "dct:subject", "valueNodeType": "URI"},
+        {"shapeID": ":a", "propertyID": "dct:date", "valueNodeType": "String"},
     ]
     assert csvreader(csvfile) == expected_output
 
@@ -31,7 +31,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shapeID,shapeLabel,propertyID,prop_label,mandatory,repeatable,value_node_type,"
+            "shapeID,shapeLabel,propertyID,prop_label,mandatory,repeatable,valueNodeType,"
             "value_datatype,value_constraint,value_constraint_type,value_shape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
@@ -46,7 +46,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "prop_label": "Creator",
             "mandatory": "Y",
             "repeatable": "N",
-            "value_node_type": "URI",
+            "valueNodeType": "URI",
             "value_datatype": "",
             "value_constraint": "",
             "value_constraint_type": "",
@@ -60,7 +60,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "prop_label": "Date",
             "mandatory": "Y",
             "repeatable": "N",
-            "value_node_type": "String",
+            "valueNodeType": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "(\d+/\d+/\d+)",
             "value_constraint_type": "Regex",
@@ -74,7 +74,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "prop_label": "Name",
             "mandatory": "Y",
             "repeatable": "N",
-            "value_node_type": "String",
+            "valueNodeType": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "",
             "value_constraint_type": "",

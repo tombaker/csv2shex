@@ -13,7 +13,7 @@ def test_mkstatements_normalize_regex():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert stat.value_constraint == re.compile("approved_*")
 
 
@@ -25,7 +25,7 @@ def test_mkstatements_normalize_regex_does_not_compile():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert not stat.value_constraint
 
 
@@ -36,7 +36,7 @@ def test_mkstatements_normalize_regex_none_value_ignored():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert not stat.value_constraint
 
 
@@ -48,7 +48,7 @@ def test_mkstatements_normalize_regex_forward_slashes_are_part():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert stat.value_constraint == re.compile("/approved_*/")
 
 
@@ -60,7 +60,7 @@ def test_mkstatements_normalize_regex_blanks_are_part():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert stat.value_constraint == re.compile("^2020 August")
 
 
@@ -72,5 +72,5 @@ def test_mkstatements_normalize_regex_quotes_are_part():
         value_constraint_type="Regex",
     )
     stat._normalize_regex()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert stat.value_constraint == re.compile("'confidential'")

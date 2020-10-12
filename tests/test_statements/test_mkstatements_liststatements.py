@@ -6,23 +6,23 @@ from csv2shex.mkstatements import list_statements, Statement
 def test_liststatements():
     """Turn list of dictionaries into list of Statement objects."""
     csvrows_list = [
-        {"shapeID": "@a", "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": "@a", "propertyID": "dct:subject", "value_node_type": "URI"},
-        {"shapeID": "@a", "propertyID": "dct:date", "value_node_type": "String"},
-        {"shapeID": "@b", "propertyID": "foaf:name", "value_node_type": "String"},
+        {"shapeID": "@a", "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": "@a", "propertyID": "dct:subject", "valueNodeType": "URI"},
+        {"shapeID": "@a", "propertyID": "dct:date", "valueNodeType": "String"},
+        {"shapeID": "@b", "propertyID": "foaf:name", "valueNodeType": "String"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:subject", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:date", value_node_type="String"
+            start=True, shapeID="@a", propertyID="dct:date", valueNodeType="String"
         ),
         Statement(
-            start=False, shapeID="@b", propertyID="foaf:name", value_node_type="String"
+            start=False, shapeID="@b", propertyID="foaf:name", valueNodeType="String"
         ),
     ]
 
@@ -30,28 +30,28 @@ def test_liststatements():
 def test_liststatements_without_shapeIDs():
     """Not shape IDs specified, so shape is '@default'."""
     csvrows_list = [
-        {"propertyID": "dct:creator", "value_node_type": "URI"},
-        {"propertyID": "dct:subject", "value_node_type": "URI"},
-        {"propertyID": "dct:date", "value_node_type": "String"},
+        {"propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"propertyID": "dct:subject", "valueNodeType": "URI"},
+        {"propertyID": "dct:date", "valueNodeType": "String"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:creator",
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:subject",
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:date",
-            value_node_type="String",
+            valueNodeType="String",
         ),
     ]
 
@@ -61,28 +61,28 @@ def test_liststatements_with_shapeIDs_specified_as_none():
     When "shapeID" specified as 'None', row["shapeID"] will be False.
     General case: when field specified as None."""
     csvrows_list = [
-        {"shapeID": None, "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:subject", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:date", "value_node_type": "String"},
+        {"shapeID": None, "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:date", "valueNodeType": "String"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:creator",
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:subject",
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
         Statement(
             start=True,
             shapeID="@default",
             propertyID="dct:date",
-            value_node_type="String",
+            valueNodeType="String",
         ),
     ]
 
@@ -90,19 +90,19 @@ def test_liststatements_with_shapeIDs_specified_as_none():
 def test_liststatements_with_shape_in_first_statement_only():
     """If shape IDs used previously, used for subsequent statements if no Shape ID."""
     csvrows_list = [
-        {"shapeID": "@a", "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:subject", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:date", "value_node_type": "String"},
+        {"shapeID": "@a", "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:date", "valueNodeType": "String"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:subject", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:date", value_node_type="String"
+            start=True, shapeID="@a", propertyID="dct:date", valueNodeType="String"
         ),
     ]
 
@@ -110,16 +110,16 @@ def test_liststatements_with_shape_in_first_statement_only():
 def test_liststatements_with_shape_on_its_own_line():
     """If shape IDs used previously, used for subsequent statements if no Shape ID."""
     csvrows_list = [
-        {"shapeID": "@a", "propertyID": None, "value_node_type": None},
-        {"shapeID": None, "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:subject", "value_node_type": "URI"},
+        {"shapeID": "@a", "propertyID": None, "valueNodeType": None},
+        {"shapeID": None, "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:subject", valueNodeType="URI"
         ),
     ]
 
@@ -127,9 +127,9 @@ def test_liststatements_with_shape_on_its_own_line():
 def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit():
     """Fields with value None (here: 'note' and 'start') are simply implicit."""
     csvrows_list = [
-        {"shapeID": "@a", "propertyID": None, "value_node_type": None},
-        {"shapeID": None, "propertyID": "dct:creator", "value_node_type": "URI"},
-        {"shapeID": None, "propertyID": "dct:subject", "value_node_type": "URI"},
+        {"shapeID": "@a", "propertyID": None, "valueNodeType": None},
+        {"shapeID": None, "propertyID": "dct:creator", "valueNodeType": "URI"},
+        {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
     ]
     assert list_statements(csvrows_list) == [
         Statement(
@@ -137,28 +137,28 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
             shapeID="@a",
             propertyID="dct:creator",
             note=None,
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
         Statement(
             start=True,
             shapeID="@a",
             propertyID="dct:subject",
             prop_label=None,
-            value_node_type="URI",
+            valueNodeType="URI",
         ),
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"
+            start=True, shapeID="@a", propertyID="dct:subject", valueNodeType="URI"
         ),
     ]
 
 
-def test_liststatements_with_missing_value_node_type():
-    """Should parse even if input lacks field 'value_node_type'."""
+def test_liststatements_with_missing_valueNodeType():
+    """Should parse even if input lacks field 'valueNodeType'."""
     as_input = [
         {
             "shapeID": "@book",
@@ -191,7 +191,7 @@ def test_liststatements_with_missing_value_node_type():
             prop_label="instance of",
             mandatory=False,
             repeatable=False,
-            value_node_type=None,
+            valueNodeType=None,
             value_constraint="sdo:Book",
             value_constraint_type=None,
             value_shape=None,
@@ -205,7 +205,7 @@ def test_liststatements_with_missing_value_node_type():
             prop_label="instance of",
             mandatory=False,
             repeatable=False,
-            value_node_type=None,
+            valueNodeType=None,
             value_constraint="wd:Q571",
             value_constraint_type=None,
             value_shape=None,

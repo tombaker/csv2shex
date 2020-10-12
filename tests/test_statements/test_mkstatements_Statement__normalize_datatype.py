@@ -12,7 +12,7 @@ def test_mkstatements_normalize_datatype():
         value_constraint_type="Datatype",
     )
     stat._normalize_datatype()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
 
 
 def test_mkstatements_normalize_datatype_none_value_ignored():
@@ -22,7 +22,7 @@ def test_mkstatements_normalize_datatype_none_value_ignored():
         value_constraint_type="Datatype",
     )
     stat._normalize_datatype()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert not stat.value_constraint
 
 
@@ -34,5 +34,5 @@ def test_mkstatements_normalize_datatype_quotes_are_part():
         value_constraint_type="Datatype",
     )
     stat._normalize_datatype()
-    assert stat.value_node_type == "Literal"
+    assert stat.valueNodeType == "Literal"
     assert stat.value_constraint is None

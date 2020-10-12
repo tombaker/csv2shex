@@ -4,7 +4,7 @@
 @@ -13,7 +13,6 @@ statement_elements:
  - mandatory
  - repeatable
- - value_node_type
+ - valueNodeType
 -- value_datatype
  - value_constraint
  - value_constraint_type
@@ -28,7 +28,7 @@
 @@ -75,7 +71,6 @@ class Statement:
      mandatory: bool = False
      repeatable: bool = False
-     value_node_type: str = None
+     valueNodeType: str = None
 -    value_datatype: str = None
      value_constraint: str = None
      value_constraint_type: str = None
@@ -115,7 +115,7 @@
 @@ -61,7 +60,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
              "mandatory": "Y",
              "repeatable": "N",
-             "value_node_type": "String",
+             "valueNodeType": "String",
 -            "value_datatype": "xsd:date",
              "value_constraint": "(\d+/\d+/\d+)",
              "value_constraint_type": "Regex",
@@ -124,7 +124,7 @@
 @@ -75,7 +73,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
              "mandatory": "Y",
              "repeatable": "N",
-             "value_node_type": "String",
+             "valueNodeType": "String",
 -            "value_datatype": "",
              "value_constraint": "",
              "value_constraint_type": "",
@@ -133,19 +133,19 @@
 ----------------------------------------------------------
     /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_liststatements.py
 
-    @@ -152,7 +152,6 @@ def test_liststatements_with_missing_value_node_type():
+    @@ -152,7 +152,6 @@ def test_liststatements_with_missing_valueNodeType():
                  mandatory=False,
                  repeatable=False,
-                 value_node_type=None,
+                 valueNodeType=None,
     -            value_datatype=None,
                  value_constraint="sdo:Book",
                  value_constraint_type=None,
                  value_shape=None,
 
-    @@ -167,7 +166,6 @@ def test_liststatements_with_missing_value_node_type():
+    @@ -167,7 +166,6 @@ def test_liststatements_with_missing_valueNodeType():
                  mandatory=False,
                  repeatable=False,
-                 value_node_type=None,
+                 valueNodeType=None,
     -            value_datatype=None,
                  value_constraint="wd:Q571",
                  value_constraint_type=None,
@@ -157,7 +157,7 @@
 @@ -16,7 +16,6 @@ def test_statement_initialized_with_just_one_field():
      assert shap.mandatory is False
      assert shap.repeatable is False
-     assert shap.value_node_type is None
+     assert shap.valueNodeType is None
 -    assert shap.value_datatype is None
      assert shap.value_constraint is None
      assert shap.value_constraint_type is None
@@ -166,7 +166,7 @@
 @@ -34,7 +33,6 @@ def test_statement_initialized_without_propid():
      assert shap.mandatory is False
      assert shap.repeatable is False
-     assert shap.value_node_type is None
+     assert shap.valueNodeType is None
 -    assert shap.value_datatype is None
      assert shap.value_constraint is None
      assert shap.value_constraint_type is None
