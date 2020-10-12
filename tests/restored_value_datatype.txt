@@ -7,7 +7,7 @@
  - valueNodeType
 -- valueDataType
  - value_constraint
- - value_constraint_type
+ - valueConstraintType
  - value_shape
 
 ----------------------------------------------------------
@@ -23,7 +23,7 @@
 -          typically from the XML Schema namespace.
          value_constraint (str, optional):
            Etc.
-         value_constraint_type (str, optional):
+         valueConstraintType (str, optional):
 
 @@ -75,7 +71,6 @@ class Statement:
      mandatory: bool = False
@@ -31,7 +31,7 @@
      valueNodeType: str = None
 -    valueDataType: str = None
      value_constraint: str = None
-     value_constraint_type: str = None
+     valueConstraintType: str = None
      value_shape: str = None
 
 ----------------------------------------------------------
@@ -43,7 +43,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -41,7 +40,6 @@ def test_listshapes_one_shape():
@@ -52,7 +52,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -82,7 +80,6 @@ def test_listshapes_one_shape_and_shapeLabel():
@@ -61,7 +61,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -94,7 +91,6 @@ def test_listshapes_one_shape_and_shapeLabel():
@@ -70,7 +70,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -118,7 +114,6 @@ def test_listshapes_two_shapes():
@@ -79,7 +79,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -130,7 +125,6 @@ def test_listshapes_two_shapes():
@@ -88,7 +88,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -142,7 +136,6 @@ def test_listshapes_two_shapes():
@@ -97,7 +97,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
     @@ -160,7 +153,6 @@ def test_listshapes_two_shapes():
@@ -106,7 +106,7 @@
                          "repeatable": False,
     -                    "valueDataType": None,
                          "value_constraint": None,
-                         "value_constraint_type": None,
+                         "valueConstraintType": None,
                          "value_shape": None,
 
 ----------------------------------------------------------
@@ -118,7 +118,7 @@
              "valueNodeType": "String",
 -            "valueDataType": "xsd:date",
              "value_constraint": "(\d+/\d+/\d+)",
-             "value_constraint_type": "Regex",
+             "valueConstraintType": "Regex",
              "value_shape": "",
 
 @@ -75,7 +73,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
@@ -127,7 +127,7 @@
              "valueNodeType": "String",
 -            "valueDataType": "",
              "value_constraint": "",
-             "value_constraint_type": "",
+             "valueConstraintType": "",
              "value_shape": "",
 
 ----------------------------------------------------------
@@ -139,7 +139,7 @@
                  valueNodeType=None,
     -            valueDataType=None,
                  value_constraint="sdo:Book",
-                 value_constraint_type=None,
+                 valueConstraintType=None,
                  value_shape=None,
 
     @@ -167,7 +166,6 @@ def test_liststatements_with_missing_valueNodeType():
@@ -148,7 +148,7 @@
                  valueNodeType=None,
     -            valueDataType=None,
                  value_constraint="wd:Q571",
-                 value_constraint_type=None,
+                 valueConstraintType=None,
                  value_shape=None,
 
 ----------------------------------------------------------
@@ -160,7 +160,7 @@
      assert shap.valueNodeType is None
 -    assert shap.valueDataType is None
      assert shap.value_constraint is None
-     assert shap.value_constraint_type is None
+     assert shap.valueConstraintType is None
      assert shap.value_shape is None
 
 @@ -34,7 +33,6 @@ def test_statement_initialized_without_propid():
@@ -169,5 +169,5 @@
      assert shap.valueNodeType is None
 -    assert shap.valueDataType is None
      assert shap.value_constraint is None
-     assert shap.value_constraint_type is None
+     assert shap.valueConstraintType is None
      assert shap.value_shape is None

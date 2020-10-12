@@ -47,8 +47,8 @@ def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
         get_nc().nodeKind = statement.valueNodeType.lower()
     if statement.value_constraint:
         get_nc().values = [statement.value_constraint]
-    if statement.value_constraint_type:
-        get_nc().datatype = IRIREF(statement.value_constraint_type)
+    if statement.valueConstraintType:
+        get_nc().datatype = IRIREF(statement.valueConstraintType)
     if statement.value_shape:
         if rval:
             raise ValueError(

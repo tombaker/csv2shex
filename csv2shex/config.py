@@ -15,7 +15,7 @@ statement_elements:
 - valueNodeType
 - valueDataType
 - value_constraint
-- value_constraint_type
+- valueConstraintType
 - value_shape
 - note
 """
@@ -26,7 +26,7 @@ valueNodeType:
 - BNode
 - Literal
 - Nonliteral
-value_constraint_type:
+valueConstraintType:
 - Datatype
 - UriStem
 - UriPicklist
