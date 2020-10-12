@@ -18,7 +18,7 @@ def test_mkshapes_validate_litpicklist():
 def test_mkshapes_validate_litpicklist_just_one_item():
     """@@@"""
     stat = Statement(
-        shapeID="@default",
+        shape_id="@default",
         prop_id="wdt:P31",
         value_constraint="red",
         value_constraint_type="LitPicklist",
