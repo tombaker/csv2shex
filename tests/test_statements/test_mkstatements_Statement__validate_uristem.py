@@ -9,7 +9,7 @@ def test_mkshapes_validate_uristem_prefixed():
     statement = Statement(
         shapeID="@default",
         propertyID="wdt:P31",
-        value_constraint="wd:",
+        valueConstraint="wd:",
         valueConstraintType="UriStem",
     )
     assert statement._validate_uristem()
@@ -20,7 +20,7 @@ def test_mkshapes_validate_uristem_normal_uri():
     statement = Statement(
         shapeID="@default",
         propertyID="wdt:P31",
-        value_constraint="http://www.gmd.de/",
+        valueConstraint="http://www.gmd.de/",
         valueConstraintType="UriStem",
     )
     assert statement._validate_uristem()
@@ -31,7 +31,7 @@ def test_mkshapes_validate_uristem_with_angle_brackets():
     statement = Statement(
         shapeID="@default",
         propertyID="wdt:P31",
-        value_constraint="<http://www.gmd.de/>",
+        valueConstraint="<http://www.gmd.de/>",
         valueConstraintType="UriStem",
     )
     statement._normalize_uristem()
@@ -43,7 +43,7 @@ def test_mkshapes_validate_uristem_colon_only():
     statement = Statement(
         shapeID="@default",
         propertyID="wdt:P31",
-        value_constraint=":",
+        valueConstraint=":",
         valueConstraintType="UriStem",
     )
     statement._normalize_uristem()
@@ -55,7 +55,7 @@ def test_mkshapes_validate_uristem_not():
     statement = Statement(
         shapeID="@default",
         propertyID="wdt:P31",
-        value_constraint="foobar",
+        valueConstraint="foobar",
         valueConstraintType="UriStem",
     )
     statement._normalize_uristem()

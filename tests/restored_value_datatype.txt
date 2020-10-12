@@ -6,7 +6,7 @@
  - repeatable
  - valueNodeType
 -- valueDataType
- - value_constraint
+ - valueConstraint
  - valueConstraintType
  - value_shape
 
@@ -21,7 +21,7 @@
 -          The specific datatype of the literal value,
 -          identified by a URI string or prefixed URI string,
 -          typically from the XML Schema namespace.
-         value_constraint (str, optional):
+         valueConstraint (str, optional):
            Etc.
          valueConstraintType (str, optional):
 
@@ -30,7 +30,7 @@
      repeatable: bool = False
      valueNodeType: str = None
 -    valueDataType: str = None
-     value_constraint: str = None
+     valueConstraint: str = None
      valueConstraintType: str = None
      value_shape: str = None
 
@@ -42,7 +42,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -51,7 +51,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -60,7 +60,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -69,7 +69,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -78,7 +78,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -87,7 +87,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -96,7 +96,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -105,7 +105,7 @@
                          "mandatory": False,
                          "repeatable": False,
     -                    "valueDataType": None,
-                         "value_constraint": None,
+                         "valueConstraint": None,
                          "valueConstraintType": None,
                          "value_shape": None,
 
@@ -117,7 +117,7 @@
              "repeatable": "N",
              "valueNodeType": "String",
 -            "valueDataType": "xsd:date",
-             "value_constraint": "(\d+/\d+/\d+)",
+             "valueConstraint": "(\d+/\d+/\d+)",
              "valueConstraintType": "Regex",
              "value_shape": "",
 
@@ -126,7 +126,7 @@
              "repeatable": "N",
              "valueNodeType": "String",
 -            "valueDataType": "",
-             "value_constraint": "",
+             "valueConstraint": "",
              "valueConstraintType": "",
              "value_shape": "",
 
@@ -138,7 +138,7 @@
                  repeatable=False,
                  valueNodeType=None,
     -            valueDataType=None,
-                 value_constraint="sdo:Book",
+                 valueConstraint="sdo:Book",
                  valueConstraintType=None,
                  value_shape=None,
 
@@ -147,7 +147,7 @@
                  repeatable=False,
                  valueNodeType=None,
     -            valueDataType=None,
-                 value_constraint="wd:Q571",
+                 valueConstraint="wd:Q571",
                  valueConstraintType=None,
                  value_shape=None,
 
@@ -159,7 +159,7 @@
      assert shap.repeatable is False
      assert shap.valueNodeType is None
 -    assert shap.valueDataType is None
-     assert shap.value_constraint is None
+     assert shap.valueConstraint is None
      assert shap.valueConstraintType is None
      assert shap.value_shape is None
 
@@ -168,6 +168,6 @@
      assert shap.repeatable is False
      assert shap.valueNodeType is None
 -    assert shap.valueDataType is None
-     assert shap.value_constraint is None
+     assert shap.valueConstraint is None
      assert shap.valueConstraintType is None
      assert shap.value_shape is None

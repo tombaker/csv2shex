@@ -14,7 +14,7 @@ statement_elements:
 - repeatable
 - valueNodeType
 - valueDataType
-- value_constraint
+- valueConstraint
 - valueConstraintType
 - value_shape
 - note
