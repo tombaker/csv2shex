@@ -25,7 +25,7 @@ copyright = '2020, Tom Baker'
 author = 'Tom Baker'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2'
+release = '0.21'
 
 # -- General configuration ---------------------------------------------------
 
