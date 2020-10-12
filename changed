@@ -1,8 +1,8 @@
-X=csv2shex/cli.py                                                              ; git diff master:$X headers:$X
+git co headers csv2shex/csvreader.py
+git commit -m 'merge headers:csv2shex/csvreader.py'
 exit
-X=csv2shex/mkstatements.py                                                     ; git diff master:$X headers:$X
-X=csv2shex/mkyaml.py                                                           ; git diff master:$X headers:$X
 X=tests/test_shex/test_shexj.py                                                ; git diff master:$X headers:$X
+exit
 X=tests/test_statements/test_mkstatements_Statement__normalize_datatype.py     ; git diff master:$X headers:$X
 X=tests/test_statements/test_mkstatements_Statement__normalize_mandrepeat.py   ; git diff master:$X headers:$X
 X=tests/test_statements/test_mkstatements_Statement__normalize_regex.py        ; git diff master:$X headers:$X

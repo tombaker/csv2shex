@@ -2,7 +2,7 @@
 
 import os
 from pathlib import Path
-from csv2shex.mkstatements import csvreader
+from csv2shex.csvreader import csvreader
 
 
 def test_csvreader_with_simple_csvfile(tmp_path):
