@@ -38,7 +38,7 @@ def test_listshapes_one_shape():
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": "URI",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -50,7 +50,7 @@ def test_listshapes_one_shape():
                 {
                     "propertyID": "dct:date",
                     "valueNodeType": "String",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -91,7 +91,7 @@ def test_listshapes_one_shape_and_shapeLabel():
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": "URI",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -103,7 +103,7 @@ def test_listshapes_one_shape_and_shapeLabel():
                 {
                     "propertyID": "dct:date",
                     "valueNodeType": "String",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -127,7 +127,7 @@ def test_listshapes_two_shapes():
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": "URI",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -139,7 +139,7 @@ def test_listshapes_two_shapes():
                 {
                     "propertyID": "dct:subject",
                     "valueNodeType": "URI",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -151,7 +151,7 @@ def test_listshapes_two_shapes():
                 {
                     "propertyID": "dct:date",
                     "valueNodeType": "String",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,
@@ -169,7 +169,7 @@ def test_listshapes_two_shapes():
                 {
                     "propertyID": "foaf:name",
                     "valueNodeType": "String",
-                    "value_datatype": None,
+                    "valueDataType": None,
                     "prop_label": None,
                     "mandatory": False,
                     "repeatable": False,

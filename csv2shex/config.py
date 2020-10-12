@@ -13,7 +13,7 @@ statement_elements:
 - mandatory
 - repeatable
 - valueNodeType
-- value_datatype
+- valueDataType
 - value_constraint
 - value_constraint_type
 - value_shape

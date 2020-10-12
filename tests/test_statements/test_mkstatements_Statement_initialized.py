@@ -16,7 +16,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.mandatory is False
     assert shap.repeatable is False
     assert shap.valueNodeType is None
-    assert shap.value_datatype is None
+    assert shap.valueDataType is None
     assert shap.value_constraint is None
     assert shap.value_constraint_type is None
     assert shap.value_shape is None
@@ -34,7 +34,7 @@ def test_statement_initialized_without_propid():
     assert shap.mandatory is False
     assert shap.repeatable is False
     assert shap.valueNodeType is None
-    assert shap.value_datatype is None
+    assert shap.valueDataType is None
     assert shap.value_constraint is None
     assert shap.value_constraint_type is None
     assert shap.value_shape is None
@@ -58,7 +58,7 @@ def test_statement_fields_individually_addressable():
     assert shap.shapeID == "@photo"
     assert shap.propertyID == "dcterms:creator"
     assert shap.valueNodeType == "URI"
-    assert shap.value_datatype is None
+    assert shap.valueDataType is None
 
 
 def test_statement_initialized_by_assignment():
@@ -78,7 +78,7 @@ def test_statement_initialized_by_assignment_with_some_none():
     shap = Statement()
     shap.propertyID = "dcterms:creator"
     shap.valueNodeType = "URI"
-    assert shap.value_datatype is None
+    assert shap.valueDataType is None
     assert shap == Statement(
         shapeID=None, propertyID="dcterms:creator", valueNodeType="URI"
     )
@@ -92,7 +92,7 @@ def test_statement_bad_field_initialized_by_assignment():
     shap.foobar = "@photo"
     shap.propertyID = "dcterms:creator"
     shap.valueNodeType = "URI"
-    assert shap.value_datatype is None
+    assert shap.valueDataType is None
     with pytest.raises(TypeError):
         assert shap == Statement(
             foobar="@photo", propertyID="dcterms:creator", valueNodeType="URI"

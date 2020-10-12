@@ -51,7 +51,7 @@ class Statement:
           Value of the property-value pair is one of the type
           `URI`, `BNode`, `Literal`, or `Non-Literal`.
           Default: None. Value type `IRI` is normalized to `URI`.
-        value_datatype (str, optional):
+        valueDataType (str, optional):
           The specific datatype of the literal value,
           identified by a URI string or prefixed URI string,
           typically from the XML Schema namespace.
@@ -73,7 +73,7 @@ class Statement:
     mandatory: bool = False
     repeatable: bool = False
     valueNodeType: str = None
-    value_datatype: str = None
+    valueDataType: str = None
     value_constraint: str = None
     value_constraint_type: str = None
     value_shape: str = None
