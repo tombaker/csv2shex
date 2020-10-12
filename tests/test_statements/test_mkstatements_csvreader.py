@@ -31,7 +31,8 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shapeID,shapeLabel,propertyID,propertyLabel,mandatory,repeatable,valueNodeType,"
+            "shapeID,shapeLabel,propertyID,propertyLabel"
+            ",mandatory,repeatable,valueNodeType,"
             "valueDataType,valueConstraint,valueConstraintType,valueShape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
