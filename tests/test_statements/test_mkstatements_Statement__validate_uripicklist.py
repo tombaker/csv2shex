@@ -9,7 +9,7 @@ from csv2shex.mkstatements import Statement
 def test_mkshapes_validate_uripicklist():
     """@@@"""
     stat = Statement(
-        shapeID="@default",
+        shape_id="@default",
         prop_id="wdt:P31",
         value_constraint=[":red", ":green", ":yellow"],
         value_constraint_type="UriPicklist",
@@ -21,7 +21,7 @@ def test_mkshapes_validate_uripicklist():
 def test_mkshapes_validate_uripicklist_normalized():
     """@@@"""
     stat = Statement(
-        shapeID="@default",
+        shape_id="@default",
         prop_id="wdt:P31",
         value_constraint=":red :green :yellow",
         value_constraint_type="UriPicklist",
@@ -34,7 +34,7 @@ def test_mkshapes_validate_uripicklist_normalized():
 def test_mkshapes_validate_uripicklist_just_one_item():
     """@@@"""
     stat = Statement(
-        shapeID="@default",
+        shape_id="@default",
         prop_id="dcterms:subject",
         value_constraint=["wd:Q46914185"],
         value_constraint_type="UriPicklist",
@@ -45,7 +45,7 @@ def test_mkshapes_validate_uripicklist_just_one_item():
 def test_mkshapes_validate_uripicklist_just_one_item_normalized():
     """@@@"""
     stat = Statement(
-        shapeID="@default",
+        shape_id="@default",
         prop_id="dcterms:subject",
         value_constraint="https://www.wikidata.org/wiki/Q46914185",
         value_constraint_type="UriPicklist",
