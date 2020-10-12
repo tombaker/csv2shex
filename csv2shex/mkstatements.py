@@ -39,7 +39,7 @@ class Statement:
           Default: None.
         prop_label (str, optional):
           Human-readable label for the property. Default: None.
-        mand (str, optional):
+        mandatory (str, optional):
           If True, use of the property is mandatory in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
@@ -70,7 +70,7 @@ class Statement:
     shapeLabel: str = None
     propertyID: str = None
     prop_label: str = None
-    mand: bool = False
+    mandatory: bool = False
     repeat: bool = False
     value_node_type: str = None
     value_datatype: str = None
@@ -102,9 +102,9 @@ class Statement:
         return True
 
     def _normalize_mandrepeat(self):
-        """Elements 'mand' or 'repeat' are True if any value provided."""
-        if self.mand:
-            self.mand = True
+        """Elements 'mandatory' or 'repeat' are True if any value provided."""
+        if self.mandatory:
+            self.mandatory = True
         if self.repeat:
             self.repeat = True
 

@@ -13,7 +13,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.shapeLabel is None
     assert shap.propertyID == "dcterms:creator"
     assert shap.prop_label is None
-    assert shap.mand is False
+    assert shap.mandatory is False
     assert shap.repeat is False
     assert shap.value_node_type is None
     assert shap.value_datatype is None
@@ -31,7 +31,7 @@ def test_statement_initialized_without_propid():
     assert shap.shapeLabel is None
     assert shap.propertyID is None
     assert shap.prop_label is None
-    assert shap.mand is False
+    assert shap.mandatory is False
     assert shap.repeat is False
     assert shap.value_node_type is None
     assert shap.value_datatype is None
@@ -45,7 +45,9 @@ def test_statement_initialized_from_named_arguments_and_order_is_insignficant():
     """Order of arguments is insignificant (just a reminder to self)."""
     assert Statement(
         shapeID="@photo", propertyID="dcterms:creator", value_node_type="URI"
-    ) == Statement(propertyID="dcterms:creator", shapeID="@photo", value_node_type="URI")
+    ) == Statement(
+        propertyID="dcterms:creator", shapeID="@photo", value_node_type="URI"
+    )
 
 
 def test_statement_fields_individually_addressable():
@@ -81,7 +83,7 @@ def test_statement_initialized_by_assignment_with_some_none():
         shapeID=None, propertyID="dcterms:creator", value_node_type="URI"
     )
     assert not shap.shapeID
-    assert not shap.mand
+    assert not shap.mandatory
 
 
 def test_statement_bad_field_initialized_by_assignment():

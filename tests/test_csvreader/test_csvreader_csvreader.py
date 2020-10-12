@@ -31,7 +31,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shapeID,shapeLabel,propertyID,prop_label,mand,repeat,value_node_type,"
+            "shapeID,shapeLabel,propertyID,prop_label,mandatory,repeat,value_node_type,"
             "value_datatype,value_constraint,value_constraint_type,value_shape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
@@ -44,7 +44,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "shapeLabel": "Book",
             "propertyID": "dct:creator",
             "prop_label": "Creator",
-            "mand": "Y",
+            "mandatory": "Y",
             "repeat": "N",
             "value_node_type": "URI",
             "value_datatype": "",
@@ -58,7 +58,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "shapeLabel": "Book",
             "propertyID": "dct:date",
             "prop_label": "Date",
-            "mand": "Y",
+            "mandatory": "Y",
             "repeat": "N",
             "value_node_type": "String",
             "value_datatype": "xsd:string",
@@ -72,7 +72,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "shapeLabel": "Person",
             "propertyID": "foaf:name",
             "prop_label": "Name",
-            "mand": "Y",
+            "mandatory": "Y",
             "repeat": "N",
             "value_node_type": "String",
             "value_datatype": "xsd:string",

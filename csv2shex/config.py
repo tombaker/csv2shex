@@ -10,7 +10,7 @@ shape_elements:
 statement_elements:
 - propertyID
 - prop_label
-- mand
+- mandatory
 - repeat
 - value_node_type
 - value_datatype

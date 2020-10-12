@@ -2,7 +2,7 @@
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/csv2shex/config.py
 
 @@ -13,7 +13,6 @@ statement_elements:
- - mand
+ - mandatory
  - repeat
  - value_node_type
 -- value_datatype
@@ -26,7 +26,7 @@
          value_constraint_type (str, optional):
 
 @@ -75,7 +71,6 @@ class Statement:
-     mand: bool = False
+     mandatory: bool = False
      repeat: bool = False
      value_node_type: str = None
 -    value_datatype: str = None
@@ -39,7 +39,7 @@
 
     @@ -29,7 +29,6 @@ def test_listshapes_one_shape():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -48,7 +48,7 @@
 
     @@ -41,7 +40,6 @@ def test_listshapes_one_shape():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -57,7 +57,7 @@
 
     @@ -82,7 +80,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -66,7 +66,7 @@
 
     @@ -94,7 +91,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -75,7 +75,7 @@
 
     @@ -118,7 +114,6 @@ def test_listshapes_two_shapes():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -84,7 +84,7 @@
 
     @@ -130,7 +125,6 @@ def test_listshapes_two_shapes():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -93,7 +93,7 @@
 
     @@ -142,7 +136,6 @@ def test_listshapes_two_shapes():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -102,7 +102,7 @@
 
     @@ -160,7 +153,6 @@ def test_listshapes_two_shapes():
                          "prop_label": None,
-                         "mand": False,
+                         "mandatory": False,
                          "repeat": False,
     -                    "value_datatype": None,
                          "value_constraint": None,
@@ -113,7 +113,7 @@
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_csvreader.py
 
 @@ -61,7 +60,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
-             "mand": "Y",
+             "mandatory": "Y",
              "repeat": "N",
              "value_node_type": "String",
 -            "value_datatype": "xsd:date",
@@ -122,7 +122,7 @@
              "value_shape": "",
 
 @@ -75,7 +73,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
-             "mand": "Y",
+             "mandatory": "Y",
              "repeat": "N",
              "value_node_type": "String",
 -            "value_datatype": "",
@@ -134,7 +134,7 @@
     /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_liststatements.py
 
     @@ -152,7 +152,6 @@ def test_liststatements_with_missing_value_node_type():
-                 mand=False,
+                 mandatory=False,
                  repeat=False,
                  value_node_type=None,
     -            value_datatype=None,
@@ -143,7 +143,7 @@
                  value_shape=None,
 
     @@ -167,7 +166,6 @@ def test_liststatements_with_missing_value_node_type():
-                 mand=False,
+                 mandatory=False,
                  repeat=False,
                  value_node_type=None,
     -            value_datatype=None,
@@ -155,7 +155,7 @@
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_statement.py
 
 @@ -16,7 +16,6 @@ def test_statement_initialized_with_just_one_field():
-     assert shap.mand is False
+     assert shap.mandatory is False
      assert shap.repeat is False
      assert shap.value_node_type is None
 -    assert shap.value_datatype is None
@@ -164,7 +164,7 @@
      assert shap.value_shape is None
 
 @@ -34,7 +33,6 @@ def test_statement_initialized_without_propid():
-     assert shap.mand is False
+     assert shap.mandatory is False
      assert shap.repeat is False
      assert shap.value_node_type is None
 -    assert shap.value_datatype is None

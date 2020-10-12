@@ -4,9 +4,15 @@ from csv2shex.mkshapes import list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
 LIST_OF_STATEMENT_OBJECTS = [
-    Statement(start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"),
-    Statement(start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"),
-    Statement(start=True, shapeID="@a", propertyID="dct:date", value_node_type="String"),
+    Statement(
+        start=True, shapeID="@a", propertyID="dct:creator", value_node_type="URI"
+    ),
+    Statement(
+        start=True, shapeID="@a", propertyID="dct:subject", value_node_type="URI"
+    ),
+    Statement(
+        start=True, shapeID="@a", propertyID="dct:date", value_node_type="String"
+    ),
     Statement(
         start=False, shapeID="@b", propertyID="foaf:name", value_node_type="String"
     ),
@@ -34,7 +40,7 @@ def test_listshapes_one_shape():
                     "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -46,7 +52,7 @@ def test_listshapes_one_shape():
                     "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -87,7 +93,7 @@ def test_listshapes_one_shape_and_shapeLabel():
                     "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -99,7 +105,7 @@ def test_listshapes_one_shape_and_shapeLabel():
                     "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -123,7 +129,7 @@ def test_listshapes_two_shapes():
                     "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -135,7 +141,7 @@ def test_listshapes_two_shapes():
                     "value_node_type": "URI",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -147,7 +153,7 @@ def test_listshapes_two_shapes():
                     "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,
@@ -165,7 +171,7 @@ def test_listshapes_two_shapes():
                     "value_node_type": "String",
                     "value_datatype": None,
                     "prop_label": None,
-                    "mand": False,
+                    "mandatory": False,
                     "repeat": False,
                     "value_constraint": None,
                     "value_constraint_type": None,

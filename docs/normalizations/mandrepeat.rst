@@ -1,7 +1,7 @@
-Mandatory and repeatable
+mandatory and repeatable
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The cardinality elements `mand` ("mandatory") and `repeat` ("repeatable") are both by default False. Specifying any value for either element makes that element True.
+The cardinality elements `mandatory` ("mandatory") and `repeat` ("repeatable") are both by default False. Specifying any value for either element makes that element True.
 
 .. csv-table:: 
    :file: ../normalizations/mandrepeat.csv
@@ -15,11 +15,11 @@ This is interpreted as::
             start: True
             Statement
                 propertyID: dc:creator
-                mand: False
+                mandatory: False
                 repeat: True
             Statement
                 propertyID: dc:date
-                mand: True
+                mandatory: True
                 repeat: False
 
 Note that string values such as "No", "N", "n", "0", or "False" will be interpreted as True.
@@ -36,5 +36,5 @@ This is interpreted as::
             start: True
             Statement
                 propertyID: dc:subject
-                mand: True
+                mandatory: True
                 repeat: True
