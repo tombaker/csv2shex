@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: '@hospital'
+  shapeID: '@hospital'
   shape_label:
   shape_statements:
   - prop_id: wdt:P31

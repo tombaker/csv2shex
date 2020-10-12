@@ -7,7 +7,7 @@ from csv2shex.mkstatements import Statement
 def test_mkshapes_validate_uristem_prefixed():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_constraint="wd:",
         value_constraint_type="UriStem",
@@ -18,7 +18,7 @@ def test_mkshapes_validate_uristem_prefixed():
 def test_mkshapes_validate_uristem_normal_uri():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_constraint="http://www.gmd.de/",
         value_constraint_type="UriStem",
@@ -29,7 +29,7 @@ def test_mkshapes_validate_uristem_normal_uri():
 def test_mkshapes_validate_uristem_with_angle_brackets():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_constraint="<http://www.gmd.de/>",
         value_constraint_type="UriStem",
@@ -41,7 +41,7 @@ def test_mkshapes_validate_uristem_with_angle_brackets():
 def test_mkshapes_validate_uristem_colon_only():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_constraint=":",
         value_constraint_type="UriStem",
@@ -53,7 +53,7 @@ def test_mkshapes_validate_uristem_colon_only():
 def test_mkshapes_validate_uristem_not():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_constraint="foobar",
         value_constraint_type="UriStem",

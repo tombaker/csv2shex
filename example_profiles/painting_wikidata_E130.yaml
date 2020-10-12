@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: painting
+  shapeID: painting
   shape_label: wdt:P31
   shape_statements:
   - prop_id: Is a
@@ -65,7 +65,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: creator
+  shapeID: creator
   shape_label: wdt:P31
   shape_statements:
   - prop_id: Is a

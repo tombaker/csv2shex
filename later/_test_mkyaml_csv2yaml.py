@@ -8,7 +8,7 @@ def test_csv2yaml():
     as_input = [
         Shape(
             start=True,
-            shape_id="@a",
+            shapeID="@a",
             shape_statements=[
                 {
                     "prop_id": "dct:creator",
@@ -50,7 +50,7 @@ def test_csv2yaml():
         ),
         Shape(
             start=False,
-            shape_id="@b",
+            shapeID="@b",
             shape_statements=[
                 {
                     "prop_id": "foaf:name",

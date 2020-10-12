@@ -13,14 +13,14 @@ Interpreted as::
 
     DCAP
         Shape
-            shape_id: :book
+            shapeID: :book
             start: True
             Statement
                 prop_id: dct:creator
             Statement
                 prop_id: dct:title
 
-The value of `shape_label` is taken from the row where a new `shape_id` is first encountered. In other words, subsequent labels will simply be ignored. The following CSV is therefore interpreted as shown above:
+The value of `shape_label` is taken from the row where a new `shapeID` is first encountered. In other words, subsequent labels will simply be ignored. The following CSV is therefore interpreted as shown above:
 
 .. csv-table:: 
    :file: ../basics/shape_variant2.csv

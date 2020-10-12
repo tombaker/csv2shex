@@ -11,7 +11,7 @@ This is interpreted as::
 
     DCAP
         Shape
-            shape_id: :book
+            shapeID: :book
             start: True
             Statement
                 prop_id: :color

@@ -7,7 +7,7 @@ from csv2shex.mkstatements import Statement
 def test_mkshapes_validate_uri_value_node_type_quri():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_node_type="URI",
         value_constraint="wd:",
@@ -18,7 +18,7 @@ def test_mkshapes_validate_uri_value_node_type_quri():
 def test_mkshapes_validate_value_node_type_normal_uri():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_node_type="URI",
         value_constraint="http://www.gmd.de/",
@@ -29,7 +29,7 @@ def test_mkshapes_validate_value_node_type_normal_uri():
 def test_mkshapes_validate_value_node_type_uri_with_angle_brackets():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_node_type="URI",
         value_constraint="<http://www.gmd.de/>",
@@ -41,7 +41,7 @@ def test_mkshapes_validate_value_node_type_uri_with_angle_brackets():
 def test_mkshapes_validate_value_node_type_quri_colon_only():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_node_type="URI",
         value_constraint=":",
@@ -53,7 +53,7 @@ def test_mkshapes_validate_value_node_type_quri_colon_only():
 def test_mkshapes_validate_uri_as_value_node_type_is_not_valid_uri():
     """@@@"""
     statement = Statement(
-        shape_id="@default",
+        shapeID="@default",
         prop_id="wdt:P31",
         value_node_type="URI",
         value_constraint="foobar",

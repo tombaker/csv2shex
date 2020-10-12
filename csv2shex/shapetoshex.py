@@ -16,7 +16,7 @@ from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
 
 
 # Questions:
-# 1) is s.shape_id always present or do we have to supply it?
+# 1) is s.shapeID always present or do we have to supply it?
 #    A: According to mkstatements, will always be present.
 #    Q: Current default is "default" - is there a conventional name to use?
 # 2) What is the shape label used for?
@@ -86,13 +86,13 @@ def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
         shapes = [shapes]
     schema = Schema()
     for s in shapes:
-        shape_id = IRIREF(s.shape_id)
+        shapeID = IRIREF(s.shapeID)
         if s.start:
             if schema.start:
-                print(f"Multiple start shapes: <{schema.start}>, <{shape_id}>")
+                print(f"Multiple start shapes: <{schema.start}>, <{shapeID}>")
             else:
-                schema.start = shape_id
-        shape = Shape(id=shape_id)
+                schema.start = shapeID
+        shape = Shape(id=shapeID)
         for statement in s.shape_statements:
             addstatement(shape, statement)
     return schema

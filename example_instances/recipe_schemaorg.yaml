@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: '@Recipe'
+  shapeID: '@Recipe'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -195,7 +195,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@Image'
+  shapeID: '@Image'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -230,7 +230,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@AggregateRating'
+  shapeID: '@AggregateRating'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -306,7 +306,7 @@
     annot: The worst rating possible
 - !Shape
   start: false
-  shape_id: '@Author'
+  shapeID: '@Author'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -331,7 +331,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@NutritionInformation'
+  shapeID: '@NutritionInformation'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -366,7 +366,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@HowToSection'
+  shapeID: '@HowToSection'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -421,7 +421,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@HowToStep'
+  shapeID: '@HowToStep'
   shape_label:
   shape_statements:
   - prop_id: rdf:type
@@ -486,7 +486,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: '@Video'
+  shapeID: '@Video'
   shape_label:
   shape_statements:
   - prop_id: rdf:type

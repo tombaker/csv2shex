@@ -1,3 +1,3 @@
-shape_id,shape_label,prop_id
+shapeID,shape_label,prop_id
 :book,Book,dct:creator
 :book,Article,dct:title

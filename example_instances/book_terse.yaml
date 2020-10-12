@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: '@book'
+  shapeID: '@book'
   shape_label:
   shape_statements:
   - prop_id: dct:creator
@@ -35,7 +35,7 @@
     annot:
 - !Shape
   start: false
-  shape_id: '@person'
+  shapeID: '@person'
   shape_label:
   shape_statements:
   - prop_id: foaf:name

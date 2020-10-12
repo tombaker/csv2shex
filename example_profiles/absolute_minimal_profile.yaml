@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: '@default'
+  shapeID: '@default'
   shape_label:
   shape_statements:
   - prop_id: dct:title

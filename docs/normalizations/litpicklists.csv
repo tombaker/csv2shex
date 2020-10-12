@@ -1,3 +1,3 @@
-shape_id,prop_id,value_type,constraint_value,constraint_type
+shapeID,prop_id,value_type,constraint_value,constraint_type
 :book,:color,,red green yellow,LitPicklist
 :book,:color,,red,LitPicklist

@@ -43,7 +43,7 @@ class Shape:
     """Holds state and self-validation methods for a Shape."""
 
     start: bool = False
-    shape_id: str = None
+    shapeID: str = None
     shape_label: str = None
     shape_statements: List[Statement] = field(default_factory=list)
 
@@ -57,13 +57,13 @@ def list_shapes(statements_list):
         statement.normalize()
         statement.validate()
         statement = asdict(statement)
-        if shap.shape_id != statement["shape_id"]:
-            # if shap.shape_id is not None
-            if shap.shape_id:
+        if shap.shapeID != statement["shapeID"]:
+            # if shap.shapeID is not None
+            if shap.shapeID:
                 shapes_list.append(shap)
             shap = Shape()
             shap.start = statement["start"]
-            shap.shape_id = statement["shape_id"]
+            shap.shapeID = statement["shapeID"]
             shap.shape_label = statement["shape_label"]
 
         for pvpair_key in STATEMENT_ELEMENTS:

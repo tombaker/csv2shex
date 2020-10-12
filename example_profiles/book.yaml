@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: '@book'
+  shapeID: '@book'
   shape_label:
   shape_statements:
   - prop_id: rdf:type

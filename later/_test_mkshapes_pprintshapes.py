@@ -10,7 +10,7 @@ def test_pprint_shapes():
     as_input = [
         Shape(
             start=True,
-            shape_id="@a",
+            shapeID="@a",
             shape_label=None,
             shape_statements=[
                 {
@@ -43,7 +43,7 @@ def test_pprint_shapes():
     expected = dedent("""\
     Shape
         start: True
-        shape_id: @a
+        shapeID: @a
         Statement
             prop_id: dct:creator
             value_type: URI

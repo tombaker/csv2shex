@@ -11,7 +11,7 @@ This is interpreted as::
 
     DCAP
         Shape
-            shape_id: @default
+            shapeID: @default
             start: True
             Statement
                 prop_id: dc:creator
@@ -32,7 +32,7 @@ This is interpreted as::
 
     DCAP
         Shape
-            shape_id: @default
+            shapeID: @default
             start: True
             Statement
                 prop_id: dc:subject

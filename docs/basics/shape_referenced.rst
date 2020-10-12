@@ -11,13 +11,13 @@ Interpreted as::
 
     DCAP
         Shape
-            shape_id: :book
+            shapeID: :book
             start: True
             Statement
                 prop_id: dct:creator
                 shape_ref: @:person
         Shape
-            shape_id: :person
+            shapeID: :person
             Statement
                 prop_id: foaf:name
 

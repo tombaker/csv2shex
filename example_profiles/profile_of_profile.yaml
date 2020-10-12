@@ -1,6 +1,6 @@
 - !Shape
   start: true
-  shape_id: descriptionSet
+  shapeID: descriptionSet
   shape_label: ''
   shape_statements:
   - prop_id: dsp:descriptionSet
@@ -35,7 +35,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: description
+  shapeID: description
   shape_label: ''
   shape_statements:
   - prop_id: dsp:description
@@ -140,7 +140,7 @@
     annot: ''
 - !Shape
   start: false
-  shape_id: statement
+  shapeID: statement
   shape_label: ''
   shape_statements:
   - prop_id: dsp:statement
@@ -236,7 +236,7 @@
     annot: Assuming a statement can be reused within a set
 - !Shape
   start: false
-  shape_id: value
+  shapeID: value
   shape_label: valueID
   shape_statements:
   - prop_id: dct:identifier
