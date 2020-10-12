@@ -1,15 +1,9 @@
-git co headers csv2shex/csvreader.py
-git commit -m 'merge headers:csv2shex/csvreader.py'
-exit
-X=tests/test_shex/test_shexj.py                                                ; git diff master:$X headers:$X
-exit
-X=tests/test_statements/test_mkstatements_Statement__normalize_datatype.py     ; git diff master:$X headers:$X
-X=tests/test_statements/test_mkstatements_Statement__normalize_mandrepeat.py   ; git diff master:$X headers:$X
-X=tests/test_statements/test_mkstatements_Statement__normalize_regex.py        ; git diff master:$X headers:$X
-X=tests/test_statements/test_mkstatements_Statement__normalize_uripicklist.py  ; git diff master:$X headers:$X
-X=tests/test_statements/test_mkstatements_Statement__validate_litpicklist.py   ; git diff master:$X headers:$X
-X=tests/test_statements/test_mkstatements_Statement__validate_propid.py        ; git diff master:$X headers:$X
+
 X=tests/test_statements/test_mkstatements_Statement__validate_uripicklist.py   ; git diff master:$X headers:$X
+git co headers $X
+git commit -m $X
+X=tests/test_statements/test_mkstatements_Statement__validate_uripicklist.py   ; git diff master:$X headers:$X
+exit
 X=tests/test_statements/test_mkstatements_Statement__validate_uristem.py       ; git diff master:$X headers:$X
 X=tests/test_statements/test_mkstatements_Statement__validate_valueuri.py      ; git diff master:$X headers:$X
 X=tests/test_statements/test_mkstatements_Statement_normalize.py               ; git diff master:$X headers:$X
