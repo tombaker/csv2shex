@@ -3,7 +3,8 @@
 
 import sys
 from ruamel.yaml import YAML
-from .mkstatements import csvreader, list_statements
+from .csvreader import csvreader
+from .mkstatements import list_statements
 from .mkshapes import list_shapes, Shape
 
 
