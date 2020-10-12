@@ -3,9 +3,7 @@
 
 import re
 import sys
-import csv
 from dataclasses import dataclass
-from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
@@ -26,7 +24,7 @@ class Statement:
 
     Dataclass fields:
 
-        shapeID (str, assigned if not provided):
+        shape_id (str, assigned if not provided):
           Identifier of the shape to which the statement
           (property-value pair) belongs.
           If no shape identifier is provided in the CSV,
@@ -68,7 +66,7 @@ class Statement:
     """
 
     start: bool = False
-    shapeID: str = None
+    shape_id: str = None
     shape_label: str = None
     prop_id: str = None
     prop_label: str = None
@@ -207,40 +205,33 @@ class Statement:
         return True
 
 
-def csvreader(csvfile):
-    """Read CSV file and return list of dicts, one dict per CSV row."""
-    rows_odict = csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
-    rows = [dict(r) for r in rows_odict]
-    return rows
-
-
-def list_statements(csvrow_list=None):
+def list_statements(csvrow_dicts_list_normalized=None):
     """Return list of Statement objects from list of dicts ("CSV rows")."""
     statements_list = []
-    shapeIDs = []
+    shape_ids = []
     first_shape_encountered = True
     keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
-    keys.remove("shapeID")
-    for row in csvrow_list:
-        if not row.get("prop_id") and row.get("shapeID"):
-            shapeIDs.append(row["shapeID"])
+    keys.remove("shape_id")
+    for row in csvrow_dicts_list_normalized:
+        if not row.get("prop_id") and row.get("shape_id"):
+            shape_ids.append(row["shape_id"])
             continue
 
         stat = Statement()
 
-        if row.get("shapeID"):
-            stat.shapeID = row["shapeID"]
+        if row.get("shape_id"):
+            stat.shape_id = row["shape_id"]
         else:
-            if shapeIDs:
-                stat.shapeID = shapeIDs[-1]
-            elif not shapeIDs:
-                stat.shapeID = "@default"
-        if stat.shapeID not in shapeIDs:
-            shapeIDs.append(stat.shapeID)
+            if shape_ids:
+                stat.shape_id = shape_ids[-1]
+            elif not shape_ids:
+                stat.shape_id = "@default"
+        if stat.shape_id not in shape_ids:
+            shape_ids.append(stat.shape_id)
         if first_shape_encountered:
-            first_shape = stat.shapeID
+            first_shape = stat.shape_id
             first_shape_encountered = False
-        if stat.shapeID == first_shape:
+        if stat.shape_id == first_shape:
             stat.start = True
 
         for key in keys:
