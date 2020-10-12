@@ -37,7 +37,7 @@ class Statement:
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
           Default: None.
-        prop_label (str, optional):
+        propertyLabel (str, optional):
           Human-readable label for the property. Default: None.
         mandatory (str, optional):
           If True, use of the property is mandatory in the
@@ -69,7 +69,7 @@ class Statement:
     shapeID: str = None
     shapeLabel: str = None
     propertyID: str = None
-    prop_label: str = None
+    propertyLabel: str = None
     mandatory: bool = False
     repeatable: bool = False
     valueNodeType: str = None

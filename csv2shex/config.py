@@ -9,7 +9,7 @@ shape_elements:
 - start
 statement_elements:
 - propertyID
-- prop_label
+- propertyLabel
 - mandatory
 - repeatable
 - valueNodeType

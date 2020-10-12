@@ -13,13 +13,13 @@ Interpreted as::
             start: True
             Statement
                 propertyID: dct:creator
-                prop_label: Author
+                propertyLabel: Author
             Statement
                 propertyID: dct:title
-                prop_label: Book title
+                propertyLabel: Book title
             Statement
                 propertyID: dct:publisher
-                prop_label: Publisher
+                propertyLabel: Publisher
             Statement
                 propertyID: dct:date
-                prop_label: Publication date
+                propertyLabel: Publication date

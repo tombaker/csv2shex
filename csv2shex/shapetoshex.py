@@ -25,7 +25,7 @@ from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
 #    A: Yes - or optionally generate UI (form-building) statements (eg sh:group)?
 # 3) Are multiple shape statements considered ShapeOr or ShapeAnd?
 #    We are assuming AND for the time being
-# 4) We assign prop_label to statement.id, but but there may be labels
+# 4) We assign propertyLabel to statement.id, but but there may be labels
 #    that don't fit the id value space
 # 5) Need to define how "prefixed URI string" maps to IRIREF
 #    -- probably need a sub function
@@ -65,7 +65,7 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
     #                          "TripleConstraint",
     #                          typing.Union[str, str]]]
     ts = TripleConstraint(
-        id=statement.prop_label,
+        id=statement.propertyLabel,
         predicate=IRIREF(statement.propertyID),
         min=1 if statement.mandatory else 0,
         max=-1 if statement.repeatable else 1,
