@@ -10,7 +10,7 @@ def test_statement_initialized_with_just_one_field():
     shap = Statement(prop_id="dcterms:creator")
     assert not shap.start
     assert shap.shapeID is None
-    assert shap.shape_label is None
+    assert shap.shapeLabel is None
     assert shap.prop_id == "dcterms:creator"
     assert shap.prop_label is None
     assert shap.mand is False
@@ -28,7 +28,7 @@ def test_statement_initialized_without_propid():
     shap = Statement()
     assert not shap.start
     assert shap.shapeID is None
-    assert shap.shape_label is None
+    assert shap.shapeLabel is None
     assert shap.prop_id is None
     assert shap.prop_label is None
     assert shap.mand is False

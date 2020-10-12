@@ -29,7 +29,7 @@ class Statement:
           (property-value pair) belongs.
           If no shape identifier is provided in the CSV,
           a default identifier is assigned.
-        shape_label (str, optional):
+        shapeLabel (str, optional):
           Human-readable label for the shape. Default: None.
         start (bool, assigned):
           If True, shape is a "start" shape. Default: False.
@@ -67,7 +67,7 @@ class Statement:
 
     start: bool = False
     shapeID: str = None
-    shape_label: str = None
+    shapeLabel: str = None
     prop_id: str = None
     prop_label: str = None
     mand: bool = False

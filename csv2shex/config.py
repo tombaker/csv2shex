@@ -5,7 +5,7 @@ CONFIGFILE_NAME = ".c2src"
 CSV_ELEMENTS = """\
 shape_elements:
 - shapeID
-- shape_label
+- shapeLabel
 - start
 statement_elements:
 - prop_id

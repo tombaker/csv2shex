@@ -55,7 +55,7 @@
                          "value_constraint_type": None,
                          "value_shape": None,
 
-    @@ -82,7 +80,6 @@ def test_listshapes_one_shape_and_shape_label():
+    @@ -82,7 +80,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "prop_label": None,
                          "mand": False,
                          "repeat": False,
@@ -64,7 +64,7 @@
                          "value_constraint_type": None,
                          "value_shape": None,
 
-    @@ -94,7 +91,6 @@ def test_listshapes_one_shape_and_shape_label():
+    @@ -94,7 +91,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "prop_label": None,
                          "mand": False,
                          "repeat": False,

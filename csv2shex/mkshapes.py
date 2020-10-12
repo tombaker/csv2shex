@@ -44,7 +44,7 @@ class Shape:
 
     start: bool = False
     shapeID: str = None
-    shape_label: str = None
+    shapeLabel: str = None
     shape_statements: List[Statement] = field(default_factory=list)
 
 
@@ -64,7 +64,7 @@ def list_shapes(statements_list):
             shap = Shape()
             shap.start = statement["start"]
             shap.shapeID = statement["shapeID"]
-            shap.shape_label = statement["shape_label"]
+            shap.shapeLabel = statement["shapeLabel"]
 
         for pvpair_key in STATEMENT_ELEMENTS:
             shape_statements_item[pvpair_key] = statement[pvpair_key]

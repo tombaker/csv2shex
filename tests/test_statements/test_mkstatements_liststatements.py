@@ -186,7 +186,7 @@ def test_liststatements_with_missing_value_node_type():
         Statement(
             start=True,
             shapeID="@book",
-            shape_label=None,
+            shapeLabel=None,
             prop_id="rdf:type",
             prop_label="instance of",
             mand=False,
@@ -200,7 +200,7 @@ def test_liststatements_with_missing_value_node_type():
         Statement(
             start=True,
             shapeID="@book",
-            shape_label=None,
+            shapeLabel=None,
             prop_id="rdf:type",
             prop_label="instance of",
             mand=False,

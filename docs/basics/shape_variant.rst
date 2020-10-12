@@ -20,7 +20,7 @@ Interpreted as::
             Statement
                 prop_id: dct:title
 
-The value of `shape_label` is taken from the row where a new `shapeID` is first encountered. In other words, subsequent labels will simply be ignored. The following CSV is therefore interpreted as shown above:
+The value of `shapeLabel` is taken from the row where a new `shapeID` is first encountered. In other words, subsequent labels will simply be ignored. The following CSV is therefore interpreted as shown above:
 
 .. csv-table:: 
    :file: ../basics/shape_variant2.csv

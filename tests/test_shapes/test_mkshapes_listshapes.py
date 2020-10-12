@@ -27,7 +27,7 @@ def test_listshapes_one_shape():
         Shape(
             start=True,
             shapeID="@a",
-            shape_label=None,
+            shapeLabel=None,
             shape_statements=[
                 {
                     "prop_id": "dct:creator",
@@ -58,20 +58,20 @@ def test_listshapes_one_shape():
     ]
 
 
-def test_listshapes_one_shape_and_shape_label():
+def test_listshapes_one_shape_and_shapeLabel():
     """One Shape with shape label."""
     as_input = [
         Statement(
             start=True,
             shapeID="@a",
-            shape_label="Author",
+            shapeLabel="Author",
             prop_id="dct:creator",
             value_node_type="URI",
         ),
         Statement(
             start=True,
             shapeID="@a",
-            shape_label="Author",
+            shapeLabel="Author",
             prop_id="dct:date",
             value_node_type="String",
         ),
@@ -80,7 +80,7 @@ def test_listshapes_one_shape_and_shape_label():
         Shape(
             start=True,
             shapeID="@a",
-            shape_label="Author",
+            shapeLabel="Author",
             shape_statements=[
                 {
                     "prop_id": "dct:creator",

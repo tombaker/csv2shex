@@ -15,7 +15,7 @@ def test_normalize_csvheaders4():
     expected_output = [
         {
             "shapeID": ":a",
-            "shape_label": "Book",
+            "shapeLabel": "Book",
             "prop_id": "dct:creator",
             "prop_label": "Creator",
             "mand": "Y",
@@ -29,7 +29,7 @@ def test_normalize_csvheaders4():
         },
         {
             "shapeID": ":a",
-            "shape_label": "Book",
+            "shapeLabel": "Book",
             "prop_id": "dct:date",
             "prop_label": "Date",
             "mand": "Y",
@@ -43,7 +43,7 @@ def test_normalize_csvheaders4():
         },
         {
             "shapeID": ":b",
-            "shape_label": "Person",
+            "shapeLabel": "Person",
             "prop_id": "foaf:name",
             "prop_label": "Name",
             "mand": "Y",
