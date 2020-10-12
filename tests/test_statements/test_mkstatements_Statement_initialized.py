@@ -19,7 +19,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.valueDataType is None
     assert shap.valueConstraint is None
     assert shap.valueConstraintType is None
-    assert shap.value_shape is None
+    assert shap.valueShape is None
     assert shap.note is None
 
 
@@ -37,7 +37,7 @@ def test_statement_initialized_without_propid():
     assert shap.valueDataType is None
     assert shap.valueConstraint is None
     assert shap.valueConstraintType is None
-    assert shap.value_shape is None
+    assert shap.valueShape is None
     assert shap.note is None
 
 

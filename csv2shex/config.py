@@ -16,7 +16,7 @@ statement_elements:
 - valueDataType
 - valueConstraint
 - valueConstraintType
-- value_shape
+- valueShape
 - note
 """
 

@@ -59,7 +59,7 @@ class Statement:
           Etc.
         valueConstraintType (str, optional):
           Etc.
-        value_shape (str, optional):
+        valueShape (str, optional):
           Etc.
         note (str, optional):
           Etc.
@@ -76,7 +76,7 @@ class Statement:
     valueDataType: str = None
     valueConstraint: str = None
     valueConstraintType: str = None
-    value_shape: str = None
+    valueShape: str = None
     note: str = None
 
     def normalize(self):

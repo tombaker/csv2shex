@@ -8,7 +8,7 @@
 -- valueDataType
  - valueConstraint
  - valueConstraintType
- - value_shape
+ - valueShape
 
 ----------------------------------------------------------
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/csv2shex/mkstatements.py
@@ -32,7 +32,7 @@
 -    valueDataType: str = None
      valueConstraint: str = None
      valueConstraintType: str = None
-     value_shape: str = None
+     valueShape: str = None
 
 ----------------------------------------------------------
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkshapes_listshapes.py
@@ -44,7 +44,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -41,7 +40,6 @@ def test_listshapes_one_shape():
                          "propertyLabel": None,
@@ -53,7 +53,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -82,7 +80,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "propertyLabel": None,
@@ -62,7 +62,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -94,7 +91,6 @@ def test_listshapes_one_shape_and_shapeLabel():
                          "propertyLabel": None,
@@ -71,7 +71,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -118,7 +114,6 @@ def test_listshapes_two_shapes():
                          "propertyLabel": None,
@@ -80,7 +80,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -130,7 +125,6 @@ def test_listshapes_two_shapes():
                          "propertyLabel": None,
@@ -89,7 +89,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -142,7 +136,6 @@ def test_listshapes_two_shapes():
                          "propertyLabel": None,
@@ -98,7 +98,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
     @@ -160,7 +153,6 @@ def test_listshapes_two_shapes():
                          "propertyLabel": None,
@@ -107,7 +107,7 @@
     -                    "valueDataType": None,
                          "valueConstraint": None,
                          "valueConstraintType": None,
-                         "value_shape": None,
+                         "valueShape": None,
 
 ----------------------------------------------------------
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_csvreader.py
@@ -119,7 +119,7 @@
 -            "valueDataType": "xsd:date",
              "valueConstraint": "(\d+/\d+/\d+)",
              "valueConstraintType": "Regex",
-             "value_shape": "",
+             "valueShape": "",
 
 @@ -75,7 +73,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
              "mandatory": "Y",
@@ -128,7 +128,7 @@
 -            "valueDataType": "",
              "valueConstraint": "",
              "valueConstraintType": "",
-             "value_shape": "",
+             "valueShape": "",
 
 ----------------------------------------------------------
     /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_liststatements.py
@@ -140,7 +140,7 @@
     -            valueDataType=None,
                  valueConstraint="sdo:Book",
                  valueConstraintType=None,
-                 value_shape=None,
+                 valueShape=None,
 
     @@ -167,7 +166,6 @@ def test_liststatements_with_missing_valueNodeType():
                  mandatory=False,
@@ -149,7 +149,7 @@
     -            valueDataType=None,
                  valueConstraint="wd:Q571",
                  valueConstraintType=None,
-                 value_shape=None,
+                 valueShape=None,
 
 ----------------------------------------------------------
 /Users/tbaker/Dropbox/projects/dcap/csv2shex/tests/test_mkstatements_statement.py
@@ -161,7 +161,7 @@
 -    assert shap.valueDataType is None
      assert shap.valueConstraint is None
      assert shap.valueConstraintType is None
-     assert shap.value_shape is None
+     assert shap.valueShape is None
 
 @@ -34,7 +33,6 @@ def test_statement_initialized_without_propid():
      assert shap.mandatory is False
@@ -170,4 +170,4 @@
 -    assert shap.valueDataType is None
      assert shap.valueConstraint is None
      assert shap.valueConstraintType is None
-     assert shap.value_shape is None
+     assert shap.valueShape is None
