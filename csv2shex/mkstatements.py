@@ -24,7 +24,7 @@ class Statement:
 
     Dataclass fields:
 
-        shape_id (str, assigned if not provided):
+        shapeID (str, assigned if not provided):
           Identifier of the shape to which the statement
           (property-value pair) belongs.
           If no shape identifier is provided in the CSV,
@@ -66,7 +66,7 @@ class Statement:
     """
 
     start: bool = False
-    shape_id: str = None
+    shapeID: str = None
     shape_label: str = None
     prop_id: str = None
     prop_label: str = None
@@ -208,30 +208,30 @@ class Statement:
 def list_statements(csvrow_dicts_list_normalized=None):
     """Return list of Statement objects from list of dicts ("CSV rows")."""
     statements_list = []
-    shape_ids = []
+    shapeIDs = []
     first_shape_encountered = True
     keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
-    keys.remove("shape_id")
+    keys.remove("shapeID")
     for row in csvrow_dicts_list_normalized:
-        if not row.get("prop_id") and row.get("shape_id"):
-            shape_ids.append(row["shape_id"])
+        if not row.get("prop_id") and row.get("shapeID"):
+            shapeIDs.append(row["shapeID"])
             continue
 
         stat = Statement()
 
-        if row.get("shape_id"):
-            stat.shape_id = row["shape_id"]
+        if row.get("shapeID"):
+            stat.shapeID = row["shapeID"]
         else:
-            if shape_ids:
-                stat.shape_id = shape_ids[-1]
-            elif not shape_ids:
-                stat.shape_id = "@default"
-        if stat.shape_id not in shape_ids:
-            shape_ids.append(stat.shape_id)
+            if shapeIDs:
+                stat.shapeID = shapeIDs[-1]
+            elif not shapeIDs:
+                stat.shapeID = "@default"
+        if stat.shapeID not in shapeIDs:
+            shapeIDs.append(stat.shapeID)
         if first_shape_encountered:
-            first_shape = stat.shape_id
+            first_shape = stat.shapeID
             first_shape_encountered = False
-        if stat.shape_id == first_shape:
+        if stat.shapeID == first_shape:
             stat.start = True
 
         for key in keys:
