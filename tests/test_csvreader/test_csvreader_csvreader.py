@@ -31,7 +31,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     csvfile = Path(tmp_path).joinpath("some.csv")
     csvfile.write_text(
         (
-            "shapeID,shapeLabel,propertyID,prop_label,mandatory,repeat,value_node_type,"
+            "shapeID,shapeLabel,propertyID,prop_label,mandatory,repeatable,value_node_type,"
             "value_datatype,value_constraint,value_constraint_type,value_shape,note\n"
             "@a,Book,dct:creator,Creator,Y,N,URI,,,,@b,Typically the author.\n"
             "@a,Book,dct:date,Date,Y,N,String,xsd:string,(\d+/\d+/\d+),Regex,,\n"
@@ -45,7 +45,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "propertyID": "dct:creator",
             "prop_label": "Creator",
             "mandatory": "Y",
-            "repeat": "N",
+            "repeatable": "N",
             "value_node_type": "URI",
             "value_datatype": "",
             "value_constraint": "",
@@ -59,7 +59,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "propertyID": "dct:date",
             "prop_label": "Date",
             "mandatory": "Y",
-            "repeat": "N",
+            "repeatable": "N",
             "value_node_type": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "(\d+/\d+/\d+)",
@@ -73,7 +73,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "propertyID": "foaf:name",
             "prop_label": "Name",
             "mandatory": "Y",
-            "repeat": "N",
+            "repeatable": "N",
             "value_node_type": "String",
             "value_datatype": "xsd:string",
             "value_constraint": "",

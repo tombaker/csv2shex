@@ -12,7 +12,7 @@ def test_mkshapes_normalize_mandrepeat():
     )
     stat._normalize_mandrepeat()
     assert stat.mandatory is True
-    assert stat.repeat is False
+    assert stat.repeatable is False
 
 
 def test_mkshapes_normalize_mandrepeat_not_specified():
@@ -22,7 +22,7 @@ def test_mkshapes_normalize_mandrepeat_not_specified():
     )
     stat._normalize_mandrepeat()
     assert stat.mandatory is False
-    assert stat.repeat is False
+    assert stat.repeatable is False
 
 
 def test_mkshapes_normalize_mandrepeat_string_of_zero():
@@ -30,8 +30,8 @@ def test_mkshapes_normalize_mandrepeat_string_of_zero():
     stat = Statement(
         propertyID="wdt:P31",
         mandatory="1",
-        repeat="0",
+        repeatable="0",
     )
     stat._normalize_mandrepeat()
     assert stat.mandatory is True
-    assert stat.repeat is True
+    assert stat.repeatable is True

@@ -14,7 +14,7 @@ def test_statement_initialized_with_just_one_field():
     assert shap.propertyID == "dcterms:creator"
     assert shap.prop_label is None
     assert shap.mandatory is False
-    assert shap.repeat is False
+    assert shap.repeatable is False
     assert shap.value_node_type is None
     assert shap.value_datatype is None
     assert shap.value_constraint is None
@@ -32,7 +32,7 @@ def test_statement_initialized_without_propid():
     assert shap.propertyID is None
     assert shap.prop_label is None
     assert shap.mandatory is False
-    assert shap.repeat is False
+    assert shap.repeatable is False
     assert shap.value_node_type is None
     assert shap.value_datatype is None
     assert shap.value_constraint is None

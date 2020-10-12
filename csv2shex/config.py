@@ -11,7 +11,7 @@ statement_elements:
 - propertyID
 - prop_label
 - mandatory
-- repeat
+- repeatable
 - value_node_type
 - value_datatype
 - value_constraint

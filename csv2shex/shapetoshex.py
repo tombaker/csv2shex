@@ -68,7 +68,7 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
         id=statement.prop_label,
         predicate=IRIREF(statement.propertyID),
         min=1 if statement.mandatory else 0,
-        max=-1 if statement.repeat else 1,
+        max=-1 if statement.repeatable else 1,
         valueExpr=statementtonodeconstraint(statement),
     )
     if shape.expression:

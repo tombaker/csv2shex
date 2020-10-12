@@ -43,7 +43,7 @@ class Statement:
           If True, use of the property is mandatory in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
-        repeat (str, optional):
+        repeatable (str, optional):
           If True, property may be used multiple times in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
@@ -71,7 +71,7 @@ class Statement:
     propertyID: str = None
     prop_label: str = None
     mandatory: bool = False
-    repeat: bool = False
+    repeatable: bool = False
     value_node_type: str = None
     value_datatype: str = None
     value_constraint: str = None
@@ -102,11 +102,11 @@ class Statement:
         return True
 
     def _normalize_mandrepeat(self):
-        """Elements 'mandatory' or 'repeat' are True if any value provided."""
+        """Elements 'mandatory' or 'repeatable' are True if any value provided."""
         if self.mandatory:
             self.mandatory = True
-        if self.repeat:
-            self.repeat = True
+        if self.repeatable:
+            self.repeatable = True
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
