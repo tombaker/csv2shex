@@ -2,8 +2,8 @@
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-# Required
-version: 1
+# Required (default is 1 ("v1") - version of _config file_ - see v2 above)
+version: 2
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
