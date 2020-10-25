@@ -1,4 +1,4 @@
-prop_id
-dct:title
-dct:subject
-dct:date
+prop_id,
+dct:title,
+dct:subject,
+dct:date,
