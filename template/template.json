@@ -1,0 +1,43 @@
+{ "type": "Schema",
+  "shapes": [
+    { "type": "Shape",
+      "id": "[dcap:shapeID]",
+      "expression": {
+        "type": "EachOf",
+        "expressions": [ 
+              {
+                "type": "TripleConstraint",
+                "predicate": "[dcap:propertyID]",
+                "valueExpr": {
+                  "type": "NodeConstraint",
+                  "nodeKind": "[dcap:valueNodeType]"
+                },
+                "min": "[dcap:mandatory]",
+                "max": "[dcap:repeatable]"
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "[dcap:propertyID]",
+                "value": {
+                  "type": "NodeConstraint",
+                  "datatype": "[valueDataType]"
+                  }
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "[dcap:propertyID]",
+                "value": {
+                  "type": "IriStemRange",
+                  "stem": "[if [dcap:valueConstraintType] is IRIStem, then value from [dcap:valueConstraint]]"
+                  }
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "[dcap:propertyID]",
+                "valueExpr": "[dcap:valueShape]"
+              }
+        ]
+      } 
+    } 
+  ]
+}

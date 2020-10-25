@@ -1,0 +1,43 @@
+{ "type": "Schema",
+  "shapes": [
+    { "type": "Shape",
+      "id": "http://example.org/myshape",
+      "expression": {
+        "type": "EachOf",
+        "expressions": [ 
+              {
+                "type": "TripleConstraint",
+                "predicate": "http://purl.org/dc/terms/title",
+                "valueExpr": {
+                  "type": "NodeConstraint",
+                  "nodeKind": "literal"
+                },
+                "min": "1",
+                "max": "-1"
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "http://purl.org/dc/terms/description",
+                "value": {
+                  "type": "NodeConstraint",
+                  "datatype": "xsd:string"
+                  }
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "http://purl.org/dc/terms/subject",
+                "value": {
+                  "type": "IriStemRange",
+                  "stem": "http://lod.nal.usda.gov/nalt/"
+                  }
+              }, 
+              {
+                "type": "TripleConstraint",
+                "predicate": "http://purl.org/dc/terms/creator",
+                "valueExpr": "http://example.org/mycreator"
+              }
+        ]
+      } 
+    } 
+  ]
+}
