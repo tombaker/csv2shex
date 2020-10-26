@@ -105,29 +105,29 @@ def test_shexj_from_text():
     assert shex.shapes[0].expression.expressions[3].valueExpr == "http://example.org/mycreator"
 
 
-#def test_shexj_from_file():
-#    """ Load ShEx JSON from internal file"""
-#    shex_file = os.path.join(
-#        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
-#    )
-#    shex = SchemaLoader().load(shex_file)
-#    assert isinstance(shex.shapes[0].expression, EachOf)
-#    assert (
-#        TripleConstraint(predicate=DCTERMS.title)
-#        in shex.shapes[0].expression.expressions
-#    )
-#
-#
-#def test_shexj_from_json():
-#    """ Load ShEx JSON from JSON file """
-#    shex = cast(
-#        ShExJ.Schema,
-#        loader.load(
-#            os.path.join(EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"),
-#            ShExJ,
-#        ),
-#    )
-#    assert isinstance(shex.shapes[0].expression, EachOf)
+def test_shexj_from_file():
+    """ Load ShEx JSON from internal file"""
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
+    )
+    shex = SchemaLoader().load(shex_file)
+    assert isinstance(shex.shapes[0].expression, EachOf)
+    assert (
+        TripleConstraint(predicate="http://purl.org/dc/terms/creator", valueExpr="http://example.org/mycreator")
+        in shex.shapes[0].expression.expressions
+    )
+
+
+def test_shexj_from_json():
+    """ Load ShEx JSON from JSON file """
+    shex = cast(
+        ShExJ.Schema,
+        loader.load(
+            os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"),
+            ShExJ,
+        ),
+    )
+    assert isinstance(shex.shapes[0].expression, EachOf)
 #    assert (
 #        TripleConstraint(predicate=DCTERMS.title)
 #        in shex.shapes[0].expression.expressions
