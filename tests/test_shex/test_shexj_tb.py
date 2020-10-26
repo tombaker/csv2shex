@@ -176,48 +176,55 @@ def test_shexj_from_json():
 
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
-    shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
-    )
+    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj")
     shex = SchemaLoader().load(shex_file)
-    assert ("""<http://example.org/myshape> {
+    assert (
+        """<http://example.org/myshape> {
     (  <http://purl.org/dc/terms/title> LITERAL + ;
        <http://purl.org/dc/terms/description> <http://www.w3.org/2001/XMLSchema#string> ;
        <http://purl.org/dc/terms/subject> [ <http://lod.nal.usda.gov/nalt/>~ ] ;
        <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
     )
-}""" 
+}"""
         == (str(ShExC(shex))).strip()
     )
 
 
 def test_python_to_shex():
-   """ Generate a new ShEx Schema from Python """
-   schema = Schema(
-       shapes=[
-           Shape(
-               id="http://example.org/myshape",
-               expression=EachOf(
-                   expressions=[
-                       TripleConstraint(predicate=DCTERMS.title, valueExpr=NodeConstraint(nodeKind="literal"), min=1, max=-1),
-                       TripleConstraint(predicate=DCTERMS.subject),
-                       TripleConstraint(predicate=DCTERMS.date),
-                       TripleConstraint(predicate=DCTERMS.creator, valueExpr="http://example.org/mycreator"),
-                   ]
-               ),
-           )
-       ]
-   )
-   assert (
-       """<http://example.org/myshape> {
+    """ Generate a new ShEx Schema from Python """
+    schema = Schema(
+        shapes=[
+            Shape(
+                id="http://example.org/myshape",
+                expression=EachOf(
+                    expressions=[
+                        TripleConstraint(
+                            predicate=DCTERMS.title,
+                            valueExpr=NodeConstraint(nodeKind="literal"),
+                            min=1,
+                            max=-1,
+                        ),
+                        TripleConstraint(predicate=DCTERMS.description, valueExpr=NodeConstraint(datatype="http://www.w3.org/2001/XMLSchema#string")),
+                        TripleConstraint(predicate=DCTERMS.subject),
+                        TripleConstraint(
+                            predicate=DCTERMS.creator,
+                            valueExpr="http://example.org/mycreator",
+                        ),
+                    ]
+                ),
+            )
+        ]
+    )
+    assert (
+        """<http://example.org/myshape> {
     (  <http://purl.org/dc/terms/title> LITERAL + ;
+       <http://purl.org/dc/terms/description> <http://www.w3.org/2001/XMLSchema#string> ;
        <http://purl.org/dc/terms/subject> . ;
-       <http://purl.org/dc/terms/date> . ;
        <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
     )
 }"""
-       == (str(ShExC(schema))).strip()
-   )
+        == (str(ShExC(schema))).strip()
+    )
 
 
 # def test_is_valid_shex_good():
