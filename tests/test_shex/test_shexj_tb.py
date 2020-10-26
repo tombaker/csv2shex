@@ -237,27 +237,47 @@ def test_python_to_shex():
     )
 
 
-# def test_is_valid_shex_good():
-#    """ Determine whether the particular bit of ShEx is valid """
-#    schema = Schema(
-#        shapes=[
-#            Shape(
-#                id="default",
-#                expression=EachOf(
-#                    expressions=[
-#                        TripleConstraint(predicate=DCTERMS.title),
-#                        TripleConstraint(predicate=DCTERMS.subject),
-#                        TripleConstraint(predicate=DCTERMS.date),
-#                    ]
-#                ),
-#            )
-#        ]
-#    )
-#    log = StringIO()
-#    rval = is_valid(schema, log)
-#    assert rval, log.getvalue()
-#
-#
+def test_is_valid_shex_good():
+    """Determine whether the particular bit of ShEx is valid.
+
+    Is this testing whether it is valid as ShEx? In what sense?"""
+    schema = Schema(
+        shapes=[
+            Shape(
+                id="http://example.org/myshape",
+                expression=EachOf(
+                    expressions=[
+                        TripleConstraint(
+                            predicate=DCTERMS.title,
+                            valueExpr=NodeConstraint(nodeKind="literal"),
+                            min=1,
+                            max=-1,
+                        ),
+                        TripleConstraint(
+                            predicate=DCTERMS.description,
+                            valueExpr=NodeConstraint(
+                                datatype="http://www.w3.org/2001/XMLSchema#string"
+                            ),
+                        ),
+                        TripleConstraint(
+                            predicate=DCTERMS.subject,
+                            valueExpr=NodeConstraint(
+                                values=[IriStem(stem="http://lod.nal.usda.gov/nalt/")]
+                            ),
+                        ),
+                        TripleConstraint(
+                            predicate=DCTERMS.creator,
+                            valueExpr="http://example.org/mycreator",
+                        ),
+                    ]
+                ),
+            )
+        ]
+    )
+    log = StringIO()
+    rval = is_valid(schema, log)
+    assert rval, log.getvalue()
+
 # @pytest.mark.skip
 # def test_is_valid_shex_error():
 #    """ Determine whether the particular bit of ShEx is valid """
