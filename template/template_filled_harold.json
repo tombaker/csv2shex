@@ -1,0 +1,27 @@
+{
+   "@context": "http://www.w3.org/ns/shex.jsonld",
+   "type": "Schema",
+   "shapes": [
+      {
+         "type": "Shape",
+         "id": "default",
+         "expression": {
+            "type": "EachOf",
+            "expressions": [
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/title"
+               },
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/subject"
+               },
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/date"
+               }
+            ]
+         }
+      }
+   ]
+}

@@ -1,13 +1,10 @@
-{ 
-  "@context": "http://www.w3.org/ns/shex.jsonld",
-  "type": "Schema",
+{ "type": "Schema",
   "shapes": [
-      { 
-         "type": "Shape",
-         "id": "http://example.org/myshape",
-         "expression": {
-            "type": "EachOf",
-            "expressions": [ 
+    { "type": "Shape",
+      "id": "http://example.org/myshape",
+      "expression": {
+        "type": "EachOf",
+        "expressions": [ 
               {
                 "type": "TripleConstraint",
                 "predicate": "http://purl.org/dc/terms/title",
@@ -21,23 +18,18 @@
               {
                 "type": "TripleConstraint",
                 "predicate": "http://purl.org/dc/terms/description",
-                "valueExpr": {
+                "value": {
                   "type": "NodeConstraint",
-                  "datatype": "http://www.w3.org/2001/XMLSchema#string"
-                }
+                  "datatype": "xsd:string"
+                  }
               }, 
               {
                 "type": "TripleConstraint",
                 "predicate": "http://purl.org/dc/terms/subject",
-                "valueExpr": {
-                  "type": "NodeConstraint",
-                  "values": [ 
-                     {
-                        "type": "IriStem",
-                        "stem": "http://lod.nal.usda.gov/nalt/"
-                     }
-                  ]
-                }
+                "value": {
+                  "type": "IriStemRange",
+                  "stem": "http://lod.nal.usda.gov/nalt/"
+                  }
               }, 
               {
                 "type": "TripleConstraint",

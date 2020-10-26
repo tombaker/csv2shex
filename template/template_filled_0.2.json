@@ -1,3 +1,4 @@
+
 { 
   "@context": "http://www.w3.org/ns/shex.jsonld",
   "type": "Schema",
@@ -21,23 +22,18 @@
               {
                 "type": "TripleConstraint",
                 "predicate": "http://purl.org/dc/terms/description",
-                "valueExpr": {
+                "value": {
                   "type": "NodeConstraint",
                   "datatype": "http://www.w3.org/2001/XMLSchema#string"
-                }
+                  }
               }, 
               {
                 "type": "TripleConstraint",
                 "predicate": "http://purl.org/dc/terms/subject",
-                "valueExpr": {
-                  "type": "NodeConstraint",
-                  "values": [ 
-                     {
-                        "type": "IriStem",
-                        "stem": "http://lod.nal.usda.gov/nalt/"
-                     }
-                  ]
-                }
+                "value": {
+                  "type": "IriStemRange",
+                  "stem": "http://lod.nal.usda.gov/nalt/"
+                  }
               }, 
               {
                 "type": "TripleConstraint",
