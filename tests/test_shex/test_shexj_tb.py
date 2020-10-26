@@ -105,124 +105,124 @@ def test_shexj_from_text():
     assert shex.shapes[0].expression.expressions[3].valueExpr == "http://example.org/mycreator"
 
 
-def test_shexj_from_file():
-    """ Load ShEx JSON from internal file"""
-    shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
-    )
-    shex = SchemaLoader().load(shex_file)
-    assert isinstance(shex.shapes[0].expression, EachOf)
-    assert (
-        TripleConstraint(predicate=DCTERMS.title)
-        in shex.shapes[0].expression.expressions
-    )
-
-
-def test_shexj_from_json():
-    """ Load ShEx JSON from JSON file """
-    shex = cast(
-        ShExJ.Schema,
-        loader.load(
-            os.path.join(EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"),
-            ShExJ,
-        ),
-    )
-    assert isinstance(shex.shapes[0].expression, EachOf)
-    assert (
-        TripleConstraint(predicate=DCTERMS.title)
-        in shex.shapes[0].expression.expressions
-    )
-
-
-def test_emit_shexc():
-    """ Generate ShExC from internal representation """
-    shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
-    )
-    shex = SchemaLoader().load(shex_file)
-    assert (
-        """<default> {
-    (  <http://purl.org/dc/terms/title> . ;
-       <http://purl.org/dc/terms/subject> . ;
-       <http://purl.org/dc/terms/date> .
-    )
-}"""
-        == (str(ShExC(shex))).strip()
-    )
-
-
-def test_python_to_shex():
-    """ Generate a new ShEx Schema from Python """
-    schema = Schema(
-        shapes=[
-            Shape(
-                id="default",
-                expression=EachOf(
-                    expressions=[
-                        TripleConstraint(predicate=DCTERMS.title),
-                        TripleConstraint(predicate=DCTERMS.subject),
-                        TripleConstraint(predicate=DCTERMS.date),
-                    ]
-                ),
-            )
-        ]
-    )
-    assert (
-        """<default> {
-    (  <http://purl.org/dc/terms/title> . ;
-       <http://purl.org/dc/terms/subject> . ;
-       <http://purl.org/dc/terms/date> .
-    )
-}"""
-        == (str(ShExC(schema))).strip()
-    )
-
-
-def test_is_valid_shex_good():
-    """ Determine whether the particular bit of ShEx is valid """
-    schema = Schema(
-        shapes=[
-            Shape(
-                id="default",
-                expression=EachOf(
-                    expressions=[
-                        TripleConstraint(predicate=DCTERMS.title),
-                        TripleConstraint(predicate=DCTERMS.subject),
-                        TripleConstraint(predicate=DCTERMS.date),
-                    ]
-                ),
-            )
-        ]
-    )
-    log = StringIO()
-    rval = is_valid(schema, log)
-    assert rval, log.getvalue()
-
-
-@pytest.mark.skip
-def test_is_valid_shex_error():
-    """ Determine whether the particular bit of ShEx is valid """
-
-    # If this only has one expression, it errors out while being built
-    # There IS a way to turn checking off, but will have to find it
-    schema = Schema(
-        shapes=[
-            Shape(
-                id="default",
-                expression=EachOf(
-                    expressions=[
-                        TripleConstraint(predicate=DCTERMS.title),
-                        TripleConstraint(predicate=DCTERMS.subject),
-                    ]
-                ),
-            )
-        ]
-    )
-
-    # This should turn this into an invalid entry.
-    # Not certain why it still isn't caught in the log
-    schema.shapes[0].expression.expressions.pop()
-    log = StringIO()
-    rval = is_valid(schema, log)
-    print(log.getvalue())
-    assert not rval
+#def test_shexj_from_file():
+#    """ Load ShEx JSON from internal file"""
+#    shex_file = os.path.join(
+#        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
+#    )
+#    shex = SchemaLoader().load(shex_file)
+#    assert isinstance(shex.shapes[0].expression, EachOf)
+#    assert (
+#        TripleConstraint(predicate=DCTERMS.title)
+#        in shex.shapes[0].expression.expressions
+#    )
+#
+#
+#def test_shexj_from_json():
+#    """ Load ShEx JSON from JSON file """
+#    shex = cast(
+#        ShExJ.Schema,
+#        loader.load(
+#            os.path.join(EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"),
+#            ShExJ,
+#        ),
+#    )
+#    assert isinstance(shex.shapes[0].expression, EachOf)
+#    assert (
+#        TripleConstraint(predicate=DCTERMS.title)
+#        in shex.shapes[0].expression.expressions
+#    )
+#
+#
+#def test_emit_shexc():
+#    """ Generate ShExC from internal representation """
+#    shex_file = os.path.join(
+#        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+#    )
+#    shex = SchemaLoader().load(shex_file)
+#    assert (
+#        """<default> {
+#    (  <http://purl.org/dc/terms/title> . ;
+#       <http://purl.org/dc/terms/subject> . ;
+#       <http://purl.org/dc/terms/date> .
+#    )
+#}"""
+#        == (str(ShExC(shex))).strip()
+#    )
+#
+#
+#def test_python_to_shex():
+#    """ Generate a new ShEx Schema from Python """
+#    schema = Schema(
+#        shapes=[
+#            Shape(
+#                id="default",
+#                expression=EachOf(
+#                    expressions=[
+#                        TripleConstraint(predicate=DCTERMS.title),
+#                        TripleConstraint(predicate=DCTERMS.subject),
+#                        TripleConstraint(predicate=DCTERMS.date),
+#                    ]
+#                ),
+#            )
+#        ]
+#    )
+#    assert (
+#        """<default> {
+#    (  <http://purl.org/dc/terms/title> . ;
+#       <http://purl.org/dc/terms/subject> . ;
+#       <http://purl.org/dc/terms/date> .
+#    )
+#}"""
+#        == (str(ShExC(schema))).strip()
+#    )
+#
+#
+#def test_is_valid_shex_good():
+#    """ Determine whether the particular bit of ShEx is valid """
+#    schema = Schema(
+#        shapes=[
+#            Shape(
+#                id="default",
+#                expression=EachOf(
+#                    expressions=[
+#                        TripleConstraint(predicate=DCTERMS.title),
+#                        TripleConstraint(predicate=DCTERMS.subject),
+#                        TripleConstraint(predicate=DCTERMS.date),
+#                    ]
+#                ),
+#            )
+#        ]
+#    )
+#    log = StringIO()
+#    rval = is_valid(schema, log)
+#    assert rval, log.getvalue()
+#
+#
+#@pytest.mark.skip
+#def test_is_valid_shex_error():
+#    """ Determine whether the particular bit of ShEx is valid """
+#
+#    # If this only has one expression, it errors out while being built
+#    # There IS a way to turn checking off, but will have to find it
+#    schema = Schema(
+#        shapes=[
+#            Shape(
+#                id="default",
+#                expression=EachOf(
+#                    expressions=[
+#                        TripleConstraint(predicate=DCTERMS.title),
+#                        TripleConstraint(predicate=DCTERMS.subject),
+#                    ]
+#                ),
+#            )
+#        ]
+#    )
+#
+#    # This should turn this into an invalid entry.
+#    # Not certain why it still isn't caught in the log
+#    schema.shapes[0].expression.expressions.pop()
+#    log = StringIO()
+#    rval = is_valid(schema, log)
+#    print(log.getvalue())
+#    assert not rval
