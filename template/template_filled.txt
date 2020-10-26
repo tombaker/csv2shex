@@ -5,26 +5,7 @@ DCAP
         Statement
             propertyID: dc:title
             mandatory: True
-            repeatable: True
-            valueNodeType: literal
-        Statement
-            propertyID: dc:description
-            valueDataType: xsd:string
-        Statement
-            propertyID: dc:subject
-            valueConstraint: http://id.loc.gov/
-            valueConstraintType: IriStem
-        Statement
-            propertyID: dc:creator
-            valueShape: :creator
-DCAP
-    Shape
-        shapeID: :book
-        start: True
-        Statement
-            propertyID: dc:title
-            mandatory: True
-            repeatable: True
+            repeatable: False
             valueNodeType: literal
         Statement
             propertyID: dc:description
