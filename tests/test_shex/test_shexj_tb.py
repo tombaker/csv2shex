@@ -199,9 +199,10 @@ def test_python_to_shex():
                id="http://example.org/myshape",
                expression=EachOf(
                    expressions=[
-                       TripleConstraint(predicate=DCTERMS.title),
+                       TripleConstraint(predicate=DCTERMS.title, valueExpr=NodeConstraint(nodeKind="literal"), min=1, max=-1),
                        TripleConstraint(predicate=DCTERMS.subject),
                        TripleConstraint(predicate=DCTERMS.date),
+                       TripleConstraint(predicate=DCTERMS.creator, valueExpr="http://example.org/mycreator"),
                    ]
                ),
            )
@@ -209,9 +210,10 @@ def test_python_to_shex():
    )
    assert (
        """<http://example.org/myshape> {
-    (  <http://purl.org/dc/terms/title> . ;
+    (  <http://purl.org/dc/terms/title> LITERAL + ;
        <http://purl.org/dc/terms/subject> . ;
-       <http://purl.org/dc/terms/date> .
+       <http://purl.org/dc/terms/date> . ;
+       <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
     )
 }"""
        == (str(ShExC(schema))).strip()
