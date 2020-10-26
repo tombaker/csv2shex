@@ -82,38 +82,64 @@ def test_shexj_from_text():
     assert isinstance(shex.shapes[0].expression.expressions[0], TripleConstraint)
 
     assert shex.shapes[0].expression.expressions[0].type == "TripleConstraint"
-    assert shex.shapes[0].expression.expressions[0].predicate == "http://purl.org/dc/terms/title"
+    assert (
+        shex.shapes[0].expression.expressions[0].predicate
+        == "http://purl.org/dc/terms/title"
+    )
     assert shex.shapes[0].expression.expressions[0].min == 1
     assert shex.shapes[0].expression.expressions[0].max == -1
-    assert isinstance(shex.shapes[0].expression.expressions[0].valueExpr, NodeConstraint)
+    assert isinstance(
+        shex.shapes[0].expression.expressions[0].valueExpr, NodeConstraint
+    )
     assert shex.shapes[0].expression.expressions[0].valueExpr.type == "NodeConstraint"
     assert shex.shapes[0].expression.expressions[0].valueExpr.nodeKind == "literal"
 
     assert shex.shapes[0].expression.expressions[1].type == "TripleConstraint"
-    assert shex.shapes[0].expression.expressions[1].predicate == "http://purl.org/dc/terms/description"
+    assert (
+        shex.shapes[0].expression.expressions[1].predicate
+        == "http://purl.org/dc/terms/description"
+    )
     assert shex.shapes[0].expression.expressions[1].valueExpr.type == "NodeConstraint"
-    assert shex.shapes[0].expression.expressions[1].valueExpr.datatype == "http://www.w3.org/2001/XMLSchema#string"
+    assert (
+        shex.shapes[0].expression.expressions[1].valueExpr.datatype
+        == "http://www.w3.org/2001/XMLSchema#string"
+    )
 
     assert shex.shapes[0].expression.expressions[2].type == "TripleConstraint"
-    assert shex.shapes[0].expression.expressions[2].predicate == "http://purl.org/dc/terms/subject"
+    assert (
+        shex.shapes[0].expression.expressions[2].predicate
+        == "http://purl.org/dc/terms/subject"
+    )
     assert shex.shapes[0].expression.expressions[2].valueExpr.type == "NodeConstraint"
-    assert shex.shapes[0].expression.expressions[2].valueExpr.values[0].type == "IriStem"
-    assert shex.shapes[0].expression.expressions[2].valueExpr.values[0].stem == "http://lod.nal.usda.gov/nalt/"
+    assert (
+        shex.shapes[0].expression.expressions[2].valueExpr.values[0].type == "IriStem"
+    )
+    assert (
+        shex.shapes[0].expression.expressions[2].valueExpr.values[0].stem
+        == "http://lod.nal.usda.gov/nalt/"
+    )
 
     assert shex.shapes[0].expression.expressions[3].type == "TripleConstraint"
-    assert shex.shapes[0].expression.expressions[3].predicate == "http://purl.org/dc/terms/creator"
-    assert shex.shapes[0].expression.expressions[3].valueExpr == "http://example.org/mycreator"
+    assert (
+        shex.shapes[0].expression.expressions[3].predicate
+        == "http://purl.org/dc/terms/creator"
+    )
+    assert (
+        shex.shapes[0].expression.expressions[3].valueExpr
+        == "http://example.org/mycreator"
+    )
 
 
 def test_shexj_from_file():
     """ Load ShEx JSON from internal file"""
-    shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
-    )
+    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj")
     shex = SchemaLoader().load(shex_file)
     assert isinstance(shex.shapes[0].expression, EachOf)
     assert (
-        TripleConstraint(predicate="http://purl.org/dc/terms/creator", valueExpr="http://example.org/mycreator")
+        TripleConstraint(
+            predicate="http://purl.org/dc/terms/creator",
+            valueExpr="http://example.org/mycreator",
+        )
         in shex.shapes[0].expression.expressions
     )
 
@@ -128,13 +154,15 @@ def test_shexj_from_json():
         ),
     )
     assert isinstance(shex.shapes[0].expression, EachOf)
+
+
 #    assert (
 #        TripleConstraint(predicate=DCTERMS.title)
 #        in shex.shapes[0].expression.expressions
 #    )
 #
 #
-#def test_emit_shexc():
+# def test_emit_shexc():
 #    """ Generate ShExC from internal representation """
 #    shex_file = os.path.join(
 #        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
@@ -146,12 +174,12 @@ def test_shexj_from_json():
 #       <http://purl.org/dc/terms/subject> . ;
 #       <http://purl.org/dc/terms/date> .
 #    )
-#}"""
+# }"""
 #        == (str(ShExC(shex))).strip()
 #    )
 #
 #
-#def test_python_to_shex():
+# def test_python_to_shex():
 #    """ Generate a new ShEx Schema from Python """
 #    schema = Schema(
 #        shapes=[
@@ -173,12 +201,12 @@ def test_shexj_from_json():
 #       <http://purl.org/dc/terms/subject> . ;
 #       <http://purl.org/dc/terms/date> .
 #    )
-#}"""
+# }"""
 #        == (str(ShExC(schema))).strip()
 #    )
 #
 #
-#def test_is_valid_shex_good():
+# def test_is_valid_shex_good():
 #    """ Determine whether the particular bit of ShEx is valid """
 #    schema = Schema(
 #        shapes=[
@@ -199,8 +227,8 @@ def test_shexj_from_json():
 #    assert rval, log.getvalue()
 #
 #
-#@pytest.mark.skip
-#def test_is_valid_shex_error():
+# @pytest.mark.skip
+# def test_is_valid_shex_error():
 #    """ Determine whether the particular bit of ShEx is valid """
 #
 #    # If this only has one expression, it errors out while being built
