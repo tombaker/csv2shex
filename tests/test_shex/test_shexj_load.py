@@ -71,25 +71,15 @@ def test_shexj_from_text():
     }
     """
     shex = SchemaLoader().loads(shex_json)
-    assert isinstance(
-        shex, ShExJ.Schema
-    )
-    assert isinstance(
-        shex.shapes[0], Shape
-    )
+    assert isinstance(shex, ShExJ.Schema)
+    assert isinstance(shex.shapes[0], Shape)
     assert shex.shapes[0].type == "Shape"
     assert shex.shapes[0].id == "http://example.org/myshape"
 
     assert shex.shapes[0].expression.type == "EachOf"
-    assert isinstance(
-        shex.shapes[0].expression, EachOf
-    )
-    assert isinstance(
-        shex.shapes[0].expression.expressions, JSGArray
-    )
-    assert isinstance(
-        shex.shapes[0].expression.expressions[0], TripleConstraint
-    )
+    assert isinstance(shex.shapes[0].expression, EachOf)
+    assert isinstance(shex.shapes[0].expression.expressions, JSGArray)
+    assert isinstance(shex.shapes[0].expression.expressions[0], TripleConstraint)
 
     assert shex.shapes[0].expression.expressions[0].type == "TripleConstraint"
     assert (
@@ -198,5 +188,3 @@ def test_emit_shexc():
 }"""
         == (str(ShExC(shex))).strip()
     )
-
-
