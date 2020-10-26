@@ -204,8 +204,18 @@ def test_python_to_shex():
                             min=1,
                             max=-1,
                         ),
-                        TripleConstraint(predicate=DCTERMS.description, valueExpr=NodeConstraint(datatype="http://www.w3.org/2001/XMLSchema#string")),
-                        TripleConstraint(predicate=DCTERMS.subject),
+                        TripleConstraint(
+                            predicate=DCTERMS.description,
+                            valueExpr=NodeConstraint(
+                                datatype="http://www.w3.org/2001/XMLSchema#string"
+                            ),
+                        ),
+                        TripleConstraint(
+                            predicate=DCTERMS.subject,
+                            valueExpr=NodeConstraint(
+                                values=[IriStem(stem="http://lod.nal.usda.gov/nalt/")]
+                            ),
+                        ),
                         TripleConstraint(
                             predicate=DCTERMS.creator,
                             valueExpr="http://example.org/mycreator",
@@ -219,7 +229,7 @@ def test_python_to_shex():
         """<http://example.org/myshape> {
     (  <http://purl.org/dc/terms/title> LITERAL + ;
        <http://purl.org/dc/terms/description> <http://www.w3.org/2001/XMLSchema#string> ;
-       <http://purl.org/dc/terms/subject> . ;
+       <http://purl.org/dc/terms/subject> [ <http://lod.nal.usda.gov/nalt/>~ ] ;
        <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
     )
 }"""
