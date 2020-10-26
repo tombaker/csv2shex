@@ -191,36 +191,33 @@ def test_emit_shexc():
     )
 
 
-#
-#
-#
-# def test_python_to_shex():
-#    """ Generate a new ShEx Schema from Python """
-#    schema = Schema(
-#        shapes=[
-#            Shape(
-#                id="default",
-#                expression=EachOf(
-#                    expressions=[
-#                        TripleConstraint(predicate=DCTERMS.title),
-#                        TripleConstraint(predicate=DCTERMS.subject),
-#                        TripleConstraint(predicate=DCTERMS.date),
-#                    ]
-#                ),
-#            )
-#        ]
-#    )
-#    assert (
-#        """<default> {
-#    (  <http://purl.org/dc/terms/title> . ;
-#       <http://purl.org/dc/terms/subject> . ;
-#       <http://purl.org/dc/terms/date> .
-#    )
-# }"""
-#        == (str(ShExC(schema))).strip()
-#    )
-#
-#
+def test_python_to_shex():
+   """ Generate a new ShEx Schema from Python """
+   schema = Schema(
+       shapes=[
+           Shape(
+               id="http://example.org/myshape",
+               expression=EachOf(
+                   expressions=[
+                       TripleConstraint(predicate=DCTERMS.title),
+                       TripleConstraint(predicate=DCTERMS.subject),
+                       TripleConstraint(predicate=DCTERMS.date),
+                   ]
+               ),
+           )
+       ]
+   )
+   assert (
+       """<http://example.org/myshape> {
+    (  <http://purl.org/dc/terms/title> . ;
+       <http://purl.org/dc/terms/subject> . ;
+       <http://purl.org/dc/terms/date> .
+    )
+}"""
+       == (str(ShExC(schema))).strip()
+   )
+
+
 # def test_is_valid_shex_good():
 #    """ Determine whether the particular bit of ShEx is valid """
 #    schema = Schema(
