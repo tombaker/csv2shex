@@ -4,7 +4,7 @@ from typing import cast
 
 from ShExJSG import ShExC, ShExJ
 from ShExJSG.SchemaWithContext import Schema
-from ShExJSG.ShExJ import Shape, EachOf, TripleConstraint, NodeConstraint
+from ShExJSG.ShExJ import Shape, EachOf, TripleConstraint, NodeConstraint, IriStem
 from pyjsg.jsglib import loader
 from pyjsg.jsglib.loader import is_valid, StringIO
 from pyshex.utils.schema_loader import SchemaLoader
@@ -142,6 +142,15 @@ def test_shexj_from_file():
         )
         in shex.shapes[0].expression.expressions
     )
+    assert (
+        TripleConstraint(
+            predicate="http://purl.org/dc/terms/subject",
+            valueExpr=NodeConstraint(
+                values=[IriStem(stem="http://lod.nal.usda.gov/nalt/")]
+            ),
+        )
+        in shex.shapes[0].expression.expressions
+    )
 
 
 def test_shexj_from_json():
@@ -154,29 +163,35 @@ def test_shexj_from_json():
         ),
     )
     assert isinstance(shex.shapes[0].expression, EachOf)
+    assert (
+        TripleConstraint(
+            predicate="http://purl.org/dc/terms/subject",
+            valueExpr=NodeConstraint(
+                values=[IriStem(stem="http://lod.nal.usda.gov/nalt/")]
+            ),
+        )
+        in shex.shapes[0].expression.expressions
+    )
 
 
-#    assert (
-#        TripleConstraint(predicate=DCTERMS.title)
-#        in shex.shapes[0].expression.expressions
-#    )
+def test_emit_shexc():
+    """ Generate ShExC from internal representation """
+    shex_file = os.path.join(
+        EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj"
+    )
+    shex = SchemaLoader().load(shex_file)
+    assert ("""<http://example.org/myshape> {
+    (  <http://purl.org/dc/terms/title> LITERAL + ;
+       <http://purl.org/dc/terms/description> <http://www.w3.org/2001/XMLSchema#string> ;
+       <http://purl.org/dc/terms/subject> [ <http://lod.nal.usda.gov/nalt/>~ ] ;
+       <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
+    )
+}""" 
+        == (str(ShExC(shex))).strip()
+    )
+
+
 #
-#
-# def test_emit_shexc():
-#    """ Generate ShExC from internal representation """
-#    shex_file = os.path.join(
-#        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
-#    )
-#    shex = SchemaLoader().load(shex_file)
-#    assert (
-#        """<default> {
-#    (  <http://purl.org/dc/terms/title> . ;
-#       <http://purl.org/dc/terms/subject> . ;
-#       <http://purl.org/dc/terms/date> .
-#    )
-# }"""
-#        == (str(ShExC(shex))).strip()
-#    )
 #
 #
 # def test_python_to_shex():
