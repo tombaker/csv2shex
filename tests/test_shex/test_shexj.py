@@ -116,10 +116,10 @@ def test_python_to_shex():
     )
     assert (
         """<default> {
-        (  <http://purl.org/dc/terms/title> . ;
-           <http://purl.org/dc/terms/subject> . ;
-           <http://purl.org/dc/terms/date> .
-        )
+    (  <http://purl.org/dc/terms/title> . ;
+       <http://purl.org/dc/terms/subject> . ;
+       <http://purl.org/dc/terms/date> .
+    )
 }"""
         == (str(ShExC(schema))).strip()
     )
