@@ -209,16 +209,16 @@ class Statement:
         return True
 
 
-def list_statements(csvrow_dicts_list_normalized=None):
+def list_statements(list_of_normalized_csvrows_as_dicts=None):
     """Return list of Statement objects from list of dicts ("CSV rows")."""
-    statements_list = []
-    shapeIDs = []
+    list_of_statements = []
+    list_of_shape_ids = []
     first_shape_encountered = True
     keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
     keys.remove("shapeID")
-    for row in csvrow_dicts_list_normalized:
+    for row in list_of_normalized_csvrows_as_dicts:
         if not row.get("propertyID") and row.get("shapeID"):
-            shapeIDs.append(row["shapeID"])
+            list_of_shape_ids.append(row["shapeID"])
             continue
 
         stat = Statement()
@@ -226,12 +226,12 @@ def list_statements(csvrow_dicts_list_normalized=None):
         if row.get("shapeID"):
             stat.shapeID = row["shapeID"]
         else:
-            if shapeIDs:
-                stat.shapeID = shapeIDs[-1]
-            elif not shapeIDs:
+            if list_of_shape_ids:
+                stat.shapeID = list_of_shape_ids[-1]
+            elif not list_of_shape_ids:
                 stat.shapeID = ":default"
-        if stat.shapeID not in shapeIDs:
-            shapeIDs.append(stat.shapeID)
+        if stat.shapeID not in list_of_shape_ids:
+            list_of_shape_ids.append(stat.shapeID)
         if first_shape_encountered:
             first_shape = stat.shapeID
             first_shape_encountered = False
@@ -242,5 +242,22 @@ def list_statements(csvrow_dicts_list_normalized=None):
             if key in row:
                 setattr(stat, key, row[key])
 
-        statements_list.append(stat)
-    return statements_list
+        list_of_statements.append(stat)
+    return list_of_statements
+
+
+#        # Checking for presence of propertyID will ensure that blank rows are ignored.
+#        if row.get("propertyID"):
+#            if first_statement_encountered:
+#                # Assign row value for shapeID, if available, to stat.shapeID.
+#                if row.get("shapeID"):
+#                    stat.shapeID = row["shapeID"]
+#                else:
+#                    stat.shapeID = ":default"
+#                list_of_shape_ids.append(stat.shapeID)
+#                first_statement_encountered = False
+#                first_shape_encountered = False
+#            # If shapeID is None, assign value most recently added to list_of_shape_ids.
+#            if not row.get("shapeID"):
+#                stat.shapeID = list_of_shape_ids[-1]
+
