@@ -1,22 +1,9 @@
 """Turn list of Statements into list of Shapes."""
 
+import pytest
 from csv2shex.mkshapes import list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
-LIST_OF_STATEMENT_OBJECTS = [
-    Statement(
-        start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-    ),
-    Statement(
-        start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-    ),
-    Statement(
-        start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
-    ),
-    Statement(
-        start=False, shapeID=":b", propertyID="foaf:name", valueNodeType="String"
-    ),
-]
 
 
 def test_listshapes_one_shape():
@@ -119,7 +106,21 @@ def test_listshapes_one_shape_and_shapeLabel():
 
 def test_listshapes_two_shapes():
     """Turn list of Statement objects into list with two Shapes."""
-    assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
+    list_of_statement_objects = [
+        Statement(
+            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
+        ),
+        Statement(
+            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
+        ),
+        Statement(
+            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
+        ),
+        Statement(
+            start=False, shapeID=":b", propertyID="foaf:name", valueNodeType="String"
+        ),
+    ]
+    assert list_shapes(list_of_statement_objects) == [
         Shape(
             start=True,
             shapeID=":a",
@@ -181,3 +182,71 @@ def test_listshapes_two_shapes():
             ],
         ),
     ]
+
+
+@pytest.mark.skip
+def test_listshapes_two_shapes_assign_start_to_first():
+    """First shape created is marked as the 'start' shape."""
+    list_of_statement_objects = [
+        Statement(shapeID=":a", shapeLabel="A Shape", propertyID=":prop1"),
+        Statement(shapeID=":a", shapeLabel="A Shape", propertyID=":prop2"),
+        Statement(shapeID=":b", shapeLabel="B Shape", propertyID=":prop3"),
+    ]
+    list_of_shape_objects = [
+        Shape(
+            start=True,
+            shapeID=":a",
+            shapeLabel="A Shape",
+            shape_statements=[
+                {
+                    "propertyID": ":prop1",
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+                {
+                    "propertyID": ":prop2",
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+            ],
+        ),
+        Shape(
+            start=False,
+            shapeID=":b",
+            shapeLabel="B Shape",
+            shape_statements=[
+                {
+                    "propertyID": ":prop3",
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                }
+            ],
+        ),
+    ]
+    #from pprint import pprint
+    #pprint(list_shapes(list_of_statement_objects))
+    #print("")
+    #pprint(list_of_shape_objects)
+    #assert False
+    assert list_shapes(list_of_statement_objects) == list_of_shape_objects

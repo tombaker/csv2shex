@@ -52,7 +52,9 @@ def list_shapes(statements_list):
     """Return list of Shape objects from list of Statement objects."""
     shapes_list = list()
     shap = Shape()
+    shap.start = True
     shape_statements_item = dict()
+    # breakpoint()
     for statement in statements_list:
         statement.normalize()
         statement.validate()

@@ -54,15 +54,19 @@ class Statement:
         valueDataType (str, optional):
           The specific datatype of the literal value,
           identified by a URI string or prefixed URI string,
-          typically from the XML Schema namespace.
+          typically from the XML Schema namespace. Default: None.
         valueConstraint (str, optional):
           Etc.
+          Default: None.
         valueConstraintType (str, optional):
           Etc.
+          Default: None.
         valueShape (str, optional):
           Etc.
+          Default: None.
         note (str, optional):
           Etc.
+          Default: None.
     """
 
     start: bool = False
@@ -225,7 +229,7 @@ def list_statements(csvrow_dicts_list_normalized=None):
             if shapeIDs:
                 stat.shapeID = shapeIDs[-1]
             elif not shapeIDs:
-                stat.shapeID = "@default"
+                stat.shapeID = ":default"
         if stat.shapeID not in shapeIDs:
             shapeIDs.append(stat.shapeID)
         if first_shape_encountered:
