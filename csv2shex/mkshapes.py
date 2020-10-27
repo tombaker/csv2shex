@@ -60,6 +60,7 @@ def list_shapes(list_of_statement_objects):
         statement.normalize()
         statement.validate()
         statement = asdict(statement)
+        # If shapeID in statement not same as for current shape, start a new shape.
         if shap.shapeID != statement["shapeID"]:
             # if shap.shapeID is not None
             if shap.shapeID:
