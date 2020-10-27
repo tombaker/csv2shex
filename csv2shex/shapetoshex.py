@@ -17,16 +17,22 @@ from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
 
 # Questions:
 # 1) is s.shapeID always present or do we have to supply it?
-#    A: According to mkstatements, will always be present.
+#    Normalized CSVStatement objects are always supposed to have 
+#    a 'shapeID' object. If 'shapeID' is None, 'shapeID' of previous 
+#    statement is assigned.
 #    Q: Current default is "default" - is there a conventional name to use?
 # 2) What is the shape label used for?
-#    A: probably nothing except documentation.
+#    A: shapeID is the shape identifier; shapeLabel is a human-readable label,
+#    only for documentation.
 #    Q: Should we embed it as a comment in ShEx?
 #    A: Yes - or optionally generate UI (form-building) statements (eg sh:group)?
+#    Let's ignore these annotations for now...
 # 3) Are multiple shape statements considered ShapeOr or ShapeAnd?
-#    We are assuming AND for the time being
+#    We are assuming AND for the time being.
+#    Q: Do not understand ShapeOr...
 # 4) We assign propertyLabel to statement.id, but but there may be labels
 #    that don't fit the id value space
+#    A: propertyID is the identifier; propertyLabel is just a human-readable label
 # 5) Need to define how "prefixed URI string" maps to IRIREF
 #    -- probably need a sub function
 #    A: Maybe use prefix declarations to expand all prefixed URI strings.
@@ -35,7 +41,7 @@ from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
 #       - as defined in a config file as per a CLI option?
 
 
-def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
+def statement_to_node_constraint(statement: CSVStatement) -> Optional[shapeExpr]:
     """ Generate a node constraint from statement if necessary """
     rval = None
 
@@ -58,7 +64,7 @@ def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
     return rval
 
 
-def addstatement(shape: Shape, statement: CSVStatement) -> None:
+def add_statement(shape: Shape, statement: CSVStatement) -> None:
     """ Interpret a CSV statement and add shapeExprit to shape """
     # typing.List[typing.Union["EachOf",
     #                          "OneOf",
@@ -69,7 +75,7 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
         predicate=IRIREF(statement.propertyID),
         min=1 if statement.mandatory else 0,
         max=-1 if statement.repeatable else 1,
-        valueExpr=statementtonodeconstraint(statement),
+        valueExpr=statement_to_node_constraint(statement),
     )
     if shape.expression:
         if isinstance(shape.expression, TripleConstraint):
@@ -80,7 +86,7 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
         shape.expression = ts
 
 
-def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
+def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
     """ Convert a list of csv2shape Shapes to a ShEx Schema """
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
@@ -94,5 +100,5 @@ def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
                 schema.start = shapeID
         shape = Shape(id=shapeID)
         for statement in s.shape_statements:
-            addstatement(shape, statement)
+            add_statement(shape, statement)
     return schema
