@@ -5,16 +5,16 @@ from csv2shex.mkstatements import Statement
 
 LIST_OF_STATEMENT_OBJECTS = [
     Statement(
-        start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
+        start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
     ),
     Statement(
-        start=True, shapeID="@a", propertyID="dct:subject", valueNodeType="URI"
+        start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
     ),
     Statement(
-        start=True, shapeID="@a", propertyID="dct:date", valueNodeType="String"
+        start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
     ),
     Statement(
-        start=False, shapeID="@b", propertyID="foaf:name", valueNodeType="String"
+        start=False, shapeID=":b", propertyID="foaf:name", valueNodeType="String"
     ),
 ]
 
@@ -23,16 +23,16 @@ def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
     as_input = [
         Statement(
-            start=True, shapeID="@a", propertyID="dct:creator", valueNodeType="URI"
+            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID="@a", propertyID="dct:date", valueNodeType="String"
+            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
         ),
     ]
     assert list_shapes(as_input) == [
         Shape(
             start=True,
-            shapeID="@a",
+            shapeID=":a",
             shapeLabel=None,
             shape_statements=[
                 {
@@ -69,14 +69,14 @@ def test_listshapes_one_shape_and_shapeLabel():
     as_input = [
         Statement(
             start=True,
-            shapeID="@a",
+            shapeID=":a",
             shapeLabel="Author",
             propertyID="dct:creator",
             valueNodeType="URI",
         ),
         Statement(
             start=True,
-            shapeID="@a",
+            shapeID=":a",
             shapeLabel="Author",
             propertyID="dct:date",
             valueNodeType="String",
@@ -85,7 +85,7 @@ def test_listshapes_one_shape_and_shapeLabel():
     assert list_shapes(as_input) == [
         Shape(
             start=True,
-            shapeID="@a",
+            shapeID=":a",
             shapeLabel="Author",
             shape_statements=[
                 {
@@ -122,7 +122,7 @@ def test_listshapes_two_shapes():
     assert list_shapes(LIST_OF_STATEMENT_OBJECTS) == [
         Shape(
             start=True,
-            shapeID="@a",
+            shapeID=":a",
             shape_statements=[
                 {
                     "propertyID": "dct:creator",
@@ -164,7 +164,7 @@ def test_listshapes_two_shapes():
         ),
         Shape(
             start=False,
-            shapeID="@b",
+            shapeID=":b",
             shape_statements=[
                 {
                     "propertyID": "foaf:name",
