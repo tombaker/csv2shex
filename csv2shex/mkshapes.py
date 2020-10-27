@@ -48,14 +48,15 @@ class Shape:
     shape_statements: List[Statement] = field(default_factory=list)
 
 
-def list_shapes(statements_list):
+def list_shapes(list_of_statement_objects):
     """Return list of Shape objects from list of Statement objects."""
     shapes_list = list()
     shap = Shape()
     shap.start = True
-    shape_statements_item = dict()
+    dict_of_shape_statements = dict()
     # breakpoint()
-    for statement in statements_list:
+    # For each statement in aggregated list of statements (from all shapes).
+    for statement in list_of_statement_objects:
         statement.normalize()
         statement.validate()
         statement = asdict(statement)
@@ -69,11 +70,11 @@ def list_shapes(statements_list):
             shap.shapeLabel = statement["shapeLabel"]
 
         for pvpair_key in STATEMENT_ELEMENTS:
-            shape_statements_item[pvpair_key] = statement[pvpair_key]
+            dict_of_shape_statements[pvpair_key] = statement[pvpair_key]
 
         # pylint: disable=no-member
         # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
-        shap.shape_statements.append(shape_statements_item)
-        shape_statements_item = dict()
+        shap.shape_statements.append(dict_of_shape_statements)
+        dict_of_shape_statements = dict()
     shapes_list.append(shap)
     return shapes_list
