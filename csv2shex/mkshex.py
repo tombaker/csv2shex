@@ -71,7 +71,7 @@ def add_statement(shape: Shape, statement: CSVStatement) -> None:
     #                          "TripleConstraint",
     #                          typing.Union[str, str]]]
     ts = TripleConstraint(
-        id=statement.propertyLabel,
+        id=statement.propertyLabel,     # what is this?
         predicate=IRIREF(statement.propertyID),
         min=1 if statement.mandatory else 0,
         max=-1 if statement.repeatable else 1,
