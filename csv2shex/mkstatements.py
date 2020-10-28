@@ -31,8 +31,6 @@ class Statement:
           a default identifier is assigned.
         shapeLabel (str, optional):
           Human-readable label for the shape. Default: None.
-        start (bool, assigned):
-          If True, shape is a "start" shape. Default: False.
         propertyID (str, mandatory):
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
@@ -69,7 +67,6 @@ class Statement:
           Default: None.
     """
 
-    start: bool = False
     shapeID: str = None
     shapeLabel: str = None
     propertyID: str = None
@@ -115,7 +112,8 @@ class Statement:
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
         propid = self.propertyID
-        self.propertyID = propid.lstrip("<").rstrip(">")
+        if propid:
+            self.propertyID = propid.lstrip("<").rstrip(">")
         return self
 
     def _normalize_uristem(self):
@@ -235,8 +233,6 @@ def list_statements(list_of_normalized_csvrows_as_dicts=None):
         if first_shape_encountered:
             first_shape = stat.shapeID
             first_shape_encountered = False
-        if stat.shapeID == first_shape:
-            stat.start = True
 
         for key in keys:
             if key in row:

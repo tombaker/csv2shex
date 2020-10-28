@@ -50,32 +50,51 @@ class Shape:
 
 def list_shapes(list_of_statement_objects):
     """Return list of Shape objects from list of Statement objects."""
-    shapes_list = list()
-    shap = Shape()
-    shap.start = True
-    dict_of_shape_statements = dict()
+    # pylint: disable=no-member
+    # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
+    list_of_shape_names_encountered = list()
+    aggregator_of_shape_objects = list()
+    shape = Shape()
+    shape.start = True
+    dict_of_statements_for_given_shape = dict()
+    first_statement_encountered = True
+
     # breakpoint()
-    # For each statement in aggregated list of statements (from all shapes).
     for statement in list_of_statement_objects:
         statement.normalize()
         statement.validate()
         statement = asdict(statement)
-        # If shapeID in statement not same as for current shape, start a new shape.
-        if shap.shapeID != statement["shapeID"]:
-            # if shap.shapeID is not None
-            if shap.shapeID:
-                shapes_list.append(shap)
-            shap = Shape()
-            shap.start = statement["start"]
-            shap.shapeID = statement["shapeID"]
-            shap.shapeLabel = statement["shapeLabel"]
 
+        if first_statement_encountered:
+            if statement["shapeID"]:
+                shape.shapeID = statement["shapeID"]
+            else:
+                shape.shapeID = "http://example.org/default"
+            list_of_shape_names_encountered.append(shape.shapeID)
+            first_statement_encountered = False
+
+        # If shapeID=None, assign previous shapeID.
+        if not statement["shapeID"]:
+            shape.shapeID = list_of_shape_names_encountered[-1]
+
+        if statement["shapeID"] not in list_of_shape_names_encountered:
+            list_of_shape_names_encountered.append(statement["shapeID"])
+            shape = Shape()
+            dict_of_statements_for_given_shape = dict()
+            shape.shapeID = statement["shapeID"]
+            shape.shapeLabel = statement["shapeLabel"]
+
+        # Populate dict_of_statements_for_given_shape by iterating thru keys.
         for pvpair_key in STATEMENT_ELEMENTS:
-            dict_of_shape_statements[pvpair_key] = statement[pvpair_key]
+            dict_of_statements_for_given_shape[pvpair_key] = statement[pvpair_key]
 
-        # pylint: disable=no-member
-        # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
-        shap.shape_statements.append(dict_of_shape_statements)
-        dict_of_shape_statements = dict()
-    shapes_list.append(shap)
-    return shapes_list
+        # breakpoint() 
+        # Append dict_of_statements to current shape, add that shape to aggregator.
+        shape.shape_statements.append(dict_of_statements_for_given_shape)
+        aggregator_of_shape_objects.append(shape)
+
+    pprint_output = pprint_shapes(aggregator_of_shape_objects)
+    for line in pprint_output.splitlines():
+        print(line)
+
+    return aggregator_of_shape_objects

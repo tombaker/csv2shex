@@ -1,22 +1,19 @@
 """Turn list of Statements into list of Shapes."""
 
 import pytest
-from csv2shex.mkshapes import list_shapes, Shape
+from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
 from csv2shex.mkstatements import Statement
 
 
-
-def test_listshapes_one_shape():
-    """Turn list of Statement objects into list with one Shape."""
-    as_input = [
-        Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        Statement(
-            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
-        ),
+@pytest.mark.start
+def test_listshapes_two_shapes():
+    """Turn list of Statement objects into list with two Shapes."""
+    list_of_statement_objects = [
+        Statement(shapeID=":a", propertyID="dct:creator"),
+        Statement(shapeID=":b", propertyID="foaf:name"),
     ]
-    assert list_shapes(as_input) == [
+
+    list_of_shape_objects = [
         Shape(
             start=True,
             shapeID=":a",
@@ -24,134 +21,7 @@ def test_listshapes_one_shape():
             shape_statements=[
                 {
                     "propertyID": "dct:creator",
-                    "valueNodeType": "URI",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-                {
-                    "propertyID": "dct:date",
-                    "valueNodeType": "String",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-            ],
-        )
-    ]
-
-
-def test_listshapes_one_shape_and_shapeLabel():
-    """One Shape with shape label."""
-    as_input = [
-        Statement(
-            start=True,
-            shapeID=":a",
-            shapeLabel="Author",
-            propertyID="dct:creator",
-            valueNodeType="URI",
-        ),
-        Statement(
-            start=True,
-            shapeID=":a",
-            shapeLabel="Author",
-            propertyID="dct:date",
-            valueNodeType="String",
-        ),
-    ]
-    assert list_shapes(as_input) == [
-        Shape(
-            start=True,
-            shapeID=":a",
-            shapeLabel="Author",
-            shape_statements=[
-                {
-                    "propertyID": "dct:creator",
-                    "valueNodeType": "URI",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-                {
-                    "propertyID": "dct:date",
-                    "valueNodeType": "String",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-            ],
-        )
-    ]
-
-
-def test_listshapes_two_shapes():
-    """Turn list of Statement objects into list with two Shapes."""
-    list_of_statement_objects = [
-        Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        Statement(
-            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-        ),
-        Statement(
-            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
-        ),
-        Statement(
-            start=False, shapeID=":b", propertyID="foaf:name", valueNodeType="String"
-        ),
-    ]
-    assert list_shapes(list_of_statement_objects) == [
-        Shape(
-            start=True,
-            shapeID=":a",
-            shape_statements=[
-                {
-                    "propertyID": "dct:creator",
-                    "valueNodeType": "URI",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-                {
-                    "propertyID": "dct:subject",
-                    "valueNodeType": "URI",
-                    "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
-                    "valueConstraint": None,
-                    "valueConstraintType": None,
-                    "valueShape": None,
-                    "note": None,
-                },
-                {
-                    "propertyID": "dct:date",
-                    "valueNodeType": "String",
+                    "valueNodeType": None,
                     "valueDataType": None,
                     "propertyLabel": None,
                     "mandatory": False,
@@ -166,10 +36,11 @@ def test_listshapes_two_shapes():
         Shape(
             start=False,
             shapeID=":b",
+            shapeLabel=None,
             shape_statements=[
                 {
                     "propertyID": "foaf:name",
-                    "valueNodeType": "String",
+                    "valueNodeType": None,
                     "valueDataType": None,
                     "propertyLabel": None,
                     "mandatory": False,
@@ -182,8 +53,114 @@ def test_listshapes_two_shapes():
             ],
         ),
     ]
+    assert list_shapes(list_of_statement_objects) == list_of_shape_objects
 
 
+@pytest.mark.start
+@pytest.mark.skip
+def test_listshapes_one_shape():
+    """Turn list of Statement objects into list with one Shape."""
+    list_of_statements = [
+        Statement(
+            shapeID=":a", propertyID="dct:creator"
+        ),
+        Statement(
+            shapeID=":a", propertyID="dct:date"
+        ),
+
+    ]
+    list_of_shape_objects = [
+        Shape(
+            start=True,
+            shapeID=":a",
+            shapeLabel=None,
+            shape_statements=[
+                {
+                    "propertyID": "dct:creator",
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+                {
+                    "propertyID": "dct:date",
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+            ],
+        )
+    ]
+    assert list_shapes(list_of_statements) == list_of_shape_objects
+
+
+@pytest.mark.start
+@pytest.mark.skip
+def test_listshapes_one_shape_and_shapeLabel():
+    """One Shape with shape label."""
+    list_of_statements = [
+        Statement(
+            shapeID=":a",
+            shapeLabel="Author",
+            propertyID="dct:creator",
+            valueNodeType="URI",
+        ),
+        Statement(
+            shapeID=":a",
+            shapeLabel="Author",
+            propertyID="dct:date",
+            valueNodeType="String",
+        ),
+    ]
+
+    list_of_shapes = [
+        Shape(
+            start=True,
+            shapeID=":a",
+            shapeLabel="Author",
+            shape_statements=[
+                {
+                    "propertyID": "dct:creator",
+                    "valueNodeType": "URI",
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+                {
+                    "propertyID": "dct:date",
+                    "valueNodeType": "String",
+                    "valueDataType": None,
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+            ],
+        )
+    ]
+    assert list_shapes(list_of_statements) == list_of_shapes 
+
+
+@pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""

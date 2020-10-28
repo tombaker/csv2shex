@@ -8,7 +8,6 @@ from csv2shex.mkstatements import Statement
 def test_statement_initialized_with_just_one_field():
     """Statement instance initialized with just one field."""
     shap = Statement(propertyID="dcterms:creator")
-    assert not shap.start
     assert shap.shapeID is None
     assert shap.shapeLabel is None
     assert shap.propertyID == "dcterms:creator"
@@ -26,7 +25,6 @@ def test_statement_initialized_with_just_one_field():
 def test_statement_initialized_without_propid():
     """Statement instance initialized without property ID. Shouldn't this fail?"""
     shap = Statement()
-    assert not shap.start
     assert shap.shapeID is None
     assert shap.shapeLabel is None
     assert shap.propertyID is None

@@ -13,16 +13,16 @@ def test_liststatements():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
+            shapeID=":a", propertyID="dct:date", valueNodeType="String"
         ),
         Statement(
-            start=False, shapeID=":b", propertyID="foaf:name", valueNodeType="String"
+            shapeID=":b", propertyID="foaf:name", valueNodeType="String"
         ),
     ]
 
@@ -36,19 +36,16 @@ def test_liststatements_without_shapeIDs():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:creator",
             valueNodeType="URI",
         ),
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:subject",
             valueNodeType="URI",
         ),
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:date",
             valueNodeType="String",
@@ -67,19 +64,16 @@ def test_liststatements_with_shapeIDs_specified_as_none():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:creator",
             valueNodeType="URI",
         ),
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:subject",
             valueNodeType="URI",
         ),
         Statement(
-            start=True,
             shapeID=":default",
             propertyID="dct:date",
             valueNodeType="String",
@@ -96,13 +90,13 @@ def test_liststatements_with_shape_in_first_statement_only():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:date", valueNodeType="String"
+            shapeID=":a", propertyID="dct:date", valueNodeType="String"
         ),
     ]
 
@@ -116,10 +110,10 @@ def test_liststatements_with_shape_on_its_own_line():
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
         ),
     ]
 
@@ -133,14 +127,12 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True,
             shapeID=":a",
             propertyID="dct:creator",
             note=None,
             valueNodeType="URI",
         ),
         Statement(
-            start=True,
             shapeID=":a",
             propertyID="dct:subject",
             propertyLabel=None,
@@ -149,10 +141,10 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
     ]
     assert list_statements(csvrows_list) == [
         Statement(
-            start=True, shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
         ),
         Statement(
-            start=True, shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
+            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
         ),
     ]
 
@@ -184,7 +176,6 @@ def test_liststatements_with_missing_valueNodeType():
     ]
     expected = [
         Statement(
-            start=True,
             shapeID=":book",
             shapeLabel=None,
             propertyID="rdf:type",
@@ -198,7 +189,6 @@ def test_liststatements_with_missing_valueNodeType():
             note="must be schema.org/Book",
         ),
         Statement(
-            start=True,
             shapeID=":book",
             shapeLabel=None,
             propertyID="rdf:type",

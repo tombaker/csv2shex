@@ -1,15 +1,17 @@
 """Turn list of Statements into list of Shapes (for ShEx example)."""
 
+import pytest
 from csv2shex.mkshapes import list_shapes, Shape
 from csv2shex.mkstatements import Statement
 from pprint import pprint
 
 
+@pytest.mark.start
+@pytest.mark.skip
 def test_listshapes_one_shape_for_shex_example():
     """Turn list of Statement objects into list with one Shape."""
     list_of_statement_objects = [
         Statement(
-            start=True, 
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/title",
             mandatory=True,
@@ -21,7 +23,6 @@ def test_listshapes_one_shape_for_shex_example():
             valueShape=None,
         ),
         Statement(
-            start=True, 
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/description",
             mandatory=False,
@@ -33,7 +34,6 @@ def test_listshapes_one_shape_for_shex_example():
             valueShape=None,
         ),
         Statement(
-            start=True, 
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/subject",
             mandatory=False,
@@ -45,7 +45,6 @@ def test_listshapes_one_shape_for_shex_example():
             valueShape=None,
         ),
         Statement(
-            start=True, 
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/creator",
             mandatory=False,
