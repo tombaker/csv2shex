@@ -6,6 +6,7 @@ from csv2shex.mkstatements import Statement
 
 
 @pytest.mark.start
+@pytest.mark.skip
 def test_listshapes_two_shapes():
     """Turn list of Statement objects into list with two Shapes."""
     list_of_statement_objects = [
@@ -13,7 +14,7 @@ def test_listshapes_two_shapes():
         Statement(shapeID=":b", propertyID="foaf:name"),
     ]
 
-    list_of_shape_objects = [
+    expected_list_of_shape_objects = [
         Shape(
             start=True,
             shapeID=":a",
@@ -53,7 +54,7 @@ def test_listshapes_two_shapes():
             ],
         ),
     ]
-    assert list_shapes(list_of_statement_objects) == list_of_shape_objects
+    assert list_shapes(list_of_statement_objects) == expected_list_of_shape_objects
 
 
 @pytest.mark.start
@@ -61,15 +62,11 @@ def test_listshapes_two_shapes():
 def test_listshapes_one_shape():
     """Turn list of Statement objects into list with one Shape."""
     list_of_statements = [
-        Statement(
-            shapeID=":a", propertyID="dct:creator"
-        ),
-        Statement(
-            shapeID=":a", propertyID="dct:date"
-        ),
-
+        Statement(shapeID=":a", propertyID="dct:creator"),
+        Statement(shapeID=":a", propertyID="dct:date"),
     ]
-    list_of_shape_objects = [
+
+    expected_list_of_shape_objects = [
         Shape(
             start=True,
             shapeID=":a",
@@ -102,7 +99,7 @@ def test_listshapes_one_shape():
             ],
         )
     ]
-    assert list_shapes(list_of_statements) == list_of_shape_objects
+    assert list_shapes(list_of_statements) == expected_list_of_shape_objects
 
 
 @pytest.mark.start
