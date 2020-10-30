@@ -1,11 +1,11 @@
-"""Initialize instances of Statement."""
+"""Initialize instances of CSVRow."""
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 def test_statement_angle_brackets_stripped_from_uristem():
     """Angle brackets stripped from UriStem 'valueConstraint'."""
-    shap = Statement(
+    shap = CSVRow(
         propertyID="dc:publisher",
         valueConstraint="<http://ibm.com>",
         valueConstraintType="UriStem",

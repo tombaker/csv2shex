@@ -12,10 +12,10 @@ from ShExJSG.ShExJ import (
     EachOf,
 )
 
-from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
+from csv2shex.mkshapes import Shape as CSVShape, CSVRow
 
 
-def statement_to_node_constraint(statement: CSVStatement) -> Optional[shapeExpr]:
+def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
     """ Generate a node constraint from statement if necessary """
     rval = None
 
@@ -32,13 +32,13 @@ def statement_to_node_constraint(statement: CSVStatement) -> Optional[shapeExpr]
     if statement.valueShape:
         if rval:
             raise ValueError(
-                "Statement cannot have both NodeConstraint and ValueConstraint"
+                "CSVRow cannot have both NodeConstraint and ValueConstraint"
             )
         return IRIREF(statement.valueShape)
     return rval
 
 
-def add_statement(shape: Shape, statement: CSVStatement) -> None:
+def add_statement(shape: Shape, statement: CSVRow) -> None:
     """ Interpret a CSV statement and add shapeExprit to shape """
     # typing.List[typing.Union["EachOf",
     #                          "OneOf",

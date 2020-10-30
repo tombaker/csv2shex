@@ -1,12 +1,12 @@
 """@@@"""
 
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 def test_mkshapes_validate_property_uri_prefixed():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="wdt:P31",
     )
     stat._normalize_propid()
@@ -15,7 +15,7 @@ def test_mkshapes_validate_property_uri_prefixed():
 
 def test_mkshapes_validate_uristem_normal_uri():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="https://www.wikidata.org/wiki/Q46914185",
     )
     stat._normalize_propid()
@@ -24,7 +24,7 @@ def test_mkshapes_validate_uristem_normal_uri():
 
 def test_mkshapes_validate_property_uri_with_angle_brackets():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="<https://www.wikidata.org/wiki/Q46914185>",
     )
     stat._normalize_propid()
@@ -33,7 +33,7 @@ def test_mkshapes_validate_property_uri_with_angle_brackets():
 
 def test_mkshapes_validate_property_uri_colon_only():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":tombaker",
     )
     stat._normalize_propid()
@@ -42,7 +42,7 @@ def test_mkshapes_validate_property_uri_colon_only():
 
 def test_mkshapes_validate_uristem_not():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="foobar",
     )
     stat._normalize_propid()

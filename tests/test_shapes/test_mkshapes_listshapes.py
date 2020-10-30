@@ -1,17 +1,17 @@
-"""Turn list of Statements into list of Shapes."""
+"""Turn list of CSVRows into list of Shapes."""
 
 import pytest
 from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_two_shapes():
-    """Turn list of Statement objects into list with two Shapes."""
+    """Turn list of CSVRow objects into list with two Shapes."""
     list_of_statement_objects = [
-        Statement(shapeID=":a", propertyID="dct:creator"),
-        Statement(shapeID=":b", propertyID="foaf:name"),
+        CSVRow(shapeID=":a", propertyID="dct:creator"),
+        CSVRow(shapeID=":b", propertyID="foaf:name"),
     ]
 
     expected_list_of_shape_objects = [
@@ -60,10 +60,10 @@ def test_listshapes_two_shapes():
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_one_shape():
-    """Turn list of Statement objects into list with one Shape."""
+    """Turn list of CSVRow objects into list with one Shape."""
     list_of_statements = [
-        Statement(shapeID=":a", propertyID="dct:creator"),
-        Statement(shapeID=":a", propertyID="dct:date"),
+        CSVRow(shapeID=":a", propertyID="dct:creator"),
+        CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
 
     expected_list_of_shape_objects = [
@@ -107,13 +107,13 @@ def test_listshapes_one_shape():
 def test_listshapes_one_shape_and_shapeLabel():
     """One Shape with shape label."""
     list_of_statements = [
-        Statement(
+        CSVRow(
             shapeID=":a",
             shapeLabel="Author",
             propertyID="dct:creator",
             valueNodeType="URI",
         ),
-        Statement(
+        CSVRow(
             shapeID=":a",
             shapeLabel="Author",
             propertyID="dct:date",
@@ -162,9 +162,9 @@ def test_listshapes_one_shape_and_shapeLabel():
 def test_listshapes_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     list_of_statement_objects = [
-        Statement(shapeID=":a", shapeLabel="A Shape", propertyID=":prop1"),
-        Statement(shapeID=":a", shapeLabel="A Shape", propertyID=":prop2"),
-        Statement(shapeID=":b", shapeLabel="B Shape", propertyID=":prop3"),
+        CSVRow(shapeID=":a", shapeLabel="A Shape", propertyID=":prop1"),
+        CSVRow(shapeID=":a", shapeLabel="A Shape", propertyID=":prop2"),
+        CSVRow(shapeID=":b", shapeLabel="B Shape", propertyID=":prop3"),
     ]
     list_of_shape_objects = [
         Shape(

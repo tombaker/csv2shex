@@ -2,12 +2,12 @@
 
 
 import re
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
-def test_mkstatements_normalize_regex():
+def test_csvrows_normalize_regex():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="approved_*",
         valueConstraintType="Regex",
@@ -17,9 +17,9 @@ def test_mkstatements_normalize_regex():
     assert stat.valueConstraint == re.compile("approved_*")
 
 
-def test_mkstatements_normalize_regex_does_not_compile():
+def test_csvrows_normalize_regex_does_not_compile():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="approved_(*",
         valueConstraintType="Regex",
@@ -29,9 +29,9 @@ def test_mkstatements_normalize_regex_does_not_compile():
     assert not stat.valueConstraint
 
 
-def test_mkstatements_normalize_regex_none_value_ignored():
+def test_csvrows_normalize_regex_none_value_ignored():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraintType="Regex",
     )
@@ -40,9 +40,9 @@ def test_mkstatements_normalize_regex_none_value_ignored():
     assert not stat.valueConstraint
 
 
-def test_mkstatements_normalize_regex_forward_slashes_are_part():
+def test_csvrows_normalize_regex_forward_slashes_are_part():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="/approved_*/",
         valueConstraintType="Regex",
@@ -52,9 +52,9 @@ def test_mkstatements_normalize_regex_forward_slashes_are_part():
     assert stat.valueConstraint == re.compile("/approved_*/")
 
 
-def test_mkstatements_normalize_regex_blanks_are_part():
+def test_csvrows_normalize_regex_blanks_are_part():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="^2020 August",
         valueConstraintType="Regex",
@@ -64,9 +64,9 @@ def test_mkstatements_normalize_regex_blanks_are_part():
     assert stat.valueConstraint == re.compile("^2020 August")
 
 
-def test_mkstatements_normalize_regex_quotes_are_part():
+def test_csvrows_normalize_regex_quotes_are_part():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="'confidential'",
         valueConstraintType="Regex",

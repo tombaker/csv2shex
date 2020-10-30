@@ -4,7 +4,7 @@ import ruamel.yaml as yaml
 import click
 from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .csvreader import csvreader
-from .mkstatements import list_statements
+from .csvrows import list_statements
 from .mkshapes import pprint_shapes, list_shapes
 from .mkyaml import csv2yaml
 

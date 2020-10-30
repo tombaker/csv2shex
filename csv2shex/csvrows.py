@@ -19,7 +19,7 @@ STATEMENT_ELEMENTS = elements["statement_elements"]
 
 
 @dataclass
-class Statement:
+class CSVRow:
     """Holds state and self-validation methods for a statement.
 
     Dataclass fields:
@@ -94,7 +94,7 @@ class Statement:
         # self._normalize_langtag_picklist()
 
     def validate(self):
-        """True if Statement instance is valid, else exit with errors."""
+        """True if CSVRow instance is valid, else exit with errors."""
         self._validate_litpicklist()
         self._validate_propid()
         self._validate_uripicklist()
@@ -208,7 +208,7 @@ class Statement:
 
 
 def list_statements(list_of_normalized_csvrows_as_dicts=None):
-    """Return list of Statement objects from list of dicts ("CSV rows")."""
+    """Return list of CSVRow objects from list of dicts ("CSV rows")."""
     list_of_statements = []
     list_of_shape_ids = []
     first_shape_encountered = True
@@ -219,7 +219,7 @@ def list_statements(list_of_normalized_csvrows_as_dicts=None):
             list_of_shape_ids.append(row["shapeID"])
             continue
 
-        stat = Statement()
+        stat = CSVRow()
 
         if row.get("shapeID"):
             stat.shapeID = row["shapeID"]

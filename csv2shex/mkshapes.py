@@ -5,7 +5,7 @@ from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
-from .mkstatements import Statement
+from .csvrows import CSVRow
 
 elements = yaml.safe_load(CSV_ELEMENTS)
 SHAPE_ELEMENTS = elements['shape_elements']
@@ -20,11 +20,11 @@ class Shape:
     shapeLabel: str = None
     start: bool = False
     shapeClosed: bool = False
-    shape_statements: List[Statement] = field(default_factory=list)
+    shape_statements: List[CSVRow] = field(default_factory=list)
 
 
 def list_shapes(list_of_statement_objects):
-    """Return list of Shape objects from list of Statement objects."""
+    """Return list of Shape objects from list of CSVRow objects."""
     # pylint: disable=no-member
     # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
     list_of_shape_names_encountered = list()
@@ -79,7 +79,7 @@ def pprint_shapes(shapes):
                     "        " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
                 )
         for statement in shape["shape_statements"]:
-            pprint_output.append("        Statement\n")
+            pprint_output.append("        CSVRow\n")
             for statement_key in STATEMENT_ELEMENTS:
                 if statement[statement_key]:
                     pprint_output.append(

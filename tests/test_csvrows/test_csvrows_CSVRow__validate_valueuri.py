@@ -1,12 +1,12 @@
 """Sanity check for URI as valueNodeType."""
 
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 def test_mkshapes_validate_uri_valueNodeType_quri():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueNodeType="URI",
@@ -17,7 +17,7 @@ def test_mkshapes_validate_uri_valueNodeType_quri():
 
 def test_mkshapes_validate_valueNodeType_normal_uri():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueNodeType="URI",
@@ -28,7 +28,7 @@ def test_mkshapes_validate_valueNodeType_normal_uri():
 
 def test_mkshapes_validate_valueNodeType_uri_with_angle_brackets():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueNodeType="URI",
@@ -40,7 +40,7 @@ def test_mkshapes_validate_valueNodeType_uri_with_angle_brackets():
 
 def test_mkshapes_validate_valueNodeType_quri_colon_only():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueNodeType="URI",
@@ -52,7 +52,7 @@ def test_mkshapes_validate_valueNodeType_quri_colon_only():
 
 def test_mkshapes_validate_uri_as_valueNodeType_is_not_valid_uri():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueNodeType="URI",

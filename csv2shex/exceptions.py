@@ -9,8 +9,8 @@ class ConfigError(Csv2shexError):
     """Exceptions related to configuration."""
 
 
-class StatementError(Csv2shexError):
-    """Exceptions related to a single Statement."""
+class CSVRowError(Csv2shexError):
+    """Exceptions related to a single CSVRow."""
 
 
 class UristemValueError(Csv2shexError):

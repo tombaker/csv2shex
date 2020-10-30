@@ -1,12 +1,12 @@
 """@@@"""
 
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 def test_mkshapes_normalize_mandrepeat():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="wdt:P31",
         mandatory="Y",
     )
@@ -17,7 +17,7 @@ def test_mkshapes_normalize_mandrepeat():
 
 def test_mkshapes_normalize_mandrepeat_not_specified():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="wdt:P31",
     )
     stat._normalize_mandrepeat()
@@ -27,7 +27,7 @@ def test_mkshapes_normalize_mandrepeat_not_specified():
 
 def test_mkshapes_normalize_mandrepeat_string_of_zero():
     """String of '0' is True!"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID="wdt:P31",
         mandatory="1",
         repeatable="0",

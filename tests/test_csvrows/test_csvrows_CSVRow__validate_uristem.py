@@ -1,12 +1,12 @@
 """Check CSV file structure for anomalies"""
 
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
 def test_mkshapes_validate_uristem_prefixed():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueConstraint="wd:",
@@ -17,7 +17,7 @@ def test_mkshapes_validate_uristem_prefixed():
 
 def test_mkshapes_validate_uristem_normal_uri():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueConstraint="http://www.gmd.de/",
@@ -28,7 +28,7 @@ def test_mkshapes_validate_uristem_normal_uri():
 
 def test_mkshapes_validate_uristem_with_angle_brackets():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueConstraint="<http://www.gmd.de/>",
@@ -40,7 +40,7 @@ def test_mkshapes_validate_uristem_with_angle_brackets():
 
 def test_mkshapes_validate_uristem_colon_only():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueConstraint=":",
@@ -52,7 +52,7 @@ def test_mkshapes_validate_uristem_colon_only():
 
 def test_mkshapes_validate_uristem_not():
     """@@@"""
-    statement = Statement(
+    statement = CSVRow(
         shapeID="@default",
         propertyID="wdt:P31",
         valueConstraint="foobar",

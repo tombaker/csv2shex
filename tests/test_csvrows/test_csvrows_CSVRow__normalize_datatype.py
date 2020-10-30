@@ -1,12 +1,12 @@
 """@@@"""
 
 
-from csv2shex.mkstatements import Statement
+from csv2shex.csvrows import CSVRow
 
 
-def test_mkstatements_normalize_datatype():
+def test_csvrows_normalize_datatype():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="xsd:string",
         valueConstraintType="Datatype",
@@ -15,9 +15,9 @@ def test_mkstatements_normalize_datatype():
     assert stat.valueNodeType == "Literal"
 
 
-def test_mkstatements_normalize_datatype_none_value_ignored():
+def test_csvrows_normalize_datatype_none_value_ignored():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraintType="Datatype",
     )
@@ -26,9 +26,9 @@ def test_mkstatements_normalize_datatype_none_value_ignored():
     assert not stat.valueConstraint
 
 
-def test_mkstatements_normalize_datatype_quotes_are_part():
+def test_csvrows_normalize_datatype_quotes_are_part():
     """@@@"""
-    stat = Statement(
+    stat = CSVRow(
         propertyID=":status",
         valueConstraint="confidential",
         valueConstraintType="Datatype",

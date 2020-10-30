@@ -4,7 +4,7 @@
 import sys
 from ruamel.yaml import YAML
 from .csvreader import csvreader
-from .mkstatements import list_statements
+from .csvrows import list_statements
 from .mkshapes import list_shapes, Shape
 
 
