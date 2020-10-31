@@ -21,7 +21,7 @@ def test_list_csvshapes_two_shapes():
             shapeID=":a",
             shapeLabel=None,
             shapeClosed=False,
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": "dct:creator",
                     "mandatory": False,
@@ -52,7 +52,7 @@ def test_list_csvshapes_two_shapes():
             start=False,
             shapeID=":b",
             shapeLabel=None,
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": "foaf:name",
                     "mandatory": False,
@@ -85,7 +85,7 @@ def test_list_csvshapes_one_shape():
             start=True,
             shapeID=":a",
             shapeLabel=None,
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": None,
@@ -140,7 +140,7 @@ def test_list_csvshapes_one_shape_and_shapeLabel():
             start=True,
             shapeID=":a",
             shapeLabel="Author",
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": "URI",
@@ -185,7 +185,7 @@ def test_list_csvshapes_two_shapes_assign_start_to_first():
             start=True,
             shapeID=":a",
             shapeLabel="A CSVShape",
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": ":prop1",
                     "valueNodeType": None,
@@ -216,7 +216,7 @@ def test_list_csvshapes_two_shapes_assign_start_to_first():
             start=False,
             shapeID=":b",
             shapeLabel="B CSVShape",
-            shape_csvrows=[
+            statement_csvrows_list=[
                 {
                     "propertyID": ":prop3",
                     "valueNodeType": None,

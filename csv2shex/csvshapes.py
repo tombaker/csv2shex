@@ -1,6 +1,7 @@
 """Class for Python objects derived from CSV files."""
 
 
+from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
@@ -20,20 +21,17 @@ class CSVShape:
     shapeLabel: str = None
     start: bool = False
     shapeClosed: bool = False
-    shape_csvrows: List[CSVRow] = field(default_factory=list)
+    statement_csvrows_list: List[CSVRow] = field(default_factory=list)
 
 
 def list_csvshapes(csvrows_list):
-    """Return list of CSVShape objects from list of CSVRow objects."""
-    # pylint: disable=no-member
-    # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
+    """Return list of CSVShapes from list of CSVRows."""
     csvshape_ids_list = list()
 
-    from collections import defaultdict
     dict_for_csvshape_objs = defaultdict(dict)
     first_csvrow_encountered = True
 
-    # breakpoint()
+    breakpoint()
     for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
@@ -45,18 +43,18 @@ def list_csvshapes(csvrows_list):
             csvshape.shapeID = csvrow["shapeID"]
             csvshape.shapeLabel = csvrow["shapeLabel"]
             csvshape_ids_list.append(csvrow["shapeID"])
-            csvshapeid_to_csvrows_dict = dict()
+            statement_elements_dict = dict()
 
         if first_csvrow_encountered:
             csvshape.start = True
             first_csvrow_encountered = False
 
-        # Add key-value pairs of csvrow to csvshapeid_to_csvrows_dict.
+        # Add key-value pairs of csvrow to statement_elements_dict.
         for pvpair_key in STATEMENT_ELEMENTS:
-            csvshapeid_to_csvrows_dict[pvpair_key] = csvrow[pvpair_key]
+            statement_elements_dict[pvpair_key] = csvrow[pvpair_key]
 
         # Append dict of CSVRows to current shape, add that shape to aggregator.
-        csvshape.shape_csvrows.append(csvshapeid_to_csvrows_dict)
+        csvshape.statement_csvrows_list.append(statement_elements_dict)
         dict_for_csvshape_objs[csvshape.shapeID] = csvshape
 
     #pprint_output = pprint_shapes(dict_for_csvshape_objs)
@@ -78,7 +76,7 @@ def pprint_shapes(shapes):
                 pprint_output.append(
                     "        " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
                 )
-        for statement in shape["shape_csvrows"]:
+        for statement in shape["statement_csvrows_list"]:
             pprint_output.append("        CSVRow\n")
             for statement_key in STATEMENT_ELEMENTS:
                 if statement[statement_key]:
