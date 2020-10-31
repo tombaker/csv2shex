@@ -6,6 +6,7 @@ CSV_ELEMENTS = """\
 shape_elements:
 - shapeID
 - shapeLabel
+- shapeClosed
 - start
 statement_elements:
 - propertyID

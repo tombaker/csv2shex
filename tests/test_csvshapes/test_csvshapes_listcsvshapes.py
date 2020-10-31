@@ -7,6 +7,7 @@ from csv2shex.csvrows import CSVRow
 
 @pytest.mark.start
 @pytest.mark.skip
+# @pytest.mark.skip
 def test_list_csvshapes_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [

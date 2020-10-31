@@ -26,42 +26,42 @@ class CSVShape:
 
 def list_csvshapes(csvrows_list):
     """Return list of CSVShapes from list of CSVRows."""
-    csvshape_ids_list = list()
 
-    dict_for_csvshape_objs = defaultdict(dict)
-    first_csvrow_encountered = True
+    csvshapes_list = list()
+    csvshapeids_list = list()
+    csvshapes_ddict = defaultdict(dict)
+    is_first_csvrow_encountered = True
 
-    breakpoint()
+    # breakpoint(context=5) 
     for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
-        csvrow = asdict(csvrow)
-
-        # Initializes new csvshapes as encountered
-        if csvrow["shapeID"] not in csvshape_ids_list:
+        if csvrow.shapeID not in csvshapeids_list:
+            if not is_first_csvrow_encountered:
+                csvshapes_list.append(csvshape)
             csvshape = CSVShape()
-            csvshape.shapeID = csvrow["shapeID"]
-            csvshape.shapeLabel = csvrow["shapeLabel"]
-            csvshape_ids_list.append(csvrow["shapeID"])
-            statement_elements_dict = dict()
+            csvshape.shapeID = csvrow.shapeID
+            csvshape.shapeLabel = csvrow.shapeLabel
+            csvshapeids_list.append(csvrow.shapeID)
+            csvshape.start = True if is_first_csvrow_encountered else False
+            csvshape_statement_elements_dict = dict()
+            is_first_csvrow_encountered = False
 
-        if first_csvrow_encountered:
-            csvshape.start = True
-            first_csvrow_encountered = False
+        for element in STATEMENT_ELEMENTS:
+            csvshape_statement_elements_dict[element] = asdict(csvrow)[element]
 
-        # Add key-value pairs of csvrow to statement_elements_dict.
-        for pvpair_key in STATEMENT_ELEMENTS:
-            statement_elements_dict[pvpair_key] = csvrow[pvpair_key]
+        csvshape.statement_csvrows_list.append(csvshape_statement_elements_dict)
 
-        # Append dict of CSVRows to current shape, add that shape to aggregator.
-        csvshape.statement_csvrows_list.append(statement_elements_dict)
-        dict_for_csvshape_objs[csvshape.shapeID] = csvshape
+    csvshapes_list.append(csvshape)
 
-    #pprint_output = pprint_shapes(dict_for_csvshape_objs)
-    #for line in pprint_output.splitlines():
-    #    print(line)
 
-    return [ dict_for_csvshape_objs[key] for key in dict_for_csvshape_objs.keys() ]
+    for csvshapeid in csvshapeids_list:
+        csvshapes_ddict[csvshapeid] = csvshape
+
+    csvshapes_dict = dict(csvshapes_ddict)
+    csvshapes_list
+
+    return [ csvshapes_ddict[key] for key in csvshapeids_list ]
 
 
 def pprint_shapes(shapes):
