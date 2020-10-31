@@ -7,30 +7,44 @@ from csv2shex.csvrows import CSVRow
 
 @pytest.mark.start
 @pytest.mark.skip
-def test_listshapes_two_shapes():
+def test_list_csvshapes_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
-    list_of_csvrow_objects = [
+    csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
+        CSVRow(shapeID=":a", propertyID="dct:date"),
         CSVRow(shapeID=":b", propertyID="foaf:name"),
     ]
 
-    expected_list_of_csvshape_objects = [
+    expected_csvshapes_list = [
         CSVShape(
             start=True,
             shapeID=":a",
             shapeLabel=None,
+            shapeClosed=False,
             shape_csvrows=[
                 {
                     "propertyID": "dct:creator",
-                    "valueNodeType": None,
-                    "valueDataType": None,
-                    "propertyLabel": None,
                     "mandatory": False,
+                    "note": None,
+                    "propertyLabel": None,
                     "repeatable": False,
                     "valueConstraint": None,
                     "valueConstraintType": None,
+                    "valueDataType": None,
+                    "valueNodeType": None,
                     "valueShape": None,
+                },
+                {
+                    "propertyID": "dct:date",
+                    "mandatory": False,
                     "note": None,
+                    "propertyLabel": None,
+                    "repeatable": False,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueDataType": None,
+                    "valueNodeType": None,
+                    "valueShape": None,
                 },
             ],
         ),
@@ -41,32 +55,32 @@ def test_listshapes_two_shapes():
             shape_csvrows=[
                 {
                     "propertyID": "foaf:name",
-                    "valueNodeType": None,
-                    "valueDataType": None,
-                    "propertyLabel": None,
                     "mandatory": False,
+                    "note": None,
+                    "propertyLabel": None,
                     "repeatable": False,
                     "valueConstraint": None,
                     "valueConstraintType": None,
+                    "valueDataType": None,
+                    "valueNodeType": None,
                     "valueShape": None,
-                    "note": None,
                 }
             ],
         ),
     ]
-    assert list_csvshapes(list_of_csvrow_objects) == expected_list_of_csvshape_objects
+    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
 
 
 @pytest.mark.start
 @pytest.mark.skip
-def test_listshapes_one_shape():
+def test_list_csvshapes_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
-    list_of_statements = [
+    csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
 
-    expected_list_of_shape_objects = [
+    expected_csvshapes_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -99,14 +113,14 @@ def test_listshapes_one_shape():
             ],
         )
     ]
-    assert list_csvshapes(list_of_statements) == expected_list_of_shape_objects
+    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
 
 
 @pytest.mark.start
 @pytest.mark.skip
-def test_listshapes_one_shape_and_shapeLabel():
+def test_list_csvshapes_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
-    list_of_statements = [
+    csvrows_list = [
         CSVRow(
             shapeID=":a",
             shapeLabel="Author",
@@ -121,7 +135,7 @@ def test_listshapes_one_shape_and_shapeLabel():
         ),
     ]
 
-    list_of_shapes = [
+    csvshapes_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -154,19 +168,19 @@ def test_listshapes_one_shape_and_shapeLabel():
             ],
         )
     ]
-    assert list_csvshapes(list_of_statements) == list_of_shapes 
+    assert list_csvshapes(csvrows_list) == csvshapes_list 
 
 
 @pytest.mark.start
 @pytest.mark.skip
-def test_listshapes_two_shapes_assign_start_to_first():
+def test_list_csvshapes_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
-    list_of_statement_objects = [
+    csvrows_list = [
         CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop1"),
         CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop2"),
         CSVRow(shapeID=":b", shapeLabel="B CSVShape", propertyID=":prop3"),
     ]
-    list_of_shape_objects = [
+    csvshapes_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -219,8 +233,8 @@ def test_listshapes_two_shapes_assign_start_to_first():
         ),
     ]
     #from pprint import pprint
-    #pprint(list_csvshapes(list_of_statement_objects))
+    #pprint(list_csvshapes(csvrows_list))
     #print("")
-    #pprint(list_of_shape_objects)
+    #pprint(csvshapes_list)
     #assert False
-    assert list_csvshapes(list_of_statement_objects) == list_of_shape_objects
+    assert list_csvshapes(csvrows_list) == csvshapes_list

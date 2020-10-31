@@ -207,16 +207,16 @@ class CSVRow:
         return True
 
 
-def list_statements(list_of_normalized_csvrows_as_dicts=None):
-    """Return list of CSVRow objects from list of dicts ("CSV rows")."""
-    list_of_statements = []
-    list_of_shape_ids = []
+def list_statements(csvrow_dicts_list=None):
+    """Turn list of dicts into list of CSVRow objects."""
+    csvrows_list = []
+    shapeids_list = []
     first_shape_encountered = True
     keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
     keys.remove("shapeID")
-    for row in list_of_normalized_csvrows_as_dicts:
+    for row in csvrow_dicts_list:
         if not row.get("propertyID") and row.get("shapeID"):
-            list_of_shape_ids.append(row["shapeID"])
+            shapeids_list.append(row["shapeID"])
             continue
 
         stat = CSVRow()
@@ -224,12 +224,12 @@ def list_statements(list_of_normalized_csvrows_as_dicts=None):
         if row.get("shapeID"):
             stat.shapeID = row["shapeID"]
         else:
-            if list_of_shape_ids:
-                stat.shapeID = list_of_shape_ids[-1]
-            elif not list_of_shape_ids:
+            if shapeids_list:
+                stat.shapeID = shapeids_list[-1]
+            elif not shapeids_list:
                 stat.shapeID = ":default"
-        if stat.shapeID not in list_of_shape_ids:
-            list_of_shape_ids.append(stat.shapeID)
+        if stat.shapeID not in shapeids_list:
+            shapeids_list.append(stat.shapeID)
         if first_shape_encountered:
             first_shape = stat.shapeID
             first_shape_encountered = False
@@ -238,8 +238,8 @@ def list_statements(list_of_normalized_csvrows_as_dicts=None):
             if key in row:
                 setattr(stat, key, row[key])
 
-        list_of_statements.append(stat)
-    return list_of_statements
+        csvrows_list.append(stat)
+    return csvrows_list
 
 
 #        # Checking for presence of propertyID will ensure that blank rows are ignored.
@@ -250,10 +250,10 @@ def list_statements(list_of_normalized_csvrows_as_dicts=None):
 #                    stat.shapeID = row["shapeID"]
 #                else:
 #                    stat.shapeID = ":default"
-#                list_of_shape_ids.append(stat.shapeID)
+#                shapeids_list.append(stat.shapeID)
 #                first_statement_encountered = False
 #                first_shape_encountered = False
-#            # If shapeID is None, assign value most recently added to list_of_shape_ids.
+#            # If shapeID is None, assign value most recently added to shapeids_list.
 #            if not row.get("shapeID"):
-#                stat.shapeID = list_of_shape_ids[-1]
+#                stat.shapeID = shapeids_list[-1]
 

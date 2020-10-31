@@ -23,32 +23,32 @@ class CSVShape:
     shape_csvrows: List[CSVRow] = field(default_factory=list)
 
 
-def list_csvshapes(list_of_csvrow_objects):
+def list_csvshapes(csvrows_list):
     """Return list of CSVShape objects from list of CSVRow objects."""
     # pylint: disable=no-member
     # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
-    list_of_shape_names_encountered = list()
+    csvshape_ids_list = list()
 
     from collections import defaultdict
-    aggregator_of_shape_objects = defaultdict(dict)
+    dict_for_csvshape_objs = defaultdict(dict)
     first_csvrow_encountered = True
 
-    breakpoint()
-    for csvrow in list_of_csvrow_objects:
+    # breakpoint()
+    for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
         csvrow = asdict(csvrow)
 
-        # Initializes new shapes as encountered
-        if csvrow["shapeID"] not in list_of_shape_names_encountered:
-            shape = CSVShape()
-            shape.shapeID = csvrow["shapeID"]
-            shape.shapeLabel = csvrow["shapeLabel"]
-            list_of_shape_names_encountered.append(csvrow["shapeID"])
+        # Initializes new csvshapes as encountered
+        if csvrow["shapeID"] not in csvshape_ids_list:
+            csvshape = CSVShape()
+            csvshape.shapeID = csvrow["shapeID"]
+            csvshape.shapeLabel = csvrow["shapeLabel"]
+            csvshape_ids_list.append(csvrow["shapeID"])
             dict_of_statements_for_given_shape = dict()
 
         if first_csvrow_encountered:
-            shape.start = True
+            csvshape.start = True
             first_csvrow_encountered = False
 
         # Add key-value pairs of csvrow to dict_of_statements_for_given_shape.
@@ -56,14 +56,14 @@ def list_csvshapes(list_of_csvrow_objects):
             dict_of_statements_for_given_shape[pvpair_key] = csvrow[pvpair_key]
 
         # Append dict_of_statements to current shape, add that shape to aggregator.
-        shape.shape_csvrows.append(dict_of_statements_for_given_shape)
-        aggregator_of_shape_objects.append(shape)
+        csvshape.shape_csvrows.append(dict_of_statements_for_given_shape)
+        dict_for_csvshape_objs[csvshape.shapeID] = csvshape
 
-    pprint_output = pprint_shapes(aggregator_of_shape_objects)
-    for line in pprint_output.splitlines():
-        print(line)
+    #pprint_output = pprint_shapes(dict_for_csvshape_objs)
+    #for line in pprint_output.splitlines():
+    #    print(line)
 
-    return aggregator_of_shape_objects
+    return [ dict_for_csvshape_objs[key] for key in dict_for_csvshape_objs.keys() ]
 
 
 def pprint_shapes(shapes):

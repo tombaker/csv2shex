@@ -10,7 +10,7 @@ from pprint import pprint
 @pytest.mark.skip
 def test_listshapes_one_shape_for_shex_example():
     """Turn list of CSVRow objects into list with one CSVShape."""
-    list_of_statement_objects = [
+    csvrows_list = [
         CSVRow(
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/title",
@@ -57,7 +57,7 @@ def test_listshapes_one_shape_for_shex_example():
         ),
     ]
 
-    one_shape_with_list_of_statement_objects = [
+    one_shape_with_csvrows_list = [
         CSVShape(
             start=True,
             shapeID="http://example.org/myshape",
@@ -114,4 +114,4 @@ def test_listshapes_one_shape_for_shex_example():
             ],
         )
     ]
-    assert list_csvshapes(list_of_statement_objects) == one_shape_with_list_of_statement_objects
+    assert list_csvshapes(csvrows_list) == one_shape_with_csvrows_list
