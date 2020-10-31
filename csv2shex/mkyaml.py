@@ -5,13 +5,13 @@ import sys
 from ruamel.yaml import YAML
 from .csvreader import csvreader
 from .csvrows import list_statements
-from .mkshapes import list_shapes, Shape
+from .csvshapes import list_shapes, CSVShape
 
 
 def shapes2yaml(shapes_list):
-    """Print YAML string to console from list of Shape objects."""
+    """Print YAML string to console from list of CSVShape objects."""
     yml = YAML()
-    yml.register_class(Shape)
+    yml.register_class(CSVShape)
     yml.dump(shapes_list, sys.stdout)
 
 

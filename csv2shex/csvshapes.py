@@ -13,8 +13,8 @@ STATEMENT_ELEMENTS = elements['statement_elements']
 
 
 @dataclass
-class Shape:
-    """Holds state and self-validation methods for a Shape."""
+class CSVShape:
+    """Holds state and self-validation methods for a CSVShape."""
 
     shapeID: str = None
     shapeLabel: str = None
@@ -24,7 +24,7 @@ class Shape:
 
 
 def list_shapes(list_of_statement_objects):
-    """Return list of Shape objects from list of CSVRow objects."""
+    """Return list of CSVShape objects from list of CSVRow objects."""
     # pylint: disable=no-member
     # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
     list_of_shape_names_encountered = list()
@@ -41,7 +41,7 @@ def list_shapes(list_of_statement_objects):
 
         # Initializes new shapes as encountered
         if statement["shapeID"] not in list_of_shape_names_encountered:
-            shape = Shape()
+            shape = CSVShape()
             shape.shapeID = statement["shapeID"]
             shape.shapeLabel = statement["shapeLabel"]
             list_of_shape_names_encountered.append(statement["shapeID"])
@@ -67,7 +67,7 @@ def list_shapes(list_of_statement_objects):
 
 
 def pprint_shapes(shapes):
-    """Pretty-print Shape objects to console."""
+    """Pretty-print CSVShape objects to console."""
     pprint_output = []
     pprint_output.append("DCAP\n")
     for shape in shapes:

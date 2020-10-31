@@ -12,7 +12,7 @@ from ShExJSG.ShExJ import (
     EachOf,
 )
 
-from csv2shex.mkshapes import Shape as CSVShape, CSVRow
+from csv2shex.csvshapes import CSVShape, CSVRow
 
 
 def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
@@ -38,7 +38,7 @@ def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
     return rval
 
 
-def add_statement(shape: Shape, statement: CSVRow) -> None:
+def add_statement(shape: CSVShape, statement: CSVRow) -> None:
     """ Interpret a CSV statement and add shapeExprit to shape """
     # typing.List[typing.Union["EachOf",
     #                          "OneOf",
@@ -60,7 +60,7 @@ def add_statement(shape: Shape, statement: CSVRow) -> None:
 
 
 def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
-    """ Convert a list of csv2shape Shapes to a ShEx Schema """
+    """ Convert a list of csv2shape CSVShapes to a ShEx Schema """
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
     schema = Schema()

@@ -1,7 +1,7 @@
-"""Turn list of CSVRows into list of Shapes (for ShEx example)."""
+"""Turn list of CSVRows into list of CSVShapes (for ShEx example)."""
 
 import pytest
-from csv2shex.mkshapes import list_shapes, Shape
+from csv2shex.csvshapes import list_shapes, CSVShape
 from csv2shex.csvrows import CSVRow
 from pprint import pprint
 
@@ -9,7 +9,7 @@ from pprint import pprint
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_one_shape_for_shex_example():
-    """Turn list of CSVRow objects into list with one Shape."""
+    """Turn list of CSVRow objects into list with one CSVShape."""
     list_of_statement_objects = [
         CSVRow(
             shapeID="http://example.org/myshape",
@@ -58,7 +58,7 @@ def test_listshapes_one_shape_for_shex_example():
     ]
 
     one_shape_with_list_of_statement_objects = [
-        Shape(
+        CSVShape(
             start=True,
             shapeID="http://example.org/myshape",
             shapeLabel=None,

@@ -4,7 +4,7 @@
 from csv2shex.csvrows import CSVRow
 
 
-def test_mkshapes_validate_uri_valueNodeType_quri():
+def test_csvshapes_validate_uri_valueNodeType_quri():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -15,7 +15,7 @@ def test_mkshapes_validate_uri_valueNodeType_quri():
     assert statement._validate_valueuri()
 
 
-def test_mkshapes_validate_valueNodeType_normal_uri():
+def test_csvshapes_validate_valueNodeType_normal_uri():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -26,7 +26,7 @@ def test_mkshapes_validate_valueNodeType_normal_uri():
     assert statement._validate_valueuri()
 
 
-def test_mkshapes_validate_valueNodeType_uri_with_angle_brackets():
+def test_csvshapes_validate_valueNodeType_uri_with_angle_brackets():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -38,7 +38,7 @@ def test_mkshapes_validate_valueNodeType_uri_with_angle_brackets():
     assert statement._validate_valueuri()
 
 
-def test_mkshapes_validate_valueNodeType_quri_colon_only():
+def test_csvshapes_validate_valueNodeType_quri_colon_only():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -50,7 +50,7 @@ def test_mkshapes_validate_valueNodeType_quri_colon_only():
     assert statement._validate_valueuri()
 
 
-def test_mkshapes_validate_uri_as_valueNodeType_is_not_valid_uri():
+def test_csvshapes_validate_uri_as_valueNodeType_is_not_valid_uri():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",

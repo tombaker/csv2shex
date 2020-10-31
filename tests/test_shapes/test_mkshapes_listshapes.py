@@ -1,21 +1,21 @@
-"""Turn list of CSVRows into list of Shapes."""
+"""Turn list of CSVRows into list of CSVShapes."""
 
 import pytest
-from csv2shex.mkshapes import pprint_shapes, list_shapes, Shape
+from csv2shex.csvshapes import pprint_shapes, list_shapes, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_two_shapes():
-    """Turn list of CSVRow objects into list with two Shapes."""
+    """Turn list of CSVRow objects into list with two CSVShapes."""
     list_of_statement_objects = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":b", propertyID="foaf:name"),
     ]
 
     expected_list_of_shape_objects = [
-        Shape(
+        CSVShape(
             start=True,
             shapeID=":a",
             shapeLabel=None,
@@ -34,7 +34,7 @@ def test_listshapes_two_shapes():
                 },
             ],
         ),
-        Shape(
+        CSVShape(
             start=False,
             shapeID=":b",
             shapeLabel=None,
@@ -60,14 +60,14 @@ def test_listshapes_two_shapes():
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_one_shape():
-    """Turn list of CSVRow objects into list with one Shape."""
+    """Turn list of CSVRow objects into list with one CSVShape."""
     list_of_statements = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
 
     expected_list_of_shape_objects = [
-        Shape(
+        CSVShape(
             start=True,
             shapeID=":a",
             shapeLabel=None,
@@ -105,7 +105,7 @@ def test_listshapes_one_shape():
 @pytest.mark.start
 @pytest.mark.skip
 def test_listshapes_one_shape_and_shapeLabel():
-    """One Shape with shape label."""
+    """One CSVShape with shape label."""
     list_of_statements = [
         CSVRow(
             shapeID=":a",
@@ -122,7 +122,7 @@ def test_listshapes_one_shape_and_shapeLabel():
     ]
 
     list_of_shapes = [
-        Shape(
+        CSVShape(
             start=True,
             shapeID=":a",
             shapeLabel="Author",
@@ -162,15 +162,15 @@ def test_listshapes_one_shape_and_shapeLabel():
 def test_listshapes_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     list_of_statement_objects = [
-        CSVRow(shapeID=":a", shapeLabel="A Shape", propertyID=":prop1"),
-        CSVRow(shapeID=":a", shapeLabel="A Shape", propertyID=":prop2"),
-        CSVRow(shapeID=":b", shapeLabel="B Shape", propertyID=":prop3"),
+        CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop1"),
+        CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop2"),
+        CSVRow(shapeID=":b", shapeLabel="B CSVShape", propertyID=":prop3"),
     ]
     list_of_shape_objects = [
-        Shape(
+        CSVShape(
             start=True,
             shapeID=":a",
-            shapeLabel="A Shape",
+            shapeLabel="A CSVShape",
             shape_statements=[
                 {
                     "propertyID": ":prop1",
@@ -198,10 +198,10 @@ def test_listshapes_two_shapes_assign_start_to_first():
                 },
             ],
         ),
-        Shape(
+        CSVShape(
             start=False,
             shapeID=":b",
-            shapeLabel="B Shape",
+            shapeLabel="B CSVShape",
             shape_statements=[
                 {
                     "propertyID": ":prop3",

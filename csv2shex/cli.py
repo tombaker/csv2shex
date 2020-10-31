@@ -5,7 +5,7 @@ import click
 from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .csvreader import csvreader
 from .csvrows import list_statements
-from .mkshapes import pprint_shapes, list_shapes
+from .csvshapes import pprint_shapes, list_shapes
 from .mkyaml import csv2yaml
 
 # pylint: disable=unused-argument,no-value-for-parameter

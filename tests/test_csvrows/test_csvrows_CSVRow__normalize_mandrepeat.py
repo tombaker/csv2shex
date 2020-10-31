@@ -4,7 +4,7 @@
 from csv2shex.csvrows import CSVRow
 
 
-def test_mkshapes_normalize_mandrepeat():
+def test_csvshapes_normalize_mandrepeat():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -15,7 +15,7 @@ def test_mkshapes_normalize_mandrepeat():
     assert stat.repeatable is False
 
 
-def test_mkshapes_normalize_mandrepeat_not_specified():
+def test_csvshapes_normalize_mandrepeat_not_specified():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -25,7 +25,7 @@ def test_mkshapes_normalize_mandrepeat_not_specified():
     assert stat.repeatable is False
 
 
-def test_mkshapes_normalize_mandrepeat_string_of_zero():
+def test_csvshapes_normalize_mandrepeat_string_of_zero():
     """String of '0' is True!"""
     stat = CSVRow(
         propertyID="wdt:P31",

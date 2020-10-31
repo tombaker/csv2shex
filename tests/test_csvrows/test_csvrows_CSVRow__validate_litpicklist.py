@@ -4,7 +4,7 @@
 from csv2shex.csvrows import CSVRow
 
 
-def test_mkshapes_validate_litpicklist():
+def test_csvshapes_validate_litpicklist():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -15,7 +15,7 @@ def test_mkshapes_validate_litpicklist():
     assert stat._validate_litpicklist()
 
 
-def test_mkshapes_validate_litpicklist_just_one_item():
+def test_csvshapes_validate_litpicklist_just_one_item():
     """@@@"""
     stat = CSVRow(
         shapeID="@default",

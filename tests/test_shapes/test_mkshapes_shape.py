@@ -1,8 +1,8 @@
-"""Shape object holds statements sharing a common shapeID."""
+"""CSVShape object holds statements sharing a common shapeID."""
 
-from csv2shex.mkshapes import Shape
+from csv2shex.csvshapes import CSVShape
 
-SHAPE_OBJECT = Shape(
+SHAPE_OBJECT = CSVShape(
     start=True,
     shapeID=":a",
     shape_statements=[
@@ -14,7 +14,7 @@ SHAPE_OBJECT = Shape(
 
 
 def test_shape_fields_individually_addressable():
-    """Shape fields individually addressable."""
+    """CSVShape fields individually addressable."""
     shap = SHAPE_OBJECT
     assert shap.start
     assert shap.shapeID == ":a"
@@ -25,8 +25,8 @@ def test_shape_fields_individually_addressable():
 
 
 def test_shape_initialized_by_assignment():
-    """Shape fields created by assignment."""
-    shap = Shape()
+    """CSVShape fields created by assignment."""
+    shap = CSVShape()
     shap.start = True
     shap.shapeID = ":a"
     shap.shape_statements = []
@@ -44,15 +44,15 @@ def test_shape_initialized_by_assignment():
 
 def test_shape_initialized_with_no_propertyvalues_field_should_pass_for_now():
     """Test should pass for now but this condition should raise exception."""
-    shap = Shape()
+    shap = CSVShape()
     shap.start = True
     shap.shapeID = ":a"
-    assert shap == Shape(start=True, shapeID=":a")
+    assert shap == CSVShape(start=True, shapeID=":a")
 
 
 def test_shape_initialized_with_no_start_field_should_pass_for_now():
     """Test should pass for now but this condition should raise exception."""
-    shap = Shape()
+    shap = CSVShape()
     shap.shapeID = ":a"
     shap.shape_statements = []
     shap.shape_statements.append(
@@ -64,7 +64,7 @@ def test_shape_initialized_with_no_start_field_should_pass_for_now():
     shap.shape_statements.append(
         {"propertyID": "dct:date", "valueNodeType": "String"}
     )
-    assert shap == Shape(
+    assert shap == CSVShape(
         shapeID=":a",
         shape_statements=[
             {"propertyID": "dct:creator", "valueNodeType": "URI"},
@@ -76,7 +76,7 @@ def test_shape_initialized_with_no_start_field_should_pass_for_now():
 
 def test_shape_initialized_with_no_shapeid_field_should_pass_for_now():
     """Test should pass for now but this condition should raise exception."""
-    shap = Shape()
+    shap = CSVShape()
     shap.start = True
     shap.shape_statements = []
     shap.shape_statements.append(
@@ -88,7 +88,7 @@ def test_shape_initialized_with_no_shapeid_field_should_pass_for_now():
     shap.shape_statements.append(
         {"propertyID": "dct:date", "valueNodeType": "String"}
     )
-    assert shap == Shape(
+    assert shap == CSVShape(
         start=True,
         shape_statements=[
             {"propertyID": "dct:creator", "valueNodeType": "URI"},

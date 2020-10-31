@@ -6,7 +6,7 @@ from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.skip
-def test_mkshapes_validate_uripicklist():
+def test_csvshapes_validate_uripicklist():
     """@@@"""
     stat = CSVRow(
         shapeID="@default",
@@ -18,7 +18,7 @@ def test_mkshapes_validate_uripicklist():
 
 
 @pytest.mark.skip
-def test_mkshapes_validate_uripicklist_normalized():
+def test_csvshapes_validate_uripicklist_normalized():
     """@@@"""
     stat = CSVRow(
         shapeID="@default",
@@ -31,7 +31,7 @@ def test_mkshapes_validate_uripicklist_normalized():
 
 
 @pytest.mark.skip
-def test_mkshapes_validate_uripicklist_just_one_item():
+def test_csvshapes_validate_uripicklist_just_one_item():
     """@@@"""
     stat = CSVRow(
         shapeID="@default",
@@ -42,7 +42,7 @@ def test_mkshapes_validate_uripicklist_just_one_item():
     assert stat._validate_uripicklist()
 
 
-def test_mkshapes_validate_uripicklist_just_one_item_normalized():
+def test_csvshapes_validate_uripicklist_just_one_item_normalized():
     """@@@"""
     stat = CSVRow(
         shapeID="@default",

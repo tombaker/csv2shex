@@ -4,7 +4,7 @@
 from csv2shex.csvrows import CSVRow
 
 
-def test_mkshapes_normalize_litpicklist():
+def test_csvshapes_normalize_litpicklist():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -15,7 +15,7 @@ def test_mkshapes_normalize_litpicklist():
     assert stat.valueConstraint == ["red", "green", "yellow"]
 
 
-def test_mkshapes_normalize_litpicklist_just_one_item():
+def test_csvshapes_normalize_litpicklist_just_one_item():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
