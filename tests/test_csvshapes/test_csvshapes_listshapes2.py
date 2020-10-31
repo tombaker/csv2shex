@@ -62,7 +62,7 @@ def test_listshapes_one_shape_for_shex_example():
             start=True,
             shapeID="http://example.org/myshape",
             shapeLabel=None,
-            shape_statements=[
+            shape_csvrows=[
                 {
                     "propertyID": "http://purl.org/dc/terms/title",
                     "propertyLabel": None,

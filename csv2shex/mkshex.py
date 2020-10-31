@@ -72,6 +72,6 @@ def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
             else:
                 schema.start = shapeID
         shape = Shape(id=shapeID)
-        for statement in s.shape_statements:
+        for statement in s.shape_csvrows:
             add_statement(shape, statement)
     return schema
