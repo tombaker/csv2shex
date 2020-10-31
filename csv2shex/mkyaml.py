@@ -5,7 +5,7 @@ import sys
 from ruamel.yaml import YAML
 from .csvreader import csvreader
 from .csvrows import list_statements
-from .csvshapes import list_shapes, CSVShape
+from .csvshapes import list_csvshapes, CSVShape
 
 
 def shapes2yaml(shapes_list):
@@ -18,5 +18,5 @@ def shapes2yaml(shapes_list):
 def csv2yaml(csvfile):
     """Print YAML string to console from CSV file."""
     statements = list_statements(csvreader(csvfile))
-    shapes = list_shapes(statements)
+    shapes = list_csvshapes(statements)
     return shapes2yaml(shapes)

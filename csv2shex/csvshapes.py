@@ -23,7 +23,7 @@ class CSVShape:
     shape_statements: List[CSVRow] = field(default_factory=list)
 
 
-def list_shapes(list_of_statement_objects):
+def list_csvshapes(list_of_statement_objects):
     """Return list of CSVShape objects from list of CSVRow objects."""
     # pylint: disable=no-member
     # => "E1101: Instance of 'Field' has no 'append' member" - but it does!
@@ -33,7 +33,7 @@ def list_shapes(list_of_statement_objects):
     aggregator_of_shape_objects = defaultdict(dict)
     first_statement_encountered = True
 
-    # breakpoint()
+    breakpoint()
     for statement in list_of_statement_objects:
         statement.normalize()
         statement.validate()

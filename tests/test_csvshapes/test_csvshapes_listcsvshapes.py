@@ -1,7 +1,7 @@
 """Turn list of CSVRows into list of CSVShapes."""
 
 import pytest
-from csv2shex.csvshapes import pprint_shapes, list_shapes, CSVShape
+from csv2shex.csvshapes import pprint_shapes, list_csvshapes, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
@@ -9,12 +9,12 @@ from csv2shex.csvrows import CSVRow
 @pytest.mark.skip
 def test_listshapes_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
-    list_of_statement_objects = [
+    list_of_csvrow_objects = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":b", propertyID="foaf:name"),
     ]
 
-    expected_list_of_shape_objects = [
+    expected_list_of_csvshape_objects = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -54,7 +54,7 @@ def test_listshapes_two_shapes():
             ],
         ),
     ]
-    assert list_shapes(list_of_statement_objects) == expected_list_of_shape_objects
+    assert list_csvshapes(list_of_csvrow_objects) == expected_list_of_csvshape_objects
 
 
 @pytest.mark.start
@@ -99,7 +99,7 @@ def test_listshapes_one_shape():
             ],
         )
     ]
-    assert list_shapes(list_of_statements) == expected_list_of_shape_objects
+    assert list_csvshapes(list_of_statements) == expected_list_of_shape_objects
 
 
 @pytest.mark.start
@@ -154,7 +154,7 @@ def test_listshapes_one_shape_and_shapeLabel():
             ],
         )
     ]
-    assert list_shapes(list_of_statements) == list_of_shapes 
+    assert list_csvshapes(list_of_statements) == list_of_shapes 
 
 
 @pytest.mark.start
@@ -219,8 +219,8 @@ def test_listshapes_two_shapes_assign_start_to_first():
         ),
     ]
     #from pprint import pprint
-    #pprint(list_shapes(list_of_statement_objects))
+    #pprint(list_csvshapes(list_of_statement_objects))
     #print("")
     #pprint(list_of_shape_objects)
     #assert False
-    assert list_shapes(list_of_statement_objects) == list_of_shape_objects
+    assert list_csvshapes(list_of_statement_objects) == list_of_shape_objects

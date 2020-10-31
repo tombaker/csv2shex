@@ -1,7 +1,7 @@
 """Turn list of CSVRows into list of CSVShapes (for ShEx example)."""
 
 import pytest
-from csv2shex.csvshapes import list_shapes, CSVShape
+from csv2shex.csvshapes import list_csvshapes, CSVShape
 from csv2shex.csvrows import CSVRow
 from pprint import pprint
 
@@ -114,4 +114,4 @@ def test_listshapes_one_shape_for_shex_example():
             ],
         )
     ]
-    assert list_shapes(list_of_statement_objects) == one_shape_with_list_of_statement_objects
+    assert list_csvshapes(list_of_statement_objects) == one_shape_with_list_of_statement_objects
