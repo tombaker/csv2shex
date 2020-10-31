@@ -45,18 +45,18 @@ def list_csvshapes(csvrows_list):
             csvshape.shapeID = csvrow["shapeID"]
             csvshape.shapeLabel = csvrow["shapeLabel"]
             csvshape_ids_list.append(csvrow["shapeID"])
-            dict_of_statements_for_given_shape = dict()
+            csvshapeid_to_csvrows_dict = dict()
 
         if first_csvrow_encountered:
             csvshape.start = True
             first_csvrow_encountered = False
 
-        # Add key-value pairs of csvrow to dict_of_statements_for_given_shape.
+        # Add key-value pairs of csvrow to csvshapeid_to_csvrows_dict.
         for pvpair_key in STATEMENT_ELEMENTS:
-            dict_of_statements_for_given_shape[pvpair_key] = csvrow[pvpair_key]
+            csvshapeid_to_csvrows_dict[pvpair_key] = csvrow[pvpair_key]
 
-        # Append dict_of_statements to current shape, add that shape to aggregator.
-        csvshape.shape_csvrows.append(dict_of_statements_for_given_shape)
+        # Append dict of CSVRows to current shape, add that shape to aggregator.
+        csvshape.shape_csvrows.append(csvshapeid_to_csvrows_dict)
         dict_for_csvshape_objs[csvshape.shapeID] = csvshape
 
     #pprint_output = pprint_shapes(dict_for_csvshape_objs)
