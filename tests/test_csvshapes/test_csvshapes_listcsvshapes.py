@@ -6,7 +6,6 @@ from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.start
-@pytest.mark.skip
 # @pytest.mark.skip
 def test_list_csvshapes_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
@@ -69,7 +68,8 @@ def test_list_csvshapes_two_shapes():
             ],
         ),
     ]
-    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
+    assert len(list_csvshapes(csvrows_list)) == len(expected_csvshapes_list)
+    assert list_csvshapes(csvrows_list)[0].statement_csvrows_list == expected_csvshapes_list[0].statement_csvrows_list
 
 
 @pytest.mark.start

@@ -27,41 +27,34 @@ class CSVShape:
 def list_csvshapes(csvrows_list):
     """Return list of CSVShapes from list of CSVRows."""
 
-    csvshapes_list = list()
-    csvshapeids_list = list()
-    csvshapes_ddict = defaultdict(dict)
+    # shapeLabel-to-csvshape_dict
+    csvshapes_ddict = defaultdict(dict) 
     is_first_csvrow_encountered = True
+    single_statement_dict = dict()
 
-    # breakpoint(context=5) 
+    breakpoint(context=5) 
     for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
-        if csvrow.shapeID not in csvshapeids_list:
-            if not is_first_csvrow_encountered:
-                csvshapes_list.append(csvshape)
+        if csvrow.shapeID not in csvshapes_ddict.keys():
             csvshape = CSVShape()
             csvshape.shapeID = csvrow.shapeID
             csvshape.shapeLabel = csvrow.shapeLabel
-            csvshapeids_list.append(csvrow.shapeID)
             csvshape.start = True if is_first_csvrow_encountered else False
-            csvshape_statement_elements_dict = dict()
+            csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
-        for element in STATEMENT_ELEMENTS:
-            csvshape_statement_elements_dict[element] = asdict(csvrow)[element]
+        for key in STATEMENT_ELEMENTS:
+            single_statement_dict[key] = asdict(csvrow)[key]
 
-        csvshape.statement_csvrows_list.append(csvshape_statement_elements_dict)
+        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(single_statement_dict)
+        single_statement_dict.clear()
 
-    csvshapes_list.append(csvshape)
+    csvshapes_list = []
+    for key in csvshapes_ddict.keys():
+        csvshapes_list.append(csvshapes_ddict[key])
 
-
-    for csvshapeid in csvshapeids_list:
-        csvshapes_ddict[csvshapeid] = csvshape
-
-    csvshapes_dict = dict(csvshapes_ddict)
-    csvshapes_list
-
-    return [ csvshapes_ddict[key] for key in csvshapeids_list ]
+    return csvshapes_list
 
 
 def pprint_shapes(shapes):
