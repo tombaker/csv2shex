@@ -1,11 +1,11 @@
 """Turn list of CSVRows into list of CSVShapes."""
 
 import pytest
-from csv2shex.csvshapes import pprint_schema, list_csvshapes, CSVShape
+from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
-def test_list_csvshapes_two_shapes():
+def test_list_csvshapeobjs_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
@@ -66,12 +66,12 @@ def test_list_csvshapes_two_shapes():
             ],
         ),
     ]
-    assert len(list_csvshapes(csvrows_list)) == len(expected_csvshapes_list)
-    assert list_csvshapes(csvrows_list)[0].statement_csvrows_list == expected_csvshapes_list[0].statement_csvrows_list
-    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
+    assert len(list_csvshapeobjs(csvrows_list)) == len(expected_csvshapes_list)
+    assert list_csvshapeobjs(csvrows_list)[0].statement_csvrows_list == expected_csvshapes_list[0].statement_csvrows_list
+    assert list_csvshapeobjs(csvrows_list) == expected_csvshapes_list
 
 
-def test_list_csvshapes_one_shape():
+def test_list_csvshapeobjs_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
@@ -111,10 +111,10 @@ def test_list_csvshapes_one_shape():
             ],
         )
     ]
-    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == expected_csvshapes_list
 
 
-def test_list_csvshapes_one_shape_and_shapeLabel():
+def test_list_csvshapeobjs_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
     csvrows_list = [
         CSVRow(
@@ -164,10 +164,10 @@ def test_list_csvshapes_one_shape_and_shapeLabel():
             ],
         )
     ]
-    assert list_csvshapes(csvrows_list) == csvshapes_list 
+    assert list_csvshapeobjs(csvrows_list) == csvshapes_list 
 
 
-def test_list_csvshapes_two_shapes_assign_start_to_first():
+def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     csvrows_list = [
         CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop1"),
@@ -227,15 +227,15 @@ def test_list_csvshapes_two_shapes_assign_start_to_first():
         ),
     ]
     #from pprint import pprint
-    #pprint(list_csvshapes(csvrows_list))
+    #pprint(list_csvshapeobjs(csvrows_list))
     #print("")
     #pprint(csvshapes_list)
     #assert False
-    assert list_csvshapes(csvrows_list) == csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == csvshapes_list
 """Turn list of CSVRows into list of CSVShapes (for ShEx example)."""
 
 import pytest
-from csv2shex.csvshapes import list_csvshapes, CSVShape
+from csv2shex.csvshapes import list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 from pprint import pprint
 
@@ -346,4 +346,4 @@ def test_listshapes_one_shape_for_shex_example():
             ],
         )
     ]
-    assert list_csvshapes(csvrows_list) == one_shape_with_csvrows_list
+    assert list_csvshapeobjs(csvrows_list) == one_shape_with_csvrows_list

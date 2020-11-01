@@ -24,7 +24,7 @@ class CSVShape:
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
 
 
-def list_csvshapes(csvrows_list):
+def list_csvshapeobjs(csvrows_list):
     """Return list of CSVShapes from list of CSVRows."""
 
     # shapeLabel-to-csvshape_dict

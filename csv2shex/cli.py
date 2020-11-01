@@ -5,7 +5,7 @@ import click
 from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .csvreader import csvreader
 from .csvrows import list_csvrowobjs
-from .csvshapes import pprint_schema, list_csvshapes
+from .csvshapes import pprint_schema, list_csvshapeobjs
 from .mkyaml import csv2yaml
 
 # pylint: disable=unused-argument,no-value-for-parameter
@@ -28,11 +28,11 @@ def cli(context):
 @click.pass_context
 def examine(context, csvfile, verbose):
     """Show CSV file contents, normalized"""
-    csvrows_list = list_csvrows(csvreader(csvfile))
-    print(csvrows_list)
+    csvrowobjs_list = list_csvrowobjs(csvreader(csvfile))
+    print(csvrowobjs_list)
     print(" ")
     print(" ")
-    shapes_list = list_csvshapes(csvrows_list)
+    shapes_list = list_csvshapeobjs(csvrowobjs_list)
     print(shapes_list)
     #pprint_output = pprint_schema(shapes_list)
     #breakpoint() 

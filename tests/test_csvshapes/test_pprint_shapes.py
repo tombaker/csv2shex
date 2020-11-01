@@ -2,11 +2,11 @@
 
 import pytest
 from textwrap import dedent
-from csv2shex.csvshapes import pprint_schema, list_csvshapes, CSVShape
+from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
-def test_list_csvshapes_two_shapes():
+def test_list_csvshapeobjs_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshapes_list = [
         CSVShape(
@@ -80,7 +80,7 @@ def test_list_csvshapes_two_shapes():
     )
 
 
-def test_list_csvshapes_two_shapes_verbose():
+def test_list_csvshapeobjs_two_shapes_verbose():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshapes_list = [
         CSVShape(
