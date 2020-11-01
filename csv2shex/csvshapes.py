@@ -9,8 +9,8 @@ from .config import CSV_ELEMENTS
 from .csvrows import CSVRow
 
 elements = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = elements['shape_elements']
-STATEMENT_ELEMENTS = elements['statement_elements']
+SHAPE_ELEMENTS = elements["shape_elements"]
+STATEMENT_ELEMENTS = elements["statement_elements"]
 
 
 @dataclass
@@ -28,11 +28,11 @@ def list_csvshapes(csvrows_list):
     """Return list of CSVShapes from list of CSVRows."""
 
     # shapeLabel-to-csvshape_dict
-    csvshapes_ddict = defaultdict(dict) 
+    csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
 
-    breakpoint(context=5) 
+    # breakpoint(context=5)
     for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
@@ -47,7 +47,9 @@ def list_csvshapes(csvrows_list):
         for key in STATEMENT_ELEMENTS:
             single_statement_dict[key] = asdict(csvrow)[key]
 
-        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(single_statement_dict)
+        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(
+            single_statement_dict.copy()
+        )
         single_statement_dict.clear()
 
     csvshapes_list = []

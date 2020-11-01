@@ -5,8 +5,6 @@ from csv2shex.csvshapes import pprint_shapes, list_csvshapes, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
-@pytest.mark.start
-# @pytest.mark.skip
 def test_list_csvshapes_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [
@@ -70,10 +68,9 @@ def test_list_csvshapes_two_shapes():
     ]
     assert len(list_csvshapes(csvrows_list)) == len(expected_csvshapes_list)
     assert list_csvshapes(csvrows_list)[0].statement_csvrows_list == expected_csvshapes_list[0].statement_csvrows_list
+    assert list_csvshapes(csvrows_list) == expected_csvshapes_list
 
 
-@pytest.mark.start
-@pytest.mark.skip
 def test_list_csvshapes_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
@@ -117,8 +114,6 @@ def test_list_csvshapes_one_shape():
     assert list_csvshapes(csvrows_list) == expected_csvshapes_list
 
 
-@pytest.mark.start
-@pytest.mark.skip
 def test_list_csvshapes_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
     csvrows_list = [
@@ -172,8 +167,6 @@ def test_list_csvshapes_one_shape_and_shapeLabel():
     assert list_csvshapes(csvrows_list) == csvshapes_list 
 
 
-@pytest.mark.start
-@pytest.mark.skip
 def test_list_csvshapes_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     csvrows_list = [
