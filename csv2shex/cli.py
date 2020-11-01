@@ -29,16 +29,10 @@ def cli(context):
 def examine(context, csvfile, verbose):
     """Show CSV file contents, normalized"""
     csvrowobjs_list = list_csvrowobjs(csvreader(csvfile))
-    print(csvrowobjs_list)
-    print(" ")
-    print(" ")
     shapes_list = list_csvshapeobjs(csvrowobjs_list)
-    print(shapes_list)
-    #pprint_output = pprint_schema(shapes_list)
-    #breakpoint() 
-    #print(pprint_output)
-    #for line in pprint_output.splitlines():
-    #    print(line)
+    pprint_output = pprint_schema(shapes_list)
+    for line in pprint_output:
+        print(line)
 
 
 @cli.command()

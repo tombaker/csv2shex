@@ -25,12 +25,16 @@ class CSVRow:
     Dataclass fields:
 
         shapeID (str, assigned if not provided):
-          Identifier of the shape to which the statement
+          Identifier of shape to which statement
           (property-value pair) belongs.
-          If no shape identifier is provided in the CSV,
-          a default identifier is assigned.
+          If no shape identifier is provided in CSV,
+          default identifier is assigned.
         shapeLabel (str, optional):
-          Human-readable label for the shape. Default: None.
+          Human-readable label for shape. Default: None.
+        shapeClosed (str, optional):
+          If True, shape requires listed statements and no more.
+        start (str, optional):
+          If True, shape is considered as "start shape".
         propertyID (str, mandatory):
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
@@ -69,6 +73,8 @@ class CSVRow:
 
     shapeID: str = None
     shapeLabel: str = None
+    shapeClosed: bool = False
+    start: bool = False
     propertyID: str = None
     propertyLabel: str = None
     mandatory: bool = False
