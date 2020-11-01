@@ -59,27 +59,32 @@ def list_csvshapes(csvrows_list):
     return csvshapes_list
 
 
-def pprint_shapes(shapes):
+def pprint_shapes(csvshape_objs_list, concise=True):
     """Pretty-print CSVShape objects to console."""
     pprint_output = []
-    pprint_output.append("DCAP\n")
-    for shape in shapes:
-        shape = asdict(shape)
-        pprint_output.append("    Shape\n")
-        for shape_key in SHAPE_ELEMENTS:
-            if shape[shape_key]:
+    pprint_output.append("DCAP")
+    for csvshape_obj in csvshape_objs_list:
+        csvshape_dict = asdict(csvshape_obj)
+        pprint_output.append("    Shape")
+        for key in SHAPE_ELEMENTS:
+            if csvshape_dict[key]:
                 pprint_output.append(
-                    "        " + str(shape_key) + ": " + str(shape[shape_key]) + "\n"
+                    "        " + str(key) + ": " + str(csvshape_dict[key])
                 )
-        for statement in shape["statement_csvrows_list"]:
-            pprint_output.append("        CSVRow\n")
-            for statement_key in STATEMENT_ELEMENTS:
-                if statement[statement_key]:
+        
+        # breakpoint(context=5)
+        for statement_csvrow in csvshape_dict["statement_csvrows_list"]:
+            pprint_output.append("        Statement")
+            for key in STATEMENT_ELEMENTS:
+                if statement_csvrow[key]:
                     pprint_output.append(
                         "            "
-                        + str(statement_key)
+                        + str(key)
                         + ": "
-                        + str(statement[statement_key])
-                        + "\n"
+                        + str(statement_csvrow[key])
                     )
-    return "".join(pprint_output)
+    #if concise:
+    #    for line in pprint_output:
+    #        print(line)
+
+    return pprint_output
