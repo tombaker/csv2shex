@@ -207,7 +207,7 @@ class CSVRow:
         return True
 
 
-def list_statements(csvrow_dicts_list=None):
+def list_csvrowobjs(csvrow_dicts_list=None):
     """Turn list of dicts into list of CSVRow objects."""
     csvrows_list = []
     shapeids_list = []
