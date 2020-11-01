@@ -2,7 +2,7 @@
 
 import pytest
 from textwrap import dedent
-from csv2shex.csvshapes import pprint_shapes, list_csvshapes, CSVShape
+from csv2shex.csvshapes import pprint_schema, list_csvshapes, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
@@ -76,7 +76,7 @@ def test_list_csvshapes_two_shapes():
                 propertyID: foaf:name
     """
     assert (
-        pprint_shapes(csvshapes_list) == dedent(expected_output_indented).splitlines()
+        pprint_schema(csvshapes_list) == dedent(expected_output_indented).splitlines()
     )
 
 
@@ -183,6 +183,6 @@ def test_list_csvshapes_two_shapes_verbose():
                 note: None
     """
     assert (
-        pprint_shapes(csvshapes_list, verbose=True)
+        pprint_schema(csvshapes_list, verbose=True)
         == dedent(expected_output_indented).splitlines()
     )

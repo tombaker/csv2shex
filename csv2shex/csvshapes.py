@@ -59,7 +59,7 @@ def list_csvshapes(csvrows_list):
     return csvshapes_list
 
 
-def pprint_shapes(csvshape_objs_list, verbose=False):
+def pprint_schema(csvshape_objs_list, verbose=False):
     """Pretty-print CSVShape objects to console."""
     pprint_output = []
     pprint_output.append("DCAP")

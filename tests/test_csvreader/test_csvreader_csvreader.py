@@ -8,8 +8,8 @@ from csv2shex.csvreader import csvreader
 def test_csvreader_with_simple_csvfile(tmp_path):
     """Simple CSV with three columns."""
     os.chdir(tmp_path)
-    csvfile = Path(tmp_path).joinpath("some.csv")
-    csvfile.write_text(
+    csvfile_name = Path(tmp_path).joinpath("some.csv")
+    csvfile_name.write_text(
         (
             "shapeID,propertyID,valueNodeType\n"
             ":a,dct:creator,URI\n"
@@ -22,14 +22,14 @@ def test_csvreader_with_simple_csvfile(tmp_path):
         {"shapeID": ":a", "propertyID": "dct:subject", "valueNodeType": "URI"},
         {"shapeID": ":a", "propertyID": "dct:date", "valueNodeType": "String"},
     ]
-    assert csvreader(csvfile) == expected_output
+    assert csvreader(csvfile_name) == expected_output
 
 
 def test_csvreader_with_complete_csvfile(tmp_path):
     """Simple CSV with all columns."""
     os.chdir(tmp_path)
-    csvfile = Path(tmp_path).joinpath("some.csv")
-    csvfile.write_text(
+    csvfile_name = Path(tmp_path).joinpath("some.csv")
+    csvfile_name.write_text(
         (
             "shapeID,shapeLabel,propertyID"
             ",propertyLabel,mandatory,repeatable,valueNodeType,"
@@ -83,9 +83,9 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "note": "",
         },
     ]
-    assert type(csvreader(csvfile)) == list
+    assert type(csvreader(csvfile_name)) == list
     assert type(expected_output) == list
-    assert len(csvreader(csvfile)) == 3
+    assert len(csvreader(csvfile_name)) == 3
     assert len(expected_output) == 3
-    assert type(csvreader(csvfile)[0]) == dict
-    assert csvreader(csvfile) == expected_output
+    assert type(csvreader(csvfile_name)[0]) == dict
+    assert csvreader(csvfile_name) == expected_output

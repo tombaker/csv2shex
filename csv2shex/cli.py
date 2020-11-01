@@ -5,7 +5,7 @@ import click
 from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .csvreader import csvreader
 from .csvrows import list_statements
-from .csvshapes import pprint_shapes, list_csvshapes
+from .csvshapes import pprint_schema, list_csvshapes
 from .mkyaml import csv2yaml
 
 # pylint: disable=unused-argument,no-value-for-parameter
@@ -30,9 +30,11 @@ def examine(context, csvfile, verbose):
     """Show CSV file contents, normalized"""
     statements_list = list_statements(csvreader(csvfile))
     shapes_list = list_csvshapes(statements_list)
-    pprint_output = pprint_shapes(shapes_list)
-    for line in pprint_output.splitlines():
-        print(line)
+    pprint_output = pprint_schema(shapes_list)
+    breakpoint() 
+    print(pprint_output)
+    #for line in pprint_output.splitlines():
+    #    print(line)
 
 
 @cli.command()
