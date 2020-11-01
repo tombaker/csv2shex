@@ -23,13 +23,14 @@ def cli(context):
 
 @cli.command()
 @click.argument("csvfile", type=click.Path(exists=True))
+@click.option('--verbose', is_flag=True)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def parse(context, csvfile):
+def examine(context, csvfile, verbose):
     """Show CSV file contents, normalized"""
-    statements = list_statements(csvreader(csvfile))
-    shapes = list_csvshapes(statements)
-    pprint_output = pprint_shapes(shapes)
+    statements_list = list_statements(csvreader(csvfile))
+    shapes_list = list_csvshapes(statements_list)
+    pprint_output = pprint_shapes(shapes_list)
     for line in pprint_output.splitlines():
         print(line)
 

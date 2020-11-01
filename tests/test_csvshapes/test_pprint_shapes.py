@@ -75,9 +75,114 @@ def test_list_csvshapes_two_shapes():
             Statement
                 propertyID: foaf:name
     """
-    #print("")
-    #print(pprint_shapes(csvshapes_list))
-    #print("")
-    #print(dedent(expected_output_indented))
-    assert pprint_shapes(csvshapes_list) == dedent(expected_output_indented).splitlines()
+    assert (
+        pprint_shapes(csvshapes_list) == dedent(expected_output_indented).splitlines()
+    )
 
+
+def test_list_csvshapes_two_shapes_verbose():
+    """Turn list of CSVRow objects into list with two CSVShapes."""
+    csvshapes_list = [
+        CSVShape(
+            shapeID=":a",
+            shapeLabel=None,
+            shapeClosed=False,
+            start=True,
+            statement_csvrows_list=[
+                {
+                    "propertyID": "dct:creator",
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+                {
+                    "propertyID": "dct:date",
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                },
+            ],
+        ),
+        CSVShape(
+            shapeID=":b",
+            shapeLabel=None,
+            shapeClosed=False,
+            start=False,
+            statement_csvrows_list=[
+                {
+                    "propertyID": "foaf:name",
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueNodeType": None,
+                    "valueDataType": None,
+                    "valueConstraint": None,
+                    "valueConstraintType": None,
+                    "valueShape": None,
+                    "note": None,
+                }
+            ],
+        ),
+    ]
+    expected_output_indented = """\
+    DCAP
+        Shape
+            shapeID: :a
+            shapeLabel: None
+            shapeClosed: False
+            start: True
+            Statement
+                propertyID: dct:creator
+                propertyLabel: None
+                mandatory: False
+                repeatable: False
+                valueNodeType: None
+                valueDataType: None
+                valueConstraint: None
+                valueConstraintType: None
+                valueShape: None
+                note: None
+            Statement
+                propertyID: dct:date
+                propertyLabel: None
+                mandatory: False
+                repeatable: False
+                valueNodeType: None
+                valueDataType: None
+                valueConstraint: None
+                valueConstraintType: None
+                valueShape: None
+                note: None
+        Shape
+            shapeID: :b
+            shapeLabel: None
+            shapeClosed: False
+            start: False
+            Statement
+                propertyID: foaf:name
+                propertyLabel: None
+                mandatory: False
+                repeatable: False
+                valueNodeType: None
+                valueDataType: None
+                valueConstraint: None
+                valueConstraintType: None
+                valueShape: None
+                note: None
+    """
+    assert (
+        pprint_shapes(csvshapes_list, verbose=True)
+        == dedent(expected_output_indented).splitlines()
+    )

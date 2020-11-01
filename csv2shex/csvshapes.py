@@ -59,32 +59,26 @@ def list_csvshapes(csvrows_list):
     return csvshapes_list
 
 
-def pprint_shapes(csvshape_objs_list, concise=False):
+def pprint_shapes(csvshape_objs_list, verbose=False):
     """Pretty-print CSVShape objects to console."""
-    pretty = []
-    pretty.append("DCAP")
+    pprint_output = []
+    pprint_output.append("DCAP")
     for csvshape_obj in csvshape_objs_list:
-        csvshape_dict = asdict(csvshape_obj)
-        pretty.append("    Shape")
+        shap_dict = asdict(csvshape_obj)
+        pprint_output.append("    Shape")
         for key in SHAPE_ELEMENTS:
-            if csvshape_dict[key]:
-                pretty.append(
-                    "        " + str(key) + ": " + str(csvshape_dict[key])
-                )
+            if shap_dict[key] and not verbose:
+                pprint_output.append(8*" " + key + ": " + str(shap_dict[key]))
+            if verbose:
+                pprint_output.append(8*" " + key + ": " + str(shap_dict[key]))
         
         # breakpoint(context=5)
-        for statement_csvrow in csvshape_dict["statement_csvrows_list"]:
-            pretty.append("        Statement")
+        for stat_dict in shap_dict["statement_csvrows_list"]:
+            pprint_output.append("        Statement")
             for key in STATEMENT_ELEMENTS:
-                if statement_csvrow[key]:
-                    pretty.append(
-                        "            "
-                        + str(key)
-                        + ": "
-                        + str(statement_csvrow[key])
-                    )
-    #if concise:
-    #    for line in pretty:
-    #        print(line)
+                if stat_dict[key] and not verbose:
+                    pprint_output.append(12*" " + str(key) + ": " + str(stat_dict[key]))
+                if verbose:
+                    pprint_output.append(12*" " + str(key) + ": " + str(stat_dict[key]))
 
-    return pretty
+    return pprint_output
