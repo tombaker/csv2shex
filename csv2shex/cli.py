@@ -2,7 +2,7 @@
 
 import ruamel.yaml as yaml
 import click
-from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
+from .config import CSV_ELEMENTS, CONFIG_DEFAULTS
 from .csvreader import csvreader
 from .csvrows import list_csvrowobjs
 from .csvshapes import pprint_schema, list_csvshapeobjs
@@ -36,11 +36,9 @@ def examine(context, csvfile, verbose):
 
 @cli.command()
 @click.option('--model', is_flag=True, default=False)
-@click.option('--picklists', is_flag=True, default=False)
-@click.option('--prefixes', is_flag=True, default=False)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def show(context, model, picklists, prefixes):
+def show(context, model):
     """Show DCAP model built-ins for ready reference"""
 
     if model:

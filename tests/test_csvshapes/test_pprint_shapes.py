@@ -61,7 +61,7 @@ def test_list_csvshapeobjs_two_shapes():
             ],
         ),
     ]
-    expected_output_indented = """\
+    expected_output_indented = dedent("""\
     DCAP
         Shape
             shapeID: :a
@@ -74,9 +74,9 @@ def test_list_csvshapeobjs_two_shapes():
             shapeID: :b
             Statement
                 propertyID: foaf:name
-    """
+    """)
     assert (
-        pprint_schema(csvshapes_list) == dedent(expected_output_indented).splitlines()
+        pprint_schema(csvshapes_list) == expected_output_indented.splitlines()
     )
 
 
@@ -136,7 +136,7 @@ def test_list_csvshapeobjs_two_shapes_verbose():
             ],
         ),
     ]
-    expected_output_indented = """\
+    expected_output_indented = dedent("""\
     DCAP
         Shape
             shapeID: :a
@@ -181,8 +181,8 @@ def test_list_csvshapeobjs_two_shapes_verbose():
                 valueConstraintType: None
                 valueShape: None
                 note: None
-    """
+    """)
     assert (
         pprint_schema(csvshapes_list, verbose=True)
-        == dedent(expected_output_indented).splitlines()
+        == expected_output_indented.splitlines()
     )
