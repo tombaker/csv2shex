@@ -25,15 +25,3 @@ def normalize_csvheaders(csvrow_dicts_list):
     return yaml.safe_load(csvrow_dicts_list)
 
 
-def _snakify(csvheader=None):
-    """Convert spaces, dashes, and camelcase to lowercase snake case."""
-    csvheader = re.sub('-', '_', csvheader)
-    csvheader = re.sub(' ', '_', csvheader)
-    new = []
-    new.extend(csvheader[0])
-    for char in csvheader[1:]:
-        if char.isupper():
-            new.extend('_')
-        new.extend(char)
-    csvheader = ''.join(new)
-    return csvheader.lower()
