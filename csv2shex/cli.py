@@ -6,7 +6,6 @@ from .config import CSV_ELEMENTS, ELEMENT_PICKLISTS, PREFIXES
 from .csvreader import csvreader
 from .csvrows import list_csvrowobjs
 from .csvshapes import pprint_schema, list_csvshapeobjs
-from .mkyaml import csv2yaml
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -65,12 +64,3 @@ def show(context, model, picklists, prefixes):
         for prefix in prefix_dict:
             prefix_colon = prefix + ":"
             print(f"{prefix_colon:10} {prefix_dict[prefix]}")
-
-
-@cli.command()
-@click.argument("csvfile", type=click.Path(exists=True))
-@click.help_option(help="Show help and exit")
-@click.pass_context
-def yamlparse(context, csvfile):
-    """Show CSV file contents as YAML (experimental)"""
-    csv2yaml(csvfile)

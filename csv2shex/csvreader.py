@@ -18,10 +18,3 @@ def csvreader(csvfile):
     rows_odict = csv.DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
     csvrow_dicts_list = [dict(r) for r in rows_odict]
     return csvrow_dicts_list
-
-
-def normalize_csvheaders(csvrow_dicts_list):
-    """return csvrow_dicts_list_normalized """
-    return yaml.safe_load(csvrow_dicts_list)
-
-

@@ -15,7 +15,3 @@ The subcommend 'show' displays program built-ins for the DCAP model, element-spe
     $ csv2shex show --model
     $ csv2shex show --picklists
     $ csv2shex show --prefixes
-
-The subcommand 'yamlparse' has been implemented experimentally as a proof-of-concept::
-
-    $ csv2shex yamlparse example.csv

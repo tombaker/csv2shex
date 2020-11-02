@@ -1,7 +1,7 @@
 About csv2shex
 --------------
 
-Csv2shex is a command-line utility for reading, interpreting, and verifying CSV files formatted according to the DC Application Profile (DCAP) model. The utility interprets and normalizes the contents of a CSV file and prints the results to standard output as an aid for debugging. The utility also experimentally converts the CSV contents into a YAML representation. The ultimate goal of this project is to convert instances of DCAP in CSV into ShEx schemas usable for data validation.
+Csv2shex is a command-line utility for reading, interpreting, and verifying CSV files formatted according to the DC Application Profile (DCAP) model. The utility interprets and normalizes the contents of a CSV file and prints the results to standard output as an aid for debugging. The ultimate goal of this project is to convert instances of DCAP in CSV into ShEx schemas usable for data validation.
 
 This project has been undertaken in parallel to, and in support of, a working group of the Dublin Core Metadata Initiative which is creating the DCAP model (@@@add links).
 
@@ -11,7 +11,7 @@ The code in this project tries to anticipate messy or incomplete CSV inputs and 
 
 As of August 2020, work both in this project and in the context of the DCMI working group has focused on defining the DCAP model and its elements (concretely: the fixed set of CSV column headers). As the nature and definition of these elements is still somewhat in flux, the descriptions provided in this documentation should be considered provisional.
 
-Our hope is that a simple, well-defined model, expressible in CSV and convertible into YAML, will provide a solid basis for generating validation schemas in ShEx.
+Our hope is that a simple, well-defined model, expressible in CSV and convertible into a Python representation of a ShEx schema, will provide a solid basis for generating validation schemas in ShEx.
 
 It is also our hope that modules and Python classes on which this command-line utility can be adapted for use in other environments. This documentation explains how CSV files are interpreted and normalized. For an up-to-the-minute look at how the modules and classes work, the reader is invited to inspect (and execute) the pytest unit tests, which have been formulated for ease of comprehension.
 
@@ -24,8 +24,6 @@ Potential directions for the further development of this project include:
 - The ability to read namespace prefixes from sources on the Web or from local configuration files.
 
 - The ability to round-trip from a messy, first-draft CSV expression of a DCAP, via a normalized expression in Python, then (potentially) back to a normalized expression in CSV.
-
-- The ability to capture the Python expression of a DCAP as a reusable (and editable) YAML document.
 
 - The ability to write the Python expression of a DCAP to an Excel spreadsheet, potentially with tabs for namespace prefixes and controlled sets of values (such as the four main value types URI, Literal, Nonliteral, and BNode) linked to specific columns of the main sheet for use as dropdown menus.
 
