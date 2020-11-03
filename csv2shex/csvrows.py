@@ -20,52 +20,63 @@ STATEMENT_ELEMENTS = elements["statement_elements"]
 
 @dataclass
 class CSVRow:
-    """Holds state and self-validation methods for a statement.
+    """Holds state and self-validation methods for a property-value pair.
 
     Dataclass fields:
 
-        shapeID (str, assigned if not provided):
+        shapeID (str, assigned default if not provided):
           Identifier of shape to which statement
           (property-value pair) belongs.
-          If no shape identifier is provided in CSV,
-          default identifier is assigned.
+
         shapeLabel (str, optional):
           Human-readable label for shape. Default: None.
+
         shapeClosed (str, optional):
           If True, shape requires listed statements and no more.
+
         start (str, optional):
           If True, shape is considered as "start shape".
+
         propertyID (str, mandatory):
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
           Default: None.
+
         propertyLabel (str, optional):
           Human-readable label for the property. Default: None.
+
         mandatory (str, optional):
           If True, use of the property is mandatory in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
+
         repeatable (str, optional):
           If True, property may be used multiple times in the
           context of the shape. Values interpreted as True
           include `Y`, `y`, `Yes`, and `yes`. Default: False.
+
         valueNodeType (str, optional):
           Value of the property-value pair is one of the type
           `URI`, `BNode`, `Literal`, or `Non-Literal`.
           Default: None. Value type `IRI` is normalized to `URI`.
+
         valueDataType (str, optional):
           The specific datatype of the literal value,
           identified by a URI string or prefixed URI string,
           typically from the XML Schema namespace. Default: None.
+
         valueConstraint (str, optional):
           Etc.
           Default: None.
+
         valueConstraintType (str, optional):
           Etc.
           Default: None.
+
         valueShape (str, optional):
           Etc.
           Default: None.
+
         note (str, optional):
           Etc.
           Default: None.
@@ -117,6 +128,7 @@ class CSVRow:
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
+        # breakpoint(context=5) 
         propid = self.propertyID
         if propid:
             self.propertyID = propid.lstrip("<").rstrip(">")

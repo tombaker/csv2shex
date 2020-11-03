@@ -17,12 +17,13 @@ def test_write_starter_configfile_and_read_back(tmp_path):
     assert open(CONFIGFILE_NAME).read() == CONFIG_DEFAULTS
 
 
-def test_write_starter_configfile_not_if_already_exists(tmp_path):
+def test_write_starter_configfile_but_not_if_already_exists(tmp_path):
     """Exits with error if CONFIGFILE_NAME already exists."""
     os.chdir(tmp_path)
     Path(CONFIGFILE_NAME).write_text("Config stuff")
     with pytest.raises(SystemExit):
         write_starter_configfile()
+
 
 def test_write_starter_configfile_specifying_basedir(tmp_path):
     """Write CONFIG_DEFAULTS to text file CONFIGFILE_NAME specifying basedir."""

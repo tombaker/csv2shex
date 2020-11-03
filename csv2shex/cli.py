@@ -25,8 +25,8 @@ def cli(context):
 @click.option('--verbose', is_flag=True)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def examine(context, csvfile, verbose):
-    """Show CSV file contents, normalized"""
+def inspect(context, csvfile, verbose):
+    """Inspect CSV file contents, normalized"""
     csvrowobjs_list = list_csvrowobjs(csvreader(csvfile))
     shapes_list = list_csvshapeobjs(csvrowobjs_list)
     pprint_output = pprint_schema(shapes_list)

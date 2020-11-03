@@ -1,6 +1,5 @@
 """Turn list of CSVRows into list of CSVShapes."""
 
-import pytest
 from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 
