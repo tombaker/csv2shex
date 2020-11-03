@@ -1,5 +1,7 @@
 """Turn list of CSVRows into list of CSVShapes."""
 
+import pytest
+from pprint import pprint
 from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 
@@ -66,7 +68,10 @@ def test_list_csvshapeobjs_two_shapes():
         ),
     ]
     assert len(list_csvshapeobjs(csvrows_list)) == len(expected_csvshapes_list)
-    assert list_csvshapeobjs(csvrows_list)[0].statement_csvrows_list == expected_csvshapes_list[0].statement_csvrows_list
+    assert (
+        list_csvshapeobjs(csvrows_list)[0].statement_csvrows_list
+        == expected_csvshapes_list[0].statement_csvrows_list
+    )
     assert list_csvshapeobjs(csvrows_list) == expected_csvshapes_list
 
 
@@ -163,7 +168,7 @@ def test_list_csvshapeobjs_one_shape_and_shapeLabel():
             ],
         )
     ]
-    assert list_csvshapeobjs(csvrows_list) == csvshapes_list 
+    assert list_csvshapeobjs(csvrows_list) == csvshapes_list
 
 
 def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
@@ -225,18 +230,7 @@ def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
             ],
         ),
     ]
-    #from pprint import pprint
-    #pprint(list_csvshapeobjs(csvrows_list))
-    #print("")
-    #pprint(csvshapes_list)
-    #assert False
     assert list_csvshapeobjs(csvrows_list) == csvshapes_list
-"""Turn list of CSVRows into list of CSVShapes (for ShEx example)."""
-
-import pytest
-from csv2shex.csvshapes import list_csvshapeobjs, CSVShape
-from csv2shex.csvrows import CSVRow
-from pprint import pprint
 
 
 def test_listshapes_one_shape_for_shex_example():

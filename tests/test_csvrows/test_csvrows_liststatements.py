@@ -12,18 +12,10 @@ def test_liststatements():
         {"shapeID": ":b", "propertyID": "foaf:name", "valueNodeType": "String"},
     ]
     assert list_csvrowobjs(csvrows_list) == [
-        CSVRow(
-            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:date", valueNodeType="String"
-        ),
-        CSVRow(
-            shapeID=":b", propertyID="foaf:name", valueNodeType="String"
-        ),
+        CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:date", valueNodeType="String"),
+        CSVRow(shapeID=":b", propertyID="foaf:name", valueNodeType="String"),
     ]
 
 
@@ -89,15 +81,9 @@ def test_liststatements_with_shape_in_first_statement_only():
         {"shapeID": None, "propertyID": "dct:date", "valueNodeType": "String"},
     ]
     assert list_csvrowobjs(csvrows_list) == [
-        CSVRow(
-            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:date", valueNodeType="String"
-        ),
+        CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:date", valueNodeType="String"),
     ]
 
 
@@ -109,12 +95,8 @@ def test_liststatements_with_shape_on_its_own_line():
         {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
     ]
     assert list_csvrowobjs(csvrows_list) == [
-        CSVRow(
-            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-        ),
+        CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
     ]
 
 
@@ -140,12 +122,8 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
         ),
     ]
     assert list_csvrowobjs(csvrows_list) == [
-        CSVRow(
-            shapeID=":a", propertyID="dct:creator", valueNodeType="URI"
-        ),
-        CSVRow(
-            shapeID=":a", propertyID="dct:subject", valueNodeType="URI"
-        ),
+        CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
+        CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
     ]
 
 

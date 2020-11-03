@@ -47,6 +47,5 @@ def test_exit_if_configfile_has_bad_yaml(tmp_path):
         ":": "http://example.org/",
         "dc:": "http://purl.org/dc/elements/1.1/",
     }
-    #with pytest.raises(ConfigWarning):
+    # with pytest.raises(ConfigWarning):
     #    get_config_settings()
-

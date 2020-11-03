@@ -3,10 +3,7 @@
 import os
 from pathlib import Path
 import ruamel.yaml
-from .exceptions import ConfigError, ConfigWarning, BadYamlError
-
-# pylint: disable=bad-continuation
-# => black disagrees
+from .exceptions import ConfigError
 
 CSV_ELEMENTS = """\
 shape_elements:
@@ -77,10 +74,9 @@ def write_starter_configfile(
         raise ConfigError(
             f"Found existing {str(configfile_pathname)} - delete to re-generate."
         )
-    else:
-        with open(configfile_pathname, "w", encoding="utf-8") as outfile:
-            outfile.write(config_defaults)
-            print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
+    with open(configfile_pathname, "w", encoding="utf-8") as outfile:
+        outfile.write(config_defaults)
+        print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
 
 
 def get_config_settings(
@@ -101,9 +97,13 @@ def get_config_settings(
         return ruamel.yaml.safe_load(configfile_contents)
     except FileNotFoundError:
         if verbose:
-            print(f"Config file {repr(configfile_pathname)} not found - using defaults.")
+            print(
+                f"Config file {repr(configfile_pathname)} not found - using defaults."
+            )
         return ruamel.yaml.safe_load(config_defaults)
     except (ruamel.yaml.YAMLError, ruamel.yaml.scanner.ScannerError):
-        print(f"Ignoring badly formed config file {repr(configfile_name)}"
-               " - using defaults.")
+        print(
+            f"Ignoring badly formed config file {repr(configfile_name)}"
+            " - using defaults."
+        )
         return ruamel.yaml.safe_load(config_defaults)

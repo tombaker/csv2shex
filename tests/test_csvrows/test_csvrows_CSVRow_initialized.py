@@ -43,16 +43,12 @@ def test_statement_initialized_from_named_arguments_and_order_is_insignficant():
     """Order of arguments is insignificant (just a reminder to self)."""
     assert CSVRow(
         shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI"
-    ) == CSVRow(
-        propertyID="dcterms:creator", shapeID="@photo", valueNodeType="URI"
-    )
+    ) == CSVRow(propertyID="dcterms:creator", shapeID="@photo", valueNodeType="URI")
 
 
 def test_statement_fields_individually_addressable():
     """CSVRow instance fields individually addressable."""
-    shap = CSVRow(
-        shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI"
-    )
+    shap = CSVRow(shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI")
     assert shap.shapeID == "@photo"
     assert shap.propertyID == "dcterms:creator"
     assert shap.valueNodeType == "URI"
@@ -61,9 +57,7 @@ def test_statement_fields_individually_addressable():
 
 def test_statement_initialized_by_assignment():
     """CSVRow instance fields created by assignment."""
-    shap = CSVRow(
-        shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI"
-    )
+    shap = CSVRow(shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI")
     shap2 = CSVRow()
     shap2.shapeID = "@photo"
     shap2.propertyID = "dcterms:creator"

@@ -1,10 +1,9 @@
 """Reader of CSV files."""
 
 
-import re
 import csv
 from pathlib import Path
-import ruamel.yaml as yaml
+
 # from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes

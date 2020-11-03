@@ -22,6 +22,7 @@ valueConstraintType:
 - LitPicklist
 """
 
+
 @pytest.fixture()
 def dir_with_csv2rc(tmp_path):
     """Set up directory with simple config file for use as pytest fixture."""

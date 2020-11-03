@@ -68,17 +68,21 @@ def pprint_schema(csvshape_objs_list, verbose=False):
         pprint_output.append("    Shape")
         for key in SHAPE_ELEMENTS:
             if shap_dict[key] and not verbose:
-                pprint_output.append(8*" " + key + ": " + str(shap_dict[key]))
+                pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
             if verbose:
-                pprint_output.append(8*" " + key + ": " + str(shap_dict[key]))
-        
+                pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
+
         # breakpoint(context=5)
         for stat_dict in shap_dict["statement_csvrows_list"]:
             pprint_output.append("        Statement")
             for key in STATEMENT_ELEMENTS:
                 if stat_dict[key] and not verbose:
-                    pprint_output.append(12*" " + str(key) + ": " + str(stat_dict[key]))
+                    pprint_output.append(
+                        12 * " " + str(key) + ": " + str(stat_dict[key])
+                    )
                 if verbose:
-                    pprint_output.append(12*" " + str(key) + ": " + str(stat_dict[key]))
+                    pprint_output.append(
+                        12 * " " + str(key) + ": " + str(stat_dict[key])
+                    )
 
     return pprint_output

@@ -128,7 +128,7 @@ class CSVRow:
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
-        # breakpoint(context=5) 
+        # breakpoint(context=5)
         propid = self.propertyID
         if propid:
             self.propertyID = propid.lstrip("<").rstrip(">")
@@ -249,7 +249,6 @@ def list_csvrowobjs(csvrow_dicts_list=None):
         if stat.shapeID not in shapeids_list:
             shapeids_list.append(stat.shapeID)
         if first_shape_encountered:
-            first_shape = stat.shapeID
             first_shape_encountered = False
 
         for key in keys:
@@ -274,4 +273,3 @@ def list_csvrowobjs(csvrow_dicts_list=None):
 #            # If shapeID is None, assign value most recently added to shapeids_list.
 #            if not row.get("shapeID"):
 #                stat.shapeID = shapeids_list[-1]
-
