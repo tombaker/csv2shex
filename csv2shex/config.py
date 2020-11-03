@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 import ruamel.yaml
-from .exceptions import ConfigWarning, BadYamlError
+from .exceptions import ConfigError, ConfigWarning, BadYamlError
 
 # pylint: disable=bad-continuation
 # => black disagrees
@@ -63,32 +63,48 @@ valueConstraintType:
 - Regex
 """
 
-def writer_starter_configfile(
-    rootdir=None, configfile_name=CONFIGFILE_NAME, config_defaults=CONFIG_DEFAULTS, 
+
+def write_starter_configfile(
+    basedir=None,
+    configfile_name=CONFIGFILE_NAME,
+    config_defaults=CONFIG_DEFAULTS,
 ):
-    """Write initial config file (prefixes.yml) if not yet exists."""
-    if not rootdir:
-        rootdir = Path.cwd()
-    file_tobewritten_pathname = Path(rootdir) / configfile_name
-    if not os.path.exists(file_tobewritten_pathname):
-        with open(file_tobewritten_pathname, "w", encoding="utf-8") as outfile:
-            print(f"Writing {configfile_name}")
-            outfile.write(config_content)
+    """Write initial config file, by default to CWD, or exit if already exists."""
+    if not basedir:
+        basedir = Path.cwd()
+    configfile_pathname = Path(basedir) / configfile_name
+    if os.path.exists(configfile_pathname):
+        raise ConfigError(
+            f"Found existing {str(configfile_pathname)} - delete to re-generate."
+        )
+    else:
+        with open(configfile_pathname, "w", encoding="utf-8") as outfile:
+            outfile.write(config_defaults)
+            print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
 
 
-def get_prefixes(rootdir=None, configfile_name=CONFIGFILE_NAME, config_defaults=CONFIG_DEFAULTS):
-    """Returns config dictionary from YAML config file (or errors out)."""
-    if not rootdir:
-        rootdir = Path.cwd()
-    configfile_pathname = Path(rootdir) / configfile_name
+def get_config_settings(
+    rootdir_path=None, configfile_name=CONFIGFILE_NAME, config_defaults=CONFIG_DEFAULTS, verbose=False
+):
+    """Returns config dict from YAML config file, if found - or errors out."""
+    if not rootdir_path:
+        rootdir_path = Path.cwd()
+    configfile_pathname = Path(rootdir_path) / configfile_name
 
-    try:
+    if Path(configfile_pathname).exists():
         configfile_contents = Path(configfile_pathname).read_text()
-    except FileNotFoundError:
-        raise ConfigWarning(f"Optional config file {repr(configfile_name)} not found - skipping.")
-
-    try:
-        return ruamel.yaml.safe_load(configfile_contents)
-    except ruamel.yaml.YAMLError:
-        raise BadYamlError(f"Ignoring badly formed config file {repr(configfile_name)} - using built-in defaults. Fix!")
+        if verbose:
+            print(f"Reading config file {repr(configfile_pathname)}.")
+        try:
+            return ruamel.yaml.safe_load(configfile_contents)
+        except ruamel.yaml.YAMLError:
+            raise BadYamlError(
+                f"Ignoring badly formed config file {repr(configfile_name)}"
+                  " - using defaults."
+            )
+            return ruamel.yaml.safe_load(CONFIG_DEFAULTS)
+    else:
+        if verbose:
+            print(f"Config file {repr(configfile_pathname)} not found"
+                   " - using defaults.")
         return ruamel.yaml.safe_load(CONFIG_DEFAULTS)
