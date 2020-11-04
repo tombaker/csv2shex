@@ -13,8 +13,8 @@ from rdflib import DCTERMS
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
 
-def test_shexj_from_text():
-    """ Load ShEx JSON text string """
+def test_load_shexj_from_text_string():
+    """Load ShEx JSON text string."""
     shex_json = """
     {
        "@context": "http://www.w3.org/ns/shex.jsonld",
@@ -52,8 +52,8 @@ def test_shexj_from_text():
     )
 
 
-def test_shexj_from_file():
-    """ Load ShEx JSON from internal file"""
+def test_load_shexj_from_shexj_file():
+    """Load ShEx JSON from internal file."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"
     )
@@ -65,8 +65,8 @@ def test_shexj_from_file():
     )
 
 
-def test_shexj_from_json():
-    """ Load ShEx JSON from JSON file """
+def test_load_shexj_from_json_file():
+    """Load ShEx JSON from JSON file."""
     shex = cast(
         ShExJ.Schema,
         loader.load(
@@ -82,7 +82,7 @@ def test_shexj_from_json():
 
 
 def test_emit_shexc():
-    """ Generate ShExC from internal representation """
+    """Generate ShExC from internal representation."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
     )
@@ -98,8 +98,8 @@ def test_emit_shexc():
     )
 
 
-def test_python_to_shex():
-    """ Generate a new ShEx Schema from Python """
+def test_convert_python_object_to_shexc_string():
+    """Generate a new ShEx Schema from Python object."""
     schema = Schema(
         shapes=[
             Shape(
@@ -126,7 +126,7 @@ def test_python_to_shex():
 
 
 def test_is_valid_shex_good():
-    """ Determine whether the particular bit of ShEx is valid """
+    """Check whether Python object for ShEx is valid."""
     schema = Schema(
         shapes=[
             Shape(
