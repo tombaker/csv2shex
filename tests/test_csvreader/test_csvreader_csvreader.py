@@ -1,6 +1,7 @@
 """Read CSV file and return list of rows as Python dictionaries."""
 
 import os
+import pytest
 from pathlib import Path
 from csv2shex.csvreader import csvreader
 
@@ -89,3 +90,18 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     assert len(expected_output) == 3
     assert type(csvreader(csvfile_name)[0]) == dict
     assert csvreader(csvfile_name) == expected_output
+
+
+def test_csvreader_with_invalid_csvfile(tmp_path):
+    """A DCAP CSV is invalid if it does not at least have "propertyID"."""
+    os.chdir(tmp_path)
+    csvfile_name = Path(tmp_path).joinpath("some.csv")
+    csvfile_name.write_text(
+        (
+            "shapeID,propID,valueNodeType\n"
+            ":a,dct:creator,URI\n"
+        )
+    )
+    with pytest.raises(SystemExit):
+        csvreader(csvfile_name)
+
