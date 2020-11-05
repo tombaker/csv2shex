@@ -16,6 +16,7 @@ from .utils import is_uri, is_valid_uri_or_prefixed_uri
 elements = yaml.safe_load(CSV_ELEMENTS)
 SHAPE_ELEMENTS = elements["shape_elements"]
 STATEMENT_ELEMENTS = elements["statement_elements"]
+URI_ELEMENTS = elements["uri_elements"]
 
 
 @dataclass
@@ -120,7 +121,7 @@ class CSVRow:
         return True
 
     def _normalize_mandrepeat(self):
-        """Elements 'mandatory' or 'repeatable' are True if any value provided."""
+        """@@@ Elements 'mandatory' or 'repeatable' are True if any value provided."""
         if self.mandatory:
             self.mandatory = True
         if self.repeatable:
@@ -128,7 +129,6 @@ class CSVRow:
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""
-        # breakpoint(context=5)
         propid = self.propertyID
         if propid:
             self.propertyID = propid.lstrip("<").rstrip(">")
@@ -225,7 +225,7 @@ class CSVRow:
         return True
 
 
-def list_csvrowobjs(csvrow_dicts_list=None):
+def list_csvrowobjs(csvrow_dicts_list=None, expand_prefixes=False):
     """Turn list of dicts into list of CSVRow objects."""
     csvrows_list = []
     shapeids_list = []

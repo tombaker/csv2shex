@@ -104,4 +104,3 @@ def test_csvreader_with_invalid_csvfile(tmp_path):
     )
     with pytest.raises(SystemExit):
         csvreader(csvfile_name)
-

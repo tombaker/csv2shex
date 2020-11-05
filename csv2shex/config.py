@@ -23,9 +23,14 @@ statement_elements:
 - valueConstraintType
 - valueShape
 - note
+
+uri_elements:
+- shapeID
+- propertyID
+- valueShape
 """
 
-CONFIGFILE_NAME = ".csv2rc"
+DEFAULT_CONFIGFILE_NAME = ".csv2rc"
 
 CONFIG_DEFAULTS = """\
 prefixes:
@@ -63,13 +68,13 @@ valueConstraintType:
 
 def write_starter_configfile(
     basedir=None,
-    configfile_name=CONFIGFILE_NAME,
+    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
     config_defaults=CONFIG_DEFAULTS,
 ):
     """Write initial config file, by default to CWD, or exit if already exists."""
     if not basedir:
         basedir = Path.cwd()
-    configfile_pathname = Path(basedir) / configfile_name
+    configfile_pathname = Path(basedir) / default_configfile_name
     if os.path.exists(configfile_pathname):
         raise ConfigError(
             f"Found existing {str(configfile_pathname)} - delete to re-generate."
@@ -81,14 +86,14 @@ def write_starter_configfile(
 
 def get_config_settings(
     rootdir_path=None,
-    configfile_name=CONFIGFILE_NAME,
+    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
     config_defaults=CONFIG_DEFAULTS,
     verbose=False,
 ):
     """Returns config dict from config file, if found, or from built-in defaults."""
     if not rootdir_path:
         rootdir_path = Path.cwd()
-    configfile_pathname = Path(rootdir_path) / configfile_name
+    configfile_pathname = Path(rootdir_path) / default_configfile_name
 
     try:
         configfile_contents = Path(configfile_pathname).read_text()
@@ -103,7 +108,7 @@ def get_config_settings(
         return ruamel.yaml.safe_load(config_defaults)
     except (ruamel.yaml.YAMLError, ruamel.yaml.scanner.ScannerError):
         print(
-            f"Ignoring badly formed config file {repr(configfile_name)}"
+            f"Ignoring badly formed config file {repr(default_configfile_name)}"
             " - using defaults."
         )
         return ruamel.yaml.safe_load(config_defaults)

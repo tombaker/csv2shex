@@ -11,6 +11,7 @@ from .csvrows import CSVRow
 elements = yaml.safe_load(CSV_ELEMENTS)
 SHAPE_ELEMENTS = elements["shape_elements"]
 STATEMENT_ELEMENTS = elements["statement_elements"]
+URI_ELEMENTS = elements["uri_elements"]
 
 
 @dataclass
@@ -24,7 +25,7 @@ class CSVShape:
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
 
 
-def list_csvshapeobjs(csvrows_list):
+def list_csvshapeobjs(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=False):
     """Return list of CSVShapes from list of CSVRows."""
 
     # shapeLabel-to-csvshape_dict
@@ -58,6 +59,9 @@ def list_csvshapeobjs(csvrows_list):
 
     return csvshapes_list
 
+#    def expand_prefixes(self):
+#        """Expands prefixes of prefixed URIs."""
+
 
 def pprint_schema(csvshape_objs_list, verbose=False):
     """Pretty-print CSVShape objects to console."""
@@ -67,7 +71,7 @@ def pprint_schema(csvshape_objs_list, verbose=False):
         shap_dict = asdict(csvshape_obj)
         pprint_output.append("    Shape")
         for key in SHAPE_ELEMENTS:
-            if shap_dict[key] and not verbose:
+            if not verbose and shap_dict[key]:
                 pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
             if verbose:
                 pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
@@ -76,7 +80,7 @@ def pprint_schema(csvshape_objs_list, verbose=False):
         for stat_dict in shap_dict["statement_csvrows_list"]:
             pprint_output.append("        Statement")
             for key in STATEMENT_ELEMENTS:
-                if stat_dict[key] and not verbose:
+                if not verbose and stat_dict[key]:
                     pprint_output.append(
                         12 * " " + str(key) + ": " + str(stat_dict[key])
                     )
