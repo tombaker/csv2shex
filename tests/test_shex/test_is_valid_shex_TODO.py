@@ -12,6 +12,7 @@ from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
+
 @pytest.mark.skip
 def test_is_valid_shex_error():
     """Determine whether a bit of ShEx is valid with only one expression."""

@@ -18,16 +18,16 @@ from pyjsg.jsglib.jsg_array import JSGArray
 def test_shexj_from_text():
     """ Load ShEx JSON text string """
     shex_json = """
-    { 
+    {
        "@context": "http://www.w3.org/ns/shex.jsonld",
        "type": "Schema",
        "shapes": [
-          { 
+          {
               "type": "Shape",
               "id": "http://example.org/myshape",
               "expression": {
                  "type": "EachOf",
-                 "expressions": [ 
+                 "expressions": [
                    {
                      "type": "TripleConstraint",
                      "predicate": "http://purl.org/dc/terms/title",
@@ -37,7 +37,7 @@ def test_shexj_from_text():
                      },
                      "min": "1",
                      "max": "-1"
-                   }, 
+                   },
                    {
                      "type": "TripleConstraint",
                      "predicate": "http://purl.org/dc/terms/description",
@@ -45,28 +45,28 @@ def test_shexj_from_text():
                        "type": "NodeConstraint",
                        "datatype": "http://www.w3.org/2001/XMLSchema#string"
                      }
-                   }, 
+                   },
                    {
                      "type": "TripleConstraint",
                      "predicate": "http://purl.org/dc/terms/subject",
                      "valueExpr": {
                        "type": "NodeConstraint",
-                       "values": [ 
+                       "values": [
                           {
                              "type": "IriStem",
                              "stem": "http://lod.nal.usda.gov/nalt/"
                           }
                        ]
                      }
-                   }, 
+                   },
                    {
                      "type": "TripleConstraint",
                      "predicate": "http://purl.org/dc/terms/creator",
                      "valueExpr": "http://example.org/mycreator"
                    }
                 ]
-             } 
-          } 
+             }
+          }
        ]
     }
     """
@@ -172,5 +172,3 @@ def test_shexj_from_json():
         )
         in shex.shapes[0].expression.expressions
     )
-
-
