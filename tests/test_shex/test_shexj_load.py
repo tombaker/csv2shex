@@ -174,17 +174,3 @@ def test_shexj_from_json():
     )
 
 
-def test_emit_shexc():
-    """ Generate ShExC from internal representation """
-    shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj")
-    shex = SchemaLoader().load(shex_file)
-    assert (
-        """<http://example.org/myshape> {
-    (  <http://purl.org/dc/terms/title> LITERAL + ;
-       <http://purl.org/dc/terms/description> <http://www.w3.org/2001/XMLSchema#string> ;
-       <http://purl.org/dc/terms/subject> [ <http://lod.nal.usda.gov/nalt/>~ ] ;
-       <http://purl.org/dc/terms/creator> @<http://example.org/mycreator>
-    )
-}"""
-        == (str(ShExC(shex))).strip()
-    )
