@@ -8,8 +8,8 @@ from rdflib import DCTERMS
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
 
-def test_shexc_from_text():
-    """ Load ShExC text string """
+def test_load_shexc_from_text_string():
+    """Load ShExC text string"""
     shex_text = """PREFIX dct: <http://purl.org/dc/terms/>
 
     <default> {
@@ -24,10 +24,14 @@ def test_shexc_from_text():
         TripleConstraint(predicate=DCTERMS.title)
         in shex.shapes[0].expression.expressions
     )
+    assert (
+        TripleConstraint(predicate="http://purl.org/dc/terms/title")
+        in shex.shapes[0].expression.expressions
+    )
 
 
-def test_shexc_from_file():
-    """ Load ShExC from internal file"""
+def test_load_shexc_from_shexc_file():
+    """Load ShExC from internal ShExC file."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
     )
@@ -40,7 +44,7 @@ def test_shexc_from_file():
 
 
 def test_emit_shexc():
-    """ Generate ShExC from internal representation """
+    """Generate ShExC from internal ShExC file, expanding prefixes."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
     )

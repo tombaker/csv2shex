@@ -13,8 +13,8 @@ from rdflib import DCTERMS
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
 
-def test_load_shexj_from_text_string():
-    """Load ShEx JSON text string."""
+def test_load_shexj_as_text_string():
+    """Load ShExJ as text string."""
     shex_json = """
     {
        "@context": "http://www.w3.org/ns/shex.jsonld",
@@ -53,7 +53,7 @@ def test_load_shexj_from_text_string():
 
 
 def test_load_shexj_from_shexj_file():
-    """Load ShEx JSON from internal file."""
+    """Load ShExJ from internal ShExJ file."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexj"
     )
@@ -66,7 +66,7 @@ def test_load_shexj_from_shexj_file():
 
 
 def test_load_shexj_from_json_file():
-    """Load ShEx JSON from JSON file."""
+    """Load ShExJ from internal JSON file."""
     shex = cast(
         ShExJ.Schema,
         loader.load(
@@ -82,7 +82,7 @@ def test_load_shexj_from_json_file():
 
 
 def test_emit_shexc():
-    """Generate ShExC from internal representation."""
+    """Generate ShExC from internal ShExC file, expanding prefixes."""
     shex_file = os.path.join(
         EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
     )
