@@ -40,7 +40,7 @@ def list_csvshapeobjs(csvrows_list):
             csvshape = CSVShape()
             csvshape.shapeID = csvrow.shapeID
             csvshape.shapeLabel = csvrow.shapeLabel
-            csvshape.start = True if is_first_csvrow_encountered else False
+            csvshape.start = bool(is_first_csvrow_encountered)
             csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
