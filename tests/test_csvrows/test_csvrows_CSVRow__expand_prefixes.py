@@ -6,7 +6,7 @@ import ruamel.yaml as yaml
 from pathlib import Path
 from csv2shex.config import get_config_settings
 from csv2shex.csvrows import CSVRow
-from csv2shex.csvshapes import CSVShape, CSVRow, list_csvshapeobjs
+from csv2shex.csvshapes import CSVShape, list_csvshapeobjs
 from csv2shex.config import CSV_ELEMENTS
 
 elements = yaml.safe_load(CSV_ELEMENTS)
@@ -73,4 +73,3 @@ def test_list_csvshapeobjs_prefixes_expanded():
         )
     ]
     assert list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshapes_list
-

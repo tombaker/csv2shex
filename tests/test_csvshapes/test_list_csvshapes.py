@@ -340,5 +340,3 @@ def test_listshapes_one_shape_for_shex_example():
         )
     ]
     assert list_csvshapeobjs(csvrows_list) == one_shape_with_csvrows_list
-
-

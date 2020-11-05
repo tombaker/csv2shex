@@ -2,7 +2,7 @@
 
 import os
 from pathlib import Path
-import ruamel.yaml
+import ruamel.yaml as yaml
 from .exceptions import ConfigError
 
 CSV_ELEMENTS = """\
@@ -65,6 +65,11 @@ valueConstraintType:
 - Regex
 """
 
+elements = yaml.safe_load(CSV_ELEMENTS)
+SHAPE_ELEMENTS = elements["shape_elements"]
+STATEMENT_ELEMENTS = elements["statement_elements"]
+URI_ELEMENTS = elements["uri_elements"]
+
 
 def write_starter_configfile(
     basedir=None,
@@ -99,16 +104,16 @@ def get_config_settings(
         configfile_contents = Path(configfile_pathname).read_text()
         if verbose:
             print(f"Reading config file {repr(configfile_pathname)}.")
-        return ruamel.yaml.safe_load(configfile_contents)
+        return yaml.safe_load(configfile_contents)
     except FileNotFoundError:
         if verbose:
             print(
                 f"Config file {repr(configfile_pathname)} not found - using defaults."
             )
-        return ruamel.yaml.safe_load(config_defaults)
-    except (ruamel.yaml.YAMLError, ruamel.yaml.scanner.ScannerError):
+        return yaml.safe_load(config_defaults)
+    except (yaml.YAMLError, yaml.scanner.ScannerError):
         print(
             f"Ignoring badly formed config file {repr(default_configfile_name)}"
             " - using defaults."
         )
-        return ruamel.yaml.safe_load(config_defaults)
+        return yaml.safe_load(config_defaults)

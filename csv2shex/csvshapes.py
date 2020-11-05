@@ -4,14 +4,8 @@
 from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from typing import List
-import ruamel.yaml as yaml
-from .config import CSV_ELEMENTS
+from .config import SHAPE_ELEMENTS, STATEMENT_ELEMENTS, URI_ELEMENTS
 from .csvrows import CSVRow
-
-elements = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = elements["shape_elements"]
-STATEMENT_ELEMENTS = elements["statement_elements"]
-URI_ELEMENTS = elements["uri_elements"]
 
 
 @dataclass
@@ -28,12 +22,10 @@ class CSVShape:
 def list_csvshapeobjs(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=False):
     """Return list of CSVShapes from list of CSVRows."""
 
-    # shapeLabel-to-csvshape_dict
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
 
-    # breakpoint(context=5)
     for csvrow in csvrows_list:
         csvrow.normalize()
         csvrow.validate()
@@ -57,10 +49,13 @@ def list_csvshapeobjs(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=F
     for key in csvshapes_ddict.keys():
         csvshapes_list.append(csvshapes_ddict[key])
 
-    return csvshapes_list
+    # @@@ HERE
+    # pylint: disable=unnecessary-pass
+    # pylint: disable=unused-variable
+    if expand_prefixes:
+        return uri_elements
 
-#    def expand_prefixes(self):
-#        """Expands prefixes of prefixed URIs."""
+    return csvshapes_list
 
 
 def pprint_schema(csvshape_objs_list, verbose=False):

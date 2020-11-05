@@ -4,19 +4,13 @@
 import re
 import sys
 from dataclasses import dataclass
-import ruamel.yaml as yaml
-from .config import CSV_ELEMENTS
+from .config import SHAPE_ELEMENTS, STATEMENT_ELEMENTS
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...
 # => too-many-branches: a matter of taste?
 # => too-many-instance-attributes: disagree!
-
-elements = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = elements["shape_elements"]
-STATEMENT_ELEMENTS = elements["statement_elements"]
-URI_ELEMENTS = elements["uri_elements"]
 
 
 @dataclass
@@ -225,7 +219,7 @@ class CSVRow:
         return True
 
 
-def list_csvrowobjs(csvrow_dicts_list=None, expand_prefixes=False):
+def list_csvrowobjs(csvrow_dicts_list=None):
     """Turn list of dicts into list of CSVRow objects."""
     csvrows_list = []
     shapeids_list = []
