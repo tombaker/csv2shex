@@ -3,9 +3,14 @@
 
 import re
 import sys
+import ruamel.yaml as yaml
 from dataclasses import dataclass
-from .config import SHAPE_ELEMENTS, STATEMENT_ELEMENTS
+from .config import CSV_ELEMENTS
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
+
+csv_elements_dict = yaml.safe_load(CSV_ELEMENTS)
+SHAPE_ELEMENTS = csv_elements_dict["shape_elements"]
+STATEMENT_ELEMENTS = csv_elements_dict["statement_elements"]
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...

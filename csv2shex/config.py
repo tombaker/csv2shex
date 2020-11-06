@@ -24,9 +24,13 @@ statement_elements:
 - valueShape
 - note
 
-uri_elements:
+shape_uri_elements:
 - shapeID
+
+statement_uri_elements:
 - propertyID
+- valueDataType
+- valueConstraint
 - valueShape
 """
 
@@ -64,11 +68,6 @@ valueConstraintType:
 - LangTagPicklist
 - Regex
 """
-
-elements = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = elements["shape_elements"]
-STATEMENT_ELEMENTS = elements["statement_elements"]
-URI_ELEMENTS = elements["uri_elements"]
 
 
 def write_starter_configfile(

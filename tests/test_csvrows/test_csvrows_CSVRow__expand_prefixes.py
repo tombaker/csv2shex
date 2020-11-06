@@ -9,8 +9,12 @@ from csv2shex.csvrows import CSVRow
 from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
 from csv2shex.config import CSV_ELEMENTS
 
-elements = yaml.safe_load(CSV_ELEMENTS)
-URI_ELEMENTS = elements["uri_elements"]
+csv_elements_dict = yaml.safe_load(CSV_ELEMENTS)
+SHAPE_ELEMENTS = csv_elements_dict["shape_elements"]
+STATEMENT_ELEMENTS = csv_elements_dict["statement_elements"]
+SHAPE_URI_ELEMENTS = csv_elements_dict["shape_uri_elements"]
+STATEMENT_URI_ELEMENTS = csv_elements_dict["statement_uri_elements"]
+
 
 ALT_CONFIG_DEFAULTS = """\
 prefixes:
@@ -19,6 +23,7 @@ prefixes:
 """
 
 
+@pytest.mark.prefixes
 def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
     """Get prefixes from default config file .csvrc."""
     os.chdir(Path(dir_with_csv2rc))
@@ -28,6 +33,7 @@ def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
     }
 
 
+@pytest.mark.prefixes
 def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
