@@ -6,7 +6,7 @@ import ruamel.yaml as yaml
 from pathlib import Path
 from csv2shex.config import get_config_settings
 from csv2shex.csvrows import CSVRow
-from csv2shex.csvshapes import CSVShape, list_csvshapeobjs
+from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
 from csv2shex.config import CSV_ELEMENTS
 
 elements = yaml.safe_load(CSV_ELEMENTS)
@@ -39,7 +39,7 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
         "dc:": "http://purl.org/dc/terms/",
     }
     csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
-    csvshape_dicts_list = list_csvshapeobjs(csvrows_list, expand_prefixes=True)
+    csvshape_dicts_list = get_csvshapes_dict(csvrows_list, expand_prefixes=True)
     assert csvshape_dicts_list
     # assert stat.shapeID == "http://example.org/"
     # assert stat.propertyID == "http://purl.org/dc/terms/creator"
@@ -48,7 +48,7 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
 
 @pytest.mark.prefixes
 @pytest.mark.skip
-def test_list_csvshapeobjs_prefixes_expanded():
+def test_get_csvshapes_dict_prefixes_expanded():
     """Turn list of CSVRow objects into list of one CSVShape with prefixes expanded."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueShape=":a"),

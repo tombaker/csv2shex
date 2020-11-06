@@ -2,13 +2,13 @@
 
 import pytest
 from textwrap import dedent
-from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
+from csv2shex.csvshapes import pprint_schema, get_csvshapes_dict, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.csvshape
 @pytest.mark.skip
-def test_list_csvshapeobjs_two_shapes():
+def test_get_csvshapes_dict_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
         CSVShape(
@@ -84,7 +84,7 @@ def test_list_csvshapeobjs_two_shapes():
 
 @pytest.mark.csvshape
 @pytest.mark.skip
-def test_list_csvshapeobjs_two_shapes_verbose():
+def test_get_csvshapes_dict_two_shapes_verbose():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
         CSVShape(

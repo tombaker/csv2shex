@@ -5,7 +5,7 @@ import click
 from .config import CSV_ELEMENTS
 from .csvreader import csvreader
 from .csvrows import list_csvrowobjs
-from .csvshapes import pprint_schema, list_csvshapeobjs
+from .csvshapes import pprint_schema, get_csvshapes_dict
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -29,7 +29,7 @@ def cli(context):
 def inspect(context, csvfile, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
     csvrowobjs_list = list_csvrowobjs(csvreader(csvfile))
-    shapes_list = list_csvshapeobjs(csvrowobjs_list, expand_prefixes=expand_prefixes)
+    shapes_list = get_csvshapes_dict(csvrowobjs_list, expand_prefixes=expand_prefixes)
     pprint_output = pprint_schema(shapes_list)
     for line in pprint_output:
         print(line)
