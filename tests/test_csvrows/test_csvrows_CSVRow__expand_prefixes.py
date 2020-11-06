@@ -39,8 +39,8 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
         "dc:": "http://purl.org/dc/terms/",
     }
     csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
-    csvshapes_list = list_csvshapeobjs(csvrows_list, expand_prefixes=True)
-    assert csvshapes_list
+    csvshape_dicts_list = list_csvshapeobjs(csvrows_list, expand_prefixes=True)
+    assert csvshape_dicts_list
     # assert stat.shapeID == "http://example.org/"
     # assert stat.propertyID == "http://purl.org/dc/terms/creator"
     # assert stat.valueShape == "http://example.org/"
@@ -54,7 +54,7 @@ def test_list_csvshapeobjs_prefixes_expanded():
         CSVRow(shapeID=":a", propertyID="dct:creator", valueShape=":a"),
     ]
 
-    expected_csvshapes_list = [
+    expected_csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID="http://example.org/a",
@@ -76,5 +76,5 @@ def test_list_csvshapeobjs_prefixes_expanded():
         )
     ]
     assert (
-        list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshapes_list
+        list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshape_dicts_list
     )

@@ -14,7 +14,7 @@ def test_list_csvshapeobjs_two_shapes():
         CSVRow(shapeID=":b", propertyID="foaf:name"),
     ]
 
-    expected_csvshapes_list = [
+    expected_csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -67,12 +67,12 @@ def test_list_csvshapeobjs_two_shapes():
             ],
         ),
     ]
-    assert len(list_csvshapeobjs(csvrows_list)) == len(expected_csvshapes_list)
+    assert len(list_csvshapeobjs(csvrows_list)) == len(expected_csvshape_dicts_list)
     assert (
         list_csvshapeobjs(csvrows_list)[0].statement_csvrows_list
-        == expected_csvshapes_list[0].statement_csvrows_list
+        == expected_csvshape_dicts_list[0].statement_csvrows_list
     )
-    assert list_csvshapeobjs(csvrows_list) == expected_csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == expected_csvshape_dicts_list
 
 
 def test_list_csvshapeobjs_one_shape():
@@ -82,7 +82,7 @@ def test_list_csvshapeobjs_one_shape():
         CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
 
-    expected_csvshapes_list = [
+    expected_csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -115,7 +115,7 @@ def test_list_csvshapeobjs_one_shape():
             ],
         )
     ]
-    assert list_csvshapeobjs(csvrows_list) == expected_csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == expected_csvshape_dicts_list
 
 
 def test_list_csvshapeobjs_one_shape_and_shapeLabel():
@@ -135,7 +135,7 @@ def test_list_csvshapeobjs_one_shape_and_shapeLabel():
         ),
     ]
 
-    csvshapes_list = [
+    csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -168,7 +168,7 @@ def test_list_csvshapeobjs_one_shape_and_shapeLabel():
             ],
         )
     ]
-    assert list_csvshapeobjs(csvrows_list) == csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == csvshape_dicts_list
 
 
 def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
@@ -178,7 +178,7 @@ def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
         CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop2"),
         CSVRow(shapeID=":b", shapeLabel="B CSVShape", propertyID=":prop3"),
     ]
-    csvshapes_list = [
+    csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -230,7 +230,7 @@ def test_list_csvshapeobjs_two_shapes_assign_start_to_first():
             ],
         ),
     ]
-    assert list_csvshapeobjs(csvrows_list) == csvshapes_list
+    assert list_csvshapeobjs(csvrows_list) == csvshape_dicts_list
 
 
 def test_listshapes_one_shape_for_shex_example():

@@ -6,9 +6,11 @@ from csv2shex.csvshapes import pprint_schema, list_csvshapeobjs, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
+@pytest.mark.csvshape
+@pytest.mark.skip
 def test_list_csvshapeobjs_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
-    csvshapes_list = [
+    csvshape_dicts_list = [
         CSVShape(
             start=True,
             shapeID=":a",
@@ -77,12 +79,14 @@ def test_list_csvshapeobjs_two_shapes():
                 propertyID: foaf:name
     """
     )
-    assert pprint_schema(csvshapes_list) == expected_output_indented.splitlines()
+    assert pprint_schema(csvshape_dicts_list) == expected_output_indented.splitlines()
 
 
+@pytest.mark.csvshape
+@pytest.mark.skip
 def test_list_csvshapeobjs_two_shapes_verbose():
     """Turn list of CSVRow objects into list with two CSVShapes."""
-    csvshapes_list = [
+    csvshape_dicts_list = [
         CSVShape(
             shapeID=":a",
             shapeLabel=None,
@@ -185,6 +189,6 @@ def test_list_csvshapeobjs_two_shapes_verbose():
     """
     )
     assert (
-        pprint_schema(csvshapes_list, verbose=True)
+        pprint_schema(csvshape_dicts_list, verbose=True)
         == expected_output_indented.splitlines()
     )

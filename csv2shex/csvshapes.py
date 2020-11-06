@@ -45,38 +45,36 @@ def list_csvshapeobjs(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=F
         )
         single_statement_dict.clear()
 
-    csvshapes_list = []
+    csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
-        csvshapes_list.append(csvshapes_ddict[key])
+        csvshape_dicts_list.append(csvshapes_ddict[key])
 
     # @@@ HERE
     # pylint: disable=unnecessary-pass
     # pylint: disable=unused-variable
     # breakpoint(context=5)
     if expand_prefixes:
-        for shape in csvshapes_list:
+        for shape in csvshape_dicts_list:
             print(shape)
         for element in uri_elements:
             print(element)
 
-    return csvshapes_list
+    return csvshape_dicts_list
 
 
-def pprint_schema(csvshape_objs_list, verbose=False):
+def pprint_schema(csvshape_dicts_list, verbose=False):
     """Pretty-print CSVShape objects to console."""
     pprint_output = []
     pprint_output.append("DCAP")
-    for csvshape_obj in csvshape_objs_list:
-        shap_dict = asdict(csvshape_obj)
+    for csvshape_dict in csvshape_dicts_list:
         pprint_output.append("    Shape")
         for key in SHAPE_ELEMENTS:
-            if not verbose and shap_dict[key]:
-                pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
+            if not verbose and csvshape_dict[key]:
+                pprint_output.append(8 * " " + key + ": " + str(csvshape_dict[key]))
             if verbose:
-                pprint_output.append(8 * " " + key + ": " + str(shap_dict[key]))
+                pprint_output.append(8 * " " + key + ": " + str(csvshape_dict[key]))
 
-        # breakpoint(context=5)
-        for stat_dict in shap_dict["statement_csvrows_list"]:
+        for stat_dict in csvshape_dict["statement_csvrows_list"]:
             pprint_output.append("        Statement")
             for key in STATEMENT_ELEMENTS:
                 if not verbose and stat_dict[key]:
