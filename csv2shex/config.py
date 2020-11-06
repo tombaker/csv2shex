@@ -59,7 +59,7 @@ def write_starter_configfile(
         print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
 
 
-def get_config_settings(
+def get_config_settings_dict(
     rootdir_path=None,
     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
     config_defaults=CONFIG_DEFAULTS,
