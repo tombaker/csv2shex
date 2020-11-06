@@ -28,19 +28,21 @@ def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
     }
 
 
-@pytest.mark.prefixes
-@pytest.mark.skip
 def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
-    assert get_config_settings(config_defaults=ALT_CONFIG_DEFAULTS)["prefixes"] == {
+    prefix_settings = get_config_settings(config_defaults=ALT_CONFIG_DEFAULTS)[
+        "prefixes"
+    ]
+    assert prefix_settings == {
         ":": "http://example.org/",
         "dc:": "http://purl.org/dc/terms/",
     }
-    stat = CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")
-    assert stat.shapeID == "http://example.org/"
-    assert stat.propertyID == "http://purl.org/dc/terms/creator"
-    assert stat.valueShape == "http://example.org/"
+    csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
+    csvshapes_list = list_csvshapeobjs(csvrows_list, expand_prefixes=True)
+    # assert stat.shapeID == "http://example.org/"
+    # assert stat.propertyID == "http://purl.org/dc/terms/creator"
+    # assert stat.valueShape == "http://example.org/"
 
 
 @pytest.mark.prefixes
@@ -72,4 +74,6 @@ def test_list_csvshapeobjs_prefixes_expanded():
             ],
         )
     ]
-    assert list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshapes_list
+    assert (
+        list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshapes_list
+    )
