@@ -1,22 +1,21 @@
 """Pretty-print CSVShape objects to console."""
 
 import pytest
+from dataclasses import asdict
 from textwrap import dedent
 from csv2shex.csvshapes import pprint_schema, get_csvshapes_dict, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
-@pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
-        CSVShape(
-            start=True,
-            shapeID=":a",
-            shapeLabel=None,
-            shapeClosed=False,
-            statement_csvrows_list=[
+        {
+            "shapeID": ":a",
+            "shapeLabel": None,
+            "start": True,
+            "shapeClosed": False,
+            "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
                     "mandatory": False,
@@ -42,12 +41,13 @@ def test_get_csvshapes_dict_two_shapes():
                     "valueShape": None,
                 },
             ],
-        ),
-        CSVShape(
-            start=False,
-            shapeID=":b",
-            shapeLabel=None,
-            statement_csvrows_list=[
+        },
+        {
+            "shapeID": ":b",
+            "shapeLabel": None,
+            "start": False,
+            "shapeClosed": False,
+            "statement_csvrows_list": [
                 {
                     "propertyID": "foaf:name",
                     "mandatory": False,
@@ -61,9 +61,10 @@ def test_get_csvshapes_dict_two_shapes():
                     "valueShape": None,
                 }
             ],
-        ),
+        },
     ]
-    expected_output_indented = dedent(
+
+    expected_output_dedented = dedent(
         """\
     DCAP
         Shape
@@ -79,20 +80,18 @@ def test_get_csvshapes_dict_two_shapes():
                 propertyID: foaf:name
     """
     )
-    assert pprint_schema(csvshape_dicts_list) == expected_output_indented.splitlines()
+    assert pprint_schema(csvshape_dicts_list) == expected_output_dedented.splitlines()
 
 
-@pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_two_shapes_verbose():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
-        CSVShape(
-            shapeID=":a",
-            shapeLabel=None,
-            shapeClosed=False,
-            start=True,
-            statement_csvrows_list=[
+        {
+            "shapeID": ":a",
+            "shapeLabel": None,
+            "start": True,
+            "shapeClosed": False,
+            "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
                     "propertyLabel": None,
@@ -118,13 +117,13 @@ def test_get_csvshapes_dict_two_shapes_verbose():
                     "note": None,
                 },
             ],
-        ),
-        CSVShape(
-            shapeID=":b",
-            shapeLabel=None,
-            shapeClosed=False,
-            start=False,
-            statement_csvrows_list=[
+        },
+        {
+            "shapeID": ":b",
+            "shapeLabel": None,
+            "start": False,
+            "shapeClosed": False,
+            "statement_csvrows_list": [
                 {
                     "propertyID": "foaf:name",
                     "propertyLabel": None,
@@ -138,9 +137,10 @@ def test_get_csvshapes_dict_two_shapes_verbose():
                     "note": None,
                 }
             ],
-        ),
+        },
     ]
-    expected_output_indented = dedent(
+
+    expected_output_dedented = dedent(
         """\
     DCAP
         Shape
@@ -190,5 +190,5 @@ def test_get_csvshapes_dict_two_shapes_verbose():
     )
     assert (
         pprint_schema(csvshape_dicts_list, verbose=True)
-        == expected_output_indented.splitlines()
+        == expected_output_dedented.splitlines()
     )

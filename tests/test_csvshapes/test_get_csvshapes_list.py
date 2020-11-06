@@ -7,7 +7,6 @@ from csv2shex.csvshapes import pprint_schema, get_csvshapes_dict, CSVShape
 from csv2shex.csvrows import CSVRow
 
 
-@pytest.mark.csvshape
 def test_get_csvshapes_dict_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
@@ -51,7 +50,6 @@ def test_get_csvshapes_dict_one_shape():
     ]
     assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
 
-@pytest.mark.csvshape
 def test_get_csvshapes_dict_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [
@@ -122,7 +120,6 @@ def test_get_csvshapes_dict_two_shapes():
     assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
 
 
-@pytest.mark.csvshape
 def test_get_csvshapes_dict_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
     csvrows_list = [
@@ -177,7 +174,6 @@ def test_get_csvshapes_dict_one_shape_and_shapeLabel():
     assert get_csvshapes_dict(csvrows_list) == csvshape_dicts_list
 
 
-@pytest.mark.csvshape
 def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     csvrows_list = [
@@ -242,7 +238,6 @@ def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
     assert get_csvshapes_dict(csvrows_list) == csvshape_dicts_list
 
 
-@pytest.mark.csvshape
 def test_listshapes_one_shape_for_shex_example():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
