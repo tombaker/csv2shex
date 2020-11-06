@@ -52,7 +52,7 @@ def list_csvshapeobjs(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=F
     # @@@ HERE
     # pylint: disable=unnecessary-pass
     # pylint: disable=unused-variable
-    # breakpoint(context=5) 
+    # breakpoint(context=5)
     if expand_prefixes:
         for shape in csvshapes_list:
             print(shape)

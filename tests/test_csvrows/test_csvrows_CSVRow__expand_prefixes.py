@@ -40,6 +40,7 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
     }
     csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
     csvshapes_list = list_csvshapeobjs(csvrows_list, expand_prefixes=True)
+    assert csvshapes_list
     # assert stat.shapeID == "http://example.org/"
     # assert stat.propertyID == "http://purl.org/dc/terms/creator"
     # assert stat.valueShape == "http://example.org/"
