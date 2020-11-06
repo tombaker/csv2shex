@@ -22,7 +22,7 @@ class CSVShape:
 def get_csvshapes_dict(
     csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=False
 ) -> List[dict]:
-    """Return list of CSVShapes from list of CSVRows."""
+    """Get list of CSVShapes (as dicts) from list of CSVRows."""
 
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
@@ -49,7 +49,7 @@ def get_csvshapes_dict(
 
     csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
-        csvshape_dicts_list.append(csvshapes_ddict[key])
+        csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))
 
     # @@@ HERE
     # pylint: disable=unnecessary-pass
