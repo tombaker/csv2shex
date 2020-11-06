@@ -5,7 +5,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
-from .config import CSV_ELEMENTS
+from .model import CSV_ELEMENTS
 from .csvrows import CSVRow
 
 

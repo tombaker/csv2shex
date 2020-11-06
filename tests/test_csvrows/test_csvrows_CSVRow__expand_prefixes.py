@@ -7,15 +7,13 @@ from pathlib import Path
 from csv2shex.config import get_config_settings
 from csv2shex.csvrows import CSVRow
 from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
-from csv2shex.config import CSV_ELEMENTS
+from csv2shex.model import CSV_ELEMENTS
 
 csv_elements_dict = yaml.safe_load(CSV_ELEMENTS)
 SHAPE_ELEMENTS = csv_elements_dict["shape_elements"]
 STATEMENT_ELEMENTS = csv_elements_dict["statement_elements"]
 SHAPE_URI_ELEMENTS = csv_elements_dict["shape_uri_elements"]
 STATEMENT_URI_ELEMENTS = csv_elements_dict["statement_uri_elements"]
-
-
 ALT_CONFIG_DEFAULTS = """\
 prefixes:
     ":": "http://example.org/"

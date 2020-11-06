@@ -8,7 +8,6 @@ from csv2shex.csvrows import CSVRow
 
 
 @pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
@@ -25,32 +24,21 @@ def test_get_csvshapes_dict_one_shape():
             "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
-                    "valueNodeType": None,
                     "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
                     "valueConstraint": None,
-                    "valueConstraintType": None,
                     "valueShape": None,
-                    "note": None,
                 },
                 {
                     "propertyID": "dct:date",
-                    "valueNodeType": None,
                     "valueDataType": None,
-                    "propertyLabel": None,
-                    "mandatory": False,
-                    "repeatable": False,
                     "valueConstraint": None,
-                    "valueConstraintType": None,
                     "valueShape": None,
-                    "note": None,
                 },
             ],
         }
     ]
     assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
+
 
 
 @pytest.mark.csvshape

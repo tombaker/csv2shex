@@ -5,35 +5,6 @@ from pathlib import Path
 import ruamel.yaml as yaml
 from .exceptions import ConfigError
 
-CSV_ELEMENTS = """\
-shape_elements:
-- shapeID
-- shapeLabel
-- shapeClosed
-- start
-
-statement_elements:
-- propertyID
-- propertyLabel
-- mandatory
-- repeatable
-- valueNodeType
-- valueDataType
-- valueConstraint
-- valueConstraintType
-- valueShape
-- note
-
-shape_uri_elements:
-- shapeID
-
-statement_uri_elements:
-- propertyID
-- valueDataType
-- valueConstraint
-- valueShape
-"""
-
 DEFAULT_CONFIGFILE_NAME = ".csv2rc"
 
 CONFIG_DEFAULTS = """\
