@@ -50,6 +50,7 @@ def test_get_csvshapes_dict_one_shape():
     ]
     assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
 
+
 def test_get_csvshapes_dict_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [

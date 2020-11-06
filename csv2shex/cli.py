@@ -3,7 +3,7 @@
 import ruamel.yaml as yaml
 import click
 from .csvreader import csvreader
-from .csvrows import list_csvrowobjs
+from .csvrows import get_csvrowobjs_list
 from .csvshapes import pprint_schema, get_csvshapes_dict
 from .model import CSV_ELEMENTS
 
@@ -28,7 +28,7 @@ def cli(context):
 @click.pass_context
 def inspect(context, csvfile, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
-    csvrowobjs_list = list_csvrowobjs(csvreader(csvfile))
+    csvrowobjs_list = get_csvrowobjs_list(csvreader(csvfile))
     shapes_list = get_csvshapes_dict(csvrowobjs_list, expand_prefixes=expand_prefixes)
     pprint_output = pprint_schema(shapes_list)
     for line in pprint_output:

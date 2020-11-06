@@ -1,6 +1,6 @@
 """Use list of dictionaries to initialize list of CSVRow objects."""
 
-from csv2shex.csvrows import list_csvrowobjs, CSVRow
+from csv2shex.csvrows import get_csvrowobjs_list, CSVRow
 
 
 def test_liststatements():
@@ -11,7 +11,7 @@ def test_liststatements():
         {"shapeID": ":a", "propertyID": "dct:date", "valueNodeType": "String"},
         {"shapeID": ":b", "propertyID": "foaf:name", "valueNodeType": "String"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:date", valueNodeType="String"),
@@ -26,7 +26,7 @@ def test_liststatements_without_shapeIDs():
         {"propertyID": "dct:subject", "valueNodeType": "URI"},
         {"propertyID": "dct:date", "valueNodeType": "String"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(
             shapeID=":default",
             propertyID="dct:creator",
@@ -54,7 +54,7 @@ def test_liststatements_with_shapeIDs_specified_as_none():
         {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
         {"shapeID": None, "propertyID": "dct:date", "valueNodeType": "String"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(
             shapeID=":default",
             propertyID="dct:creator",
@@ -80,7 +80,7 @@ def test_liststatements_with_shape_in_first_statement_only():
         {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
         {"shapeID": None, "propertyID": "dct:date", "valueNodeType": "String"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:date", valueNodeType="String"),
@@ -94,7 +94,7 @@ def test_liststatements_with_shape_on_its_own_line():
         {"shapeID": None, "propertyID": "dct:creator", "valueNodeType": "URI"},
         {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
     ]
@@ -107,7 +107,7 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
         {"shapeID": None, "propertyID": "dct:creator", "valueNodeType": "URI"},
         {"shapeID": None, "propertyID": "dct:subject", "valueNodeType": "URI"},
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(
             shapeID=":a",
             propertyID="dct:creator",
@@ -121,7 +121,7 @@ def test_liststatements_with_shape_on_its_own_line_fields_with_none_are_implicit
             valueNodeType="URI",
         ),
     ]
-    assert list_csvrowobjs(csvrows_list) == [
+    assert get_csvrowobjs_list(csvrows_list) == [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueNodeType="URI"),
         CSVRow(shapeID=":a", propertyID="dct:subject", valueNodeType="URI"),
     ]
@@ -180,4 +180,4 @@ def test_liststatements_with_missing_valueNodeType():
             note="must be wikidata Book",
         ),
     ]
-    assert list_csvrowobjs(as_input) == expected
+    assert get_csvrowobjs_list(as_input) == expected
