@@ -3,8 +3,8 @@
 
 import re
 import sys
-import ruamel.yaml as yaml
 from dataclasses import dataclass
+import ruamel.yaml as yaml
 from .config import CSV_ELEMENTS
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
