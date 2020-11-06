@@ -19,7 +19,9 @@ class CSVShape:
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
 
 
-def get_csvshapes_dict(csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=False) -> List[dict]:
+def get_csvshapes_dict(
+    csvrows_list, uri_elements=URI_ELEMENTS, expand_prefixes=False
+) -> List[dict]:
     """Return list of CSVShapes from list of CSVRows."""
 
     csvshapes_ddict = defaultdict(dict)

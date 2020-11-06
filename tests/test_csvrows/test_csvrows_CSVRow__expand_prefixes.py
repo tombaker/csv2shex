@@ -76,5 +76,5 @@ def test_get_csvshapes_dict_prefixes_expanded():
         )
     ]
     assert (
-        list_csvshapeobjs(csvrows_list, expand_prefixes=True) == expected_csvshape_dicts_list
+        get_csvshapes_dict(csvrows_list, expand_prefixes=True) == expected_csvshape_dicts_list
     )
