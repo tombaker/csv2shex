@@ -30,6 +30,7 @@ def get_csvshapes_dict(
     single_statement_dict = dict()
 
     csv_elements_dict = yaml.safe_load(csv_elements)
+    statement_elements = csv_elements_dict["statement_elements"]
     shape_uri_elements = csv_elements_dict["shape_uri_elements"]
     statement_uri_elements = csv_elements_dict["statement_uri_elements"]
 
@@ -44,7 +45,7 @@ def get_csvshapes_dict(
             csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
-        for key in statement_uri_elements:
+        for key in statement_elements:
             single_statement_dict[key] = asdict(csvrow)[key]
 
         csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(

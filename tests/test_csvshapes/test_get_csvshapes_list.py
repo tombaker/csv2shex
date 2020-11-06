@@ -24,25 +24,34 @@ def test_get_csvshapes_dict_one_shape():
             "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueNodeType": None,
                     "valueDataType": None,
                     "valueConstraint": None,
+                    "valueConstraintType": None,
                     "valueShape": None,
+                    "note": None,
                 },
                 {
                     "propertyID": "dct:date",
+                    "propertyLabel": None,
+                    "mandatory": False,
+                    "repeatable": False,
+                    "valueNodeType": None,
                     "valueDataType": None,
                     "valueConstraint": None,
+                    "valueConstraintType": None,
                     "valueShape": None,
+                    "note": None,
                 },
             ],
         }
     ]
     assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
 
-
-
 @pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [
@@ -114,7 +123,6 @@ def test_get_csvshapes_dict_two_shapes():
 
 
 @pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
     csvrows_list = [
@@ -170,7 +178,6 @@ def test_get_csvshapes_dict_one_shape_and_shapeLabel():
 
 
 @pytest.mark.csvshape
-@pytest.mark.skip
 def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     csvrows_list = [
@@ -236,7 +243,6 @@ def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
 
 
 @pytest.mark.csvshape
-@pytest.mark.skip
 def test_listshapes_one_shape_for_shex_example():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
