@@ -5,8 +5,9 @@ from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
-from .model import CSV_ELEMENTS
+from .config import get_config_settings_dict
 from .csvrows import CSVRow
+from .model import CSV_ELEMENTS
 
 
 @dataclass
@@ -28,7 +29,6 @@ def get_csvshapes_dict(
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
-
     csv_elements_dict = yaml.safe_load(csv_elements)
 
     for csvrow in csvrows_list:
@@ -53,20 +53,6 @@ def get_csvshapes_dict(
     csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
         csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))
-
-    # @@@ HERE
-    # pylint: disable=unnecessary-pass
-    # pylint: disable=unused-variable
-    # breakpoint(context=5)
-    if expand_prefixes:
-        for shape in csvshape_dicts_list:
-            for element in csv_elements_dict["shape_uri_elements"]:
-                print(shape[element])
-                shape[element] = ":bar"
-                print(shape[element])
-            for element in csv_elements_dict["statement_uri_elements"]:
-                pass
-                # for csvrow in element['statement_csvrows_list']:
 
     return csvshape_dicts_list
 
