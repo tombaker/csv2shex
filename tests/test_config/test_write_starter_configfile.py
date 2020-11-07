@@ -3,8 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.settings import DEFAULT_CONFIG_SETTINGS_YAML, DEFAULT_CONFIGFILE_NAME
-from csv2shex.readwrite import write_starter_configfile
+from csv2shex.settings import DEFAULT_CONFIG_SETTINGS_YAML, DEFAULT_CONFIGFILE_NAME, write_starter_configfile
 
 
 def test_write_starter_configfile_and_read_back(tmp_path):

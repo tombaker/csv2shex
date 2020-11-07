@@ -5,10 +5,10 @@ import pytest
 from dataclasses import asdict
 import ruamel.yaml as yaml
 from pathlib import Path
-from csv2shex.readwrite import get_config_settings_dict
 from csv2shex.csvrows import CSVRow
 from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
 from csv2shex.expand import _expand_prefixes
+from csv2shex.settings import get_config_settings_dict
 
 TEST_CSV_MODEL = """\
 shape_uri_elements:

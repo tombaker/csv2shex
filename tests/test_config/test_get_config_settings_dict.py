@@ -3,9 +3,8 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.settings import DEFAULT_CONFIGFILE_NAME
+from csv2shex.settings import DEFAULT_CONFIGFILE_NAME, get_config_settings_dict
 from csv2shex.exceptions import BadYamlError, ConfigWarning
-from csv2shex.readwrite import get_config_settings_dict
 
 
 ALT_CONFIG_SETTINGS_YAML = """\
