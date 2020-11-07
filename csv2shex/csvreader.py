@@ -5,13 +5,6 @@ import csv
 from pathlib import Path
 from .exceptions import CsvError
 
-# from .utils import is_uri, is_valid_uri_or_prefixed_uri
-
-# pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
-# => self-use: for now...
-# => too-many-branches: a matter of taste?
-# => too-many-instance-attributes: disagree!
-
 
 def csvreader(csvfile):
     """Read CSV file and return list of dicts, one dict per CSV row."""
