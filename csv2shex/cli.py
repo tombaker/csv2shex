@@ -2,10 +2,9 @@
 
 import ruamel.yaml as yaml
 import click
-from .csvrows import get_csvrowobjs_list
 from .csvshapes import pprint_schema, get_csvshapes_dict
-from .defaults import CSV_MODEL
-from .readwrite import csvreader
+from .settings import CSV_MODEL
+from .readwrite import csvreader, get_csvrowobjs_list
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.

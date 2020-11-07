@@ -1,0 +1,1 @@
+CONFIG_SETTINGS_DICT = get_config_settings_dict()

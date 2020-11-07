@@ -1,6 +1,7 @@
 """Use list of dictionaries to initialize list of CSVRow objects."""
 
-from csv2shex.csvrows import get_csvrowobjs_list, CSVRow
+from csv2shex.csvrows import CSVRow
+from csv2shex.readwrite import get_csvrowobjs_list
 
 
 def test_liststatements():

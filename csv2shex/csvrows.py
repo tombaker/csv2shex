@@ -1,21 +1,10 @@
 """Class for Python objects derived from CSV files."""
 
-
 import re
 import sys
 from dataclasses import dataclass
 import ruamel.yaml as yaml
-from .defaults import CSV_MODEL
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
-
-csv_model = yaml.safe_load(CSV_MODEL)
-SHAPE_ELEMENTS = csv_model["shape_elements"]
-STATEMENT_ELEMENTS = csv_model["statement_elements"]
-
-# pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
-# => self-use: for now...
-# => too-many-branches: a matter of taste?
-# => too-many-instance-attributes: disagree!
 
 
 @dataclass
@@ -222,53 +211,3 @@ class CSVRow:
                 if not is_valid_uri_or_prefixed_uri(uri_value):
                     return False
         return True
-
-
-def get_csvrowobjs_list(csvrow_dicts_list=None):
-    """Turn list of dicts into list of CSVRow objects."""
-    csvrows_list = []
-    shapeids_list = []
-    first_shape_encountered = True
-    keys = SHAPE_ELEMENTS + STATEMENT_ELEMENTS
-    keys.remove("shapeID")
-    for row in csvrow_dicts_list:
-        if not row.get("propertyID") and row.get("shapeID"):
-            shapeids_list.append(row["shapeID"])
-            continue
-
-        stat = CSVRow()
-
-        if row.get("shapeID"):
-            stat.shapeID = row["shapeID"]
-        else:
-            if shapeids_list:
-                stat.shapeID = shapeids_list[-1]
-            elif not shapeids_list:
-                stat.shapeID = ":default"
-        if stat.shapeID not in shapeids_list:
-            shapeids_list.append(stat.shapeID)
-        if first_shape_encountered:
-            first_shape_encountered = False
-
-        for key in keys:
-            if key in row:
-                setattr(stat, key, row[key])
-
-        csvrows_list.append(stat)
-    return csvrows_list
-
-
-#        # Checking for presence of propertyID will ensure that blank rows are ignored.
-#        if row.get("propertyID"):
-#            if first_statement_encountered:
-#                # Assign row value for shapeID, if available, to stat.shapeID.
-#                if row.get("shapeID"):
-#                    stat.shapeID = row["shapeID"]
-#                else:
-#                    stat.shapeID = ":default"
-#                shapeids_list.append(stat.shapeID)
-#                first_statement_encountered = False
-#                first_shape_encountered = False
-#            # If shapeID is None, assign value most recently added to shapeids_list.
-#            if not row.get("shapeID"):
-#                stat.shapeID = shapeids_list[-1]

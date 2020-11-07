@@ -4,8 +4,17 @@ import os
 import csv
 from pathlib import Path
 import ruamel.yaml as yaml
-from .defaults import DEFAULT_CONFIGFILE_NAME, DEFAULT_CONFIG_SETTINGS_YAML
+from .csvrows import CSVRow
+from .settings import (
+    DEFAULT_CONFIGFILE_NAME,
+    DEFAULT_CONFIG_SETTINGS_YAML,
+    CSV_MODEL,
+    write_starter_configfile,
+    get_config_settings_dict,
+)
 from .exceptions import CsvError, ConfigError
+
+CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
 
 def csvreader(csvfile):
@@ -19,49 +28,37 @@ def csvreader(csvfile):
     return csvrow_dicts_list
 
 
-def write_starter_configfile(
-    basedir=None,
-    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
-):
-    """Write initial config file, by default to CWD, or exit if already exists."""
-    if not basedir:
-        basedir = Path.cwd()
-    configfile_pathname = Path(basedir) / default_configfile_name
-    if os.path.exists(configfile_pathname):
-        raise ConfigError(
-            f"Found existing {str(configfile_pathname)} - delete to re-generate."
-        )
-    with open(configfile_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(default_config_settings_yaml)
-        print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
+def get_csvrowobjs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
+    """Turn list of dicts into list of CSVRow objects."""
+    csvrows_list = []
+    shapeids_list = []
+    first_shape_encountered = True
+    shape_elements = csv_model_dict["shape_elements"]
+    statement_elements = csv_model_dict["statement_elements"]
+    keys = csv_model_dict["shape_elements"] + csv_model_dict["statement_elements"]
+    keys.remove("shapeID")
+    for row in csvrow_dicts_list:
+        if not row.get("propertyID") and row.get("shapeID"):
+            shapeids_list.append(row["shapeID"])
+            continue
 
+        stat = CSVRow()
 
-def get_config_settings_dict(
-    rootdir_path=None,
-    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
-    verbose=False,
-):
-    """Returns config dict from config file, if found, or from built-in defaults."""
-    if not rootdir_path:
-        rootdir_path = Path.cwd()
-    configfile_pathname = Path(rootdir_path) / default_configfile_name
+        if row.get("shapeID"):
+            stat.shapeID = row["shapeID"]
+        else:
+            if shapeids_list:
+                stat.shapeID = shapeids_list[-1]
+            elif not shapeids_list:
+                stat.shapeID = ":default"
+        if stat.shapeID not in shapeids_list:
+            shapeids_list.append(stat.shapeID)
+        if first_shape_encountered:
+            first_shape_encountered = False
 
-    try:
-        configfile_contents = Path(configfile_pathname).read_text()
-        if verbose:
-            print(f"Reading config file {repr(configfile_pathname)}.")
-        return yaml.safe_load(configfile_contents)
-    except FileNotFoundError:
-        if verbose:
-            print(
-                f"Config file {repr(configfile_pathname)} not found - using defaults."
-            )
-        return yaml.safe_load(default_config_settings_yaml)
-    except (yaml.YAMLError, yaml.scanner.ScannerError):
-        print(
-            f"Ignoring badly formed config file {repr(default_configfile_name)}"
-            " - using defaults."
-        )
-        return yaml.safe_load(default_config_settings_yaml)
+        for key in keys:
+            if key in row:
+                setattr(stat, key, row[key])
+
+        csvrows_list.append(stat)
+    return csvrows_list
