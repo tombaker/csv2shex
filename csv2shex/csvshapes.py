@@ -1,13 +1,11 @@
 """Class for Python objects derived from CSV files."""
 
 
-from collections import defaultdict
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from typing import List
 import ruamel.yaml as yaml
 from .csvrows import CSVRow
 from .settings import CSV_MODEL
-from .expand import _expand_prefixes
 
 
 @dataclass
