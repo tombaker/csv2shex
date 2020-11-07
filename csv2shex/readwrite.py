@@ -26,7 +26,7 @@ def csvreader(csvfile):
     return csvrow_dicts_list
 
 
-def get_csvrowobjs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
+def get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
     """Turn list of dicts into list of CSVRow objects."""
     csvrows_list = []
     shapeids_list = []

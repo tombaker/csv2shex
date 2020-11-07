@@ -1,0 +1,6 @@
+mv -vi test_mkshex/test_is_valid_shex_TODO.py test_mkshex/__test_is_valid_shex_TODO.txt
+mv -vi test_mkshex/test_mkshex_add_statement_TODO.py test_mkshex/__test_mkshex_add_statement_TODO.txt
+mv -vi test_mkshex/test_mkshex_shape_to_shex_TODO.py test_mkshex/__test_mkshex_shape_to_shex_TODO.txt
+mv -vi test_mkshex/test_mkshex_statement_to_node_constraint_TODO.py test_mkshex/__test_mkshex_statement_to_node_constraint_TODO.txt
+mv -vi test_utils/test_is_valid_uri_or_prefixed_uri_TODO.txt test_utils/__test_is_valid_uri_or_prefixed_uri_TODO.txt
+mv -vi test_utils/test_utils_strip_angle_brackets_from_url_TODO.txt test_utils/__test_utils_strip_angle_brackets_from_url_TODO.txt
