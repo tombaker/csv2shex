@@ -5,16 +5,16 @@ import pytest
 from pathlib import Path
 from csv2shex.config import (
     write_starter_configfile,
-    CONFIG_DEFAULTS,
+    DEFAULT_CONFIG_SETTINGS_YAML,
     DEFAULT_CONFIGFILE_NAME,
 )
 
 
 def test_write_starter_configfile_and_read_back(tmp_path):
-    """Write CONFIG_DEFAULTS to DEFAULT_CONFIGFILE_NAME and read back as text."""
+    """Write DEFAULT_CONFIG_SETTINGS_YAML to DEFAULT_CONFIGFILE_NAME and read back as text."""
     os.chdir(tmp_path)
     write_starter_configfile()
-    assert open(DEFAULT_CONFIGFILE_NAME).read() == CONFIG_DEFAULTS
+    assert open(DEFAULT_CONFIGFILE_NAME).read() == DEFAULT_CONFIG_SETTINGS_YAML
 
 
 def test_write_starter_configfile_but_not_if_already_exists(tmp_path):
@@ -26,11 +26,11 @@ def test_write_starter_configfile_but_not_if_already_exists(tmp_path):
 
 
 def test_write_starter_configfile_specifying_basedir(tmp_path):
-    """Write CONFIG_DEFAULTS to text file DEFAULT_CONFIGFILE_NAME specifying basedir."""
+    """Write DEFAULT_CONFIG_SETTINGS_YAML to text file DEFAULT_CONFIGFILE_NAME specifying basedir."""
     os.chdir(tmp_path)
     abc = Path.cwd() / "some_basedir"
     abc.mkdir()
     os.chdir(abc)
     write_starter_configfile(basedir=abc)
     expected_configfile_pathname = Path(abc) / DEFAULT_CONFIGFILE_NAME
-    assert open(expected_configfile_pathname).read() == CONFIG_DEFAULTS
+    assert open(expected_configfile_pathname).read() == DEFAULT_CONFIG_SETTINGS_YAML

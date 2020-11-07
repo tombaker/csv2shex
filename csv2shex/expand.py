@@ -2,14 +2,14 @@
 
 import re
 import ruamel.yaml as yaml
-from .config import CONFIG_DEFAULTS
+from .config import DEFAULT_CONFIG_SETTINGS_YAML
 from .model import CSV_MODEL
 
 # pylint: disable=unused-argument
 # pylint: disable=unused-variable
 # pylint: disable=undefined-variable
 
-PREFIXES_DICT = yaml.safe_load(CONFIG_DEFAULTS)["prefixes"]
+PREFIXES_DICT = yaml.safe_load(DEFAULT_CONFIG_SETTINGS_YAML)["prefixes"]
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
 

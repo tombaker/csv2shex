@@ -24,7 +24,7 @@ statement_uri_elements:
 test_csv_model = yaml.safe_load(TEST_CSV_MODEL)
 SHAPE_URI_ELEMENTS = test_csv_model["shape_uri_elements"]
 STATEMENT_URI_ELEMENTS = test_csv_model["statement_uri_elements"]
-ALT_CONFIG_DEFAULTS = """\
+ALT_DEFAULT_CONFIG_SETTINGS_YAML = """\
 prefixes:
     ":": "http://example.org/"
     "dc:": "http://purl.org/dc/terms/"
@@ -43,7 +43,7 @@ def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
 def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
-    prefix_settings = get_config_settings_dict(config_defaults=ALT_CONFIG_DEFAULTS)[
+    prefix_settings = get_config_settings_dict(default_config_settings_yaml=ALT_DEFAULT_CONFIG_SETTINGS_YAML)[
         "prefixes"
     ]
     assert prefix_settings == {

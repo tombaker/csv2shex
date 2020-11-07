@@ -7,7 +7,7 @@ from .exceptions import ConfigError
 
 DEFAULT_CONFIGFILE_NAME = ".csv2rc"
 
-CONFIG_DEFAULTS = """\
+DEFAULT_CONFIG_SETTINGS_YAML = """\
 prefixes:
     : http://example.org/
     dc: http://purl.org/dc/elements/1.1/
@@ -44,7 +44,7 @@ valueConstraintType:
 def write_starter_configfile(
     basedir=None,
     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    config_defaults=CONFIG_DEFAULTS,
+    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
 ):
     """Write initial config file, by default to CWD, or exit if already exists."""
     if not basedir:
@@ -55,14 +55,14 @@ def write_starter_configfile(
             f"Found existing {str(configfile_pathname)} - delete to re-generate."
         )
     with open(configfile_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(config_defaults)
+        outfile.write(default_config_settings_yaml)
         print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
 
 
 def get_config_settings_dict(
     rootdir_path=None,
     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    config_defaults=CONFIG_DEFAULTS,
+    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
     verbose=False,
 ):
     """Returns config dict from config file, if found, or from built-in defaults."""
@@ -80,10 +80,13 @@ def get_config_settings_dict(
             print(
                 f"Config file {repr(configfile_pathname)} not found - using defaults."
             )
-        return yaml.safe_load(config_defaults)
+        return yaml.safe_load(default_config_settings_yaml)
     except (yaml.YAMLError, yaml.scanner.ScannerError):
         print(
             f"Ignoring badly formed config file {repr(default_configfile_name)}"
             " - using defaults."
         )
-        return yaml.safe_load(config_defaults)
+        return yaml.safe_load(default_config_settings_yaml)
+
+
+CONFIG_SETTINGS_DICT = get_config_settings_dict()

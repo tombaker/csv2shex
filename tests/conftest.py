@@ -7,7 +7,7 @@ from csv2shex.config import write_starter_configfile
 
 TEST_CONFIGFILE_NAME = ".csv2rc"
 
-TEST_CONFIG_DEFAULTS = """\
+TEST_DEFAULT_CONFIG_SETTINGS_YAML = """\
 prefixes:
     ":": "http://example.org/"
     "dct:": "http://purl.org/dc/terms/"
@@ -27,5 +27,5 @@ valueConstraintType:
 def dir_with_csv2rc(tmp_path):
     """Set up directory with simple config file for use as pytest fixture."""
     os.chdir(tmp_path)
-    Path(TEST_CONFIGFILE_NAME).write_text(TEST_CONFIG_DEFAULTS)
+    Path(TEST_CONFIGFILE_NAME).write_text(TEST_DEFAULT_CONFIG_SETTINGS_YAML)
     return Path.cwd()
