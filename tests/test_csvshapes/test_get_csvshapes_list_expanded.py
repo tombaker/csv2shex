@@ -111,10 +111,10 @@ def test_get_csvshapes_dict_prefixes_expanded():
             ],
         }
     ]
-    # assert (
-    #     _expand_prefixes(csvrows_list, expand_prefixes=False)
-    #     == expected_csvshape_dicts_list_before
-    # )
+    assert (
+        _expand_prefixes(csvrows_list, expand_prefixes=False)
+        == expected_csvshape_dicts_list_before
+    )
     assert (
         _expand_prefixes(csvrows_list, expand_prefixes=True)
         == expected_csvshape_dicts_list_expanded

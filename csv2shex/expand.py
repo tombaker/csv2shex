@@ -1,6 +1,5 @@
 """Class for Python objects derived from CSV files."""
 
-import re
 import ruamel.yaml as yaml
 from .defaults import CSV_MODEL, DEFAULT_CONFIG_SETTINGS_YAML
 
@@ -15,7 +14,7 @@ CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 def _expand_prefixes(
     csvshape_dicts_list, csv_model_dict=None, prefixes_dict=PREFIXES_DICT
 ):
-    prefixed_uri_regex = re.compile("([a-z0-9])*:([a-zA-Z0-9])*")
+    # prefixed_uri_regex = re.compile("([a-z0-9])*:([a-zA-Z0-9])*")
     # prefixes_dict = config_settings_dict["prefixes"]
     prefixes_dict[":"] = prefixes_dict[None]
     # >>> prefixes_dict

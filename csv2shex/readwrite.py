@@ -65,5 +65,3 @@ def get_config_settings_dict(
             " - using defaults."
         )
         return yaml.safe_load(default_config_settings_yaml)
-
-
