@@ -4,7 +4,7 @@ import ruamel.yaml as yaml
 from .settings import CSV_MODEL
 
 
-def pprint_csv(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
+def pprint_csvshapes(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
     """Pretty-print CSVShape objects to console."""
     csv_model_dict = yaml.safe_load(csv_model)
     shape_elements = csv_model_dict["shape_elements"]
