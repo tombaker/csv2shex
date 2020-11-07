@@ -60,7 +60,7 @@ def get_csvrowobjs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
     return csvrows_list
 
 
-def get_csvshapes_dict(
+def get_csvshape_dicts_list(
     csvrows_list, csv_model=CSV_MODEL, expand_prefixes=False
 ) -> List[dict]:
     """Get list of CSVShapes (as dicts) from list of CSVRows."""

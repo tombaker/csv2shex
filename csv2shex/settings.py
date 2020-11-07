@@ -71,24 +71,6 @@ valueConstraintType:
 """
 
 
-def write_starter_configfile(
-    basedir=None,
-    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
-):
-    """Write initial config file, by default to CWD, or exit if already exists."""
-    if not basedir:
-        basedir = Path.cwd()
-    configfile_pathname = Path(basedir) / default_configfile_name
-    if os.path.exists(configfile_pathname):
-        raise ConfigError(
-            f"Found existing {str(configfile_pathname)} - delete to re-generate."
-        )
-    with open(configfile_pathname, "w", encoding="utf-8") as outfile:
-        outfile.write(default_config_settings_yaml)
-        print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")
-
-
 def get_config_settings_dict(
     rootdir_path=None,
     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
@@ -117,3 +99,21 @@ def get_config_settings_dict(
             " - using defaults."
         )
         return yaml.safe_load(default_config_settings_yaml)
+
+
+def write_starter_configfile(
+    basedir=None,
+    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
+    default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
+):
+    """Write initial config file, by default to CWD, or exit if already exists."""
+    if not basedir:
+        basedir = Path.cwd()
+    configfile_pathname = Path(basedir) / default_configfile_name
+    if os.path.exists(configfile_pathname):
+        raise ConfigError(
+            f"Found existing {str(configfile_pathname)} - delete to re-generate."
+        )
+    with open(configfile_pathname, "w", encoding="utf-8") as outfile:
+        outfile.write(default_config_settings_yaml)
+        print(f"Wrote config defaults (for editing) to: {str(configfile_pathname)}")

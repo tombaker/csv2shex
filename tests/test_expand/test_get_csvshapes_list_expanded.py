@@ -6,9 +6,10 @@ from dataclasses import asdict
 import ruamel.yaml as yaml
 from pathlib import Path
 from csv2shex.csvrows import CSVRow
-from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
+from csv2shex.csvshapes import CSVShape
 from csv2shex.expand import _expand_prefixes
 from csv2shex.settings import get_config_settings_dict
+from csv2shex.readwrite import get_csvshape_dicts_list
 
 TEST_CSV_MODEL = """\
 shape_uri_elements:
@@ -51,7 +52,7 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
         "dc:": "http://purl.org/dc/terms/",
     }
     csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
-    csvshape_dicts_list = get_csvshapes_dict(csvrows_list, expand_prefixes=True)
+    csvshape_dicts_list = get_csvshape_dicts_list(csvrows_list, expand_prefixes=True)
     assert csvshape_dicts_list
     # assert stat.shapeID == "http://example.org/"
     # assert stat.propertyID == "http://purl.org/dc/terms/creator"
@@ -60,7 +61,7 @@ def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
 
 @pytest.mark.prefixes
 @pytest.mark.skip
-def test_get_csvshapes_dict_prefixes_expanded():
+def test_get_csvshape_dicts_list_prefixes_expanded():
     """Turn list of CSVRow dicts into list of one CSVShape, with prefixes expanded."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueShape=":a"),

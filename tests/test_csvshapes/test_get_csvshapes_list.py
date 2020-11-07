@@ -3,11 +3,12 @@
 import pytest
 from pprint import pprint
 from dataclasses import asdict
-from csv2shex.csvshapes import pprint_schema, get_csvshapes_dict, CSVShape
+from csv2shex.csvshapes import CSVShape
 from csv2shex.csvrows import CSVRow
+from csv2shex.readwrite import get_csvshape_dicts_list
 
 
-def test_get_csvshapes_dict_one_shape():
+def test_get_csvshape_dicts_list_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
@@ -48,10 +49,10 @@ def test_get_csvshapes_dict_one_shape():
             ],
         }
     ]
-    assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrows_list) == expected_csvshape_dicts_list
 
 
-def test_get_csvshapes_dict_two_shapes():
+def test_get_csvshape_dicts_list_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
@@ -113,15 +114,15 @@ def test_get_csvshapes_dict_two_shapes():
             ],
         },
     ]
-    assert len(get_csvshapes_dict(csvrows_list)) == len(expected_csvshape_dicts_list)
+    assert len(get_csvshape_dicts_list(csvrows_list)) == len(expected_csvshape_dicts_list)
     assert (
-        get_csvshapes_dict(csvrows_list)[0]["statement_csvrows_list"]
+        get_csvshape_dicts_list(csvrows_list)[0]["statement_csvrows_list"]
         == expected_csvshape_dicts_list[0]["statement_csvrows_list"]
     )
-    assert get_csvshapes_dict(csvrows_list) == expected_csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrows_list) == expected_csvshape_dicts_list
 
 
-def test_get_csvshapes_dict_one_shape_and_shapeLabel():
+def test_get_csvshape_dicts_list_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
     csvrows_list = [
         CSVRow(
@@ -172,10 +173,10 @@ def test_get_csvshapes_dict_one_shape_and_shapeLabel():
             ],
         }
     ]
-    assert get_csvshapes_dict(csvrows_list) == csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrows_list) == csvshape_dicts_list
 
 
-def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
+def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
     csvrows_list = [
         CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop1"),
@@ -236,7 +237,7 @@ def test_get_csvshapes_dict_two_shapes_assign_start_to_first():
             ],
         },
     ]
-    assert get_csvshapes_dict(csvrows_list) == csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrows_list) == csvshape_dicts_list
 
 
 def test_listshapes_one_shape_for_shex_example():
@@ -346,4 +347,4 @@ def test_listshapes_one_shape_for_shex_example():
             ],
         }
     ]
-    assert get_csvshapes_dict(csvrows_list) == one_shape_with_csvrows_list
+    assert get_csvshape_dicts_list(csvrows_list) == one_shape_with_csvrows_list

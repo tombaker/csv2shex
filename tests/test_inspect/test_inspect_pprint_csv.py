@@ -3,11 +3,13 @@
 import pytest
 from dataclasses import asdict
 from textwrap import dedent
-from csv2shex.csvshapes import pprint_schema, get_csvshapes_dict, CSVShape
+from csv2shex.csvshapes import CSVShape
 from csv2shex.csvrows import CSVRow
+from csv2shex.inspect import pprint_csv
+from csv2shex.readwrite import get_csvshape_dicts_list
 
 
-def test_get_csvshapes_dict_two_shapes():
+def test_get_csvshape_dicts_list_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
         {
@@ -80,10 +82,10 @@ def test_get_csvshapes_dict_two_shapes():
                 propertyID: foaf:name
     """
     )
-    assert pprint_schema(csvshape_dicts_list) == expected_output_dedented.splitlines()
+    assert pprint_csv(csvshape_dicts_list) == expected_output_dedented.splitlines()
 
 
-def test_get_csvshapes_dict_two_shapes_verbose():
+def test_get_csvshape_dicts_list_two_shapes_verbose():
     """Turn list of CSVRow objects into list with two CSVShapes."""
     csvshape_dicts_list = [
         {
@@ -189,6 +191,6 @@ def test_get_csvshapes_dict_two_shapes_verbose():
     """
     )
     assert (
-        pprint_schema(csvshape_dicts_list, verbose=True)
+        pprint_csv(csvshape_dicts_list, verbose=True)
         == expected_output_dedented.splitlines()
     )

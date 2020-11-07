@@ -4,7 +4,7 @@ import ruamel.yaml as yaml
 import click
 from .inspect import pprint_csv
 from .settings import CSV_MODEL
-from .readwrite import csvreader, get_csvrowobjs_list, get_csvshapes_dict
+from .readwrite import csvreader, get_csvrowobjs_list, get_csvshape_dicts_list
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -28,7 +28,7 @@ def cli(context):
 def inspect(context, csvfile, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
     csvrowobjs_list = get_csvrowobjs_list(csvreader(csvfile))
-    shapes_list = get_csvshapes_dict(csvrowobjs_list, expand_prefixes=expand_prefixes)
+    shapes_list = get_csvshape_dicts_list(csvrowobjs_list, expand_prefixes=expand_prefixes)
     pprint_output = pprint_csv(shapes_list)
     for line in pprint_output:
         print(line)
