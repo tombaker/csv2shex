@@ -1,7 +1,7 @@
 """Check CSV file structure for anomalies"""
 
 
-from csv2shex.csvrows import CSVRow
+from csv2shex.csvrow import CSVRow
 
 
 def test_csvshapes_validate_uristem_prefixed():

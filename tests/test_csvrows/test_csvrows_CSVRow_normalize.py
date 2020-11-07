@@ -1,6 +1,6 @@
 """Initialize instances of CSVRow."""
 
-from csv2shex.csvrows import CSVRow
+from csv2shex.csvrow import CSVRow
 
 
 def test_statement_angle_brackets_stripped_from_uristem():

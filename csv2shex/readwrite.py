@@ -6,7 +6,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import List
 import ruamel.yaml as yaml
-from .csvrows import CSVRow
+from .csvrow import CSVRow
 from .csvshapes import CSVShape
 from .expand import _expand_prefixes
 from .settings import CSV_MODEL

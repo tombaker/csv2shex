@@ -3,7 +3,7 @@
 
 from dataclasses import dataclass, field
 from typing import List
-from .csvrows import CSVRow
+from .csvrow import CSVRow
 
 
 @dataclass

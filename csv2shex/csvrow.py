@@ -145,6 +145,7 @@ class CSVRow:
 
     def _normalize_regex(self):
         """Regex must be a valid (Python) regex."""
+        # 2020-11-07: require that regex be enclosed with "/"s (to be stripped)?
         if self.valueConstraintType == "Regex":
             if not self.valueNodeType:
                 self.valueNodeType = "Literal"

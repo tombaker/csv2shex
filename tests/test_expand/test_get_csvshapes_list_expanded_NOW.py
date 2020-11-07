@@ -5,7 +5,7 @@ import pytest
 from dataclasses import asdict
 import ruamel.yaml as yaml
 from pathlib import Path
-from csv2shex.csvrows import CSVRow
+from csv2shex.csvrow import CSVRow
 from csv2shex.csvshapes import CSVShape
 from csv2shex.expand import _expand_prefixes
 from csv2shex.settings import get_config_settings_dict

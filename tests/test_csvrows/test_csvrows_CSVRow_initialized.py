@@ -2,7 +2,7 @@
 
 
 import pytest
-from csv2shex.csvrows import CSVRow
+from csv2shex.csvrow import CSVRow
 
 
 def test_statement_initialized_with_just_one_field():

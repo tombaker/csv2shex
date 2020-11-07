@@ -4,6 +4,7 @@ Session.vim
 .pdf/
 *.bak
 notes/
+bin/
 tags
 .vimrc
 
