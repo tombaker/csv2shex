@@ -3,7 +3,6 @@
 import re
 import sys
 from dataclasses import dataclass
-import ruamel.yaml as yaml
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 
@@ -70,6 +69,8 @@ class CSVRow:
           Etc.
           Default: None.
     """
+
+    # pylint: disable=too-many-instance-attributes
 
     shapeID: str = None
     shapeLabel: str = None

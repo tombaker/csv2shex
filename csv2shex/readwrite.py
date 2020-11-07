@@ -1,18 +1,11 @@
 """Read DCAP/CSV. Write and read config file."""
 
-import os
 import csv
 from pathlib import Path
 import ruamel.yaml as yaml
 from .csvrows import CSVRow
-from .settings import (
-    DEFAULT_CONFIGFILE_NAME,
-    DEFAULT_CONFIG_SETTINGS_YAML,
-    CSV_MODEL,
-    write_starter_configfile,
-    get_config_settings_dict,
-)
-from .exceptions import CsvError, ConfigError
+from .settings import CSV_MODEL
+from .exceptions import CsvError
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
@@ -33,8 +26,6 @@ def get_csvrowobjs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
     csvrows_list = []
     shapeids_list = []
     first_shape_encountered = True
-    shape_elements = csv_model_dict["shape_elements"]
-    statement_elements = csv_model_dict["statement_elements"]
     keys = csv_model_dict["shape_elements"] + csv_model_dict["statement_elements"]
     keys.remove("shapeID")
     for row in csvrow_dicts_list:
