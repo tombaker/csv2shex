@@ -6,7 +6,7 @@ from dataclasses import asdict
 import ruamel.yaml as yaml
 from pathlib import Path
 from csv2shex.csvrow import CSVRow
-from csv2shex.csvshapes import CSVShape
+from csv2shex.csvshape import CSVShape
 from csv2shex.expand import _expand_prefixes
 from csv2shex.settings import get_config_settings_dict
 from csv2shex.readwrite import get_csvshape_dicts_list
@@ -32,7 +32,7 @@ prefixes:
 """
 
 
-def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
+def test_csvshape_expand_prefixes_from_default_config_file(dir_with_csv2rc):
     """Get prefixes from default config file .csvrc."""
     os.chdir(Path(dir_with_csv2rc))
     assert get_config_settings_dict()["prefixes"] == {
@@ -41,7 +41,7 @@ def test_csvshapes_expand_prefixes_from_default_config_file(dir_with_csv2rc):
     }
 
 
-def test_csvshapes_expand_prefixes_from_builtin_defaults(tmp_path):
+def test_csvshape_expand_prefixes_from_builtin_defaults(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
     prefix_settings = get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[

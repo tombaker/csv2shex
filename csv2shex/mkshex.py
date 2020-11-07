@@ -12,7 +12,7 @@ from ShExJSG.ShExJ import (
     EachOf,
 )
 
-from csv2shex.csvshapes import CSVShape, CSVRow
+from csv2shex.csvshape import CSVShape, CSVRow
 
 
 def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:

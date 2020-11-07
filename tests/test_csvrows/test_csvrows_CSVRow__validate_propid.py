@@ -4,7 +4,7 @@
 from csv2shex.csvrow import CSVRow
 
 
-def test_csvshapes_validate_property_uri_prefixed():
+def test_csvshape_validate_property_uri_prefixed():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -13,7 +13,7 @@ def test_csvshapes_validate_property_uri_prefixed():
     assert stat._validate_propid()
 
 
-def test_csvshapes_validate_uristem_normal_uri():
+def test_csvshape_validate_uristem_normal_uri():
     """@@@"""
     stat = CSVRow(
         propertyID="https://www.wikidata.org/wiki/Q46914185",
@@ -22,7 +22,7 @@ def test_csvshapes_validate_uristem_normal_uri():
     assert stat._validate_propid()
 
 
-def test_csvshapes_validate_property_uri_with_angle_brackets():
+def test_csvshape_validate_property_uri_with_angle_brackets():
     """@@@"""
     stat = CSVRow(
         propertyID="<https://www.wikidata.org/wiki/Q46914185>",
@@ -31,7 +31,7 @@ def test_csvshapes_validate_property_uri_with_angle_brackets():
     assert stat._validate_propid()
 
 
-def test_csvshapes_validate_property_uri_colon_only():
+def test_csvshape_validate_property_uri_colon_only():
     """@@@"""
     stat = CSVRow(
         propertyID=":tombaker",
@@ -40,7 +40,7 @@ def test_csvshapes_validate_property_uri_colon_only():
     assert stat._validate_propid()
 
 
-def test_csvshapes_validate_uristem_not():
+def test_csvshape_validate_uristem_not():
     """@@@"""
     stat = CSVRow(
         propertyID="foobar",

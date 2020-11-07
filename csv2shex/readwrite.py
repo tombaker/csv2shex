@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import List
 import ruamel.yaml as yaml
 from .csvrow import CSVRow
-from .csvshapes import CSVShape
+from .csvshape import CSVShape
 from .expand import _expand_prefixes
 from .settings import CSV_MODEL
 from .exceptions import CsvError

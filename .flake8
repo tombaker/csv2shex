@@ -16,5 +16,6 @@ exclude =
     .cache,
     .pytest_cache,
     build,
+    bin,
     dist,
     mklists.egg-info

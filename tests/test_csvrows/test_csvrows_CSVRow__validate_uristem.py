@@ -4,7 +4,7 @@
 from csv2shex.csvrow import CSVRow
 
 
-def test_csvshapes_validate_uristem_prefixed():
+def test_csvshape_validate_uristem_prefixed():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -15,7 +15,7 @@ def test_csvshapes_validate_uristem_prefixed():
     assert statement._validate_uristem()
 
 
-def test_csvshapes_validate_uristem_normal_uri():
+def test_csvshape_validate_uristem_normal_uri():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -26,7 +26,7 @@ def test_csvshapes_validate_uristem_normal_uri():
     assert statement._validate_uristem()
 
 
-def test_csvshapes_validate_uristem_with_angle_brackets():
+def test_csvshape_validate_uristem_with_angle_brackets():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -38,7 +38,7 @@ def test_csvshapes_validate_uristem_with_angle_brackets():
     assert statement._validate_uristem()
 
 
-def test_csvshapes_validate_uristem_colon_only():
+def test_csvshape_validate_uristem_colon_only():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",
@@ -50,7 +50,7 @@ def test_csvshapes_validate_uristem_colon_only():
     assert statement._validate_uristem()
 
 
-def test_csvshapes_validate_uristem_not():
+def test_csvshape_validate_uristem_not():
     """@@@"""
     statement = CSVRow(
         shapeID="@default",

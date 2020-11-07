@@ -3,7 +3,7 @@
 import pytest
 from pprint import pprint
 from dataclasses import asdict
-from csv2shex.csvshapes import CSVShape
+from csv2shex.csvshape import CSVShape
 from csv2shex.csvrow import CSVRow
 from csv2shex.readwrite import get_csvshape_dicts_list
 
