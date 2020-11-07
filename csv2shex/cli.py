@@ -5,7 +5,7 @@ import click
 from .csvreader import csvreader
 from .csvrows import get_csvrowobjs_list
 from .csvshapes import pprint_schema, get_csvshapes_dict
-from .model import CSV_ELEMENTS
+from .model import CSV_MODEL
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -41,9 +41,9 @@ def inspect(context, csvfile, expand_prefixes, verbose):
 def model(context):
     """Show DCAP model built-ins for ready reference"""
 
-    csv_elements = yaml.safe_load(CSV_ELEMENTS)
+    csv_model = yaml.safe_load(CSV_MODEL)
     print("DCAP")
     for element_group in ["shape_elements", "statement_elements"]:
         print(f"    {element_group}:")
-        for element in csv_elements[element_group]:
+        for element in csv_model[element_group]:
             print(f"        {element}")

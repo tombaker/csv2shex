@@ -8,7 +8,7 @@ import ruamel.yaml as yaml
 from .config import get_config_settings_dict
 from .csvrows import CSVRow
 from .expand import _expand_prefixes
-from .model import CSV_ELEMENTS
+from .model import CSV_MODEL
 
 
 @dataclass
@@ -23,14 +23,14 @@ class CSVShape:
 
 
 def get_csvshapes_dict(
-    csvrows_list, csv_elements=CSV_ELEMENTS, expand_prefixes=False
+    csvrows_list, csv_model=CSV_MODEL, expand_prefixes=False
 ) -> List[dict]:
     """Get list of CSVShapes (as dicts) from list of CSVRows."""
 
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
-    csv_elements_dict = yaml.safe_load(csv_elements)
+    csv_model_dict = yaml.safe_load(csv_model)
     # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"] 
 
     for csvrow in csvrows_list:
@@ -44,7 +44,7 @@ def get_csvshapes_dict(
             csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
-        for key in csv_elements_dict["statement_elements"]:
+        for key in csv_model_dict["statement_elements"]:
             single_statement_dict[key] = asdict(csvrow)[key]
 
         csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(
@@ -57,17 +57,17 @@ def get_csvshapes_dict(
         csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))
 
     if expand_prefixes:
-        _expand_prefixes(csvshape_dicts_list, csv_elements_dict=csv_elements_dict)
+        _expand_prefixes(csvshape_dicts_list, csv_model_dict=csv_model_dict)
         # also prefixes_dict=prefixes_dict?
 
     return csvshape_dicts_list
 
 
-def pprint_schema(csvshape_dicts_list, csv_elements=CSV_ELEMENTS, verbose=False):
+def pprint_schema(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
     """Pretty-print CSVShape objects to console."""
-    csv_elements_dict = yaml.safe_load(csv_elements)
-    shape_elements = csv_elements_dict["shape_elements"]
-    statement_elements = csv_elements_dict["statement_elements"]
+    csv_model_dict = yaml.safe_load(csv_model)
+    shape_elements = csv_model_dict["shape_elements"]
+    statement_elements = csv_model_dict["statement_elements"]
 
     pprint_output = []
     pprint_output.append("DCAP")

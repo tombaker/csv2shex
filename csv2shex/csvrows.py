@@ -5,12 +5,12 @@ import re
 import sys
 from dataclasses import dataclass
 import ruamel.yaml as yaml
-from .model import CSV_ELEMENTS
+from .model import CSV_MODEL
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
-csv_elements_dict = yaml.safe_load(CSV_ELEMENTS)
-SHAPE_ELEMENTS = csv_elements_dict["shape_elements"]
-STATEMENT_ELEMENTS = csv_elements_dict["statement_elements"]
+csv_model = yaml.safe_load(CSV_MODEL)
+SHAPE_ELEMENTS = csv_model["shape_elements"]
+STATEMENT_ELEMENTS = csv_model["statement_elements"]
 
 # pylint: disable=no-self-use,too-many-branches,too-many-instance-attributes
 # => self-use: for now...

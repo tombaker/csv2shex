@@ -1,7 +1,7 @@
 """CSV model defaults."""
 
 
-CSV_ELEMENTS = """\
+CSV_MODEL = """\
 shape_elements:
 - shapeID
 - shapeLabel

@@ -10,7 +10,7 @@ from csv2shex.csvrows import CSVRow
 from csv2shex.csvshapes import CSVShape, get_csvshapes_dict
 from csv2shex.expand import _expand_prefixes
 
-TEST_CSV_ELEMENTS = """\
+TEST_CSV_MODEL = """\
 shape_uri_elements:
 - shapeID
 
@@ -21,9 +21,9 @@ statement_uri_elements:
 - valueShape
 """
 
-test_csv_elements_dict = yaml.safe_load(TEST_CSV_ELEMENTS)
-SHAPE_URI_ELEMENTS = test_csv_elements_dict["shape_uri_elements"]
-STATEMENT_URI_ELEMENTS = test_csv_elements_dict["statement_uri_elements"]
+test_csv_model = yaml.safe_load(TEST_CSV_MODEL)
+SHAPE_URI_ELEMENTS = test_csv_model["shape_uri_elements"]
+STATEMENT_URI_ELEMENTS = test_csv_model["statement_uri_elements"]
 ALT_CONFIG_DEFAULTS = """\
 prefixes:
     ":": "http://example.org/"
