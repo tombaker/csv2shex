@@ -7,6 +7,7 @@ from typing import List
 import ruamel.yaml as yaml
 from .config import get_config_settings_dict
 from .csvrows import CSVRow
+from .expand import _expand_prefixes
 from .model import CSV_ELEMENTS
 
 
@@ -30,6 +31,7 @@ def get_csvshapes_dict(
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
     csv_elements_dict = yaml.safe_load(csv_elements)
+    # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"] 
 
     for csvrow in csvrows_list:
         csvrow.normalize()
@@ -53,6 +55,10 @@ def get_csvshapes_dict(
     csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
         csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))
+
+    if expand_prefixes:
+        _expand_prefixes(csvshape_dicts_list, csv_elements_dict=csv_elements_dict)
+        # also prefixes_dict=prefixes_dict?
 
     return csvshape_dicts_list
 
