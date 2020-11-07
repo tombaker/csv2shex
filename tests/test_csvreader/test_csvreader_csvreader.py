@@ -3,7 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.csvreader import csvreader
+from csv2shex.readwrite import csvreader
 
 
 def test_csvreader_with_simple_csvfile(tmp_path):

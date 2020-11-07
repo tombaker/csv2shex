@@ -2,8 +2,7 @@
 
 import re
 import ruamel.yaml as yaml
-from .config import DEFAULT_CONFIG_SETTINGS_YAML
-from .model import CSV_MODEL
+from .defaults import CSV_MODEL, DEFAULT_CONFIG_SETTINGS_YAML
 
 # pylint: disable=unused-argument
 # pylint: disable=unused-variable

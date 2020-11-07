@@ -5,7 +5,7 @@ import click
 from .csvreader import csvreader
 from .csvrows import get_csvrowobjs_list
 from .csvshapes import pprint_schema, get_csvshapes_dict
-from .model import CSV_MODEL
+from .defaults import CSV_MODEL
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.

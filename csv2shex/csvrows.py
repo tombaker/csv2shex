@@ -5,7 +5,7 @@ import re
 import sys
 from dataclasses import dataclass
 import ruamel.yaml as yaml
-from .model import CSV_MODEL
+from .defaults import CSV_MODEL
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 csv_model = yaml.safe_load(CSV_MODEL)

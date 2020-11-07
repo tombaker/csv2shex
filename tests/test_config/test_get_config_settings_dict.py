@@ -3,17 +3,12 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.config import DEFAULT_CONFIGFILE_NAME, get_config_settings_dict
+from csv2shex.defaults import DEFAULT_CONFIGFILE_NAME
 from csv2shex.exceptions import BadYamlError, ConfigWarning
+from csv2shex.readwrite import get_config_settings_dict
 
-# def get_config_settings_dict(
-#     rootdir_path=None,
-#     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-#     default_config_settings_yaml=DEFAULT_CONFIG_SETTINGS_YAML,
-#     verbose=False
-# ):
 
-ALT_DEFAULT_CONFIG_SETTINGS_YAML = """\
+ALT_CONFIG_SETTINGS_YAML = """\
 prefixes:
     ":": "http://example.org/"
     "dcterms:": "http://purl.org/dc/terms/"
@@ -37,7 +32,7 @@ def test_get_config_settings_dict_dict_from_default_config_file(dir_with_csv2rc)
 def test_get_default_config_settings_if_configfile_not_found(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
-    assert get_config_settings_dict(default_config_settings_yaml=ALT_DEFAULT_CONFIG_SETTINGS_YAML)[
+    assert get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[
         "prefixes"
     ] == {
         ":": "http://example.org/",
@@ -50,7 +45,7 @@ def test_exit_if_configfile_has_bad_yaml(tmp_path):
     os.chdir(tmp_path)
     configfile_content = "DELIBE\nRATELY BAD: -: ^^YAML CONTENT^^\n"
     Path(DEFAULT_CONFIGFILE_NAME).write_text(configfile_content)
-    assert get_config_settings_dict(default_config_settings_yaml=ALT_DEFAULT_CONFIG_SETTINGS_YAML)[
+    assert get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[
         "prefixes"
     ] == {
         ":": "http://example.org/",

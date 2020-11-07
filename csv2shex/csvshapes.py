@@ -5,10 +5,10 @@ from collections import defaultdict
 from dataclasses import dataclass, field, asdict
 from typing import List
 import ruamel.yaml as yaml
-from .config import get_config_settings_dict
+from .readwrite import get_config_settings_dict
 from .csvrows import CSVRow
+from .defaults import CSV_MODEL
 from .expand import _expand_prefixes
-from .model import CSV_MODEL
 
 
 @dataclass
@@ -31,7 +31,7 @@ def get_csvshapes_dict(
     is_first_csvrow_encountered = True
     single_statement_dict = dict()
     csv_model_dict = yaml.safe_load(csv_model)
-    # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"] 
+    # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"]
 
     for csvrow in csvrows_list:
         csvrow.normalize()
