@@ -8,6 +8,8 @@ from csv2shex.csvrow import CSVRow
 def test_statement_initialized_with_just_one_field():
     """CSVRow instance initialized with just one field."""
     shap = CSVRow(propertyID="dcterms:creator")
+    shap.normalize()
+    shap.validate()
     assert shap.shapeID is None
     assert shap.shapeLabel is None
     assert shap.propertyID == "dcterms:creator"
@@ -29,8 +31,8 @@ def test_statement_initialized_without_propid():
     assert shap.shapeLabel is None
     assert shap.propertyID is None
     assert shap.propertyLabel is None
-    assert shap.mandatory is False
-    assert shap.repeatable is False
+    assert shap.mandatory is None
+    assert shap.repeatable is None
     assert shap.valueNodeType is None
     assert shap.valueDataType is None
     assert shap.valueConstraint is None
@@ -49,6 +51,8 @@ def test_statement_initialized_from_named_arguments_and_order_is_insignficant():
 def test_statement_fields_individually_addressable():
     """CSVRow instance fields individually addressable."""
     shap = CSVRow(shapeID="@photo", propertyID="dcterms:creator", valueNodeType="URI")
+    shap.normalize()
+    shap.validate()
     assert shap.shapeID == "@photo"
     assert shap.propertyID == "dcterms:creator"
     assert shap.valueNodeType == "URI"

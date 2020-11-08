@@ -20,7 +20,7 @@ def test_get_csvshape_dicts_list_one_shape():
             "shapeID": ":a",
             "shapeLabel": None,
             "start": True,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
@@ -53,7 +53,8 @@ def test_get_csvshape_dicts_list_one_shape():
 
 
 def test_get_csvshape_dicts_list_two_shapes():
-    """Turn list of CSVRow objects into list with two CSVShapes."""
+    """Turn list of CSVRow objects into list with two CSVShapes. 
+    @TODO handling of shapeClosed"""
     csvrows_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":a", propertyID="dct:date"),
@@ -65,7 +66,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeID": ":a",
             "shapeLabel": None,
             "start": True,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
@@ -97,7 +98,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeID": ":b",
             "shapeLabel": None,
             "start": False,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": "foaf:name",
@@ -144,7 +145,7 @@ def test_get_csvshape_dicts_list_one_shape_and_shapeLabel():
             "shapeID": ":a",
             "shapeLabel": "Author",
             "start": True,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": "dct:creator",
@@ -188,7 +189,7 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
             "shapeID": ":a",
             "shapeLabel": "A CSVShape",
             "start": True,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": ":prop1",
@@ -220,7 +221,7 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
             "shapeID": ":b",
             "shapeLabel": "B CSVShape",
             "start": False,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": ":prop3",
@@ -294,7 +295,7 @@ def test_listshapes_one_shape_for_shex_example():
             "shapeID": "http://example.org/myshape",
             "shapeLabel": None,
             "start": True,
-            "shapeClosed": False,
+            "shapeClosed": None,
             "statement_csvrows_list": [
                 {
                     "propertyID": "http://purl.org/dc/terms/title",

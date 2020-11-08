@@ -5,6 +5,7 @@ import sys
 from dataclasses import dataclass
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
+VARIATIONS_ON_YES = ["y", "Y", "yes", "Yes", "YES", "x", "X", "true", "True", "TRUE", True]
 
 @dataclass
 class CSVRow:
@@ -74,12 +75,12 @@ class CSVRow:
 
     shapeID: str = None
     shapeLabel: str = None
-    shapeClosed: bool = False
+    shapeClosed: str = None
     start: bool = False
     propertyID: str = None
     propertyLabel: str = None
-    mandatory: bool = False
-    repeatable: bool = False
+    mandatory: str = None
+    repeatable: str = None
     valueNodeType: str = None
     valueDataType: str = None
     valueConstraint: str = None
@@ -89,6 +90,7 @@ class CSVRow:
 
     def normalize(self):
         """Normalize specific elements."""
+        self._normalize_shapeclosed()
         self._normalize_litpicklist()
         self._normalize_mandrepeat()
         self._normalize_propid()
@@ -109,12 +111,14 @@ class CSVRow:
         self._validate_valueuri()
         return True
 
+    def _normalize_shapeclosed(self):
+        """shapeClosed is True or if value is equivalent to "yes"."""
+        self.shapeClosed = True if self.shapeClosed in VARIATIONS_ON_YES else False
+
     def _normalize_mandrepeat(self):
-        """@@@ Elements 'mandatory' or 'repeatable' are True if any value provided."""
-        if self.mandatory:
-            self.mandatory = True
-        if self.repeatable:
-            self.repeatable = True
+        """mandatory and repeatable are True if values are equivalent to "yes"."""
+        self.mandatory = True if self.mandatory in VARIATIONS_ON_YES else False
+        self.repeatable = True if self.repeatable in VARIATIONS_ON_YES else False
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""

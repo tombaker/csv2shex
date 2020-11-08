@@ -12,6 +12,6 @@ class CSVShape:
 
     shapeID: str = None
     shapeLabel: str = None
+    shapeClosed: str = None
     start: bool = False
-    shapeClosed: bool = False
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
