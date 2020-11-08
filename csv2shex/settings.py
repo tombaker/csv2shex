@@ -71,7 +71,7 @@ valueConstraintType:
 """
 
 
-def get_config_settings_dict(
+def get_config_dict(
     rootdir_path=None,
     default_configfile_name=DEFAULT_CONFIGFILE_NAME,
     default_config_yaml=DEFAULT_CONFIG_YAML,

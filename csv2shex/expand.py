@@ -1,13 +1,13 @@
 """Class for Python objects derived from CSV files."""
 
 import ruamel.yaml as yaml
-from .settings import CSV_MODEL, get_config_settings_dict
+from .settings import CSV_MODEL, get_config_dict
 
 # pylint: disable=unused-argument
 # pylint: disable=unused-variable
 # pylint: disable=undefined-variable
 
-PREFIXES_DICT = get_config_settings_dict()["prefixes"]
+PREFIXES_DICT = get_config_dict()["prefixes"]
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
 
