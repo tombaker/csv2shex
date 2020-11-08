@@ -88,6 +88,10 @@ class CSVRow:
     valueShape: str = None
     note: str = None
 
+    # def __post_init__(self):
+    #     self.normalize()
+    #     self.validate()
+
     def normalize(self):
         """Normalize specific elements."""
         self._normalize_shapeclosed()
