@@ -22,13 +22,13 @@ def csvreader(csvfile):
     )
     csvrow_dicts_list = list(csv_dictreader_obj)
     if "propertyID" not in list(csvrow_dicts_list[0].keys()):
-        raise CsvError("To be valid, DCAP CSV must have a 'propertyID' column header.")
+        raise CsvError("Valid DCAP CSV must have a 'propertyID' column.")
     return csvrow_dicts_list
 
 
 def get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
     """Turn list of dicts into list of CSVRow objects."""
-    csvrows_list = []
+    csvrow_objs_list = []
     shapeids_list = []
     first_shape_encountered = True
     keys = csv_model_dict["shape_elements"] + csv_model_dict["statement_elements"]
@@ -56,8 +56,8 @@ def get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
             if key in row:
                 setattr(stat, key, row[key])
 
-        csvrows_list.append(stat)
-    return csvrows_list
+        csvrow_objs_list.append(stat)
+    return csvrow_objs_list
 
 
 def get_csvshape_dicts_list(

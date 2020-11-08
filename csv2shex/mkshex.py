@@ -38,7 +38,7 @@ def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
 
 
 def add_statement(shape: CSVShape, statement: CSVRow) -> None:
-    """Interpret a CSV statement and add shapeExprit to shape."""
+    """Interpret a CSV statement and add shapeExpr to shape."""
     # typing.List[typing.Union["EachOf",
     #                          "OneOf",
     #                          "TripleConstraint",
@@ -59,7 +59,7 @@ def add_statement(shape: CSVShape, statement: CSVRow) -> None:
 
 
 def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
-    """ Convert a list of csv2shape CSVShapes to a ShEx Schema """
+    """ Convert a list of CSVShapes to a ShEx Schema """
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
     schema = Schema()
