@@ -1,7 +1,6 @@
 """@@@"""
 
 from typing import Union, List, Optional
-
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
@@ -11,12 +10,12 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-
-from csv2shex.csvshape import CSVShape, CSVRow
+from .csvshape import CSVShape
+from .csvrow import CSVRow
 
 
 def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
-    """ Generate a node constraint from statement if necessary """
+    """Generate a node constraint from statement if necessary."""
     rval = None
 
     def get_nc() -> NodeConstraint:
@@ -39,7 +38,7 @@ def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
 
 
 def add_statement(shape: CSVShape, statement: CSVRow) -> None:
-    """ Interpret a CSV statement and add shapeExprit to shape """
+    """Interpret a CSV statement and add shapeExprit to shape."""
     # typing.List[typing.Union["EachOf",
     #                          "OneOf",
     #                          "TripleConstraint",

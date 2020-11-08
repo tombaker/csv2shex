@@ -1,4 +1,4 @@
-"""Read DCAP/CSV. Write and read config file."""
+"""Read DCAP/CSV (expand prefixes?). Write and read config file."""
 
 import csv
 from dataclasses import asdict

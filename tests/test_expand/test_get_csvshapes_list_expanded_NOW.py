@@ -44,7 +44,7 @@ def test_csvshape_expand_prefixes_from_default_config_file(dir_with_csv2rc):
 def test_csvshape_expand_prefixes_from_builtin_defaults(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
-    prefix_settings = get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[
+    prefix_settings = get_config_settings_dict(default_config_yaml=ALT_CONFIG_SETTINGS_YAML)[
         "prefixes"
     ]
     assert prefix_settings == {

@@ -7,7 +7,7 @@ from csv2shex.settings import DEFAULT_CONFIGFILE_NAME, get_config_settings_dict
 from csv2shex.exceptions import BadYamlError, ConfigWarning
 
 
-ALT_CONFIG_SETTINGS_YAML = """\
+ALT_CONFIG_YAML = """\
 prefixes:
     ":": "http://example.org/"
     "dcterms:": "http://purl.org/dc/terms/"
@@ -31,7 +31,7 @@ def test_get_config_settings_dict_dict_from_default_config_file(dir_with_csv2rc)
 def test_get_default_config_settings_if_configfile_not_found(tmp_path):
     """Get default config settings if no default config file is found."""
     os.chdir(tmp_path)
-    assert get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[
+    assert get_config_settings_dict(default_config_yaml=ALT_CONFIG_YAML)[
         "prefixes"
     ] == {
         ":": "http://example.org/",
@@ -44,7 +44,7 @@ def test_exit_if_configfile_has_bad_yaml(tmp_path):
     os.chdir(tmp_path)
     configfile_content = "DELIBE\nRATELY BAD: -: ^^YAML CONTENT^^\n"
     Path(DEFAULT_CONFIGFILE_NAME).write_text(configfile_content)
-    assert get_config_settings_dict(default_config_settings_yaml=ALT_CONFIG_SETTINGS_YAML)[
+    assert get_config_settings_dict(default_config_yaml=ALT_CONFIG_YAML)[
         "prefixes"
     ] == {
         ":": "http://example.org/",
