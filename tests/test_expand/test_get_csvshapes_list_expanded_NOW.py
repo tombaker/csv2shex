@@ -9,7 +9,7 @@ from csv2shex.csvrow import CSVRow
 from csv2shex.csvshape import CSVShape
 from csv2shex.expand import _expand_prefixes
 from csv2shex.settings import get_config_dict
-from csv2shex.readwrite import get_csvshape_dicts_list
+from csv2shex.csvshape import get_csvshape_dicts_list
 
 TEST_CSV_MODEL = """\
 shape_uri_elements:

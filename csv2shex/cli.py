@@ -4,9 +4,9 @@ from dataclasses import asdict
 import ruamel.yaml as yaml
 import click
 from .csvrow import CSVRow
-from .csvshape import CSVShape
+from .csvshape import CSVShape, get_csvshape_dicts_list
 from .inspect import pprint_csvshapes
-from .readwrite import csvreader, get_csvrow_objs_list, get_csvshape_dicts_list
+from .csvreader import csvreader, get_csvrow_objs_list
 from .settings import CSV_MODEL
 
 # pylint: disable=unused-argument,no-value-for-parameter
