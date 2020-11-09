@@ -1,13 +1,9 @@
 """Read DCAP/CSV (expand prefixes?). Write and read config file."""
 
 import csv
-from dataclasses import asdict
-from collections import defaultdict
 from pathlib import Path
-from typing import List
 import ruamel.yaml as yaml
 from .csvrow import CSVRow
-from .csvshape import CSVShape
 from .settings import CSV_MODEL
 from .exceptions import CsvError
 
@@ -57,4 +53,3 @@ def get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
 
         csvrow_objs_list.append(stat)
     return csvrow_objs_list
-

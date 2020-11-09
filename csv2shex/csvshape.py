@@ -3,13 +3,14 @@
 
 from dataclasses import dataclass, field, asdict
 from collections import defaultdict
-import ruamel.yaml as yaml
 from typing import List
+import ruamel.yaml as yaml
 from .csvrow import CSVRow
 from .expand import _expand_prefixes
 from .settings import CSV_MODEL
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
+
 
 @dataclass
 class CSVShape:
@@ -20,6 +21,8 @@ class CSVShape:
     shapeClosed: str = None
     start: bool = False
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
+
+
 def get_csvshape_dicts_list(
     csvrow_objs_list, csv_model=CSV_MODEL, expand_prefixes=False
 ) -> List[dict]:
