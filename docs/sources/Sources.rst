@@ -3,4 +3,5 @@ Module documentation
 
 .. toctree::
 
-   statement_class
+   CSVRow_class
+   CSVShape_class

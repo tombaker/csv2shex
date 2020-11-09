@@ -1,6 +1,0 @@
-Shape class
-^^^^^^^^^^^
-
-.. autoclass:: csv2shex.csvshape.Shape
-    :members:
-
