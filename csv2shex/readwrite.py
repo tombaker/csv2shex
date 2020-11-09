@@ -82,6 +82,7 @@ def get_csvshape_dicts_list(
             csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
+        # breakpoint(context=5)
         for key in csv_model_dict["statement_elements"]:
             single_statement_dict[key] = asdict(csvrow)[key]
 

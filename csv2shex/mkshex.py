@@ -14,7 +14,7 @@ from .csvshape import CSVShape
 from .csvrow import CSVRow
 
 
-def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
+def generate_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
     """Generate a node constraint from statement if necessary."""
     rval = None
 
@@ -22,7 +22,7 @@ def statement_to_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
         return rval if rval else NodeConstraint()
 
     if statement.valueNodeType:
-        #  pattern = jsg.JSGPattern(r'(iri)|(bnode)|(nonliteral)|(literal)')
+        # Note: pattern = jsg.JSGPattern(r'(iri)|(bnode)|(nonliteral)|(literal)')
         get_nc().nodeKind = statement.valueNodeType.lower()
     if statement.valueConstraint:
         get_nc().values = [statement.valueConstraint]
@@ -47,7 +47,7 @@ def add_statement(shape: CSVShape, statement: CSVRow) -> None:
         predicate=IRIREF(statement.propertyID),
         min=1 if statement.mandatory else 0,
         max=-1 if statement.repeatable else 1,
-        valueExpr=statement_to_node_constraint(statement),
+        valueExpr=generate_node_constraint(statement),
     )
     if shape.expression:
         if isinstance(shape.expression, TripleConstraint):
@@ -59,7 +59,7 @@ def add_statement(shape: CSVShape, statement: CSVRow) -> None:
 
 
 def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
-    """ Convert a list of CSVShapes to a ShEx Schema """
+    """Convert a list of CSVShapes to a ShEx Schema."""
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
     schema = Schema()
