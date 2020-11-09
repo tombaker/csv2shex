@@ -13,8 +13,8 @@ from rdflib import DCTERMS
 from pyjsg.jsglib.jsg_array import JSGArray
 
 
-def test_python_to_shex():
-    """ Generate a new ShEx Schema from Python """
+def test_generate_shexc_from_schema_obj():
+    """Generate a new ShExC Schema from Python."""
     schema = Schema(
         shapes=[
             Shape(
