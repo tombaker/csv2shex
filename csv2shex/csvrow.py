@@ -89,9 +89,9 @@ class CSVRow:
     valueShape: str = None
     note: str = None
 
-    # def __post_init__(self):
-    #     self.normalize()
-    #     self.validate()
+    def __post_init__(self):
+        self.normalize()
+        self.validate()
 
     def normalize(self):
         """Normalize specific elements."""
@@ -101,7 +101,6 @@ class CSVRow:
         self._normalize_propid()
         self._normalize_regex()
         self._normalize_datatype()
-        self._normalize_uripicklist()
         self._normalize_uristem()
         self._normalize_valueuri()
         # self._normalize_langtag()
@@ -117,7 +116,7 @@ class CSVRow:
         return True
 
     def _normalize_shapeclosed(self):
-        """shapeClosed is True or if value is equivalent to "yes"."""
+        """shapeClosed is True if value is equivalent to "yes"."""
         self.shapeClosed = bool(self.shapeClosed in VARIATIONS_ON_YES)
 
     def _normalize_mandrepeat(self):
@@ -138,12 +137,6 @@ class CSVRow:
             if self.valueConstraint:
                 uristem = self.valueConstraint
                 self.valueConstraint = uristem.lstrip("<").rstrip(">")
-        return self
-
-    def _normalize_uripicklist(self):
-        """@@@"""
-        if self.valueConstraintType == "UriPicklist":
-            self.valueConstraint = self.valueConstraint.split()
         return self
 
     def _normalize_litpicklist(self):
@@ -188,10 +181,10 @@ class CSVRow:
 
     def _validate_propid(self):
         """True if property ID is a URI or prefixed URI."""
-        # propid is mandatory. If this returns False, exit with error?
-        if not is_valid_uri_or_prefixed_uri(self.propertyID):
-            return False
-        return True
+        if self.propertyID:
+            if not is_valid_uri_or_prefixed_uri(self.propertyID):
+                return False
+            return True
 
     def _validate_uripicklist(self):
         """True if all members of UriPicklist are URIs."""

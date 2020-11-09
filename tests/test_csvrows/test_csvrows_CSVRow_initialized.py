@@ -31,8 +31,8 @@ def test_statement_initialized_without_propid():
     assert shap.shapeLabel is None
     assert shap.propertyID is None
     assert shap.propertyLabel is None
-    assert shap.mandatory is None
-    assert shap.repeatable is None
+    assert shap.mandatory is False
+    assert shap.repeatable is False
     assert shap.valueNodeType is None
     assert shap.valueDataType is None
     assert shap.valueConstraint is None
