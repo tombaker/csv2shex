@@ -180,11 +180,11 @@ class CSVRow:
         return self
 
     def _validate_propid(self):
-        """True if property ID is a URI or prefixed URI."""
+        """False if propertyID has value, and that value is not URI or prefixed URI."""
         if self.propertyID:
             if not is_valid_uri_or_prefixed_uri(self.propertyID):
                 return False
-            return True
+        return True
 
     def _validate_uripicklist(self):
         """True if all members of UriPicklist are URIs."""
