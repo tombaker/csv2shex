@@ -7,6 +7,7 @@ from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
 VARIATIONS_ON_YES = ["y", "Y", "yes", "Yes", "YES", "x", "X", "true", "True", "TRUE", True]
 
+
 @dataclass
 class CSVRow:
     """Holds state and self-validation methods for a property-value pair.
@@ -117,12 +118,12 @@ class CSVRow:
 
     def _normalize_shapeclosed(self):
         """shapeClosed is True or if value is equivalent to "yes"."""
-        self.shapeClosed = True if self.shapeClosed in VARIATIONS_ON_YES else False
+        self.shapeClosed = bool(self.shapeClosed in VARIATIONS_ON_YES)
 
     def _normalize_mandrepeat(self):
         """mandatory and repeatable are True if values are equivalent to "yes"."""
-        self.mandatory = True if self.mandatory in VARIATIONS_ON_YES else False
-        self.repeatable = True if self.repeatable in VARIATIONS_ON_YES else False
+        self.mandatory = bool(self.mandatory in VARIATIONS_ON_YES)
+        self.repeatable = bool(self.repeatable in VARIATIONS_ON_YES)
 
     def _normalize_propid(self):
         """Normalize URIs by stripping angle brackets."""

@@ -53,7 +53,7 @@ def test_get_csvshape_dicts_list_one_shape():
 
 
 def test_get_csvshape_dicts_list_two_shapes():
-    """Turn list of CSVRow objects into list with two CSVShapes. 
+    """Turn list of CSVRow objects into list with two CSVShapes.
     @TODO handling of shapeClosed"""
     csvrow_objs_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),

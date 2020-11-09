@@ -1,7 +1,7 @@
 """DC Application Profile (DCAP) from CSV to ShEx"""
 
-import ruamel.yaml as yaml
 from dataclasses import asdict
+import ruamel.yaml as yaml
 import click
 from .csvrow import CSVRow
 from .csvshape import CSVShape
@@ -59,7 +59,7 @@ def model(context):
 def quickcsv(context, output_csv, append):
     """Answer input prompts to create a simple CSV"""
 
-    csv_model = yaml.safe_load(CSV_MODEL)
+    # csv_model = yaml.safe_load(CSV_MODEL)
     shap = asdict(CSVShape())
     row = asdict(CSVRow())
     shap['statement_csvrows_list'] = row
@@ -81,8 +81,7 @@ def quickcsv(context, output_csv, append):
 
     # a>>> cols = list(row)
     # >>> ','.join(cols)
-    # 'shapeID,shapeLabel,shapeClosed,start,propertyID,propertyLabel,mandatory,repea
+    # 'shapeID,shapeLabel,shapeClosed,start,propertyID,propertyLabel,manda...
     # >>> [str(value) for value in row.values()]
-    # ['None', 'None', 'False', 'False', 'None', 'None', 'False', 'False', 'None', 'None', 'None', 'None', 'None', 'None']
+    # ['None', 'None', 'False', 'False', 'None', 'None', 'False', 'False'...
     # >>> ','.join([str(value) for value in row.values()])
-
