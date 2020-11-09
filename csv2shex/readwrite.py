@@ -61,7 +61,7 @@ def get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
 
 
 def get_csvshape_dicts_list(
-    csvrows_list, csv_model=CSV_MODEL, expand_prefixes=False
+    csvrow_objs_list, csv_model=CSV_MODEL, expand_prefixes=False
 ) -> List[dict]:
     """Get list of CSVShapes (as dicts) from list of CSVRows."""
 
@@ -71,7 +71,7 @@ def get_csvshape_dicts_list(
     csv_model_dict = yaml.safe_load(csv_model)
     # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"]
 
-    for csvrow in csvrows_list:
+    for csvrow in csvrow_objs_list:
         csvrow.normalize()
         csvrow.validate()
         if csvrow.shapeID not in csvshapes_ddict.keys():

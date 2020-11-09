@@ -51,8 +51,8 @@ def test_csvshape_expand_prefixes_from_builtin_defaults(tmp_path):
         ":": "http://example.org/",
         "dc:": "http://purl.org/dc/terms/",
     }
-    csvrows_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
-    csvshape_dicts_list = get_csvshape_dicts_list(csvrows_list, expand_prefixes=True)
+    csvrow_objs_list = [CSVRow(shapeID=":foo", propertyID="dc:creator", valueShape=":foo")]
+    csvshape_dicts_list = get_csvshape_dicts_list(csvrow_objs_list, expand_prefixes=True)
     assert csvshape_dicts_list
     # assert stat.shapeID == "http://example.org/"
     # assert stat.propertyID == "http://purl.org/dc/terms/creator"
@@ -63,7 +63,7 @@ def test_csvshape_expand_prefixes_from_builtin_defaults(tmp_path):
 @pytest.mark.skip
 def test_get_csvshape_dicts_list_prefixes_expanded():
     """Turn list of CSVRow dicts into list of one CSVShape, with prefixes expanded."""
-    csvrows_list = [
+    csvrow_objs_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator", valueShape=":a"),
     ]
 
@@ -113,10 +113,10 @@ def test_get_csvshape_dicts_list_prefixes_expanded():
         }
     ]
     assert (
-        _expand_prefixes(csvrows_list, expand_prefixes=False)
+        _expand_prefixes(csvrow_objs_list, expand_prefixes=False)
         == expected_csvshape_dicts_list_before
     )
     assert (
-        _expand_prefixes(csvrows_list, expand_prefixes=True)
+        _expand_prefixes(csvrow_objs_list, expand_prefixes=True)
         == expected_csvshape_dicts_list_expanded
     )

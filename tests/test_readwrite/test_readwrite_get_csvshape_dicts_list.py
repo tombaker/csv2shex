@@ -10,7 +10,7 @@ from csv2shex.readwrite import get_csvshape_dicts_list
 
 def test_get_csvshape_dicts_list_one_shape():
     """Turn list of CSVRow objects into list with one CSVShape."""
-    csvrows_list = [
+    csvrow_objs_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
@@ -49,13 +49,13 @@ def test_get_csvshape_dicts_list_one_shape():
             ],
         }
     ]
-    assert get_csvshape_dicts_list(csvrows_list) == expected_csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrow_objs_list) == expected_csvshape_dicts_list
 
 
 def test_get_csvshape_dicts_list_two_shapes():
     """Turn list of CSVRow objects into list with two CSVShapes. 
     @TODO handling of shapeClosed"""
-    csvrows_list = [
+    csvrow_objs_list = [
         CSVRow(shapeID=":a", propertyID="dct:creator"),
         CSVRow(shapeID=":a", propertyID="dct:date"),
         CSVRow(shapeID=":b", propertyID="foaf:name"),
@@ -115,17 +115,17 @@ def test_get_csvshape_dicts_list_two_shapes():
             ],
         },
     ]
-    assert len(get_csvshape_dicts_list(csvrows_list)) == len(expected_csvshape_dicts_list)
+    assert len(get_csvshape_dicts_list(csvrow_objs_list)) == len(expected_csvshape_dicts_list)
     assert (
-        get_csvshape_dicts_list(csvrows_list)[0]["statement_csvrows_list"]
+        get_csvshape_dicts_list(csvrow_objs_list)[0]["statement_csvrows_list"]
         == expected_csvshape_dicts_list[0]["statement_csvrows_list"]
     )
-    assert get_csvshape_dicts_list(csvrows_list) == expected_csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrow_objs_list) == expected_csvshape_dicts_list
 
 
 def test_get_csvshape_dicts_list_one_shape_and_shapeLabel():
     """One CSVShape with shape label."""
-    csvrows_list = [
+    csvrow_objs_list = [
         CSVRow(
             shapeID=":a",
             shapeLabel="Author",
@@ -174,20 +174,20 @@ def test_get_csvshape_dicts_list_one_shape_and_shapeLabel():
             ],
         }
     ]
-    assert get_csvshape_dicts_list(csvrows_list) == csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrow_objs_list) == csvshape_dicts_list
 
 
 def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
     """First shape created is marked as the 'start' shape."""
-    csvrows_list = [
-        CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop1"),
-        CSVRow(shapeID=":a", shapeLabel="A CSVShape", propertyID=":prop2"),
-        CSVRow(shapeID=":b", shapeLabel="B CSVShape", propertyID=":prop3"),
+    csvrow_objs_list = [
+        CSVRow(shapeID=":a", propertyID=":prop1"),
+        CSVRow(shapeID=":a", propertyID=":prop2"),
+        CSVRow(shapeID=":b", propertyID=":prop3"),
     ]
     csvshape_dicts_list = [
         {
             "shapeID": ":a",
-            "shapeLabel": "A CSVShape",
+            "shapeLabel": None,
             "start": True,
             "shapeClosed": None,
             "statement_csvrows_list": [
@@ -219,7 +219,7 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
         },
         {
             "shapeID": ":b",
-            "shapeLabel": "B CSVShape",
+            "shapeLabel": None,
             "start": False,
             "shapeClosed": None,
             "statement_csvrows_list": [
@@ -238,12 +238,12 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
             ],
         },
     ]
-    assert get_csvshape_dicts_list(csvrows_list) == csvshape_dicts_list
+    assert get_csvshape_dicts_list(csvrow_objs_list) == csvshape_dicts_list
 
 
 def test_listshapes_one_shape_for_shex_example():
     """Turn list of CSVRow objects into list with one CSVShape."""
-    csvrows_list = [
+    csvrow_objs_list = [
         CSVRow(
             shapeID="http://example.org/myshape",
             propertyID="http://purl.org/dc/terms/title",
@@ -348,4 +348,4 @@ def test_listshapes_one_shape_for_shex_example():
             ],
         }
     ]
-    assert get_csvshape_dicts_list(csvrows_list) == one_shape_with_csvrows_list
+    assert get_csvshape_dicts_list(csvrow_objs_list) == one_shape_with_csvrows_list
