@@ -5,9 +5,9 @@ from dataclasses import dataclass, field, asdict
 from collections import defaultdict
 from typing import List
 import ruamel.yaml as yaml
+from .config import CSV_MODEL
 from .csvrow import CSVRow
 from .expand import _expand_prefixes
-from .settings import CSV_MODEL
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 

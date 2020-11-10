@@ -1,0 +1,539 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.0, pytest-6.1.2, py-1.9.0, pluggy-0.13.1 -- /Users/tbaker/bitbucket/venvs/dcapenv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/tbaker/github/tombaker/csv2shex, configfile: pytest.ini
+plugins: cov-2.10.1
+collecting ... collected 1 item
+
+tests/test_mkshex/test_shexj_load.py::test_shexj_from_json FAILED
+
+=================================== FAILURES ===================================
+_____________________________ test_shexj_from_json _____________________________
+tests/test_mkshex/test_shexj_load.py:160: in test_shexj_from_json
+    loader.load(
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/loader.py:78: in load
+    return loads(f.read(), load_module, **kwargs)
+        f          = <_io.TextIOWrapper name='/Users/tbaker/github/tombaker/csv2shex/tests/examples/basic_profile.shexj' mode='r' encoding='UTF-8'>
+        fp         = '/Users/tbaker/github/tombaker/csv2shex/tests/examples/basic_profile.shexj'
+        kwargs     = {}
+        load_module = <module 'ShExJSG.ShExJ' from '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py'>
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/loader.py:65: in loads
+    return json.loads(s, object_hook=lambda pairs: loads_loader(load_module, pairs), **kwargs)
+        kwargs     = {}
+        load_module = <module 'ShExJSG.ShExJ' from '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py'>
+        s          = ('{ \n'
+ '  "@context": "http://www.w3.org/ns/shex.jsonld",\n'
+ '  "type": "Schema",\n'
+ '  "shapes": [\n'
+ '      { \n'
+ '         "type": "Shape",\n'
+ '         "id": "http://example.org/myshape",\n'
+ '         "expression": {\n'
+ '            "type": "EachOf",\n'
+ '            "expressions": [ \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/title",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "nodeKind": "literal"\n'
+ '                },\n'
+ '                "min": "1",\n'
+ '                "max": "-1"\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/description",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "datatype": "http://www.w3.org/2001/XMLSchema#string"\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/subject",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "values": [ \n'
+ '                     {\n'
+ '                        "type": "IriStem",\n'
+ '                        "stem": "http://lod.nal.usda.gov/nalt/"\n'
+ '                     }\n'
+ '                  ]\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/creator",\n'
+ '                "valueExpr": "http://example.org/mycreator"\n'
+ '              }\n'
+ '        ]\n'
+ '      } \n'
+ '    } \n'
+ '  ]\n'
+ '}\n')
+/usr/local/Cellar/python@3.9/3.9.0/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/__init__.py:359: in loads
+    return cls(**kw).decode(s)
+        cls        = <class 'json.decoder.JSONDecoder'>
+        kw         = {'object_hook': <function loads.<locals>.<lambda> at 0x108ee5ca0>}
+        object_hook = <function loads.<locals>.<lambda> at 0x108ee5ca0>
+        object_pairs_hook = None
+        parse_constant = None
+        parse_float = None
+        parse_int  = None
+        s          = ('{ \n'
+ '  "@context": "http://www.w3.org/ns/shex.jsonld",\n'
+ '  "type": "Schema",\n'
+ '  "shapes": [\n'
+ '      { \n'
+ '         "type": "Shape",\n'
+ '         "id": "http://example.org/myshape",\n'
+ '         "expression": {\n'
+ '            "type": "EachOf",\n'
+ '            "expressions": [ \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/title",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "nodeKind": "literal"\n'
+ '                },\n'
+ '                "min": "1",\n'
+ '                "max": "-1"\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/description",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "datatype": "http://www.w3.org/2001/XMLSchema#string"\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/subject",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "values": [ \n'
+ '                     {\n'
+ '                        "type": "IriStem",\n'
+ '                        "stem": "http://lod.nal.usda.gov/nalt/"\n'
+ '                     }\n'
+ '                  ]\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/creator",\n'
+ '                "valueExpr": "http://example.org/mycreator"\n'
+ '              }\n'
+ '        ]\n'
+ '      } \n'
+ '    } \n'
+ '  ]\n'
+ '}\n')
+/usr/local/Cellar/python@3.9/3.9.0/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+        _w         = <built-in method match of re.Pattern object at 0x108676c30>
+        s          = ('{ \n'
+ '  "@context": "http://www.w3.org/ns/shex.jsonld",\n'
+ '  "type": "Schema",\n'
+ '  "shapes": [\n'
+ '      { \n'
+ '         "type": "Shape",\n'
+ '         "id": "http://example.org/myshape",\n'
+ '         "expression": {\n'
+ '            "type": "EachOf",\n'
+ '            "expressions": [ \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/title",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "nodeKind": "literal"\n'
+ '                },\n'
+ '                "min": "1",\n'
+ '                "max": "-1"\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/description",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "datatype": "http://www.w3.org/2001/XMLSchema#string"\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/subject",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "values": [ \n'
+ '                     {\n'
+ '                        "type": "IriStem",\n'
+ '                        "stem": "http://lod.nal.usda.gov/nalt/"\n'
+ '                     }\n'
+ '                  ]\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/creator",\n'
+ '                "valueExpr": "http://example.org/mycreator"\n'
+ '              }\n'
+ '        ]\n'
+ '      } \n'
+ '    } \n'
+ '  ]\n'
+ '}\n')
+        self       = <json.decoder.JSONDecoder object at 0x10865cb80>
+/usr/local/Cellar/python@3.9/3.9.0/Frameworks/Python.framework/Versions/3.9/lib/python3.9/json/decoder.py:353: in raw_decode
+    obj, end = self.scan_once(s, idx)
+        idx        = 0
+        s          = ('{ \n'
+ '  "@context": "http://www.w3.org/ns/shex.jsonld",\n'
+ '  "type": "Schema",\n'
+ '  "shapes": [\n'
+ '      { \n'
+ '         "type": "Shape",\n'
+ '         "id": "http://example.org/myshape",\n'
+ '         "expression": {\n'
+ '            "type": "EachOf",\n'
+ '            "expressions": [ \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/title",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "nodeKind": "literal"\n'
+ '                },\n'
+ '                "min": "1",\n'
+ '                "max": "-1"\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/description",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "datatype": "http://www.w3.org/2001/XMLSchema#string"\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/subject",\n'
+ '                "valueExpr": {\n'
+ '                  "type": "NodeConstraint",\n'
+ '                  "values": [ \n'
+ '                     {\n'
+ '                        "type": "IriStem",\n'
+ '                        "stem": "http://lod.nal.usda.gov/nalt/"\n'
+ '                     }\n'
+ '                  ]\n'
+ '                }\n'
+ '              }, \n'
+ '              {\n'
+ '                "type": "TripleConstraint",\n'
+ '                "predicate": "http://purl.org/dc/terms/creator",\n'
+ '                "valueExpr": "http://example.org/mycreator"\n'
+ '              }\n'
+ '        ]\n'
+ '      } \n'
+ '    } \n'
+ '  ]\n'
+ '}\n')
+        self       = <json.decoder.JSONDecoder object at 0x10865cb80>
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/loader.py:65: in <lambda>
+    return json.loads(s, object_hook=lambda pairs: loads_loader(load_module, pairs), **kwargs)
+        load_module = <module 'ShExJSG.ShExJ' from '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py'>
+        pairs      = {'max': '-1',
+ 'min': '1',
+ 'predicate': 'http://purl.org/dc/terms/title',
+ 'type': 'TripleConstraint',
+ 'valueExpr': NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)}
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/loader.py:30: in loads_loader
+    return target_class(**pairs)
+        cntxt      = <pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>
+        load_module = <module 'ShExJSG.ShExJ' from '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py'>
+        pairs      = {'max': '-1',
+ 'min': '1',
+ 'predicate': 'http://purl.org/dc/terms/title',
+ 'type': 'TripleConstraint',
+ 'valueExpr': NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)}
+        possible_type = 'TripleConstraint'
+        target_class = <class 'ShExJSG.ShExJ.TripleConstraint'>
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py:713: in __init__
+    self.valueExpr = valueExpr
+        __class__  = <class 'ShExJSG.ShExJ.TripleConstraint'>
+        _kwargs    = {'type': 'TripleConstraint'}
+        annotations = None
+        id         = None
+        inverse    = None
+        max        = '-1'
+        min        = '1'
+        onShapeExpression = None
+        predicate  = 'http://purl.org/dc/terms/title'
+        self       = TripleConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='TripleConstraint', id=None, inverse=None, predicate='http://purl.org/dc/terms/title')
+        semActs    = None
+        valueExpr  = NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/jsg_object.py:77: in __setattr__
+    self[key] = self._jsg_type_for(key, value, vtype)
+        __class__  = <class 'pyjsg.jsglib.jsg_object.JSGObject'>
+        key        = 'valueExpr'
+        self       = TripleConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='TripleConstraint', id=None, inverse=None, predicate='http://purl.org/dc/terms/title')
+        value      = NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)
+        vtype      = typing.Optional[ForwardRef('shapeExpr')]
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/jsg_object.py:215: in _jsg_type_for
+    et = self._map_jsg_type(name, element, poss_types)
+        element    = NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)
+        name       = 'valueExpr'
+        poss_types = typing.Optional[ForwardRef('shapeExpr')]
+        self       = TripleConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='TripleConstraint', id=None, inverse=None, predicate='http://purl.org/dc/terms/title')
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/jsg_object.py:207: in _map_jsg_type
+    et = self._map_jsg_type(name, element, t)
+        _wrap      = <function JSGObject._map_jsg_type.<locals>._wrap at 0x109403310>
+        element    = NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)
+        name       = 'valueExpr'
+        poss_types = typing.Optional[ForwardRef('shapeExpr')]
+        self       = TripleConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='TripleConstraint', id=None, inverse=None, predicate='http://purl.org/dc/terms/title')
+        t          = ForwardRef('shapeExpr')
+        typ        = typing.Optional[ForwardRef('shapeExpr')]
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/jsg_object.py:204: in _map_jsg_type
+    typ = proc_forward(typ, self._context.NAMESPACE)
+        _wrap      = <function JSGObject._map_jsg_type.<locals>._wrap at 0x109996700>
+        element    = NodeConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='NodeConstraint', id=None, nodeKind='literal', datatype=None, values=None)
+        name       = 'valueExpr'
+        poss_types = ForwardRef('shapeExpr')
+        self       = TripleConstraint(_context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>, type='TripleConstraint', id=None, inverse=None, predicate='http://purl.org/dc/terms/title')
+        typ        = ForwardRef('shapeExpr')
+../../../bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/typing_patch_37.py:10: in proc_forward
+    return etype._evaluate(namespace, namespace) if type(etype) is ForwardRef else etype
+E   TypeError: _evaluate() missing 1 required positional argument: 'recursive_guard'
+        etype      = ForwardRef('shapeExpr')
+        namespace  = {'Annotation': <class 'ShExJSG.ShExJ.Annotation'>,
+ 'BNODE': <class 'ShExJSG.ShExJ.BNODE'>,
+ 'EachOf': <class 'ShExJSG.ShExJ.EachOf'>,
+ 'HEX': <class 'ShExJSG.ShExJ.HEX'>,
+ 'IRIREF': <class 'ShExJSG.ShExJ.IRIREF'>,
+ 'InnerContext': <class 'ShExJSG.ShExJ.InnerContext'>,
+ 'IriStem': <class 'ShExJSG.ShExJ.IriStem'>,
+ 'IriStemRange': <class 'ShExJSG.ShExJ.IriStemRange'>,
+ 'LANGTAG': <class 'ShExJSG.ShExJ.LANGTAG'>,
+ 'Language': <class 'ShExJSG.ShExJ.Language'>,
+ 'LanguageStem': <class 'ShExJSG.ShExJ.LanguageStem'>,
+ 'LanguageStemRange': <class 'ShExJSG.ShExJ.LanguageStemRange'>,
+ 'LiteralStem': <class 'ShExJSG.ShExJ.LiteralStem'>,
+ 'LiteralStemRange': <class 'ShExJSG.ShExJ.LiteralStemRange'>,
+ 'NodeConstraint': <class 'ShExJSG.ShExJ.NodeConstraint'>,
+ 'ObjectLiteral': <class 'ShExJSG.ShExJ.ObjectLiteral'>,
+ 'OneOf': <class 'ShExJSG.ShExJ.OneOf'>,
+ 'PN_CHARS': <class 'ShExJSG.ShExJ.PN_CHARS'>,
+ 'PN_CHARS_BASE': <class 'ShExJSG.ShExJ.PN_CHARS_BASE'>,
+ 'PN_CHARS_U': <class 'ShExJSG.ShExJ.PN_CHARS_U'>,
+ 'PN_PREFIX': <class 'ShExJSG.ShExJ.PN_PREFIX'>,
+ 'Schema': <class 'ShExJSG.ShExJ.Schema'>,
+ 'SemAct': <class 'ShExJSG.ShExJ.SemAct'>,
+ 'Shape': <class 'ShExJSG.ShExJ.Shape'>,
+ 'ShapeAnd': <class 'ShExJSG.ShExJ.ShapeAnd'>,
+ 'ShapeDecl': <class 'ShExJSG.ShExJ.ShapeDecl'>,
+ 'ShapeExternal': <class 'ShExJSG.ShExJ.ShapeExternal'>,
+ 'ShapeNot': <class 'ShExJSG.ShExJ.ShapeNot'>,
+ 'ShapeOr': <class 'ShExJSG.ShExJ.ShapeOr'>,
+ 'TripleConstraint': <class 'ShExJSG.ShExJ.TripleConstraint'>,
+ 'UCHAR': <class 'ShExJSG.ShExJ.UCHAR'>,
+ 'Wildcard': <class 'ShExJSG.ShExJ.Wildcard'>,
+ '_Anon1': <class 'ShExJSG.ShExJ._Anon1'>,
+ '_Anon2': <class 'ShExJSG.ShExJ._Anon2'>,
+ '_Anon3': <class 'ShExJSG.ShExJ._Anon3'>,
+ '_CONTEXT': <pyjsg.jsglib.jsg_context.JSGContext object at 0x108f74fa0>,
+ '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>,
+                  'AssertionError': <class 'AssertionError'>,
+                  'AttributeError': <class 'AttributeError'>,
+                  'BaseException': <class 'BaseException'>,
+                  'BlockingIOError': <class 'BlockingIOError'>,
+                  'BrokenPipeError': <class 'BrokenPipeError'>,
+                  'BufferError': <class 'BufferError'>,
+                  'BytesWarning': <class 'BytesWarning'>,
+                  'ChildProcessError': <class 'ChildProcessError'>,
+                  'ConnectionAbortedError': <class 'ConnectionAbortedError'>,
+                  'ConnectionError': <class 'ConnectionError'>,
+                  'ConnectionRefusedError': <class 'ConnectionRefusedError'>,
+                  'ConnectionResetError': <class 'ConnectionResetError'>,
+                  'DeprecationWarning': <class 'DeprecationWarning'>,
+                  'EOFError': <class 'EOFError'>,
+                  'Ellipsis': Ellipsis,
+                  'EnvironmentError': <class 'OSError'>,
+                  'Exception': <class 'Exception'>,
+                  'False': False,
+                  'FileExistsError': <class 'FileExistsError'>,
+                  'FileNotFoundError': <class 'FileNotFoundError'>,
+                  'FloatingPointError': <class 'FloatingPointError'>,
+                  'FutureWarning': <class 'FutureWarning'>,
+                  'GeneratorExit': <class 'GeneratorExit'>,
+                  'IOError': <class 'OSError'>,
+                  'ImportError': <class 'ImportError'>,
+                  'ImportWarning': <class 'ImportWarning'>,
+                  'IndentationError': <class 'IndentationError'>,
+                  'IndexError': <class 'IndexError'>,
+                  'InterruptedError': <class 'InterruptedError'>,
+                  'IsADirectoryError': <class 'IsADirectoryError'>,
+                  'KeyError': <class 'KeyError'>,
+                  'KeyboardInterrupt': <class 'KeyboardInterrupt'>,
+                  'LookupError': <class 'LookupError'>,
+                  'MemoryError': <class 'MemoryError'>,
+                  'ModuleNotFoundError': <class 'ModuleNotFoundError'>,
+                  'NameError': <class 'NameError'>,
+                  'None': None,
+                  'NotADirectoryError': <class 'NotADirectoryError'>,
+                  'NotImplemented': NotImplemented,
+                  'NotImplementedError': <class 'NotImplementedError'>,
+                  'OSError': <class 'OSError'>,
+                  'OverflowError': <class 'OverflowError'>,
+                  'PendingDeprecationWarning': <class 'PendingDeprecationWarning'>,
+                  'PermissionError': <class 'PermissionError'>,
+                  'ProcessLookupError': <class 'ProcessLookupError'>,
+                  'RecursionError': <class 'RecursionError'>,
+                  'ReferenceError': <class 'ReferenceError'>,
+                  'ResourceWarning': <class 'ResourceWarning'>,
+                  'RuntimeError': <class 'RuntimeError'>,
+                  'RuntimeWarning': <class 'RuntimeWarning'>,
+                  'StopAsyncIteration': <class 'StopAsyncIteration'>,
+                  'StopIteration': <class 'StopIteration'>,
+                  'SyntaxError': <class 'SyntaxError'>,
+                  'SyntaxWarning': <class 'SyntaxWarning'>,
+                  'SystemError': <class 'SystemError'>,
+                  'SystemExit': <class 'SystemExit'>,
+                  'TabError': <class 'TabError'>,
+                  'TimeoutError': <class 'TimeoutError'>,
+                  'True': True,
+                  'TypeError': <class 'TypeError'>,
+                  'UnboundLocalError': <class 'UnboundLocalError'>,
+                  'UnicodeDecodeError': <class 'UnicodeDecodeError'>,
+                  'UnicodeEncodeError': <class 'UnicodeEncodeError'>,
+                  'UnicodeError': <class 'UnicodeError'>,
+                  'UnicodeTranslateError': <class 'UnicodeTranslateError'>,
+                  'UnicodeWarning': <class 'UnicodeWarning'>,
+                  'UserWarning': <class 'UserWarning'>,
+                  'ValueError': <class 'ValueError'>,
+                  'Warning': <class 'Warning'>,
+                  'ZeroDivisionError': <class 'ZeroDivisionError'>,
+                  '__build_class__': <built-in function __build_class__>,
+                  '__debug__': True,
+                  '__doc__': 'Built-in functions, exceptions, and other '
+                             'objects.\n'
+                             '\n'
+                             "Noteworthy: None is the `nil' object; Ellipsis "
+                             "represents `...' in slices.",
+                  '__import__': <built-in function __import__>,
+                  '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
+                  '__name__': 'builtins',
+                  '__package__': '',
+                  '__spec__': ModuleSpec(name='builtins', loader=<class '_frozen_importlib.BuiltinImporter'>, origin='built-in'),
+                  'abs': <built-in function abs>,
+                  'all': <built-in function all>,
+                  'any': <built-in function any>,
+                  'ascii': <built-in function ascii>,
+                  'bin': <built-in function bin>,
+                  'bool': <class 'bool'>,
+                  'breakpoint': <built-in function breakpoint>,
+                  'bytearray': <class 'bytearray'>,
+                  'bytes': <class 'bytes'>,
+                  'callable': <built-in function callable>,
+                  'chr': <built-in function chr>,
+                  'classmethod': <class 'classmethod'>,
+                  'compile': <built-in function compile>,
+                  'complex': <class 'complex'>,
+                  'copyright': Copyright (c) 2001-2020 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved.,
+                  'credits':     Thanks to CWI, CNRI, BeOpen.com, Zope Corporation and a cast of thousands
+    for supporting Python development.  See www.python.org for more information.,
+                  'delattr': <built-in function delattr>,
+                  'dict': <class 'dict'>,
+                  'dir': <built-in function dir>,
+                  'divmod': <built-in function divmod>,
+                  'enumerate': <class 'enumerate'>,
+                  'eval': <built-in function eval>,
+                  'exec': <built-in function exec>,
+                  'exit': Use exit() or Ctrl-D (i.e. EOF) to exit,
+                  'filter': <class 'filter'>,
+                  'float': <class 'float'>,
+                  'format': <built-in function format>,
+                  'frozenset': <class 'frozenset'>,
+                  'getattr': <built-in function getattr>,
+                  'globals': <built-in function globals>,
+                  'hasattr': <built-in function hasattr>,
+                  'hash': <built-in function hash>,
+                  'help': Type help() for interactive help, or help(object) for help about object.,
+                  'hex': <built-in function hex>,
+                  'id': <built-in function id>,
+                  'input': <built-in function input>,
+                  'int': <class 'int'>,
+                  'isinstance': <built-in function isinstance>,
+                  'issubclass': <built-in function issubclass>,
+                  'iter': <built-in function iter>,
+                  'len': <built-in function len>,
+                  'license': Type license() to see the full license text,
+                  'list': <class 'list'>,
+                  'locals': <built-in function locals>,
+                  'map': <class 'map'>,
+                  'max': <built-in function max>,
+                  'memoryview': <class 'memoryview'>,
+                  'min': <built-in function min>,
+                  'next': <built-in function next>,
+                  'object': <class 'object'>,
+                  'oct': <built-in function oct>,
+                  'open': <built-in function open>,
+                  'ord': <built-in function ord>,
+                  'pow': <built-in function pow>,
+                  'print': <built-in function print>,
+                  'property': <class 'property'>,
+                  'quit': Use quit() or Ctrl-D (i.e. EOF) to exit,
+                  'range': <class 'range'>,
+                  'repr': <built-in function repr>,
+                  'reversed': <class 'reversed'>,
+                  'round': <built-in function round>,
+                  'set': <class 'set'>,
+                  'setattr': <built-in function setattr>,
+                  'slice': <class 'slice'>,
+                  'sorted': <built-in function sorted>,
+                  'staticmethod': <class 'staticmethod'>,
+                  'str': <class 'str'>,
+                  'sum': <built-in function sum>,
+                  'super': <class 'super'>,
+                  'tuple': <class 'tuple'>,
+                  'type': <class 'type'>,
+                  'vars': <built-in function vars>,
+                  'zip': <class 'zip'>},
+ '__cached__': '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/__pycache__/ShExJ.cpython-39.pyc',
+ '__doc__': None,
+ '__file__': '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py',
+ '__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x108f849a0>,
+ '__name__': 'ShExJSG.ShExJ',
+ '__package__': 'ShExJSG',
+ '__spec__': ModuleSpec(name='ShExJSG.ShExJ', loader=<_frozen_importlib_external.SourceFileLoader object at 0x108f849a0>, origin='/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/ShExJSG/ShExJ.py'),
+ 'jsg': <module 'pyjsg.jsglib' from '/Users/tbaker/bitbucket/venvs/dcapenv/lib/python3.9/site-packages/pyjsg/jsglib/__init__.py'>,
+ 'numericFacet': <class 'ShExJSG.ShExJ.numericFacet'>,
+ 'objectValue': typing.Union[ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.ObjectLiteral],
+ 'shapeExpr': typing.Union[ShExJSG.ShExJ.ShapeDecl, ShExJSG.ShExJ.ShapeOr, ShExJSG.ShExJ.ShapeAnd, ShExJSG.ShExJ.ShapeNot, ShExJSG.ShExJ.NodeConstraint, ShExJSG.ShExJ.Shape, ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.BNODE, ShExJSG.ShExJ.ShapeExternal],
+ 'shapeExprLabel': typing.Union[ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.BNODE],
+ 'stringFacet': <class 'ShExJSG.ShExJ.stringFacet'>,
+ 'stringFacet_1_': <class 'ShExJSG.ShExJ.stringFacet_1_'>,
+ 'stringFacet_2_': <class 'ShExJSG.ShExJ.stringFacet_2_'>,
+ 'tripleExpr': typing.Union[ForwardRef('EachOf'), ForwardRef('OneOf'), ForwardRef('TripleConstraint'), ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.BNODE],
+ 'tripleExprLabel': typing.Union[ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.BNODE],
+ 'typing': <module 'typing' from '/usr/local/Cellar/python@3.9/3.9.0/Frameworks/Python.framework/Versions/3.9/lib/python3.9/typing.py'>,
+ 'valueSetValue': typing.Union[ShExJSG.ShExJ.IRIREF, ShExJSG.ShExJ.ObjectLiteral, ShExJSG.ShExJ.IriStem, ShExJSG.ShExJ.IriStemRange, ShExJSG.ShExJ.LiteralStem, ShExJSG.ShExJ.LiteralStemRange, ShExJSG.ShExJ.Language, ShExJSG.ShExJ.LanguageStem, ShExJSG.ShExJ.LanguageStemRange],
+ 'xsFacet': <class 'ShExJSG.ShExJ.xsFacet'>,
+ 'xsFacet_1_': <class 'ShExJSG.ShExJ.xsFacet_1_'>,
+ 'xsFacet_2_': <class 'ShExJSG.ShExJ.xsFacet_2_'>}
+=========================== short test summary info ============================
+FAILED tests/test_mkshex/test_shexj_load.py::test_shexj_from_json - TypeError...
+============================== 1 failed in 0.82s ===============================

@@ -3,7 +3,7 @@
 import os
 import pytest
 from pathlib import Path
-from csv2shex.settings import DEFAULT_CONFIGFILE_NAME, get_config_dict
+from csv2shex.config import DEFAULT_CONFIGFILE_NAME, get_config_dict
 from csv2shex.exceptions import BadYamlError, ConfigWarning
 
 

@@ -28,6 +28,7 @@ def test_csvreader_with_simple_csvfile(tmp_path):
     ]
     assert csvreader(csvfile_name) == expected_output
 
+
 @pytest.mark.csvshape
 @pytest.mark.skip
 def test_csvreader_with_complete_csvfile(tmp_path):
@@ -45,17 +46,41 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     )
 
     expected_output = [
-	CSVRow(
-                shapeID=':a', shapeLabel='Book', shapeClosed=None, start=None, propertyID='dct:creator', propertyLabel='Creator', mandatory=True, repeatable=False, valueNodeType='URI', valueDataType='', valueConstraint='', valueConstraintType='', valueShape=':b', note='Typically the author.'),
         CSVRow(
-                shapeID=':b', shapeLabel='Person', shapeClosed=None, start=None, propertyID='foaf:name', propertyLabel='Name', mandatory=True, repeatable=False, valueNodeType='String', valueDataType='xsd:string', valueConstraint='', valueConstraintType='', valueShape='', note=''),
+            shapeID=':a',
+            shapeLabel='Book',
+            shapeClosed=None,
+            start=None,
+            propertyID='dct:creator',
+            propertyLabel='Creator',
+            mandatory=True,
+            repeatable=False,
+            valueNodeType='URI',
+            valueDataType='',
+            valueConstraint='',
+            valueConstraintType='',
+            valueShape=':b',
+            note='Typically the author.'),
+        CSVRow(
+            shapeID=':b',
+            shapeLabel='Person',
+            shapeClosed=None, start=None,
+            propertyID='foaf:name',
+            propertyLabel='Name',
+            mandatory=True,
+            repeatable=False,
+            valueNodeType='String',
+            valueDataType='xsd:string',
+            valueConstraint='',
+            valueConstraintType='',
+            valueShape='',
+            note=''),
     ]
     assert type(csvreader(csvfile_name)) == list
     assert type(expected_output) == list
     assert len(csvreader(csvfile_name)) == 2
     assert len(expected_output) == 2
     assert csvreader(csvfile_name) == expected_output
-
 
 
 def test_csvreader_with_invalid_csvfile(tmp_path):

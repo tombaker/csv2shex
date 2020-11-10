@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 import pytest
-from csv2shex.settings import write_starter_configfile
+from csv2shex.config import write_starter_configfile
 
 TEST_CONFIGFILE_NAME = ".csv2rc"
 

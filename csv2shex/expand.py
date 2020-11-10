@@ -1,7 +1,7 @@
 """Class for Python objects derived from CSV files."""
 
 import ruamel.yaml as yaml
-from .settings import CSV_MODEL, get_config_dict
+from .config import CSV_MODEL, get_config_dict
 
 # pylint: disable=unused-argument
 # pylint: disable=unused-variable

@@ -1,7 +1,7 @@
 """Pretty-print CSV contents to screen."""
 
 import ruamel.yaml as yaml
-from .settings import CSV_MODEL
+from .config import CSV_MODEL
 
 
 def pprint_csvshapes(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):

@@ -3,8 +3,8 @@
 import csv
 from pathlib import Path
 import ruamel.yaml as yaml
+from .config import CSV_MODEL
 from .csvrow import CSVRow
-from .settings import CSV_MODEL
 from .exceptions import CsvError
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
