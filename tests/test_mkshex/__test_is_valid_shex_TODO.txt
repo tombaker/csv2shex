@@ -14,6 +14,7 @@ from tests import EXAMPLE_PROFILES_DIRECTORY
 
 
 @pytest.mark.skip
+@pytest.mark.xfail(raises=TypeError)
 def test_is_valid_shex_error():
     """Determine whether a bit of ShEx is valid with only one expression."""
     # If this only has one expression, it errors out while being built
