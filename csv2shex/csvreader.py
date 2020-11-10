@@ -18,7 +18,8 @@ def csvreader(csvfile):
     csvrow_dicts_list = list(csv_dictreader_obj)
     if "propertyID" not in list(csvrow_dicts_list[0].keys()):
         raise CsvError("Valid DCAP CSV must have a 'propertyID' column.")
-    return csvrow_dicts_list
+    csvrow_objs_list = _get_csvrow_objs_list(csvrow_dicts_list)
+    return csvrow_objs_list
 
 
 def _get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
