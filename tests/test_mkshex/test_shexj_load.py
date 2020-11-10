@@ -15,6 +15,8 @@ from tests import EXAMPLE_PROFILES_DIRECTORY
 from pyjsg.jsglib.jsg_array import JSGArray
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_shexj_from_text():
     """ Load ShEx JSON text string """
     shex_json = """
@@ -130,6 +132,8 @@ def test_shexj_from_text():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_shexj_from_file():
     """ Load ShEx JSON from internal file"""
     shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj")
@@ -153,6 +157,8 @@ def test_shexj_from_file():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_shexj_from_json():
     """ Load ShEx JSON from JSON file """
     shex = cast(

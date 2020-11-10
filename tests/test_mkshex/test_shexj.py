@@ -13,6 +13,8 @@ from rdflib import DCTERMS
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_load_shexj_as_text_string():
     """Load ShExJ as text string."""
     shex_json = """
@@ -52,6 +54,8 @@ def test_load_shexj_as_text_string():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_load_shexj_from_shexj_file():
     """Load ShExJ from internal ShExJ file."""
     shex_file = os.path.join(
@@ -65,6 +69,8 @@ def test_load_shexj_from_shexj_file():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_load_shexj_from_json_file():
     """Load ShExJ from internal JSON file."""
     shex = cast(
@@ -81,6 +87,8 @@ def test_load_shexj_from_json_file():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_convert_shex_pyobj_to_shexc_string():
     """Generate a new ShEx Schema from Python object."""
     schema = Schema(
@@ -108,6 +116,8 @@ def test_convert_shex_pyobj_to_shexc_string():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_is_valid_shex_good():
     """Check whether Python object for ShEx is valid."""
     schema = Schema(

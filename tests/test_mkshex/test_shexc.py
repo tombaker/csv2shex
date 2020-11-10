@@ -1,4 +1,5 @@
 import os
+import pytest
 
 from ShExJSG import ShExC
 from ShExJSG.ShExJ import EachOf, TripleConstraint
@@ -7,7 +8,8 @@ from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
-
+@pytest.mark.shex
+@pytest.mark.skip
 def test_load_shexc_from_text_string():
     """Load ShExC text string"""
     shex_text = """PREFIX dct: <http://purl.org/dc/terms/>
@@ -30,6 +32,8 @@ def test_load_shexc_from_text_string():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_load_shexc_from_shexc_file():
     """Load ShExC from internal ShExC file."""
     shex_file = os.path.join(
@@ -43,6 +47,8 @@ def test_load_shexc_from_shexc_file():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_emit_shexc_with_expanded_prefixes_from_shexc_file():
     """Generate ShExC from internal ShExC file, expanding prefixes."""
     shex_file = os.path.join(
@@ -60,6 +66,8 @@ def test_emit_shexc_with_expanded_prefixes_from_shexc_file():
     )
 
 
+@pytest.mark.shex
+@pytest.mark.skip
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
     shex_file = os.path.join(EXAMPLE_PROFILES_DIRECTORY, "basic_profile.shexj")
