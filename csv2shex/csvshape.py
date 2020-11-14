@@ -7,7 +7,6 @@ from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
 from .csvrow import CSVRow
-from .expand import _expand_prefixes
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
@@ -23,14 +22,12 @@ class CSVShape:
     statement_csvrows_list: List[CSVRow] = field(default_factory=list)
 
 
-def get_csvshape_dicts_list(
-    csvrow_objs_list, csv_model=CSV_MODEL, expand_prefixes=False
-) -> List[dict]:
+def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]:
     """Get list of CSVShapes (as dicts) from list of CSVRows."""
 
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
-    single_statement_dict = dict()
+    pv_dict = dict()
     csv_model_dict = yaml.safe_load(csv_model)
     # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"]
 
@@ -47,19 +44,13 @@ def get_csvshape_dicts_list(
 
         # breakpoint(context=5)
         for key in csv_model_dict["statement_elements"]:
-            single_statement_dict[key] = asdict(csvrow)[key]
+            pv_dict[key] = asdict(csvrow)[key]
 
-        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(
-            single_statement_dict.copy()
-        )
-        single_statement_dict.clear()
+        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(pv_dict.copy())
+        pv_dict.clear()
 
     csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
         csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))
-
-    if expand_prefixes:
-        _expand_prefixes(csvshape_dicts_list, csv_model_dict=csv_model_dict)
-        # also prefixes_dict=prefixes_dict?
 
     return csvshape_dicts_list
