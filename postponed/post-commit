@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo Running pytest
+pytest
+echo "Running 'ctags -R --languages=python --exclude=.git --exclude=bin --exclude=docs .'"
+ctags -R --languages=python --exclude=.git --exclude=bin --exclude=docs .
+echo
+echo '======================================================'
+echo "Running pylint - configure with /Users/tbaker/Dropbox/projects/dcap/csv2shex/pylintrc"
+pylint csv2shex/*.py
+echo End of pylint output
+echo '======================================================'
+echo "Running flake8 - configure /Users/tbaker/github/tombaker/csv2shex/.flake8"
+flake8
+echo End of flake8 output
+echo '======================================================'
