@@ -29,22 +29,18 @@ def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]
     is_first_csvrow_encountered = True
     pv_dict = dict()
     csv_model_dict = yaml.safe_load(csv_model)
-    # prefixes_dict = yaml.safe_load(**CONFIG_SETTINGS)["prefixes"]
 
-    for csvrow in csvrow_objs_list:
-        csvrow.normalize()
-        csvrow.validate()
-        if csvrow.shapeID not in csvshapes_ddict.keys():
+    for csvrow_obj in csvrow_objs_list:
+        if csvrow_obj.shapeID not in csvshapes_ddict.keys():
             csvshape = CSVShape()
-            csvshape.shapeID = csvrow.shapeID
-            csvshape.shapeLabel = csvrow.shapeLabel
+            csvshape.shapeID = csvrow_obj.shapeID
+            csvshape.shapeLabel = csvrow_obj.shapeLabel
             csvshape.start = bool(is_first_csvrow_encountered)
             csvshapes_ddict[csvshape.shapeID] = csvshape
             is_first_csvrow_encountered = False
 
-        # breakpoint(context=5)
         for key in csv_model_dict["statement_elements"]:
-            pv_dict[key] = asdict(csvrow)[key]
+            pv_dict[key] = asdict(csvrow_obj)[key]
 
         csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(pv_dict.copy())
         pv_dict.clear()
