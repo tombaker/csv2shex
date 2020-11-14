@@ -31,7 +31,7 @@ def cli(context):
 def inspect(context, csvfile, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
     csvrow_objs_list = _get_csvrow_objs_list(csvreader(csvfile))
-    shapes_list = get_csvshape_dicts_list(csvrow_objs_list, expand_prefixes=expand_prefixes)
+    shapes_list = get_csvshape_dicts_list(csvrow_objs_list)
     pprint_output = pprint_csvshapes(shapes_list)
     for line in pprint_output:
         print(line)

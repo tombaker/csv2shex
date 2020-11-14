@@ -8,6 +8,7 @@ from rdflib import DCTERMS
 
 from tests import EXAMPLE_PROFILES_DIRECTORY
 
+
 @pytest.mark.shex
 @pytest.mark.xfail(raises=TypeError)
 def test_load_shexc_from_text_string():

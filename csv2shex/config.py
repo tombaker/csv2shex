@@ -72,10 +72,10 @@ valueConstraintType:
 
 
 def get_config_dict(
-    rootdir_path=None,
-    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    default_config_yaml=DEFAULT_CONFIG_YAML,
-    verbose=False,
+        rootdir_path=None,
+        default_configfile_name=DEFAULT_CONFIGFILE_NAME,
+        default_config_yaml=DEFAULT_CONFIG_YAML,
+        verbose=False,
 ):
     """Returns config dict from config file, if found, or from built-in defaults."""
     if not rootdir_path:
@@ -102,9 +102,9 @@ def get_config_dict(
 
 
 def write_starter_configfile(
-    basedir=None,
-    default_configfile_name=DEFAULT_CONFIGFILE_NAME,
-    default_config_yaml=DEFAULT_CONFIG_YAML,
+        basedir=None,
+        default_configfile_name=DEFAULT_CONFIGFILE_NAME,
+        default_config_yaml=DEFAULT_CONFIG_YAML,
 ):
     """Write initial config file, by default to CWD, or exit if already exists."""
     if not basedir:
