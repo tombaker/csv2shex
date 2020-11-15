@@ -19,7 +19,7 @@ class CSVShape:
     shapeLabel: str = None
     shapeClosed: str = None
     start: bool = False
-    statement_csvrows_list: List[CSVRow] = field(default_factory=list)
+    pvdicts_list: List[CSVRow] = field(default_factory=list)
 
 
 def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]:
@@ -27,24 +27,26 @@ def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]
 
     csvshapes_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
-    pv_dict = dict()
+    pvdict = dict()
     csv_model_dict = yaml.safe_load(csv_model)
 
     for csvrow_obj in csvrow_objs_list:
         if csvrow_obj.shapeID not in csvshapes_ddict.keys():
-            csvshape = CSVShape()
-            csvshape.shapeID = csvrow_obj.shapeID
-            csvshape.shapeLabel = csvrow_obj.shapeLabel
-            csvshape.start = bool(is_first_csvrow_encountered)
-            csvshapes_ddict[csvshape.shapeID] = csvshape
+            csvshape_dict = CSVShape()
+            csvshape_dict.shapeID = csvrow_obj.shapeID
+            csvshape_dict.shapeLabel = csvrow_obj.shapeLabel
+            csvshape_dict.start = bool(is_first_csvrow_encountered)
+            csvshape_dict.pvdicts_list = list()
+            csvshapes_ddict[csvshape_dict.shapeID] = csvshape_dict
             is_first_csvrow_encountered = False
 
         for key in csv_model_dict["statement_elements"]:
-            pv_dict[key] = asdict(csvrow_obj)[key]
+            pvdict[key] = asdict(csvrow_obj)[key]
 
-        csvshapes_ddict[csvshape.shapeID].statement_csvrows_list.append(pv_dict.copy())
-        pv_dict.clear()
+        csvshapes_ddict[csvshape_dict.shapeID].pvdicts_list.append(pvdict.copy())
+        pvdict.clear()
 
+    # breakpoint(context=5)
     csvshape_dicts_list = []
     for key in csvshapes_ddict.keys():
         csvshape_dicts_list.append(asdict(csvshapes_ddict[key]))

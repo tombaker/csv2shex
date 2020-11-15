@@ -62,17 +62,17 @@ def quickcsv(context, output_csv, append):
     # csv_model = yaml.safe_load(CSV_MODEL)
     shap = asdict(CSVShape())
     row = asdict(CSVRow())
-    shap['statement_csvrows_list'] = row
-    for key in list(shap['statement_csvrows_list']):
+    shap['pvdicts_list'] = row
+    for key in list(shap['pvdicts_list']):
         if key in list(shap):
-            del shap['statement_csvrows_list'][key]
+            del shap['pvdicts_list'][key]
 
     csv_list = []
     csv_list.append(','.join(row))
 
     aggregator = []
     for key in list(shap):
-        if key != "statement_csvrows_list":
+        if key != "pvdicts_list":
             value = input(f"{key} [{shap[key]}]: ")
             aggregator.append(value)
             for item in aggregator:

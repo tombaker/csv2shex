@@ -20,7 +20,7 @@ def pprint_csvshapes(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
             if verbose:
                 pprint_output.append(8 * " " + key + ": " + str(csvshape_dict[key]))
 
-        for stat_dict in csvshape_dict["statement_csvrows_list"]:
+        for stat_dict in csvshape_dict["pvdicts_list"]:
             pprint_output.append("        Statement")
             for key in statement_elements:
                 if not verbose and stat_dict[key]:

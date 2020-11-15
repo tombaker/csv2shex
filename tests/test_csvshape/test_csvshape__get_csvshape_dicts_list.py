@@ -21,7 +21,7 @@ def test_get_csvshape_dicts_list_one_shape():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": "dct:creator",
                     "propertyLabel": None,
@@ -67,7 +67,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": "dct:creator",
                     "mandatory": False,
@@ -99,7 +99,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeLabel": None,
             "start": False,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": "foaf:name",
                     "mandatory": False,
@@ -117,8 +117,8 @@ def test_get_csvshape_dicts_list_two_shapes():
     ]
     assert len(get_csvshape_dicts_list(csvrow_objs_list)) == len(expected_csvshape_dicts_list)
     assert (
-        get_csvshape_dicts_list(csvrow_objs_list)[0]["statement_csvrows_list"]
-        == expected_csvshape_dicts_list[0]["statement_csvrows_list"]
+        get_csvshape_dicts_list(csvrow_objs_list)[0]["pvdicts_list"]
+        == expected_csvshape_dicts_list[0]["pvdicts_list"]
     )
     assert get_csvshape_dicts_list(csvrow_objs_list) == expected_csvshape_dicts_list
 
@@ -146,7 +146,7 @@ def test_get_csvshape_dicts_list_one_shape_and_shapeLabel():
             "shapeLabel": "Author",
             "start": True,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": "dct:creator",
                     "valueNodeType": "URI",
@@ -190,7 +190,7 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": ":prop1",
                     "valueNodeType": None,
@@ -222,7 +222,7 @@ def test_get_csvshape_dicts_list_two_shapes_assign_start_to_first():
             "shapeLabel": None,
             "start": False,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": ":prop3",
                     "valueNodeType": None,
@@ -296,7 +296,7 @@ def test_listshapes_one_shape_for_shex_example():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": None,
-            "statement_csvrows_list": [
+            "pvdicts_list": [
                 {
                     "propertyID": "http://purl.org/dc/terms/title",
                     "propertyLabel": None,
