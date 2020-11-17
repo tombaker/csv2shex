@@ -24,9 +24,6 @@ class CSVRow:
         shapeClosed (str, optional):
           If True, shape requires listed statements and no more.
 
-        start (str, optional):
-          If True, shape is considered as "start shape".
-
         propertyID (str, mandatory):
           Identifier of the property (of the property-value
           pair) as a URI string or prefixed URI string.
@@ -77,7 +74,6 @@ class CSVRow:
     shapeID: str = None
     shapeLabel: str = None
     shapeClosed: str = None
-    start: bool = False
     propertyID: str = None
     propertyLabel: str = None
     mandatory: str = None

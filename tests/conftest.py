@@ -29,3 +29,4 @@ def dir_with_csv2rc(tmp_path):
     os.chdir(tmp_path)
     Path(TEST_CONFIGFILE_NAME).write_text(TEST_DEFAULT_CONFIG_SETTINGS_YAML)
     return Path.cwd()
+

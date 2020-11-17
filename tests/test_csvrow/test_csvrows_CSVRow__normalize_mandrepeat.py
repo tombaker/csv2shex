@@ -4,7 +4,7 @@
 from csv2shex.csvrow import CSVRow
 
 
-def test_csvshape_normalize_mandrepeat():
+def test_csvshape_normalize_mandatory_to_true():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -15,7 +15,7 @@ def test_csvshape_normalize_mandrepeat():
     assert stat.repeatable is False
 
 
-def test_csvshape_normalize_mandrepeat_not_specified():
+def test_csvshape_normalize_mandatory_not_specified():
     """@@@"""
     stat = CSVRow(
         propertyID="wdt:P31",
@@ -25,8 +25,8 @@ def test_csvshape_normalize_mandrepeat_not_specified():
     assert stat.repeatable is False
 
 
-def test_csvshape_normalize_mandrepeat_string_of_zero():
-    """Only variations of "yes" are Truei."""
+def test_csvshape_normalize_mandatory_numeral_to_true():
+    """Only variations of "yes" are True."""
     stat = CSVRow(
         propertyID="wdt:P31",
         mandatory="1",

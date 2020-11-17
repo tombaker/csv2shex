@@ -6,7 +6,7 @@ import click
 from .csvrow import CSVRow
 from .csvshape import CSVShape, get_csvshape_dicts_list
 from .inspect import pprint_csvshapes
-from .csvreader import csvreader, _get_csvrow_objs_list
+from .csvreader import csvreader, _get_corrected_csvrows_list
 from .config import CSV_MODEL
 
 # pylint: disable=unused-argument,no-value-for-parameter
@@ -30,7 +30,7 @@ def cli(context):
 @click.pass_context
 def inspect(context, csvfile, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
-    csvrow_objs_list = _get_csvrow_objs_list(csvreader(csvfile))
+    csvrow_objs_list = _get_corrected_csvrows_list(csvreader(csvfile))
     shapes_list = get_csvshape_dicts_list(csvrow_objs_list)
     pprint_output = pprint_csvshapes(shapes_list)
     for line in pprint_output:

@@ -1,6 +1,7 @@
 """Read DCAP/CSV (expand prefixes?). Write and read config file."""
 
 import csv
+from dataclasses import asdict
 from pathlib import Path
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
@@ -18,13 +19,13 @@ def csvreader(csvfile):
     csvrow_dicts_list = list(csv_dictreader_obj)
     if "propertyID" not in list(csvrow_dicts_list[0].keys()):
         raise CsvError("Valid DCAP CSV must have a 'propertyID' column.")
-    csvrow_objs_list = _get_csvrow_objs_list(csvrow_dicts_list)
-    return csvrow_objs_list
+    corrected_csvrow_dicts_list = _get_corrected_csvrows_list(csvrow_dicts_list)
+    return corrected_csvrow_dicts_list
 
 
-def _get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
+def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
     """Turn list of dicts into list of CSVRow objects."""
-    csvrow_objs_list = []
+    corrected_csvrow_dicts_list = []
     shapeids_list = []
     first_shape_encountered = True
     keys = csv_model_dict["shape_elements"] + csv_model_dict["statement_elements"]
@@ -52,5 +53,8 @@ def _get_csvrow_objs_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT)
             if key in row:
                 setattr(stat, key, row[key])
 
-        csvrow_objs_list.append(stat)
-    return csvrow_objs_list
+        # breakpoint(context=5) 
+        stat.normalize()
+        stat.validate()
+        corrected_csvrow_dicts_list.append(asdict(stat))
+    return corrected_csvrow_dicts_list

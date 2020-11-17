@@ -18,7 +18,7 @@ def test_csvshape_validate_litpicklist():
 def test_csvshape_validate_litpicklist_just_one_item():
     """@@@"""
     stat = CSVRow(
-        shapeID="@default",
+        shapeID=":default",
         propertyID="wdt:P31",
         valueConstraint="red",
         valueConstraintType="LitPicklist",
