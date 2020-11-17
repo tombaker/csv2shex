@@ -78,7 +78,7 @@ def test_csvreader_with_complete_csvfile(tmp_path):
     ]
     print(csvreader(csvfile_name))
     assert type(csvreader(csvfile_name)) == list
-    assert csvreader(csvfile_name)[0]["mandatory"] == True
+    assert csvreader(csvfile_name)[0]["mandatory"]
     assert type(corrected_csvrows_list) == list
     assert len(csvreader(csvfile_name)) == 2
     assert len(corrected_csvrows_list) == 2

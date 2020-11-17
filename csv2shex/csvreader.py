@@ -53,7 +53,6 @@ def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL
             if key in row:
                 setattr(stat, key, row[key])
 
-        # breakpoint(context=5) 
         stat.normalize()
         stat.validate()
         corrected_csvrow_dicts_list.append(asdict(stat))
