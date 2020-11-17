@@ -13,8 +13,6 @@ from rdflib import DCTERMS
 from pyjsg.jsglib.jsg_array import JSGArray
 
 
-@pytest.mark.shex
-@pytest.mark.xfail(raises=TypeError)
 def test_generate_shexc_from_schema_obj():
     """Generate a new ShExC Schema from Python."""
     schema = Schema(
@@ -62,8 +60,6 @@ def test_generate_shexc_from_schema_obj():
     )
 
 
-@pytest.mark.shex
-@pytest.mark.xfail(raises=TypeError)
 def test_is_valid_shex_good():
     """Determine whether the particular bit of ShEx is valid.
 
