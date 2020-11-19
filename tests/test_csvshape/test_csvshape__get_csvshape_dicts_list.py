@@ -16,10 +16,10 @@ def test_get_csvshape_dicts_list_one_shape():
 
     csvshape_dicts_list = get_csvshape_dicts_list(csvrow_objs_list)
     assert csvshape_dicts_list[0]["shapeID"] == ":a"
-    assert csvshape_dicts_list[0]["start"] == True
+    assert csvshape_dicts_list[0]["start"]
     assert csvshape_dicts_list[0]["pvdicts_list"]
     assert csvshape_dicts_list[0]["pvdicts_list"][0]["propertyID"] == "dct:creator"
-    assert csvshape_dicts_list[0]["pvdicts_list"][0]["mandatory"] == False
+    assert not csvshape_dicts_list[0]["pvdicts_list"][0]["mandatory"]
     expected_csvshape_dicts_list = [
         {
             "shapeID": ":a",
@@ -54,7 +54,7 @@ def test_get_csvshape_dicts_list_two_shapes():
     ]
     csvshape_dicts_list = get_csvshape_dicts_list(csvrow_objs_list)
     assert csvshape_dicts_list[1]["shapeID"] == ":b"
-    assert csvshape_dicts_list[1]["start"] == False
+    assert not csvshape_dicts_list[1]["start"]
     assert csvshape_dicts_list[1]["pvdicts_list"][0]["propertyID"] == "foaf:name"
 
 
@@ -75,5 +75,5 @@ def test_get_csvshape_dicts_list_assigns_start_to_first_shape_created():
         CSVRow(shapeID=":b", propertyID=":propb"),
     ]
     csvshape_dicts_list = get_csvshape_dicts_list(csvrow_objs_list)
-    assert csvshape_dicts_list[0]["start"] == True
-    assert csvshape_dicts_list[1]["start"] == False
+    assert csvshape_dicts_list[0]["start"]
+    assert not csvshape_dicts_list[1]["start"]
