@@ -15,6 +15,9 @@ def test_get_csvshape_dicts_list_one_shape():
         CSVRow(shapeID=":a", propertyID="dct:date"),
     ]
 
+    csvshape_dicts_list = get_csvshape_dicts_list(csvrow_objs_list)
+    assert csvshape_dicts_list[0]["shapeID"] == ":a"
+
     expected_csvshape_dicts_list = [
         {
             "shapeID": ":a",
