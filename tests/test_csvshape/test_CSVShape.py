@@ -47,7 +47,7 @@ def test_shape_initialized_with_no_propertyvalues_field_should_pass_for_now():
     shap = dict()
     shap["start"] = True
     shap["shapeID"] = ":a"
-    assert shap == { "start": True, "shapeID": ":a" }
+    assert shap == {"start": True, "shapeID": ":a"}
 
 
 def test_shape_initialized_with_no_start_field_should_pass_for_now():

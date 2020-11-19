@@ -1,12 +1,10 @@
 """Class for Python objects derived from CSV files."""
 
 
-from dataclasses import dataclass, field
 from collections import defaultdict
 from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
-from .csvrow import CSVRow
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 

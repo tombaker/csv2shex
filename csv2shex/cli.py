@@ -1,9 +1,7 @@
 """DC Application Profile (DCAP) from CSV to ShEx"""
 
-from dataclasses import asdict
 import ruamel.yaml as yaml
 import click
-from .csvrow import CSVRow
 from .csvshape import get_csvshape_dicts_list
 from .inspect import pprint_csvshapes
 from .csvreader import csvreader
@@ -61,23 +59,23 @@ def quickcsv(context, output_csv, append):
 
     # csv_model = yaml.safe_load(CSV_MODEL)
     # shap = asdict(CSVShape())
-    row = asdict(CSVRow())
-    shap['pvdicts_list'] = row
-    for key in list(shap['pvdicts_list']):
-        if key in list(shap):
-            del shap['pvdicts_list'][key]
+    # row = asdict(CSVRow())
+    # shap['pvdicts_list'] = row
+    # for key in list(shap['pvdicts_list']):
+    #     if key in list(shap):
+    #         del shap['pvdicts_list'][key]
 
-    csv_list = []
-    csv_list.append(','.join(row))
+    # csv_list = []
+    # csv_list.append(','.join(row))
 
-    aggregator = []
-    for key in list(shap):
-        if key != "pvdicts_list":
-            value = input(f"{key} [{shap[key]}]: ")
-            aggregator.append(value)
-            for item in aggregator:
-                print(item)
-            print()
+    # aggregator = []
+    # for key in list(shap):
+    #     if key != "pvdicts_list":
+    #         value = input(f"{key} [{shap[key]}]: ")
+    #         aggregator.append(value)
+    #         for item in aggregator:
+    #             print(item)
+    #         print()
 
     # a>>> cols = list(row)
     # >>> ','.join(cols)

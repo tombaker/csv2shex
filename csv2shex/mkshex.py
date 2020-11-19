@@ -1,7 +1,7 @@
 """@@@"""
 
-import pytest
 from typing import Union, List, Optional
+import pytest
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
@@ -11,7 +11,7 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-#from .csvshape import CSVShape
+# from .csvshape import CSVShape
 from .csvrow import CSVRow
 
 
