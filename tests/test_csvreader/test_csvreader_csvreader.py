@@ -76,7 +76,6 @@ def test_csvreader_with_complete_csvfile(tmp_path):
             "note": "",
         },
     ]
-    print(csvreader(csvfile_name))
     assert type(csvreader(csvfile_name)) == list
     assert csvreader(csvfile_name)[0]["mandatory"]
     assert type(corrected_csvrows_list) == list
@@ -93,3 +92,20 @@ def test_csvreader_with_invalid_csvfile(tmp_path):
     csvfile_name.write_text(("shapeID,propID,valueNodeType\n" ":a,dct:creator,URI\n"))
     with pytest.raises(SystemExit):
         csvreader(csvfile_name)
+
+
+def test_liststatements_with_csv_column_outside_dctap_model_are_ignored(tmp_path):
+    """CSV columns not part of the DC TAP model are simply ignored."""
+    os.chdir(tmp_path)
+    csvfile_name = Path(tmp_path).joinpath("some.csv")
+    csvfile_name.write_text(
+        (
+            "shapeID,propertyID,confidential\n"
+            ":a,dct:subject,True\n"
+        )
+    )
+    corrected_csvrows_list = [
+        {"shapeID": ":a", "propertyID": "dct:subject"},
+    ]
+    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
+    assert csvreader(csvfile_name) == expected_output_list
