@@ -33,23 +33,23 @@ def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]
     for csvrow_obj in csvrow_objs_list:
         csvrow_dict = asdict(csvrow_obj)
         if csvrow_dict["shapeID"] not in aggregator_ddict.keys():
-            shap_dict = CSVShape()
-            shap_dict.shapeID = csvrow_dict["shapeID"]
-            shap_dict.shapeLabel = csvrow_dict["shapeLabel"]
-            shap_dict.start = bool(is_first_csvrow_encountered)
-            shap_dict.pvdicts_list = list()
-            aggregator_ddict[shap_dict.shapeID] = shap_dict
+            shap_obj = CSVShape()
+            shap_obj.shapeID = csvrow_dict["shapeID"]
+            shap_obj.shapeLabel = csvrow_dict["shapeLabel"]
+            shap_obj.start = bool(is_first_csvrow_encountered)
+            shap_obj.pvdicts_list = list()
+            aggregator_ddict[shap_obj.shapeID] = shap_obj
             is_first_csvrow_encountered = False
 
         for key in csv_model_dict["statement_elements"]:
             pvdict[key] = csvrow_dict[key]
 
-        aggregator_ddict[shap_dict.shapeID].pvdicts_list.append(pvdict.copy())
+        aggregator_ddict[shap_obj.shapeID].pvdicts_list.append(pvdict.copy())
         pvdict.clear()
 
-    # breakpoint(context=5)
     csvshape_dicts_list = []
     for key in aggregator_ddict.keys():
-        csvshape_dicts_list.append(asdict(aggregator_ddict[key]))
+        csvshape_dict = asdict(aggregator_ddict[key])
+        csvshape_dicts_list.append(csvshape_dict)
 
     return csvshape_dicts_list
