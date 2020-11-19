@@ -6,7 +6,7 @@ import click
 from .csvrow import CSVRow
 from .csvshape import CSVShape, get_csvshape_dicts_list
 from .inspect import pprint_csvshapes
-from .csvreader import csvreader, _get_corrected_csvrows_list
+from .csvreader import csvreader
 from .config import CSV_MODEL
 
 # pylint: disable=unused-argument,no-value-for-parameter
