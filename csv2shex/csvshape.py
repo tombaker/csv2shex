@@ -22,16 +22,15 @@ class CSVShape:
     pvdicts_list: List[CSVRow] = field(default_factory=list)
 
 
-def get_csvshape_dicts_list(csvrow_objs_list, csv_model=CSV_MODEL) -> List[dict]:
-    """Get list of csvshape dicts from list of CSVRows."""
+def get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dict]:
+    """Get list of csvshape dicts from list of csvrow dicts."""
 
     aggregator_ddict = defaultdict(dict)
     is_first_csvrow_encountered = True
     pvdict = dict()
     csv_model_dict = yaml.safe_load(csv_model)
 
-    for csvrow_obj in csvrow_objs_list:
-        csvrow_dict = asdict(csvrow_obj)
+    for csvrow_dict in csvrow_dicts_list:
         if csvrow_dict["shapeID"] not in aggregator_ddict.keys():
             shap_obj = CSVShape()
             shap_obj.shapeID = csvrow_dict["shapeID"]

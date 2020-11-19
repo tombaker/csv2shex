@@ -23,16 +23,16 @@ def cli(context):
 
 
 @cli.command()
-@click.argument("csvfile", type=click.Path(exists=True))
+@click.argument("csvfile_name", type=click.Path(exists=True))
 @click.option("--expand-prefixes", is_flag=True)
 @click.option("--verbose", is_flag=True)
 @click.help_option(help="Show help and exit")
 @click.pass_context
-def inspect(context, csvfile, expand_prefixes, verbose):
+def inspect(context, csvfile_name, expand_prefixes, verbose):
     """Inspect CSV file contents, normalized, maybe with expanded prefixes."""
-    csvrow_objs_list = _get_corrected_csvrows_list(csvreader(csvfile))
-    shapes_list = get_csvshape_dicts_list(csvrow_objs_list)
-    pprint_output = pprint_csvshapes(shapes_list)
+    csvrow_dicts_list = csvreader(csvfile_name)
+    csvshape_dicts_list = get_csvshape_dicts_list(csvrow_dicts_list)
+    pprint_output = pprint_csvshapes(csvshape_dicts_list)
     for line in pprint_output:
         print(line)
 
