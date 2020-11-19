@@ -40,7 +40,7 @@ def get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dict
             aggregator_ddict[shap_obj.shapeID] = shap_obj
             is_first_csvrow_encountered = False
 
-        for key in csv_model_dict["statement_elements"]:
+        for key in csv_model_dict["cvpair_elements"]:
             pvdict[key] = csvrow_dict[key]
 
         aggregator_ddict[shap_obj.shapeID].pvdicts_list.append(pvdict.copy())

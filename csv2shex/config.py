@@ -13,7 +13,7 @@ shape_elements:
 - shapeClosed
 - start
 
-statement_elements:
+cvpair_elements:
 - propertyID
 - propertyLabel
 - mandatory

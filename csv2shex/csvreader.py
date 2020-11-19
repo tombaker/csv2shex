@@ -28,7 +28,7 @@ def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL
     corrected_csvrow_dicts_list = []
     shapeids_list = []
     first_shape_encountered = True
-    keys = csv_model_dict["shape_elements"] + csv_model_dict["statement_elements"]
+    keys = csv_model_dict["shape_elements"] + csv_model_dict["cvpair_elements"]
     keys.remove("shapeID")
     for row in csvrow_dicts_list:
         if not row.get("propertyID") and row.get("shapeID"):

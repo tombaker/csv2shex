@@ -45,7 +45,7 @@ def model(context):
 
     csv_model = yaml.safe_load(CSV_MODEL)
     print("DCAP")
-    for element_group in ["shape_elements", "statement_elements"]:
+    for element_group in ["shape_elements", "cvpair_elements"]:
         print(f"    {element_group}:")
         for element in csv_model[element_group]:
             print(f"        {element}")
