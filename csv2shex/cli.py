@@ -4,7 +4,7 @@ from dataclasses import asdict
 import ruamel.yaml as yaml
 import click
 from .csvrow import CSVRow
-from .csvshape import CSVShape, get_csvshape_dicts_list
+from .csvshape import get_csvshape_dicts_list
 from .inspect import pprint_csvshapes
 from .csvreader import csvreader
 from .config import CSV_MODEL
@@ -60,7 +60,7 @@ def quickcsv(context, output_csv, append):
     """Answer input prompts to create a simple CSV"""
 
     # csv_model = yaml.safe_load(CSV_MODEL)
-    shap = asdict(CSVShape())
+    # shap = asdict(CSVShape())
     row = asdict(CSVRow())
     shap['pvdicts_list'] = row
     for key in list(shap['pvdicts_list']):

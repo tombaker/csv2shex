@@ -1,16 +1,15 @@
-"""Pretty-print CSVShape objects to console."""
+"""Pretty-print csvshape dicts to console."""
 
 import pytest
 from dataclasses import asdict
 from textwrap import dedent
-from csv2shex.csvshape import CSVShape
 from csv2shex.csvrow import CSVRow
 from csv2shex.inspect import pprint_csvshapes
 from csv2shex.csvshape import get_csvshape_dicts_list
 
 
 def test_get_csvshape_dicts_list_two_shapes():
-    """Turn list of CSVRow objects into list with two CSVShapes."""
+    """Turn list of CSVRow objects into list with two csvshape dicts."""
     csvshape_dicts_list = [
         {
             "shapeID": ":a",

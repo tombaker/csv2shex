@@ -1,5 +1,6 @@
 """@@@"""
 
+import pytest
 from typing import Union, List, Optional
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
@@ -10,7 +11,7 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-from .csvshape import CSVShape
+#from .csvshape import CSVShape
 from .csvrow import CSVRow
 
 
@@ -37,6 +38,7 @@ def generate_node_constraint(statement: CSVRow) -> Optional[shapeExpr]:
     return rval
 
 
+@pytest.mark.skip
 def add_statement(shape: CSVShape, statement: CSVRow) -> None:
     """Interpret a CSV statement and add shapeExpr to shape."""
     # typing.List[typing.Union["EachOf",
@@ -58,6 +60,7 @@ def add_statement(shape: CSVShape, statement: CSVRow) -> None:
         shape.expression = ts
 
 
+@pytest.mark.skip
 def shape_to_shex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
     """Convert a list of CSVShapes to a ShEx Schema."""
     if isinstance(shapes, CSVShape):
