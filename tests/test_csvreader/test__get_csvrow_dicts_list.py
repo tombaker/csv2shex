@@ -10,7 +10,6 @@ from csv2shex.csvrow import CSVRow
 DEFAULTS = asdict(CSVRow())
 
 
-@pytest.mark.skip(reason="refactored csvreader")
 def test_get_csvrow_dicts_list_with_simple_csvfile(tmp_path):
     """Simple CSV with three columns."""
     os.chdir(tmp_path)
@@ -23,16 +22,14 @@ def test_get_csvrow_dicts_list_with_simple_csvfile(tmp_path):
             ":a,dct:date,String\n"
         )
     )
-    corrected_csvrows_list = [
-        {"shapeID": ":a", "propertyID": "dct:creator", "valueNodeType": "URI"},
-        {"shapeID": ":a", "propertyID": "dct:subject", "valueNodeType": "URI"},
-        {"shapeID": ":a", "propertyID": "dct:date", "valueNodeType": "String"},
+    expected_csvrow_dicts_list = [
+        { 'shapeID': ':a', 'propertyID': 'dct:creator', 'valueNodeType': 'URI' }, 
+        { 'shapeID': ':a', 'propertyID': 'dct:subject', 'valueNodeType': 'URI' }, 
+        { 'shapeID': ':a', 'propertyID': 'dct:date', 'valueNodeType': 'String' }
     ]
-    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
-    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list
+    assert _get_csvrow_dicts_list(csvfile_name) == expected_csvrow_dicts_list
 
 
-@pytest.mark.skip(reason="refactored csvreader")
 def test_get_csvrow_dicts_list_with_complete_csvfile(tmp_path):
     """Simple CSV with all columns."""
     os.chdir(tmp_path)
@@ -83,11 +80,8 @@ def test_get_csvrow_dicts_list_with_complete_csvfile(tmp_path):
     assert type(corrected_csvrows_list) == list
     assert len(_get_csvrow_dicts_list(csvfile_name)) == 2
     assert len(corrected_csvrows_list) == 2
-    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
-    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list
 
 
-@pytest.mark.skip(reason="refactored csvreader")
 def test_get_csvrow_dicts_list_with_invalid_csvfile(tmp_path):
     """A DCAP CSV is invalid if it does not at least have "propertyID"."""
     os.chdir(tmp_path)
@@ -97,7 +91,6 @@ def test_get_csvrow_dicts_list_with_invalid_csvfile(tmp_path):
         _get_csvrow_dicts_list(csvfile_name)
 
 
-@pytest.mark.skip(reason="refactored csvreader")
 def test_liststatements_with_csv_column_outside_dctap_model_are_ignored(tmp_path):
     """CSV columns not part of the DC TAP model are simply ignored."""
     os.chdir(tmp_path)
@@ -108,8 +101,19 @@ def test_liststatements_with_csv_column_outside_dctap_model_are_ignored(tmp_path
             ":a,dct:subject,True\n"
         )
     )
-    corrected_csvrows_list = [
-        {"shapeID": ":a", "propertyID": "dct:subject"},
+    expected_csvrow_dicts_list = [
+        {"shapeID": ":a", "propertyID": "dct:subject", "confidential": "True"},
     ]
-    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
-    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list
+    assert _get_csvrow_dicts_list(csvfile_name) == expected_csvrow_dicts_list
+
+#    corrected_csvrows_list = [
+#        {"shapeID": ":a", "propertyID": "dct:creator", "valueNodeType": "URI"},
+#        {"shapeID": ":a", "propertyID": "dct:subject", "valueNodeType": "URI"},
+#        {"shapeID": ":a", "propertyID": "dct:date", "valueNodeType": "String"},
+#    ]
+#    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
+#    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list
+#    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
+#    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list
+#    expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
+#    assert _get_csvrow_dicts_list(csvfile_name) == expected_output_list

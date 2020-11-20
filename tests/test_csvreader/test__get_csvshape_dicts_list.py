@@ -1,4 +1,4 @@
-"""Turn list of CSVRows into list of CSVShapes."""
+"""Turn list of CSVRows into list of csvshape dicts."""
 
 import pytest
 from pprint import pprint
