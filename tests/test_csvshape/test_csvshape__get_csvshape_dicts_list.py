@@ -4,7 +4,7 @@ import pytest
 from pprint import pprint
 from dataclasses import asdict
 from csv2shex.csvrow import CSVRow
-from csv2shex.csvshape import get_csvshape_dicts_list
+from csv2shex.csvreader import get_csvshape_dicts_list
 
 DEFAULTS = asdict(CSVRow())
 
