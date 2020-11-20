@@ -25,10 +25,8 @@ cvpair_elements:
 - valueShape
 - note
 
-shape_uri_elements:
+uri_elements:
 - shapeID
-
-statement_uri_elements:
 - propertyID
 - valueDataType
 - valueConstraint
