@@ -1,6 +1,6 @@
 """Read DCAP/CSV (expand prefixes?). Write and read config file."""
 
-import csv
+from csv import DictReader
 from collections import defaultdict
 from dataclasses import asdict
 from pathlib import Path
@@ -14,15 +14,20 @@ CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
 
 
 def csvreader(csvfile):
-    """Read CSV file and return list of dicts, one dict per CSV row."""
-    csv_dictreader_obj = csv.DictReader(
-        Path(csvfile).open(newline="", encoding="utf-8-sig")
-    )
-    csvrow_dicts_list = list(csv_dictreader_obj)
+    """Read CSV file and return list of CSV shapes, one dict per CSV shape."""
+    csvrow_dicts_list = _get_csvrow_dicts_list(csvfile)
+    corrected_csvrow_dicts_list = _get_corrected_csvrows_list(csvrow_dicts_list)
+    csvshapes_list = _get_csvshape_dicts_list(corrected_csvrow_dicts_list)
+    return csvshapes_list
+
+
+def _get_csvrow_dicts_list(csvfile):
+    """Read CSV file and return list of header:value dicts, one per row."""
+    csv_dictreader = DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
+    csvrow_dicts_list = list(csv_dictreader)
     if "propertyID" not in list(csvrow_dicts_list[0].keys()):
         raise CsvError("Valid DCAP CSV must have a 'propertyID' column.")
-    corrected_csvrow_dicts_list = _get_corrected_csvrows_list(csvrow_dicts_list)
-    return corrected_csvrow_dicts_list
+    return csvrow_dicts_list
 
 
 def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL_DICT):
@@ -61,7 +66,7 @@ def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL
     return corrected_csvrow_dicts_list
 
 
-def get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dict]:
+def _get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dict]:
     """Get list of csvshape dicts from list of csvrow dicts."""
 
     aggregator_ddict = defaultdict(dict)
