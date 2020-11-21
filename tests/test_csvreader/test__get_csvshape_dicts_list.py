@@ -9,6 +9,7 @@ from csv2shex.csvreader import _get_csvshape_dicts_list
 DEFAULTS = asdict(CSVRow())
 
 
+@pytest.mark.skip
 def test__get_csvshape_dicts_list_one_shape():
     """Get csvshape dict with one shape from list of csvrow dicts."""
     override_dicts_list = [{"shapeID": ":a", "propertyID": "dct:creator"}]
@@ -44,6 +45,7 @@ def test__get_csvshape_dicts_list_one_shape():
     assert csvshape_dicts_list == expected_csvshape_dicts_list
 
 
+@pytest.mark.skip
 def test_get_csvshape_dicts_list_two_shapes():
     """Get csvshape dict with two shape from list of csvrow dicts."""
     override_dicts_list = [
@@ -57,6 +59,7 @@ def test_get_csvshape_dicts_list_two_shapes():
     assert csvshape_dicts_list[1]["pvdicts_list"][0]["propertyID"] == "foaf:name"
 
 
+@pytest.mark.skip
 def test_get_csvshape_dicts_list_takes_label_for_first_shapeid_encountered():
     """Csvshape dict takes shapeLabel for any new shapeID encountered."""
     override_dicts_list = [
@@ -68,6 +71,7 @@ def test_get_csvshape_dicts_list_takes_label_for_first_shapeid_encountered():
     assert csvshape_dicts_list[0]["shapeLabel"] == "Author"
 
 
+@pytest.mark.skip
 def test_get_csvshape_dicts_list_assigns_start_to_first_shape_created():
     """First csvshape created is marked as 'start' shape."""
     override_dicts_list = [
