@@ -46,39 +46,3 @@ def model(context):
         print(f"    {element_group}:")
         for element in csv_model[element_group]:
             print(f"        {element}")
-
-
-@cli.command()
-@click.argument('output_csv', type=click.File('w'), default='-', required=False)
-@click.option("--append", is_flag=True)
-@click.help_option(help="Show help and exit")
-@click.pass_context
-def quickcsv(context, output_csv, append):
-    """Answer input prompts to create a simple CSV"""
-
-    # csv_model = yaml.safe_load(CSV_MODEL)
-    # shap = asdict(CSVShape())
-    # row = asdict(CSVRow())
-    # shap['pvdicts_list'] = row
-    # for key in list(shap['pvdicts_list']):
-    #     if key in list(shap):
-    #         del shap['pvdicts_list'][key]
-
-    # csv_list = []
-    # csv_list.append(','.join(row))
-
-    # aggregator = []
-    # for key in list(shap):
-    #     if key != "pvdicts_list":
-    #         value = input(f"{key} [{shap[key]}]: ")
-    #         aggregator.append(value)
-    #         for item in aggregator:
-    #             print(item)
-    #         print()
-
-    # a>>> cols = list(row)
-    # >>> ','.join(cols)
-    # 'shapeID,shapeLabel,shapeClosed,start,propertyID,propertyLabel,manda...
-    # >>> [str(value) for value in row.values()]
-    # ['None', 'None', 'False', 'False', 'None', 'None', 'False', 'False'...
-    # >>> ','.join([str(value) for value in row.values()])
