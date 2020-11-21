@@ -1,7 +1,6 @@
 """@@@"""
 
 from typing import Union, List, Optional
-import pytest
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
