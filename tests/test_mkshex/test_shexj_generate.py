@@ -61,9 +61,7 @@ def test_generate_shexc_from_schema_obj():
 
 
 def test_is_valid_shex_good():
-    """Determine whether the particular bit of ShEx is valid.
-
-    Is this testing whether it is valid as ShEx? In what sense?"""
+    """Determine whether the particular bit of ShEx is valid."""
     schema = Schema(
         shapes=[
             Shape(
