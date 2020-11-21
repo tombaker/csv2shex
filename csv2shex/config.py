@@ -13,7 +13,7 @@ shape_elements:
 - shapeClosed
 - start
 
-cvpair_elements:
+tconstraint_elements:
 - propertyID
 - propertyLabel
 - mandatory

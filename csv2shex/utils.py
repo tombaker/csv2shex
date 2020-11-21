@@ -2,8 +2,8 @@
 
 import re
 import sys
-from pandas.core.frame import DataFrame
 from urllib.parse import urlparse
+from pandas.core.frame import DataFrame
 
 
 def strip_angle_brackets_from_url(url):

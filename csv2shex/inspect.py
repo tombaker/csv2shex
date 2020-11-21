@@ -8,7 +8,7 @@ def pprint_csvshapes(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
     """Pretty-print CSVShape objects to console."""
     csv_model_dict = yaml.safe_load(csv_model)
     shape_elements = csv_model_dict["shape_elements"]
-    cvpair_elements = csv_model_dict["cvpair_elements"]
+    tconstraint_elements = csv_model_dict["tconstraint_elements"]
 
     pprint_output = []
     pprint_output.append("DCAP")
@@ -22,7 +22,7 @@ def pprint_csvshapes(csvshape_dicts_list, csv_model=CSV_MODEL, verbose=False):
 
         for stat_dict in csvshape_dict["pvdicts_list"]:
             pprint_output.append("        Statement")
-            for key in cvpair_elements:
+            for key in tconstraint_elements:
                 if not verbose and stat_dict[key]:
                     pprint_output.append(
                         12 * " " + str(key) + ": " + str(stat_dict[key])

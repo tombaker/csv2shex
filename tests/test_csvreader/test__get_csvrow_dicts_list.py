@@ -23,9 +23,9 @@ def test_get_csvrow_dicts_list_with_simple_csvfile(tmp_path):
         )
     )
     expected_csvrow_dicts_list = [
-        { 'shapeID': ':a', 'propertyID': 'dct:creator', 'valueNodeType': 'URI' }, 
-        { 'shapeID': ':a', 'propertyID': 'dct:subject', 'valueNodeType': 'URI' }, 
-        { 'shapeID': ':a', 'propertyID': 'dct:date', 'valueNodeType': 'String' }
+        {'shapeID': ':a', 'propertyID': 'dct:creator', 'valueNodeType': 'URI'},
+        {'shapeID': ':a', 'propertyID': 'dct:subject', 'valueNodeType': 'URI'},
+        {'shapeID': ':a', 'propertyID': 'dct:date', 'valueNodeType': 'String'}
     ]
     assert _get_csvrow_dicts_list(csvfile_name) == expected_csvrow_dicts_list
 

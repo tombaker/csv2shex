@@ -35,7 +35,7 @@ def _get_corrected_csvrows_list(csvrow_dicts_list=None, csv_model_dict=CSV_MODEL
     corrected_csvrow_dicts_list = []
     shapeids_list = []
     first_shape_encountered = True
-    keys = csv_model_dict["shape_elements"] + csv_model_dict["cvpair_elements"]
+    keys = csv_model_dict["shape_elements"] + csv_model_dict["tconstraint_elements"]
     keys.remove("shapeID")
     for row in csvrow_dicts_list:
         if not row.get("propertyID") and row.get("shapeID"):
@@ -85,7 +85,7 @@ def _get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dic
             aggregator_ddict[shap_dict["shapeID"]] = shap_dict
             is_first_csvrow_encountered = False
 
-        for key in csv_model_dict["cvpair_elements"]:
+        for key in csv_model_dict["tconstraint_elements"]:
             pvdict[key] = csvrow_dict[key]
 
         aggregator_ddict[shap_dict["shapeID"]]["pvdicts_list"].append(pvdict.copy())
