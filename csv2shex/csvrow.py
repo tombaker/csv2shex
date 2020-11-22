@@ -5,7 +5,13 @@ import sys
 from dataclasses import dataclass
 from .utils import is_uri, is_valid_uri_or_prefixed_uri
 
-VARIATIONS_ON_YES = ["y", "Y", "yes", "Yes", "YES", "x", "X", "true", "True", "TRUE", True]
+VARIATIONS_ON_YES = [
+    "y",
+    "yes",
+    "x",
+    "true",
+    True,
+]
 
 
 @dataclass
@@ -112,12 +118,18 @@ class CSVRow:
         return True
 
     def _normalize_shapeclosed(self):
-        """shapeClosed is True if value is equivalent to "yes"."""
+        """shapeClosed is True if string value is a variant of "yes" or "true"."""
+        if isinstance(self.shapeClosed, str):
+            self.shapeClosed = self.shapeClosed.lower()
         self.shapeClosed = bool(self.shapeClosed in VARIATIONS_ON_YES)
 
     def _normalize_mandrepeat(self):
-        """mandatory and repeatable are True if values are equivalent to "yes"."""
+        """mandatory and repeatable are True if values are variants of "yes"."""
+        if isinstance(self.mandatory, str):
+            self.mandatory = self.mandatory.lower()
         self.mandatory = bool(self.mandatory in VARIATIONS_ON_YES)
+        if isinstance(self.repeatable, str):
+            self.repeatable = self.repeatable.lower()
         self.repeatable = bool(self.repeatable in VARIATIONS_ON_YES)
 
     def _normalize_propid(self):

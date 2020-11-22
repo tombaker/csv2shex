@@ -38,8 +38,8 @@ def is_valid_uri_or_prefixed_uri(uri):
 def pprint_df(df: DataFrame):
     """Print pandas DataFrame instance, left-aligned."""
     # https://stackoverflow.com/questions/17232013/how-to-set-the-pandas-dataframe-data-left-right-alignment
-    left_aligned_df = df.style.set_properties(**{'text-align': 'left'})
+    left_aligned_df = df.style.set_properties(**{"text-align": "left"})
     left_aligned_df = left_aligned_df.set_table_styles(
-        [dict(selector='th', props=[('text-align', 'left')])]
+        [dict(selector="th", props=[("text-align", "left")])]
     )
     return left_aligned_df
