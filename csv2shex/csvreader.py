@@ -8,7 +8,7 @@ from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
 from .csvrow import CSVRow
-from .csvshape import CSVShape
+from .csvshape import CSVShape, CSVTripleConstraint
 from .exceptions import CsvError
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
