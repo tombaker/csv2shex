@@ -8,7 +8,7 @@ from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
 from .csvrow import CSVRow
-from .csvshape import CSVShape, Tconstraint
+from .csvshape import CSVShape, CSVTripleConstraint
 from .exceptions import CsvError
 
 CSV_MODEL_DICT = yaml.safe_load(CSV_MODEL)
@@ -80,14 +80,14 @@ def _get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dic
             shap_obj.shapeID = csvrow_dict["shapeID"]
             shap_obj.shapeLabel = csvrow_dict["shapeLabel"]
             shap_obj.start = bool(is_first_csvrow_encountered)
-            shap_obj.pvdicts_list = list()
+            shap_obj.tripleconstraints_list = list()
             aggregator_ddict[shap_obj.shapeID] = shap_obj
             is_first_csvrow_encountered = False
 
         for key in csv_model_dict["tconstraint_elements"]:
             pvdict[key] = csvrow_dict[key]
 
-        aggregator_ddict[shap_obj.shapeID].pvdicts_list.append(pvdict.copy())
+        aggregator_ddict[shap_obj.shapeID].tripleconstraints_list.append(pvdict.copy())
         pvdict.clear()
 
     csvshape_dicts_list = []
@@ -112,14 +112,14 @@ def _get_csvshape_dicts_list(csvrow_dicts_list, csv_model=CSV_MODEL) -> List[dic
 #             shap_dict["shapeLabel"] = csvrow_dict["shapeLabel"]
 #             shap_dict["shapeClosed"] = csvrow_dict["shapeClosed"]
 #             shap_dict["start"] = bool(is_first_csvrow_encountered)
-#             shap_dict["pvdicts_list"] = list()
+#             shap_dict["tripleconstraints_list"] = list()
 #             aggregator_ddict[shap_dict["shapeID"]] = shap_dict
 #             is_first_csvrow_encountered = False
 # 
 #         for key in csv_model_dict["tconstraint_elements"]:
 #             pvdict[key] = csvrow_dict[key]
 # 
-#         aggregator_ddict[shap_dict["shapeID"]]["pvdicts_list"].append(pvdict.copy())
+#         aggregator_ddict[shap_dict["shapeID"]]["tripleconstraints_list"].append(pvdict.copy())
 #         pvdict.clear()
 # 
 #     csvshape_dicts_list = []

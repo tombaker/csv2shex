@@ -3,6 +3,7 @@
 import pytest
 from pprint import pprint
 from dataclasses import asdict
+from csv2shex.csvshape import CSVShape
 from csv2shex.csvrow import CSVRow
 from csv2shex.csvreader import _get_csvshape_dicts_list
 
@@ -17,9 +18,9 @@ def test__get_csvshape_dicts_list_one_shape():
     csvshape_dicts_list = _get_csvshape_dicts_list(full_csvrow_dicts_list)
     assert csvshape_dicts_list[0]["shapeID"] == ":a"
     assert csvshape_dicts_list[0]["start"]
-    assert csvshape_dicts_list[0]["pvdicts_list"]
-    assert csvshape_dicts_list[0]["pvdicts_list"][0]["propertyID"] == "dct:creator"
-    assert not csvshape_dicts_list[0]["pvdicts_list"][0]["mandatory"]
+    assert csvshape_dicts_list[0]["tripleconstraints_list"]
+    assert csvshape_dicts_list[0]["tripleconstraints_list"][0]["propertyID"] == "dct:creator"
+    assert not csvshape_dicts_list[0]["tripleconstraints_list"][0]["mandatory"]
     expected_csvshape_dicts_list = [
         {
             "shapeID": ":a",

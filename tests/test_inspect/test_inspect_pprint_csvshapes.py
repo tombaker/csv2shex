@@ -16,7 +16,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": False,
-            "pvdicts_list": [
+            "tripleconstraints_list": [
                 {
                     "propertyID": "dct:creator",
                     "mandatory": False,
@@ -48,7 +48,7 @@ def test_get_csvshape_dicts_list_two_shapes():
             "shapeLabel": None,
             "start": False,
             "shapeClosed": False,
-            "pvdicts_list": [
+            "tripleconstraints_list": [
                 {
                     "propertyID": "foaf:name",
                     "mandatory": False,
@@ -92,7 +92,7 @@ def test_get_csvshape_dicts_list_two_shapes_verbose():
             "shapeLabel": None,
             "start": True,
             "shapeClosed": False,
-            "pvdicts_list": [
+            "tripleconstraints_list": [
                 {
                     "propertyID": "dct:creator",
                     "propertyLabel": None,
@@ -124,7 +124,7 @@ def test_get_csvshape_dicts_list_two_shapes_verbose():
             "shapeLabel": None,
             "start": False,
             "shapeClosed": False,
-            "pvdicts_list": [
+            "tripleconstraints_list": [
                 {
                     "propertyID": "foaf:name",
                     "propertyLabel": None,
