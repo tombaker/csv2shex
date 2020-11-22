@@ -1,8 +1,7 @@
 """Class for Python objects derived from CSV files."""
 
 
-from dataclasses import dataclass, field, asdict
-from collections import defaultdict
+from dataclasses import dataclass, field
 from typing import List
 import ruamel.yaml as yaml
 from .config import CSV_MODEL
@@ -24,4 +23,3 @@ class CSVShape:
     shapeClosed: str = None
     start: bool = False
     tripleconstraints_list: List[CSVTripleConstraint] = field(default_factory=list)
-

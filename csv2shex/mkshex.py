@@ -10,7 +10,7 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-# from .csvshape import CSVShape
+from .csvshape import CSVShape
 from .csvrow import CSVRow
 
 
