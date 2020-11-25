@@ -9,7 +9,7 @@ from .config import CSV_MODEL
 
 @dataclass
 class CSVTripleConstraint:
-    """Elements, from a DC TAP CSV row, forming a triple constraint."""
+    """Instances hold TAP/CSV elements that form a triple constraint."""
 
     propertyID: str = None
     propertyLabel: str = None
@@ -22,12 +22,18 @@ class CSVTripleConstraint:
     valueShape: str = None
     note: str = None
 
+
 @dataclass
 class CSVShape:
-    """Elements, from a DC TAP CSV row, forming a shape."""
+    """Instances hold TAP/CSV row elements that form a shap."""
 
     shapeID: str = None
     shapeLabel: str = None
     shapeClosed: str = None
     start: bool = False
     tripleconstraints_list: List[CSVTripleConstraint] = field(default_factory=list)
+
+
+@dataclass
+class CSVSchema:
+    """Set of CSVShape ."""
