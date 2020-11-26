@@ -1,0 +1,4 @@
+shapeID,propertyID,mandatory,repeatable,valueNodeType,valueDataType,valueConstraint,valueConstraintType,valueShape
+http://example.org/book,http://purl.org/dc/terms/creator,Y,N,,,,,http://example.org/author
+,http://purl.org/dc/terms/subject,,,,,http://id.loc.gov/,IriStem,
+http://example.org/author,http://xmlns.com/foaf/0.1/name,,,literal,http://www.w3.org/2001/XMLSchema#string,,,

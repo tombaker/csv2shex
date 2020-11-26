@@ -1,0 +1,4 @@
+shapeID,propertyID,valueConstraint,valueShape
+:book,dc:creator,,:author
+,dc:type,so:Book,
+:author,foaf:name,,

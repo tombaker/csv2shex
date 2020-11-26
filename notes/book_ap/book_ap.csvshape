@@ -1,0 +1,26 @@
+[
+    {
+        'shapeID': 'http://example.org/book', 
+        'pvdicts_list': [
+            {
+                'propertyID': 'http://purl.org/dc/terms/creator', 
+                'mandatory': True, 
+                'valueShape': ':author', 
+            }, {
+                'propertyID': 'http://purl.org/dc/terms/subject', 
+                'mandatory': False, 
+                'valueConstraint': 'http://id.loc.gov/', 
+                'valueConstraintType': 'IriStem', 
+            } 
+        ]
+    }, {
+        'shapeID': 'http://example.org/author', 
+        'pvdicts_list': [
+            {
+                'propertyID': 'http://xmlns.com/foaf/0.1/name', 
+                'valueNodeType': 'Literal', 
+                'valueDataType': 'http://www.w3.org/2001/XMLSchema#string', 
+            }
+        ]
+    }
+]

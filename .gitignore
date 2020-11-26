@@ -3,7 +3,6 @@ Session.vim
 .idea/
 .pdf/
 *.bak
-notes/
 bin/
 tags
 .vimrc

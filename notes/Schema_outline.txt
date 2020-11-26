@@ -1,0 +1,26 @@
+Schema(type='Schema', 
+    shapes=[
+        Shape(type='Shape' 
+shapeID     id='http://example.org/myshape', 
+            expression=EachOf(type='EachOf'
+                expressions=[
+                    TripleConstraint(type='TripleConstraint', 
+propertyID              predicate='http://purl.org/dc/terms/title', 
+mandatory             * min=1, 
+repeatable            * max=-1, 
+valueShape            * valueExpr='http://example.org/mycreator'
+                      * valueExpr=NodeConstraint(type='NodeConstraint', 
+valueNodeKind             * nodeKind='literal', 
+                            or
+valueDataType             * datatype='http://www.w3.org/2001/XMLSchema#string', 
+                            or
+                          * values=[
+valueConstraintType       *     IriStem(type='IriStem',
+valueConstraint           *         stem='http://lod.nal.usda.gov/nalt/'
+
+Not covered:
+- shapeLabel
+- shapeClosed
+- start
+- propertyLabel
+- note

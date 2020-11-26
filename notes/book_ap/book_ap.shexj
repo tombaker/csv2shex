@@ -1,0 +1,57 @@
+{ 
+    "@context": "http://www.w3.org/ns/shex.jsonld",
+    "type": "Schema",
+    "shapes": [
+        { 
+            "type": "Shape",
+            "id": "http://example.org/book",
+            "expression": {
+                "type": "EachOf",
+                "expressions": [ 
+                    {
+                        "type": "TripleConstraint",
+                        "predicate": "http://purl.org/dc/terms/creator",
+                        "valueExpr": "http://example.org/mycreator",
+                        "min": "1",
+                    }, 
+                    {
+                        "type": "TripleConstraint",
+                        "predicate": "http://purl.org/dc/terms/subject",
+                        "min": "0",
+                        "valueExpr": {
+                            "type": "NodeConstraint",
+                            "values": [ 
+                                {
+                                    "type": "IriStem",
+                                    "stem": "http://id.loc.gov/"
+                                }
+                            ]
+                        },
+                    }, 
+                ], 
+            },
+        },
+        { 
+            "type": "Shape",
+            "id": "http://example.org/author",
+            "expression": {
+                "type": "EachOf",
+                "expressions": [ 
+                    {
+                        "type": "TripleConstraint",
+                        "predicate": "http://xmlns.com/foaf/0.1/name",
+                        "min": "0",
+                        "valueExpr": {
+                            "type": "NodeConstraint",
+                            "nodeKind": "literal"
+                        },
+                        "valueExpr": {
+                            "type": "NodeConstraint",
+                            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+                        },
+                    }, 
+                ], 
+            },
+        },
+    ]
+}
