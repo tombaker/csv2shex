@@ -1,0 +1,51 @@
+dict_of_csvshape_objs = dict()
+FIRST_ROW_ENCOUNTERED = True
+
+Read CSV file /Users/tbaker/github/tombaker/csv2shex/csv2shex/csvreader.py
+
+    Return csvrow_dicts_list
+    - /Users/tbaker/github/tombaker/csv2shex/tests/test_csvreader/test__get_csvrow_dicts_list.py
+
+_get_corrected_csvrows_list(csvrow_dicts_list)
+    If row has no propertyID, go to next 
+    - skips blank lines 
+    - for now, drop support for "shape on own line"
+
+    If rowdict has propertyID:
+        If FIRST_ROW_ENCOUNTERED:
+            start = True
+            If rowdict["shapeID"] is not specified
+                Assign default shapeID
+            dict_of_csvshape_objs
+        FIRST_ROW_ENCOUNTERED = False
+
+
+    If shapeID is not in dict_of_shape_objs
+      - csvshape_dict["shapeID"] = shapeID (either exists or was assigned default)
+      - csvshape_dict["shapeLabel"] = shapeLabel (use if exists)
+      - csvshape_dict["shapeClosed"] = shapeClosed 
+      - csvshape_dict["shapeFirst"] = shapeFirst
+      - csvshape_dict["start"] = True
+    - FIRST_ROW_ENCOUNTERED = False
+
+    - If shapeID in 
+    - Append csvshape_dict to csvshape_dicts_list
+    - Clear csvshape_dict
+    - Instantiate CSVShape as cs
+ 
+
+  - If FIRST_ROW_ENCOUNTERED is False:
+    - If shapeID is NOT specified 
+      - shapeID = csvshape_dicts_list[-1] # last item
+      - And shapeID exists in shapeid_dict
+        - Use it
+      - And shapeID does not yet exist in shapeid_dict
+        - Append to shapeid_dict:
+          - { "shapeID": (shapeLabel, shapeClosed, shapeFirst) }
+    - Instantiates CSVShape
+      - If CSVShape has a valid value for shapeID, this is used
+      - If CSVShape does not have a shapeID
+        - Gets latest shapeID from shapeids_list
+        - For rest of the fields in CSVShape:
+          - Assigns values (if present) to CSVShape
+      - CSVShape validates itself
