@@ -17,8 +17,8 @@
 #     ]
 #     expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
 #     assert _get_corrected_csvrows_list(csvrows_list) == expected_output_list
-# 
-# 
+#
+#
 # @pytest.mark.skip
 # def test_liststatements_without_shapeIDs():
 #     """Not shape IDs specified, so shape is ':default'."""
@@ -34,8 +34,8 @@
 #     ]
 #     expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
 #     assert _get_corrected_csvrows_list(csvrows_list) == expected_output_list
-# 
-# 
+#
+#
 # @pytest.mark.skip
 # def test_liststatements_with_shapeIDs_specified_as_none():
 #     """Shape IDs specified as 'None', so shape is ':default'."""
@@ -51,8 +51,8 @@
 #     ]
 #     expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
 #     assert _get_corrected_csvrows_list(csvrows_list) == expected_output_list
-# 
-# 
+#
+#
 # @pytest.mark.skip
 # def test_liststatements_with_shape_in_first_statement_only():
 #     """If shape IDs used previously, used for subsequent statements if no Shape ID."""
@@ -68,8 +68,8 @@
 #     ]
 #     expected_output_list = [dict(DEFAULTS, **item) for item in corrected_csvrows_list]
 #     assert _get_corrected_csvrows_list(csvrows_list) == expected_output_list
-# 
-# 
+#
+#
 # @pytest.mark.skip
 # def test_liststatements_with_shape_on_its_own_line():
 #     """If shape IDs used previously, used for subsequent statements if no Shape ID."""

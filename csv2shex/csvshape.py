@@ -3,7 +3,6 @@
 
 from dataclasses import dataclass, field, asdict
 from typing import List
-import ruamel.yaml as yaml
 
 
 @dataclass

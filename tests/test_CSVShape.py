@@ -1,6 +1,5 @@
 """CSVShape object holds statements sharing a common shapeID."""
 
-import pytest
 from csv2shex.csvshape import CSVShape
 
 SHAPE_OBJECT = CSVShape(

@@ -1,4 +1,4 @@
-"""Exception classes for mklists."""
+"""Exception classes for csv2shex."""
 
 
 class Csv2shexError(SystemExit):

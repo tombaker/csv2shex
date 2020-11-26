@@ -1,27 +1,23 @@
 """Read CSV file and return list of rows as Python dictionaries."""
 # /Users/tbaker/github/tombaker/csv2shex/csv2shex/csvreader.py
 
-import os
-from dataclasses import asdict
 import pytest
-from pathlib import Path
-from csv2shex.csvreader import _get_csvshapes_list
-from csv2shex.csvshape import (
-    CSVShape, 
-    CSVTripleConstraint, 
-    CSVSchema,
-    CSVSHAPE_ELEMENTS,
-    CSVTRIPLECONSTRAINT_ELEMENTS,
-)
+from csv2shex.csvreader import _get_csvshapes
+from csv2shex.csvshape import CSVShape
+#     CSVTripleConstraint,
+#     CSVSchema,
+#     CSVSHAPE_ELEMENTS,
+#     CSVTRIPLECONSTRAINT_ELEMENTS,
+# )
 
 
 @pytest.mark.skip
 def test_get_csvshape_list():
     """Minimal CSV with three columns."""
-    csvrow_dicts_list = [
-        { 
-            'shapeID': ':book', 
-            'propertyID': 'dc:creator', 
+    rows = [
+        {
+            'shapeID': ':book',
+            'propertyID': 'dc:creator',
             'valueConstraint': '',
             'valueShape': ':author'
         }, {
@@ -29,7 +25,7 @@ def test_get_csvshape_list():
             'propertyID': 'dc:type',
             'valueConstraint': 'so:Book',
             'valueShape': ''
-        }, { 
+        }, {
             'shapeID': ':author',
             'propertyID': 'foaf:name',
             'valueConstraint': '',
@@ -38,11 +34,11 @@ def test_get_csvshape_list():
     ]
     expected_shapes = [
         CSVShape(
-            shapeID=':book', 
-            propertyID='dc:creator', 
+            shapeID=':book',
+            propertyID='dc:creator',
             valueConstraint='',
             valueShape=':author'
-        ), 
+        ),
         CSVShape(
             shapeID='',
             propertyID='dc:type',
@@ -56,7 +52,7 @@ def test_get_csvshape_list():
             valueShape=''
         )
     ]
-    assert _get_shapes_list(csvfile_name) == expected_shapes
+    assert _get_csvshapes(rows) == expected_shapes
 
 
 #    csvrows_list = [
