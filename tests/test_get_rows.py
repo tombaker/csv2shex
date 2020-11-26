@@ -22,25 +22,25 @@ def test_get_rows_with_minimal_csvfile(tmp_path):
     csvfile_name.write_text(
         (
             "shapeID,propertyID,valueConstraint,valueShape\n"
-            ":buch,dc:creator,,:autor\n"
-            ",dc:type,schema:Book,\n"
-            ":autor,ex:name,,\n"
+            ":book,dc:creator,,:author\n"
+            ",dc:type,so:Book,\n"
+            ":author,foaf:name,,\n"
         )
     )
     expected_csvrow_dicts_list = [
         {
-            'shapeID': ':buch',
+            'shapeID': ':book',
             'propertyID': 'dc:creator',
             'valueConstraint': '',
-            'valueShape': ':autor'
+            'valueShape': ':author'
         }, {
             'shapeID': '',
             'propertyID': 'dc:type',
-            'valueConstraint': 'schema:Book',
+            'valueConstraint': 'so:Book',
             'valueShape': ''
         }, {
-            'shapeID': ':autor',
-            'propertyID': 'ex:name',
+            'shapeID': ':author',
+            'propertyID': 'foaf:name',
             'valueConstraint': '',
             'valueShape': ''
         }

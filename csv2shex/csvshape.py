@@ -7,7 +7,7 @@ from typing import List
 
 @dataclass
 class CSVTripleConstraint:
-    """Instances hold TAP/CSV elements that form a triple constraint."""
+    """Instances hold TAP/CSV elements for a triple constraint."""
 
     propertyID: str = None
     valueConstraint: str = None
@@ -23,7 +23,7 @@ class CSVTripleConstraint:
 
 @dataclass
 class CSVShape:
-    """Instances hold TAP/CSV row elements that form a shap."""
+    """Instances hold TAP/CSV row elements specifying a shape."""
 
     shapeID: str = None
     # shapeLabel: str = None

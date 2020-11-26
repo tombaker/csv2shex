@@ -3,18 +3,19 @@
 from csv import DictReader
 from pathlib import Path
 from csv2shex.exceptions import CsvError
+from csv2shex.csvshape import CSVSHAPE_ELEMENTS, CSVTRIPLECONSTRAINT_ELEMENTS
 # from .csvshape import CSVShape, CSVTripleConstraint, CSVSchema
 
 
 def csvreader(csvfile):
-    """Read CSV file and return list of CSV shapes, one dict per CSV shape."""
+    """Return list of CSVShape objects from CSV file."""
     rows = _get_rows(csvfile)
     csvshapes = _get_csvshapes(rows)
     return csvshapes
 
 
 def _get_rows(csvfile):
-    """Return list of CSV rows (as dicts) from CSV file."""
+    """Return list of row dicts from CSV file."""
     csv_dictreader = DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
     rows = list(csv_dictreader)
     if "propertyID" not in list(rows[0].keys()):
@@ -23,10 +24,35 @@ def _get_rows(csvfile):
 
 
 def _get_csvshapes(rows=None):
-    """Return list of CSVShape instances from list of CSV rows (as dicts)."""
+    """Return list of CSVShape objects from list of row dicts."""
     # /Users/tbaker/github/tombaker/csv2shex/csv2shex/test_get_csvshapes.py
 
-    return rows
+    dict_of_csvshape_objs = dict()     # key=shapeID:value=CSVShape
+    FIRST_VALID_ROW_ENCOUNTERED = True
+
+    for row in rows:
+        shapeid_found = row["shapeID"]
+
+        if not row["propertyID"]:
+            continue                   # skips blank lines and "shape on own line"
+
+        if FIRST_VALID_ROW_ENCOUNTERED:
+            if not shapeid_found:
+                shapeid_found = ":default"
+            dict_of_csvshape_objs[shapeid_found] = CSVShape()
+            dict_of_csvshape_objs[shapeid_found].start = True
+            FIRST_VALID_ROW_ENCOUNTERED = False
+        else:
+            if not shapeid_found:
+                shapeid_found = dict_of_csvshape_objs[-1]
+
+        if shapeid_found not in dict_of_shape_objs:
+            dict_of_csvshape_objs[shapeid_found] = CSVShape()
+
+        for element in CSVSHAPE_ELEMENTS:
+            pass  # @@@@@
+
+    return dict_of_csvshape_objs
 
     # dict_of_csvshapeobjs = dict()
     # tripleconstraints_list = list()
