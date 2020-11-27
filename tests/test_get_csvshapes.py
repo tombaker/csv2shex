@@ -50,7 +50,6 @@ def test_get_csvshape_list_minimal_csv():
     assert _get_csvshapes(rows) == expected_shapes
 
 
-@pytest.mark.skip
 def test_get_csvshape_list_longer_minimal_csv():
     """Slightly longer minimal CSV with three columns."""
     rows = [
