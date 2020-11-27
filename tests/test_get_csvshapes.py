@@ -7,7 +7,7 @@ from csv2shex.csvshape import CSVShape
 #     CSVTripleConstraint,
 #     CSVSchema,
 #     CSVSHAPE_ELEMENTS,
-#     CSVTRIPLECONSTRAINT_ELEMENTS,
+#     TC_ELEMENTS,
 # )
 
 

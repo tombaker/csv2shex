@@ -1,4 +1,4 @@
-    If shapeID is not in dict_of_shape_objs
+    If shapeID is not in shapes_dict
       - csvshape_dict["shapeID"] = shapeID (either exists or was assigned default)
       - csvshape_dict["shapeLabel"] = shapeLabel (use if exists)
       - csvshape_dict["shapeClosed"] = shapeClosed 

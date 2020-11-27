@@ -23,7 +23,7 @@ class CSVTripleConstraint:
 
 @dataclass
 class CSVShape:
-    """Instances hold TAP/CSV row elements specifying a shape."""
+    """Instances hold TAP/CSV row elements specifying csvshape_dicts_lista shape."""
 
     shapeID: str = None
     # shapeLabel: str = None
@@ -40,4 +40,4 @@ class CSVSchema:
 csvshape_keys = list(asdict(CSVShape()).keys())
 csvshape_keys.remove('tripleconstraints_list')
 CSVSHAPE_ELEMENTS = csvshape_keys
-CSVTRIPLECONSTRAINT_ELEMENTS = list(asdict(CSVTripleConstraint()).keys())
+TC_ELEMENTS = list(asdict(CSVTripleConstraint()).keys())
