@@ -26,41 +26,48 @@ def _get_rows(csvfile):
 
 def _get_csvshapes(rows=None) -> List[CSVShape]:
     """Return list of CSVShape objects from list of row dicts."""
-    # /Users/tbaker/github/tombaker/csv2shex/csv2shex/test_get_csvshapes.py
+    # /Users/tbaker/github/tombaker/csv2shex/tests/test_get_csvshapes.py
 
-    shapes_dict: Dict[str, CSVShape] = dict()       # To collect CSVShape objects.
+    shapes_dict: Dict[str, CSVShape] = dict()       # To index CSVShape objects.
     first_valid_row_encountered = True
 
     for row in rows:                                # For each row:
         if not row["propertyID"]:                   # If no propertyID in row,
-            continue                                # skip, and move to next row.
+            continue                                # skip and move to next row.
+
+        if row["shapeID"]:                          # If "shapeID" specified in row,
+            id_found = row["shapeID"]               # let's call it 'id_found'.
+        else:                                       # Otherwise, let's make sure it
+            id_found = ''                           # exists and has empty value.
 
         if first_valid_row_encountered:             # In first valid row encountered,
-            if not shapeid_found:                   # if no shapeID found,
-                shapeid_found = ":default"          # set shapeID to ":default",
-            shapes_dict[shapeid_found] = CSVShape() # map the shapeID to a CSVShape,
-            shapes_dict[shapeid_found].start = True # and designate as "start" shape.
+            if not id_found:                        # if no ID is found (or empty),
+                id_found = ":default"               # set ID to ":default",
+            shapes_dict[id_found] = CSVShape()      # and map the ID to a CSVShape,
+            shapes_dict[id_found].start = True      # and that shape as "start".
             first_valid_row_encountered = False
         else:                                       # In all subsequent rows,
-            if not shapeid_found:                   # if CSV row "shapeID" is blank,
-                shapeid_found = shapes_dict[-1]     # keep using previous shapeID.
+            if not id_found:                        # if no ID found (or empty),
+                so_far = list(shapes_dict.keys())   # list shapes created so far,
+                id_found = so_far[-1]               # and use the latest as ID.
 
-        if shapeid_found not in shapes_dict:        # On encountering a new shapeID,
-            shapes_dict[shapeid_found] = CSVShape() # map it to new CSVShape object.
-
-        shape = shapes_dict[shapeid_found]          # Let's call that object 'shape',
-        for csvshape_element in CSVSHAPE_ELEMENTS:  # iterate thru "shape" elements,
-            try:                                    # and populate its attributes,
-                setattr(shape, csvshape_element, row_dict[csvshape_element])
-            except KeyError:                        # tho elements not found in data,
-                pass                                # are skipped.
+        if id_found not in shapes_dict:             # On encountering a new shapeID,
+            shapes_dict[id_found] = CSVShape()      # map it to new CSVShape object,
+            shape = shapes_dict[id_found]           # call that object 'shape',
+            for elem in CSVSHAPE_ELEMENTS:          # iterate shape-related elements,
+                try:                                # to populate its attributes,
+                    setattr(shape, elem, row[elem]) # with values from the row dict,
+                except KeyError:                    # while any missing elements,
+                    pass                            # are skipped.
 
         tc = CSVTripleConstraint()                  # Make triple constraint object,
-        for tc_element in TC_ELEMENTS:              # iterate thru relevant elements,
-            try:                                    # and populate its attributes,
-                setattr(tc, tc_element, row_dict[tc_element])
-            except KeyError:                        # tho elements not found in data,
+        for elem in TC_ELEMENTS:                    # iterate thru relevant elements,
+            try:                                    # to populate its attributes,
+                setattr(tc, elem, row[elem])        # with values from the row dict,
+            except KeyError:                        # while any missing elements,
                 pass                                # are skipped.
+
+        shapes_dict[id_found].tc_list.append(tc)    # Append triple constraint.
 
     return list(shapes_dict.values())               # Return list of shapes.
 
@@ -70,7 +77,7 @@ def _get_csvshapes(rows=None) -> List[CSVShape]:
     #     tripleconstraint = dict()
     #     for element in TC_ELEMENTS:
     #         tripleconstraint[element] = csvrow_dict[element]
-    #     tripleconstraints_list.append(tripleconstraint)
+    #     tc_list.append(tripleconstraint)
 
     # for csvrow_dict in rows:
     #     if csvrow_dict["shapeID"] not in dict_of_csvshapeobjs.keys():
@@ -85,14 +92,14 @@ def _get_csvshapes(rows=None) -> List[CSVShape]:
 #             shap_obj.shapeID = csvrow_dict["shapeID"]
 #             shap_obj.shapeLabel = csvrow_dict["shapeLabel"]
 #             shap_obj.start = bool(is_first_csvrow_encountered)
-#             shap_obj.tripleconstraints_list = list()
+#             shap_obj.tc_list = list()
 #             aggregator_ddict[shap_obj.shapeID] = shap_obj
 #             is_first_csvrow_encountered = False
 #
 #         for key in csv_model_dict["tconstraint_elements"]:
 #             pvdict[key] = csvrow_dict[key]
 #
-#         aggregator_ddict[shap_obj.shapeID].tripleconstraints_list.append(pvdict.copy())
+#         aggregator_ddict[shap_obj.shapeID].tc_list.append(pvdict.copy())
 #         pvdict.clear()
 #
 
@@ -110,14 +117,14 @@ def _get_csvshapes(rows=None) -> List[CSVShape]:
 #             shap_dict["shapeLabel"] = csvrow_dict["shapeLabel"]
 #             shap_dict["shapeClosed"] = csvrow_dict["shapeClosed"]
 #             shap_dict["start"] = bool(is_first_csvrow_encountered)
-#             shap_dict["tripleconstraints_list"] = list()
+#             shap_dict["tc_list"] = list()
 #             aggregator_ddict[shap_dict["shapeID"]] = shap_dict
 #             is_first_csvrow_encountered = False
 #
 #         for key in csv_model_dict["tconstraint_elements"]:
 #             pvdict[key] = csvrow_dict[key]
 #
-#         aggregator_ddict[shap_dict["shapeID"]]["tripleconstraints_list"].append(pvdict.copy())
+#         aggregator_ddict[shap_dict["shapeID"]]["tc_list"].append(pvdict.copy())
 #         pvdict.clear()
 
 # def _get_corrected_csvrows_list(rows=None, csv_model_dict=CSV_MODEL_DICT):
@@ -155,6 +162,3 @@ def _get_csvshapes(rows=None) -> List[CSVShape]:
 #         corrected_csvrow_dicts_list.append(asdict(stat))
 #     return corrected_csvrow_dicts_list
 
-# Removed
-#        if row["shapeID"]:                          # If "shapeID" specified in row,
-#            shapeid_found = row["shapeID"]          # use it.

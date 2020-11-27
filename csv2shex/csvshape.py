@@ -29,7 +29,7 @@ class CSVShape:
     # shapeLabel: str = None
     # shapeClosed: str = None
     start: bool = False
-    tripleconstraints_list: List[CSVTripleConstraint] = field(default_factory=list)
+    tc_list: List[CSVTripleConstraint] = field(default_factory=list)
 
 
 @dataclass
@@ -38,6 +38,6 @@ class CSVSchema:
 
 
 csvshape_keys = list(asdict(CSVShape()).keys())
-csvshape_keys.remove('tripleconstraints_list')
+csvshape_keys.remove('tc_list')
 CSVSHAPE_ELEMENTS = csvshape_keys
 TC_ELEMENTS = list(asdict(CSVTripleConstraint()).keys())
