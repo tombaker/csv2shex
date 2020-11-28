@@ -13,11 +13,11 @@ class CSVTripleConstraint:
     valueConstraint: str = ''
     valueShape: str = ''
     # propertyLabel: str = None
-    # mandatory: str = None
-    # repeatable: str = None
-    # valueNodeType: str = None
-    # valueDataType: str = None
-    # valueConstraintType: str = None
+    mandatory: str = ''
+    repeatable: str = ''
+    valueNodeType: str = None
+    valueDataType: str = None
+    valueConstraintType: str = None
     # note: str = None
 
 
