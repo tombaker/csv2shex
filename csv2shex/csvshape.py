@@ -9,9 +9,9 @@ from typing import List
 class CSVTripleConstraint:
     """Instances hold TAP/CSV elements related to triple constraints."""
 
-    propertyID: str = None
-    valueConstraint: str = None
-    valueShape: str = None
+    propertyID: str = ''
+    valueConstraint: str = ''
+    valueShape: str = ''
     # propertyLabel: str = None
     # mandatory: str = None
     # repeatable: str = None
@@ -25,7 +25,7 @@ class CSVTripleConstraint:
 class CSVShape:
     """Instances hold TAP/CSV row elements related to shapes."""
 
-    shapeID: str = None
+    shapeID: str = ''
     # shapeLabel: str = None
     # shapeClosed: str = None
     start: bool = False

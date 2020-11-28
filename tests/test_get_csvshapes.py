@@ -5,21 +5,107 @@ from csv2shex.csvreader import _get_csvshapes
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
 
 
-def test_get_csvshape_list_two_shapes_one_property_each():
-    """Minimal CSV with three columns, one triple constraint each."""
+def test_get_csvshapes_one_default_shape():
+    """CSV: one default shape."""
     rows = [
-        {
-            "shapeID": ":book",
-            "propertyID": "dc:creator",
-        },
-        {
-            "shapeID": "",
-            "propertyID": "dc:type",
-        },
-        {
-            "shapeID": ":author",
-            "propertyID": "foaf:name",
-        },
+        { "shapeID": "", "propertyID": "dc:creator", },
+        { "shapeID": "", "propertyID": "dc:date", },
+    ]
+    expected_shapes = [
+        CSVShape(
+            shapeID=":default",
+            start=True,
+            tc_list=[
+                CSVTripleConstraint(propertyID="dc:creator"),
+                CSVTripleConstraint(propertyID="dc:date"),
+            ],
+        ),
+    ]
+    assert _get_csvshapes(rows) == expected_shapes
+
+
+def test_get_csvshapes_twoshapes_first_is_default():
+    """CSV: two shapes, first of which is default."""
+    rows = [
+        { "shapeID": "", "propertyID": "dc:creator", },
+        { "shapeID": "", "propertyID": "dc:type", },
+        { "shapeID": ":author", "propertyID": "foaf:name", },
+    ]
+    expected_shapes = [
+        CSVShape(
+            shapeID=":default",
+            start=True,
+            tc_list=[
+                CSVTripleConstraint(propertyID="dc:creator"),
+                CSVTripleConstraint(propertyID="dc:type"),
+            ],
+        ),
+        CSVShape(
+            shapeID=":author",
+            start=False,
+            tc_list=[
+                CSVTripleConstraint(
+                    propertyID="foaf:name", valueConstraint="", valueShape=""
+                )
+            ],
+        ),
+    ]
+    assert _get_csvshapes(rows) == expected_shapes
+
+
+def test_get_csvshapes_default_shape_because_shapeID_not_specified():
+    """One shape, default, because shapeID is not specified."""
+    rows = [
+        { "propertyID": "dc:creator", },
+    ]
+    expected_shapes = [
+        CSVShape(
+            shapeID=":default",
+            start=True,
+            tc_list=[
+                CSVTripleConstraint(propertyID="dc:creator"),
+            ],
+        ),
+    ]
+    assert _get_csvshapes(rows) == expected_shapes
+
+
+def test_get_csvshapes_twoshapes_first_is_default_because_shapeID_empty():
+    """CSV: two shapes, first of which is default because shapeID is empty."""
+    rows = [
+        { "shapeID": "", "propertyID": "dc:creator", },
+        { "shapeID": "", "propertyID": "dc:type", },
+        { "shapeID": ":author", "propertyID": "foaf:name", },
+    ]
+    expected_shapes = [
+        CSVShape(
+            shapeID=":default",
+            start=True,
+            tc_list=[
+                CSVTripleConstraint(propertyID="dc:creator"),
+                CSVTripleConstraint(propertyID="dc:type"),
+            ],
+        ),
+        CSVShape(
+            shapeID=":author",
+            start=False,
+            tc_list=[
+                CSVTripleConstraint(
+                    propertyID="foaf:name", valueConstraint="", valueShape=""
+                )
+            ],
+        ),
+    ]
+    assert _get_csvshapes(rows) == expected_shapes
+
+
+# passes
+def test_get_csvshapes_two_shapes_one_property_each():
+    """CSV: two shapes, one property each."""
+    rows = [
+        { "shapeID": ":book", "propertyID": "dc:creator", },
+        { "shapeID": "", "propertyID": "dc:type", },
+        { "shapeID": ":author", "propertyID": "foaf:name", },
     ]
     expected_shapes = [
         CSVShape(
@@ -38,90 +124,3 @@ def test_get_csvshape_list_two_shapes_one_property_each():
     assert _get_csvshapes(rows) == expected_shapes
 
 
-@pytest.mark.skip
-def test_get_csvshape_list_minimal_csv():
-    """Minimal CSV with three columns, one triple constraint each."""
-    rows = [
-        {
-            "shapeID": ":book",
-            "propertyID": "dc:creator",
-            "valueConstraint": "",
-            "valueShape": ":author",
-        },
-        {
-            "shapeID": ":author",
-            "propertyID": "foaf:name",
-            "valueConstraint": "",
-            "valueShape": "",
-        },
-    ]
-    expected_shapes = [
-        CSVShape(
-            shapeID=":book",
-            start=True,
-            tc_list=[
-                CSVTripleConstraint(
-                    propertyID="dc:creator", valueConstraint="", valueShape=":author"
-                ),
-            ],
-        ),
-        CSVShape(
-            shapeID=":author",
-            start=False,
-            tc_list=[
-                CSVTripleConstraint(
-                    propertyID="foaf:name", valueConstraint="", valueShape=""
-                )
-            ],
-        ),
-    ]
-    assert _get_csvshapes(rows) == expected_shapes
-
-
-@pytest.mark.skip
-def test_get_csvshape_list_longer_minimal_csv():
-    """Slightly longer minimal CSV with three columns."""
-    rows = [
-        {
-            "shapeID": ":book",
-            "propertyID": "dc:creator",
-            "valueConstraint": "",
-            "valueShape": ":author",
-        },
-        {
-            "shapeID": "",
-            "propertyID": "dc:type",
-            "valueConstraint": "so:Book",
-            "valueShape": "",
-        },
-        {
-            "shapeID": ":author",
-            "propertyID": "foaf:name",
-            "valueConstraint": "",
-            "valueShape": "",
-        },
-    ]
-    expected_shapes = [
-        CSVShape(
-            shapeID=":book",
-            start=True,
-            tc_list=[
-                CSVTripleConstraint(
-                    propertyID="dc:creator", valueConstraint="", valueShape=":author"
-                ),
-                CSVTripleConstraint(
-                    propertyID="dc:type", valueConstraint="so:Book", valueShape=""
-                ),
-            ],
-        ),
-        CSVShape(
-            shapeID=":author",
-            start=False,
-            tc_list=[
-                CSVTripleConstraint(
-                    propertyID="foaf:name", valueConstraint="", valueShape=""
-                )
-            ],
-        ),
-    ]
-    assert _get_csvshapes(rows) == expected_shapes

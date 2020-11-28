@@ -31,18 +31,16 @@ def _get_csvshapes(rows=None, default_shape=DEFAULT_SHAPE) -> List[CSVShape]:
     shapes: Dict[str, CSVShape] = dict()        # To make dict indexing CSVShapes,
     first_valid_row_encountered = True               # read CSV rows as list of dicts.
 
-    def set_shape_fields(shape=None, row=None):
-        """@@@"""
-        csvshape_keys = list(asdict(CSVShape()))     # Get list of shape-related keys,
-        #csvshape_keys.remove('shapeID')              # minus shapeID (see below), and
-        csvshape_keys.remove('start')                # minus start (see below), and
-        csvshape_keys.remove('tc_list')              # minus tc_list (see below).
-
-        for key in csvshape_keys:                    # Iterate remaining shape keys, to
-            try:                                     # populate csvshape attributes,
-                setattr(shape, key, row[key])        # with values from the row dict,
-            except KeyError:                         # while keys not used in dict,
+    def set_shape_fields(shape=None, row=None):      # To set shape-related keys,
+        csvshape_keys = list(asdict(CSVShape()))     # make a list of those keys,
+        csvshape_keys.remove('start')                # remove start and tc_list,
+        csvshape_keys.remove('tc_list')              # as both are set elsewhere.
+        for key in csvshape_keys:                    # Iterate remaining keys, to
+            try:                                     # populate csvshape fields
+                setattr(shape, key, row[key])        # with values from the row dict.
+            except KeyError:                         # Keys not found in dict,
                 pass                                 # are simply skipped.
+        return shape                                 # Return shape with fields set.
 
     for row in rows:                                 # For each row,
         if not row["propertyID"]:                    # where no propertyID is found,
@@ -54,7 +52,7 @@ def _get_csvshapes(rows=None, default_shape=DEFAULT_SHAPE) -> List[CSVShape]:
             set_shape_fields(shape, row)             # and set its shape-related fields.
         else:                                        # If false shapeID is found, and it
             if first_valid_row_encountered:          # is first valid row encountered,
-                sh_id = ":default"                   # use ':default' as dict key, 
+                sh_id = row["shapeID"] = ":default"  # use ':default' as dict key, 
                 shape = shapes[sh_id] = CSVShape()   # assign a new CSVShape and alias,
                 set_shape_fields(shape, row)         # and set its shape-related fields.
             else:                                    # In other rows missing shapeIDs,
