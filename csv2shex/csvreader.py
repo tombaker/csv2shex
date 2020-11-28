@@ -46,7 +46,7 @@ def _get_csvshapes(rows=None, default_shape=DEFAULT_SHAPE) -> List[CSVShape]:
         if not row["propertyID"]:                    # where no propertyID is found,
             continue                                 # skip the row and move to next.
 
-        if row["shapeID"]:                           # If true shapeID is found in row,
+        if row.get("shapeID"):                       # If true shapeID is found in row,
             sh_id = row["shapeID"]                   # use it as shape_dicts key, 
             shape = shapes[sh_id] = CSVShape()       # assign a new CSVShape and alias,
             set_shape_fields(shape, row)             # and set its shape-related fields.
