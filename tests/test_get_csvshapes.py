@@ -11,17 +11,18 @@ def test_get_csvshapes_one_default_shape():
         { "shapeID": "", "propertyID": "dc:creator", },
         { "shapeID": "", "propertyID": "dc:date", },
     ]
-    expected_shapes = [
-        CSVShape(
-            shapeID=":default",
-            start=True,
-            tc_list=[
-                CSVTripleConstraint(propertyID="dc:creator"),
-                CSVTripleConstraint(propertyID="dc:date"),
-            ],
-        ),
-    ]
-    assert _get_csvshapes(rows) == expected_shapes
+    expected_shapes = _get_csvshapes(rows)
+    assert len(expected_shapes) == 1
+    assert expected_shapes[0].shapeID == ":default"
+    assert len(expected_shapes[0].tc_list) == 2
+
+
+def test_get_csvshapes_one_default_shape_shapeID_not_specified():
+    """One shape, default, where shapeID is not specified."""
+    rows = [ { "propertyID": "dc:creator", } ]
+    expected_shapes = _get_csvshapes(rows)
+    assert expected_shapes[0].shapeID == ":default"
+    assert len(expected_shapes[0].tc_list) == 1
 
 
 def test_get_csvshapes_twoshapes_first_is_default():
@@ -31,43 +32,10 @@ def test_get_csvshapes_twoshapes_first_is_default():
         { "shapeID": "", "propertyID": "dc:type", },
         { "shapeID": ":author", "propertyID": "foaf:name", },
     ]
-    expected_shapes = [
-        CSVShape(
-            shapeID=":default",
-            start=True,
-            tc_list=[
-                CSVTripleConstraint(propertyID="dc:creator"),
-                CSVTripleConstraint(propertyID="dc:type"),
-            ],
-        ),
-        CSVShape(
-            shapeID=":author",
-            start=False,
-            tc_list=[
-                CSVTripleConstraint(
-                    propertyID="foaf:name", valueConstraint="", valueShape=""
-                )
-            ],
-        ),
-    ]
-    assert _get_csvshapes(rows) == expected_shapes
-
-
-def test_get_csvshapes_default_shape_because_shapeID_not_specified():
-    """One shape, default, because shapeID is not specified."""
-    rows = [
-        { "propertyID": "dc:creator", },
-    ]
-    expected_shapes = [
-        CSVShape(
-            shapeID=":default",
-            start=True,
-            tc_list=[
-                CSVTripleConstraint(propertyID="dc:creator"),
-            ],
-        ),
-    ]
-    assert _get_csvshapes(rows) == expected_shapes
+    expected_shapes = _get_csvshapes(rows)
+    assert expected_shapes[0].shapeID == ":default"
+    assert len(expected_shapes[0].tc_list) == 2
+    assert expected_shapes[1].shapeID == ":author"
 
 
 def test_get_csvshapes_twoshapes_first_is_default_because_shapeID_empty():
