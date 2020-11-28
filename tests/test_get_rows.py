@@ -6,8 +6,8 @@ import pytest
 from csv2shex.csvreader import _get_rows
 
 
-def test_get_rows_with_invalid_csvfile(tmp_path):
-    """A DCAP CSV is invalid if it does not at least have "propertyID"."""
+def test_get_rows_raises_exception_if_first_line_has_no_propertyid(tmp_path):
+    """Raises exception if first line of CSV has no propertyID."""
     os.chdir(tmp_path)
     csvfile_name = Path(tmp_path).joinpath("some.csv")
     csvfile_name.write_text(("shapeID,propID,valueNodeType\n" ":a,dct:creator,URI\n"))
