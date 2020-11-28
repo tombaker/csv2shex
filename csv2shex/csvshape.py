@@ -1,13 +1,13 @@
 """Class for Python objects derived from CSV files."""
 
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from typing import List
 
 
 @dataclass
 class CSVTripleConstraint:
-    """Instances hold TAP/CSV elements for a triple constraint."""
+    """Instances hold TAP/CSV elements related to triple constraints."""
 
     propertyID: str = None
     valueConstraint: str = None
@@ -23,7 +23,7 @@ class CSVTripleConstraint:
 
 @dataclass
 class CSVShape:
-    """Instances hold TAP/CSV row elements specifying csvshape_dicts_lista shape."""
+    """Instances hold TAP/CSV row elements related to shapes."""
 
     shapeID: str = None
     # shapeLabel: str = None
@@ -35,9 +35,3 @@ class CSVShape:
 @dataclass
 class CSVSchema:
     """List of CSVShape instances??"""
-
-
-csvshape_keys = list(asdict(CSVShape()).keys())
-csvshape_keys.remove('tc_list')
-CSVSHAPE_ELEMENTS = csvshape_keys
-TC_ELEMENTS = list(asdict(CSVTripleConstraint()).keys())

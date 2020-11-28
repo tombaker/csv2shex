@@ -1,12 +1,17 @@
 """Read DCAP/CSV (expand prefixes?). Write and read config file."""
 
 from csv import DictReader
+from dataclasses import asdict
 from typing import Dict, List
 from pathlib import Path
 from csv2shex.exceptions import CsvError
-from csv2shex.csvshape import CSVSHAPE_ELEMENTS, TC_ELEMENTS
 from .csvshape import CSVShape, CSVTripleConstraint
 
+DEFAULT_SHAPE=":default"
+csvshape_keys = list(asdict(CSVShape()).keys())
+csvshape_keys.remove('tc_list')
+CSVSHAPE_ELEMENTS = csvshape_keys
+TC_ELEMENTS = list(asdict(CSVTripleConstraint()).keys())
 
 def csvreader(csvfile):
     """Return list of CSVShape objects from CSV file."""
@@ -24,53 +29,45 @@ def _get_rows(csvfile):
     return rows
 
 
-def _get_csvshapes(rows=None) -> List[CSVShape]:
+def _get_csvshapes(rows=None, default_shape=DEFAULT_SHAPE) -> List[CSVShape]:
     """Return list of CSVShape objects from list of row dicts."""
 
-    shapes_dict: Dict[str, CSVShape] = dict()       # To index CSVShape objects.
-    first_valid_row_encountered = True
+    shapes_dict: Dict[str, CSVShape] = dict()        # To make dict indexing CSVShapes,
+    first_valid_row_encountered = True               # read CSV rows as list of dicts.
 
-    for row in rows:                                # For each row in CSV dict,
+    for row in rows:                                 # For each row,
+        if not row["propertyID"]:                    # where no propertyID is found,
+            continue                                 # skip the row and move to next.
 
-        # Ignore non-valid lines (i.e.,
-        if not row["propertyID"]:                   # if no propertyID found in row,
-            continue                                # skip the row and move to next.
+        if row["shapeID"]:                           # If true shapeID is found in row,
+            sh_id = row["shapeID"]                   # use it as shape_dicts key, and
+            shapes_dict[sh_id] = CSVShape()          # assign to it a new CSVShape.
+        else:                                        # If false shapeID is found,
+            if first_valid_row_encountered:          # in first valid row encountered,
+                row["shapeID"] = sh_id = ":default"  # use ':default' as dict key, and
+                shapes_dict[sh_id] = CSVShape()      # assign to it a new CSVShape.
+            else:                                    # but in any row thereafter,
+                so_far = [k for k in shapes_dict]    # list shapeIDs used so far, and
+                sh_id = so_far[-1]                   # use the latest one.
 
-        # Determine key (sh_id) to be used for CSVShape instance as value in shapes_dict.
-        if row["shapeID"]:                          # If non-empty shapeID found in row,
-            sh_id = row["shapeID"]                  # assign to sh_id its value.
-        else:                                       # But if no shapeID is found, and
-            if first_valid_row_encountered:         # it is first valid row encountered,
-                sh_id = ":default"                  # assign to sh_id the value ':default'.
-            else:                                   # But in any row after the first,
-                so_far = list(shapes_dict.keys())   # list shapes created so far and
-                sh_id = so_far[-1]                  # assign to sh_id name of the latest.
+        if first_valid_row_encountered:              # First shape encountered is
+            shapes_dict[sh_id].start = True          # marked as "start" shape, but
+            first_valid_row_encountered = False      # only the first.
 
-        # Use key (sh_id) for new instance of CSVShape (value) in shapes_dict.
-        shapes_dict[sh_id] = CSVShape()             # Add shape 'sh_id' to shapes_dict.
+        shape = shapes_dict[sh_id]                   # Call current shape "shape",
+        for elem in CSVSHAPE_ELEMENTS:               # iterate shape-related elements,
+            try:                                     # populate csvshape attributes,
+                setattr(shape, elem, row[elem])      # with values from row dict,
+            except KeyError:                         # while missing elements,
+                pass                                 # are skipped.
 
-        # Mark first shape encountered as "start" shape.
-        if first_valid_row_encountered:             # First row sets the first shape, so
-            shapes_dict[sh_id].start = True         # mark it as "start" shape, and
-            first_valid_row_encountered = False     # may no rows henceforth be "first".
+        tc = CSVTripleConstraint()                   # Make triple constraint object.
+        for elem in TC_ELEMENTS:                     # Iterating tc-related elements,
+            try:                                     # populate tc-object attributes,
+                setattr(tc, elem, row[elem])         # with values from row dict,
+            except KeyError:                         # while missing elements,
+                pass                                 # are skipped.
 
-        if sh_id not in shapes_dict:                # If 'sh_id' not seen before, map
-            shapes_dict[sh_id] = CSVShape()         # new ID to new CSVShape object.
+        shapes_dict[sh_id].tc_list.append(tc)        # Append TC to shapes dict.
 
-        shape = shapes_dict[sh_id]                  # Current shape is called "shape".
-        for elem in CSVSHAPE_ELEMENTS:              # Iterating shape-related elements,
-            try:                                    # populate shape-object attributes,
-                setattr(shape, elem, row[elem])     # with values from row dict,
-            except KeyError:                        # while missing elements,
-                pass                                # are skipped.
-
-        tc = CSVTripleConstraint()                  # Make triple constraint object.
-        for elem in TC_ELEMENTS:                    # Iterating tc-related elements,
-            try:                                    # populate tc-object attributes,
-                setattr(tc, elem, row[elem])        # with values from row dict,
-            except KeyError:                        # while missing elements,
-                pass                                # are skipped.
-
-        shapes_dict[sh_id].tc_list.append(tc)       # Append TC to shapes dict.
-
-    return list(shapes_dict.values())               # Return list of shapes.
+    return list(shapes_dict.values())                # Return list of shapes.
