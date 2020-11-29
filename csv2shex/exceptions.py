@@ -2,7 +2,7 @@
 
 
 class Csv2shexError(SystemExit):
-    """Exceptions related to Mklists generally."""
+    """Exceptions related to Csv2shex generally."""
 
 
 class ConfigError(Csv2shexError):

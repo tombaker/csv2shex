@@ -13,15 +13,15 @@ class CSVTripleConstraint:
     # It's a dataclass, right?
 
     propertyID: str = ""
-    valueConstraint: str = ""
-    valueShape: str = ""
-    # propertyLabel: str = None
+    propertyLabel: str = ""
     mandatory: str = ""
     repeatable: str = ""
-    valueNodeType: str = None
-    valueDataType: str = None
-    valueConstraintType: str = None
-    # note: str = None
+    valueNodeType: str = ""
+    valueDataType: str = ""
+    valueConstraint: str = ""
+    valueConstraintType: str = ""
+    valueShape: str = ""
+    note: str = ""
 
 
 @dataclass
