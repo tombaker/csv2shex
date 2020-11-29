@@ -9,12 +9,15 @@ from typing import List
 class CSVTripleConstraint:
     """Instances hold TAP/CSV elements related to triple constraints."""
 
-    propertyID: str = ''
-    valueConstraint: str = ''
-    valueShape: str = ''
+    # pylint: disable=too-many-instance-attributes
+    # It's a dataclass, right?
+
+    propertyID: str = ""
+    valueConstraint: str = ""
+    valueShape: str = ""
     # propertyLabel: str = None
-    mandatory: str = ''
-    repeatable: str = ''
+    mandatory: str = ""
+    repeatable: str = ""
     valueNodeType: str = None
     valueDataType: str = None
     valueConstraintType: str = None
@@ -25,7 +28,7 @@ class CSVTripleConstraint:
 class CSVShape:
     """Instances hold TAP/CSV row elements related to shapes."""
 
-    shapeID: str = ''
+    shapeID: str = ""
     # shapeLabel: str = None
     # shapeClosed: str = None
     start: bool = False

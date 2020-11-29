@@ -7,8 +7,8 @@ from pathlib import Path
 from csv2shex.exceptions import CsvError
 from .csvshape import CSVShape, CSVTripleConstraint
 
-
 DEFAULT_SHAPE_NAME = ":default"  # replace with call to config reader
+
 
 def csvreader(csvfile):
     """Return list of CSVShape objects from CSV file."""
