@@ -1,7 +1,2 @@
 [MESSAGES CONTROL]
-disable=C0103,unsubscriptable-object
-# disable=W0611,protected-access,duplicate-code,invalid-name,bad-continuation,unsubscriptable-object
-# disable=W0102
-# bad-continuation: Black disagrees
-# 2020-08-17: C0103 Harold uses some one- or two-letter variable names
-# 2020-11-17: unsubscriptable-object - because typing library uses Optional[], etc
+disable=unsubscriptable-object
