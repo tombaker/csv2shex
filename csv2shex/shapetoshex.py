@@ -16,6 +16,10 @@ from csv2shex.mkshapes import Shape as CSVShape, Statement as CSVStatement
 
 def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
     """ Generate a node constraint from statement if necessary """
+
+    # pylint: disable=invalid-name
+    # One- and two-letter variable names do not conform to snake-case naming style
+
     rval = None
 
     def get_nc() -> NodeConstraint:
@@ -37,6 +41,10 @@ def statementtonodeconstraint(statement: CSVStatement) -> Optional[shapeExpr]:
 
 def addstatement(shape: Shape, statement: CSVStatement) -> None:
     """ Interpret a CSV statement and add shapeExprit to shape """
+
+    # pylint: disable=invalid-name
+    # One- and two-letter variable names do not conform to snake-case naming style
+
     # typing.List[typing.Union["EachOf", "OneOf", "TripleConstraint", typing.Union[str, str]]]
     ts = TripleConstraint(id=statement.prop_label, predicate=IRIREF(statement.prop_id),
                           min=1 if statement.mand else 0, max=-1 if statement.repeat else 1,
@@ -52,6 +60,10 @@ def addstatement(shape: Shape, statement: CSVStatement) -> None:
 
 def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
     """ Convert a list of csv2shape Shapes to a ShEx Schema """
+
+    # pylint: disable=invalid-name
+    # One- and two-letter variable names do not conform to snake-case naming style
+
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
     schema = Schema()

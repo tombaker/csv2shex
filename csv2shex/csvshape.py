@@ -11,6 +11,8 @@ class CSVTripleConstraint:
 
     # pylint: disable=too-many-instance-attributes
     # It's a dataclass, right?
+    # pylint: disable=invalid-name
+    # True that propertyID, etc, do not conform to snake-case naming style.
 
     propertyID: str = ""
     propertyLabel: str = ""
@@ -27,6 +29,9 @@ class CSVTripleConstraint:
 @dataclass
 class CSVShape:
     """Instances hold TAP/CSV row elements related to shapes."""
+
+    # pylint: disable=invalid-name
+    # True that propertyID, etc, do not conform to snake-case naming style.
 
     shapeID: str = ""
     # shapeLabel: str = None
