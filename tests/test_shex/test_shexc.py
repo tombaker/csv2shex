@@ -29,7 +29,7 @@ def test_shexc_from_text():
 def test_shexc_from_file():
     """ Load ShExC from internal file"""
     shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexc"
     )
     shex = SchemaLoader().load(shex_file)
     assert isinstance(shex.shapes[0].expression, EachOf)
@@ -42,7 +42,7 @@ def test_shexc_from_file():
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
     shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexc"
     )
     shex = SchemaLoader().load(shex_file)
     assert (

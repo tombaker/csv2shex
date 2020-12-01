@@ -84,7 +84,7 @@ def test_shexj_from_json():
 def test_emit_shexc():
     """ Generate ShExC from internal representation """
     shex_file = os.path.join(
-        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shex"
+        EXAMPLE_PROFILES_DIRECTORY, "absolute_minimal_profile.shexc"
     )
     shex = SchemaLoader().load(shex_file)
     assert (
