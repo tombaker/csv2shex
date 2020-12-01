@@ -13,7 +13,7 @@ from ShExJSG.ShExJ import (
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
 
 
-def make_shex_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:
+def get_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:
     """Generate ShEx node constraint from CSV triple constraint if necessary."""
 
     rval = None

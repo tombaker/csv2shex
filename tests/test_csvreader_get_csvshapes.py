@@ -58,9 +58,7 @@ def test_get_csvshapes_twoshapes_first_is_default_because_shapeID_empty():
             shapeID=":author",
             start=False,
             tc_list=[
-                CSVTripleConstraint(
-                    propertyID="foaf:name", valueConstraint="", valueShape=""
-                )
+                CSVTripleConstraint(propertyID="foaf:name")
             ],
         ),
     ]
