@@ -34,6 +34,4 @@ def test_mkshex_get_node_constraint():
             ],
         )
     ]
-    assert shapes[0].tc_list[0].propertyID== "dc:creator"
-
-
+    assert shapes[0].tc_list[0].propertyID == "dc:creator"

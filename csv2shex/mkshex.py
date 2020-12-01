@@ -1,3 +1,5 @@
+"""Convert list of CSVShape instances into ShEx Schema."""
+
 from typing import Union, List, Optional
 
 from ShExJSG import Schema
@@ -40,7 +42,7 @@ def get_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:
     return nc
 
 
-def addstatement(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
+def add_triple_constraint(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
     """Interpret CSV triple constraint and add shapeExpr to shape."""
 
     # pylint: disable=invalid-name
@@ -48,11 +50,12 @@ def addstatement(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
 
     # typing.List[typing.Union["EachOf", "OneOf", "TripleConstraint", typing.Union[str, str]]]
     ts = TripleConstraint(
-        id=statement.prop_label,
-        predicate=IRIREF(statement.prop_id),
-        min=1 if statement.mand else 0,
-        max=-1 if statement.repeat else 1,
-        valueExpr=statementtonodeconstraint(statement),
+        # Why does a triple constraint need to have a label?
+        # id=csv_tc.prop_label,
+        predicate=IRIREF(csv_tc.propertyID),
+        min=1 if csv_tc.mandatory else 0,
+        max=-1 if csv_tc.repeatable else 1,
+        valueExpr=get_node_constraint(csv_tc),
     )
     if shape.expression:
         if isinstance(shape.expression, TripleConstraint):
@@ -63,8 +66,8 @@ def addstatement(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
         shape.expression = ts
 
 
-def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
-    """ Convert a list of csv2shape Shapes to a ShEx Schema """
+def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
+    """Convert a list of csv2shape Shapes to a ShEx Schema."""
 
     # pylint: disable=invalid-name
     # One- and two-letter variable names do not conform to snake-case naming style
@@ -73,13 +76,13 @@ def shapetoshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
         shapes = [shapes]
     schema = Schema()
     for s in shapes:
-        shape_id = IRIREF(s.shape_id)
+        shape_id = IRIREF(s.shapeID)
         if s.start:
             if schema.start:
                 print(f"Multiple start shapes: <{schema.start}>, <{shape_id}>")
             else:
                 schema.start = shape_id
         shape = Shape(id=shape_id)
-        for statement in s.shape_statements:
-            addstatement(shape, statement)
+        for csv_tc in s.tc_list:
+            add_triple_constraint(shape, csv_tc)
     return schema
