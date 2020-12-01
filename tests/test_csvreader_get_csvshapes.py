@@ -63,6 +63,7 @@ def test_get_csvshapes_twoshapes_first_is_default_because_shapeID_empty():
         ),
     ]
     assert _get_csvshapes(rows) == expected_shapes
+    assert type(_get_csvshapes(rows)[0].tc_list[0]) == CSVTripleConstraint
 
 
 def test_get_csvshapes_two_shapes_one_property_each():

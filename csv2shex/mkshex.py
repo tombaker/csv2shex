@@ -21,28 +21,30 @@ def get_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:
     def get_nc() -> NodeConstraint:
         return rval if rval else NodeConstraint()
 
+    nc = get_nc()
     if csv_tc.valueNodeType:
         #  pattern = jsg.JSGPattern(r'(iri)|(bnode)|(nonliteral)|(literal)')
-        get_nc().nodeKind = csv_tc.valueNodeType.lower()
-    if csv_tc.valueConstraint:
-        get_nc().values = [csv_tc.valueConstraint]
-    if csv_tc.valueConstraintType:
-        get_nc().datatype = IRIREF(csv_tc.valueConstraintType)
-    if csv_tc.valueShape:
-        if rval:
-            raise ValueError(
-                "Triple constraint cannot have both "
-                "a NodeConstraint and a ValueConstraint"
-            )
-        return IRIREF(csv_tc.valueShape)
-    return rval
+        nc.nodeKind = csv_tc.valueNodeType.lower()
+#    if csv_tc.valueConstraint:
+#        get_nc().values = [csv_tc.valueConstraint]
+#    if csv_tc.valueConstraintType:
+#        get_nc().datatype = IRIREF(csv_tc.valueConstraintType)
+#    if csv_tc.valueShape:
+#        if rval:
+#            raise ValueError(
+#                "Triple constraint cannot have both "
+#                "a NodeConstraint and a ValueConstraint"
+#            )
+#        return IRIREF(csv_tc.valueShape)
+#    return rval
+    return nc
 
 
-def addstatement(shape: Shape, statement: CSVStatement) -> None:
-    """ Interpret a CSV statement and add shapeExprit to shape """
+def addstatement(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
+    """Interpret CSV triple constraint and add shapeExpr to shape."""
 
     # pylint: disable=invalid-name
-    # One- and two-letter variable names do not conform to snake-case naming style
+    # two-letter variable names do not conform to snake-case naming style
 
     # typing.List[typing.Union["EachOf", "OneOf", "TripleConstraint", typing.Union[str, str]]]
     ts = TripleConstraint(
