@@ -2,6 +2,7 @@
 
 from typing import Union, List, Optional
 
+from rdflib import Namespace
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
@@ -9,7 +10,7 @@ from ShExJSG.ShExJ import (
     TripleConstraint,
     NodeConstraint,
     shapeExpr,
-    OneOf,
+    EachOf,
 )
 
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
@@ -59,7 +60,7 @@ def add_triple_constraint(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
     )
     if shape.expression:
         if isinstance(shape.expression, TripleConstraint):
-            shape.expression = OneOf(expressions=[shape.expression, ts])
+            shape.expression = EachOf(expressions=[shape.expression, ts])
         else:
             shape.expression.expressions.append(ts)
     else:
@@ -71,6 +72,7 @@ def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
 
     # pylint: disable=invalid-name
     # One- and two-letter variable names do not conform to snake-case naming style
+
 
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
@@ -85,4 +87,8 @@ def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
         shape = Shape(id=shape_id)
         for csv_tc in s.tc_list:
             add_triple_constraint(shape, csv_tc)
+        if not schema.shapes:
+            schema.shapes = [shape]
+        else:
+            schema.shapes.append(shape)
     return schema
