@@ -11,8 +11,66 @@ from ShExJSG.ShExJ import (
     EachOf,
 )
 import pyjsg
+from jsonasobj import as_json, loads
+from pyshex.utils.schema_loader import SchemaLoader
+from pyshexc.ShExC import ShExC
+
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
 from csv2shex.mkshex import get_node_constraint, mkshex
+
+expected = """
+{
+   "type": "Schema",
+   "@context": "http://www.w3.org/ns/shex.jsonld",
+   "start": ":a",
+   "shapes": [
+      {
+         "type": "Shape",
+         "id": ":a",
+         "expression": {
+            "type": "EachOf",
+            "expressions": [
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/creator",
+                  "valueExpr": {
+                     "type": "NodeConstraint",
+                     "nodeKind": "iri"
+                  },
+                  "min": 0,
+                  "max": 1
+               },
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/subject",
+                  "valueExpr": {
+                     "type": "NodeConstraint",
+                     "nodeKind": "iri"
+                  },
+                  "min": 0,
+                  "max": 1
+               },
+               {
+                  "type": "TripleConstraint",
+                  "predicate": "http://purl.org/dc/terms/date",
+                  "valueExpr": {
+                     "type": "NodeConstraint",
+                     "nodeKind": "literal"
+                  },
+                  "min": 0,
+                  "max": 1
+               }
+            ]
+         }
+      }
+   ]
+}"""
+
+expected_shex = """
+n START= @:a 
+:a { ( dct:creator IRI ? ; <dct:subject>
+ IRI ? ; dct:date LITERAL ? ) }
+"""
 
 
 def test_mkshex_mkshex_one_shape():
@@ -23,100 +81,10 @@ def test_mkshex_mkshex_one_shape():
         tc_list=[
             CSVTripleConstraint(propertyID="dct:creator", valueNodeType="IRI"),
             CSVTripleConstraint(propertyID="dct:subject", valueNodeType="IRI"),
-            CSVTripleConstraint(propertyID="dct:date", valueNodeType="String"),
+            CSVTripleConstraint(propertyID="dct:date", valueNodeType="Literal"),
         ],
     )
-
-    # fmt: off
-    output_shexjsg_schema = Schema(
-            _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-            type='Schema', 
-            imports=None, 
-            startActs=None, 
-            start=':a', 
-            shapes=[
-                Shape(
-                    _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                    type='Shape', 
-                    id=':a', 
-                    extends=None, 
-                    closed=None, 
-                    extra=None, 
-                    expression=EachOf(
-                        _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                        type='EachOf', 
-                        id=None, 
-                        expressions=[
-                            TripleConstraint(
-                                _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                type='TripleConstraint', 
-                                id=None, 
-                                inverse=None, 
-                                predicate='dct:creator', 
-                                valueExpr=NodeConstraint(
-                                    _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                    type='NodeConstraint', 
-                                    id=None, 
-                                    nodeKind='iri', 
-                                    datatype=None, 
-                                    values=None
-                                ), 
-                                min=0, 
-                                max=1, 
-                                onShapeExpression=None, 
-                                semActs=None, 
-                                annotations=None
-                            ), TripleConstraint(
-                                _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                type='TripleConstraint', 
-                                id=None, 
-                                inverse=None, 
-                                predicate='dct:subject', 
-                                valueExpr=NodeConstraint(
-                                    _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                    type='NodeConstraint', 
-                                    id=None, 
-                                    nodeKind='iri', 
-                                    datatype=None, 
-                                    values=None
-                                ), 
-                                min=0, 
-                                max=1, 
-                                onShapeExpression=None, 
-                                semActs=None, 
-                                annotations=None
-                            ), 
-                            TripleConstraint(
-                                _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                type='TripleConstraint', 
-                                id=None, 
-                                inverse=None, 
-                                predicate='dct:date', 
-                                valueExpr=NodeConstraint(
-                                    _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
-                                    type='NodeConstraint', 
-                                    id=None, 
-                                    nodeKind='literal', 
-                                    datatype=None, 
-                                    values=None
-                                ), 
-                                min=0, 
-                                max=1, 
-                                onShapeExpression=None, 
-                                semActs=None, 
-                                annotations=None
-                            )
-                        ], 
-                        min=None, 
-                        max=None, 
-                        semActs=None, 
-                        annotations=None
-                     ), 
-                     semActs=None, 
-                     annotations=None
-                )
-            ], 
-            **{'@context': 'http://www.w3.org/ns/shex.jsonld'}
-        )
-    # fmt: on
-    assert mkshex(input_csvshape) == output_shexjsg_schema
+    x = mkshex(input_csvshape)
+    # print(as_json(mkshex(input_csvshape)))
+    print("\nn" + str(ShExC(mkshex(input_csvshape))))
+    assert mkshex(input_csvshape) == SchemaLoader().loads(expected)
