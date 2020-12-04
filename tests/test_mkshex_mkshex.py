@@ -15,7 +15,6 @@ from csv2shex.csvshape import CSVShape, CSVTripleConstraint
 from csv2shex.mkshex import get_node_constraint, mkshex
 
 
-@pytest.mark.skip
 def test_mkshex_mkshex_one_shape():
     """@@@"""
     input_csvshape = CSVShape(
@@ -29,7 +28,7 @@ def test_mkshex_mkshex_one_shape():
     )
 
     # fmt: off
-    output_shexjsg_shape = Schema(
+    output_shexjsg_schema = Schema(
             _context=<pyjsg.jsglib.jsg_context.JSGContext object at 0x10f67e400>, 
             type='Schema', 
             imports=None, 
@@ -120,4 +119,4 @@ def test_mkshex_mkshex_one_shape():
             **{'@context': 'http://www.w3.org/ns/shex.jsonld'}
         )
     # fmt: on
-    assert mkshex(input_csvshape) == output_shexjsg_shape
+    assert mkshex(input_csvshape) == output_shexjsg_schema
