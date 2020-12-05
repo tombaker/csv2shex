@@ -1,4 +1,4 @@
-"""Read DCAP/CSV (expand prefixes?). Write and read config file."""
+"""Read DCTAP/CSV (expand prefixes?). Write and read config file."""
 
 from csv import DictReader
 from dataclasses import asdict
@@ -22,7 +22,7 @@ def _get_rows(csvfile):
     csv_dictreader = DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
     rows = list(csv_dictreader)
     if "propertyID" not in list(rows[0].keys()):
-        raise CsvError("Valid DCAP CSV must have a 'propertyID' column.")
+        raise CsvError("Valid DCTAP CSV must have a 'propertyID' column.")
     return rows
 
 

@@ -1,8 +1,6 @@
 """Convert list of CSVShape instances into ShEx Schema."""
 
 from typing import Union, List, Optional
-
-from rdflib import Namespace
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
@@ -12,7 +10,6 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
 
 
@@ -72,7 +69,6 @@ def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
 
     # pylint: disable=invalid-name
     # One- and two-letter variable names do not conform to snake-case naming style
-
 
     if isinstance(shapes, CSVShape):
         shapes = [shapes]

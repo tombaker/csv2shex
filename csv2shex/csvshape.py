@@ -34,7 +34,7 @@ class CSVShape:
     # True that propertyID, etc, do not conform to snake-case naming style.
 
     shapeID: str = ""
-    # shapeLabel: str = None
+    shapeLabel: str = None
     # shapeClosed: str = None
     start: bool = False
     tc_list: List[CSVTripleConstraint] = field(default_factory=list)
@@ -42,4 +42,6 @@ class CSVShape:
 
 @dataclass
 class CSVSchema:
-    """List of CSVShape instances??"""
+    """List of CSVShape instances"""
+
+    csvshapes_list: List[CSVShape] = field(default_factory=list)

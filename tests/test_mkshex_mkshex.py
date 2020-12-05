@@ -67,7 +67,7 @@ expected = """
 }"""
 
 expected_shex = """
-n START= @:a 
+n START= @:a
 :a { ( dct:creator IRI ? ; <dct:subject>
  IRI ? ; dct:date LITERAL ? ) }
 """

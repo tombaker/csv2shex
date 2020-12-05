@@ -1,10 +1,10 @@
-"""DC Application Profile (DCAP) from CSV to ShEx"""
+"""DC Tabular Application Profile (DCTAP) from CSV to ShEx."""
 
-import ruamel.yaml as yaml
+from dataclasses import asdict
 import click
 from .inspect import pprint_csvshapes
 from .csvreader import csvreader
-from .csvshape import CSVShape, CSVTripleConstraint, CSVSchema
+from .csvshape import CSVShape, CSVTripleConstraint
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -16,7 +16,7 @@ from .csvshape import CSVShape, CSVTripleConstraint, CSVSchema
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def cli(context):
-    """DC Application Profile (DCAP) from CSV to ShEx"""
+    """DC Tabular Application Profile (DCTAP) from CSV to ShEx."""
 
 
 @cli.command()
@@ -37,11 +37,15 @@ def inspect(context, csvfile_name, expand_prefixes, verbose):
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def model(context):
-    """Show DCAP model built-ins for ready reference"""
+    """Show DCTAP model built-ins for ready reference"""
 
-    csv_model = yaml.safe_load(CSV_MODEL)
-    print("DCAP")
-    for element_group in ["shape_elements", "tconstraint_elements"]:
-        print(f"    {element_group}:")
-        for element in csv_model[element_group]:
-            print(f"        {element}")
+    shape_elements = list(asdict(CSVShape()))
+    shape_elements.remove('tc_list')
+    tconstraint_elements = list(asdict(CSVTripleConstraint()))
+    print("DC Tabular Application Profile")
+    print("    Shape elements:")
+    for element in shape_elements:
+        print(f"        {element}")
+    print("        Triple constraint elements:")
+    for element in tconstraint_elements:
+        print(f"            {element}")

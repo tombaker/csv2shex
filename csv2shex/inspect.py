@@ -1,8 +1,7 @@
 """Pretty-print CSV contents to screen."""
 
-import ruamel.yaml as yaml
 from dataclasses import asdict
-from .csvshape import CSVShape, CSVTripleConstraint, CSVSchema
+from .csvshape import CSVShape, CSVTripleConstraint
 
 
 def pprint_csvshapes(csvshapes_list, verbose=False):
@@ -12,7 +11,7 @@ def pprint_csvshapes(csvshapes_list, verbose=False):
     tconstraint_elements = list(asdict(CSVTripleConstraint()))
 
     pprint_output = []
-    pprint_output.append("DCAP")
+    pprint_output.append("DCTAP")
     for csvshape_obj in csvshapes_list:
         csvshape_dict = asdict(csvshape_obj)
         pprint_output.append("    Shape")
