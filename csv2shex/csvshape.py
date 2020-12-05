@@ -35,7 +35,7 @@ class CSVShape:
 
     shapeID: str = ""
     shapeLabel: str = None
-    # shapeClosed: str = None
+    shapeClosed: str = None
     start: bool = False
     tc_list: List[CSVTripleConstraint] = field(default_factory=list)
 

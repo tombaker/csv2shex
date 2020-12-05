@@ -11,7 +11,7 @@ def pprint_csvshapes(csvshapes_list, verbose=False):
     tconstraint_elements = list(asdict(CSVTripleConstraint()))
 
     pprint_output = []
-    pprint_output.append("DCTAP")
+    pprint_output.append("DC Tabular Application Profile")
     for csvshape_obj in csvshapes_list:
         csvshape_dict = asdict(csvshape_obj)
         pprint_output.append("    Shape")
