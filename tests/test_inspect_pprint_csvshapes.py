@@ -38,7 +38,7 @@ SHAPES_LIST = [
                 valueShape=None,
             ),
         ],
-    ), 
+    ),
     CSVShape(
         shapeID=":b",
         shapeLabel=None,
@@ -60,6 +60,7 @@ SHAPES_LIST = [
         ],
     ),
 ]
+
 
 def test_get_csvshape_dicts_list_two_shapes():
     """Turn list of CSVRow objects into list with two csvshape dicts."""

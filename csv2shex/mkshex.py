@@ -1,6 +1,7 @@
 """Convert list of CSVShape instances into ShEx Schema."""
 
 from typing import Union, List, Optional
+from jsonasobj import as_json, loads
 from ShExJSG import Schema
 from ShExJSG.ShExJ import (
     Shape,
@@ -65,7 +66,7 @@ def add_triple_constraint(shape: Shape, csv_tc: CSVTripleConstraint) -> None:
 
 
 def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
-    """Convert a list of csv2shape Shapes to a ShEx Schema."""
+    """Convert list of csv2shape Shapes to ShExJSG Schema object."""
 
     # pylint: disable=invalid-name
     # One- and two-letter variable names do not conform to snake-case naming style
@@ -88,3 +89,14 @@ def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
         else:
             schema.shapes.append(shape)
     return schema
+
+
+def mkshexj(schema_obj):
+    """Convert ShExJSG Schema object to ShExJ string."""
+    schema = mkshex(schema_obj)
+    if not schema._is_valid():
+        print("Schema is not valid")
+    else:
+        # schema_shexj = schema._as_json_dumps()
+        schema_shexj = as_json(schema)
+    return schema_shexj

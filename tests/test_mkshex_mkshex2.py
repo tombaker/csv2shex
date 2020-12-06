@@ -23,10 +23,9 @@ def test_mkshex_mkshex_one_shape():
         tc_list=[
             CSVTripleConstraint(propertyID="dct:creator", valueNodeType="IRI"),
             CSVTripleConstraint(propertyID="dct:subject", valueNodeType="IRI"),
-            CSVTripleConstraint(propertyID="dct:date", valueNodeType="String"),
+            CSVTripleConstraint(propertyID="dct:date", valueNodeType="Literal"),
         ],
     )
-
     schema = mkshex(input_csvshape)
     print(schema)
     assert schema.type == "Schema"

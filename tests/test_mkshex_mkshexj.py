@@ -14,11 +14,10 @@ import pyjsg
 from jsonasobj import as_json, loads
 from pyshex.utils.schema_loader import SchemaLoader
 from pyshexc.ShExC import ShExC
-
 from csv2shex.csvshape import CSVShape, CSVTripleConstraint
-from csv2shex.mkshex import get_node_constraint, mkshex
+from csv2shex.mkshex import get_node_constraint, mkshex, mkshexj
 
-expected = """
+EXPECTED = """
 {
    "type": "Schema",
    "@context": "http://www.w3.org/ns/shex.jsonld",
@@ -66,7 +65,7 @@ expected = """
    ]
 }"""
 
-expected_shex = """
+EXPECTED_SHEXC = """
 n START= @:a
 :a { ( dct:creator IRI ? ; <dct:subject>
  IRI ? ; dct:date LITERAL ? ) }
@@ -79,12 +78,12 @@ def test_mkshex_mkshex_one_shape():
         start=True,
         shapeID=":a",
         tc_list=[
-            CSVTripleConstraint(propertyID="dct:creator", valueNodeType="IRI"),
-            CSVTripleConstraint(propertyID="dct:subject", valueNodeType="IRI"),
-            CSVTripleConstraint(propertyID="dct:date", valueNodeType="Literal"),
+            CSVTripleConstraint(propertyID="http://purl.org/dc/terms/creator", valueNodeType="IRI"),
+            CSVTripleConstraint(propertyID="http://purl.org/dc/terms/subject", valueNodeType="IRI"),
+            CSVTripleConstraint(propertyID="http://purl.org/dc/terms/date", valueNodeType="Literal"),
         ],
     )
-    x = mkshex(input_csvshape)
-    # print(as_json(mkshex(input_csvshape)))
+    schema = mkshex(input_csvshape)
     print("\nn" + str(ShExC(mkshex(input_csvshape))))
-    assert mkshex(input_csvshape) == SchemaLoader().loads(expected)
+    assert mkshex(input_csvshape) == SchemaLoader().loads(EXPECTED)
+    assert mkshexj(input_csvshape) == as_json(mkshex(input_csvshape))

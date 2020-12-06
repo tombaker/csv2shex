@@ -5,6 +5,7 @@ import click
 from .inspect import pprint_csvshapes
 from .csvreader import csvreader
 from .csvshape import CSVShape, CSVTripleConstraint
+from .mkshex import mkshexj
 
 # pylint: disable=unused-argument,no-value-for-parameter
 # => unused-argument: Allows placeholders for now.
@@ -17,6 +18,19 @@ from .csvshape import CSVShape, CSVTripleConstraint
 @click.pass_context
 def cli(context):
     """DC Tabular Application Profile (DCTAP) from CSV to ShEx."""
+
+
+@cli.command()
+@click.argument("csvfile_name", type=click.Path(exists=True))
+@click.option("--expand-prefixes", is_flag=True)
+@click.option("--verbose", is_flag=True)
+@click.help_option(help="Show help and exit")
+@click.pass_context
+def shexj(context, csvfile_name, expand_prefixes, verbose):
+    """Show CSV file contents as ShExJ."""
+    csvshapes_list = csvreader(csvfile_name)
+    for line in mkshexj(csvshapes_list).splitlines():
+        print(line)
 
 
 @cli.command()
