@@ -14,16 +14,16 @@ class CSVTripleConstraint:
     # pylint: disable=invalid-name
     # propertyID, etc, do not conform to snake-case naming style.
 
-    propertyID: str = ""
-    propertyLabel: str = ""
-    mandatory: str = ""
-    repeatable: str = ""
-    valueNodeType: str = ""
-    valueDataType: str = ""
-    valueConstraint: str = ""
-    valueConstraintType: str = ""
-    valueShape: str = ""
-    note: str = ""
+    propertyID: str = None
+    propertyLabel: str = None
+    mandatory: str = None
+    repeatable: str = None
+    valueNodeType: str = None
+    valueDataType: str = None
+    valueConstraint: str = None
+    valueConstraintType: str = None
+    valueShape: str = None
+    note: str = None
 
 
 @dataclass
@@ -33,7 +33,7 @@ class CSVShape:
     # pylint: disable=invalid-name
     # True that propertyID, etc, do not conform to snake-case naming style.
 
-    shapeID: str = ""
+    shapeID: str = None
     shapeLabel: str = None
     shapeClosed: str = None
     start: bool = False
