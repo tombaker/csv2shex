@@ -73,30 +73,25 @@ def mkshex(shapes: Union[CSVShape, List[CSVShape]]) -> Schema:
 
     if isinstance(shapes, CSVShape):
         shapes = [shapes]
-    schema = Schema()
+    schema_shexjsg = Schema()
     for s in shapes:
         shape_id = IRIREF(s.shapeID)
         if s.start:
-            if schema.start:
-                print(f"Multiple start shapes: <{schema.start}>, <{shape_id}>")
+            if schema_shexjsg.start:
+                print(f"Multiple start shapes: <{schema_shexjsg.start}>, <{shape_id}>")
             else:
-                schema.start = shape_id
+                schema_shexjsg.start = shape_id
         shape = Shape(id=shape_id)
         for csv_tc in s.tc_list:
             add_triple_constraint(shape, csv_tc)
-        if not schema.shapes:
-            schema.shapes = [shape]
+        if not schema_shexjsg.shapes:
+            schema_shexjsg.shapes = [shape]
         else:
-            schema.shapes.append(shape)
-    return schema
+            schema_shexjsg.shapes.append(shape)
+    return schema_shexjsg
 
 
-def mkshexj(schema_obj):
+def mkshexj(schema_shexjsg):
     """Convert ShExJSG Schema object to ShExJ string."""
-    schema = mkshex(schema_obj)
-    if not schema._is_valid():
-        print("Schema is not valid")
-    else:
-        # schema_shexj = schema._as_json_dumps()
-        schema_shexj = as_json(schema)
-    return schema_shexj
+    schema = mkshex(schema_shexjsg)
+    return as_json(schema)
