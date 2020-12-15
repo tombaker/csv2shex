@@ -60,6 +60,6 @@ def model(context):
     print("    Shape elements:")
     for element in shape_elements:
         print(f"        {element}")
-    print("        Triple constraint elements:")
+    print("        Statement Constraint elements:")
     for element in tconstraint_elements:
         print(f"            {element}")

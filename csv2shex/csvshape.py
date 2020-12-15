@@ -14,16 +14,16 @@ class CSVTripleConstraint:
     # pylint: disable=invalid-name
     # propertyID, etc, do not conform to snake-case naming style.
 
-    propertyID: str = None
-    propertyLabel: str = None
-    mandatory: str = None
-    repeatable: str = None
-    valueNodeType: str = None
-    valueDataType: str = None
-    valueConstraint: str = None
-    valueConstraintType: str = None
-    valueShape: str = None
-    note: str = None
+    propertyID: str = ""
+    propertyLabel: str = ""
+    mandatory: str = False
+    repeatable: str = False
+    valueNodeType: str = ""
+    valueDataType: str = ""
+    valueConstraint: str = ""
+    valueConstraintType: str = ""
+    valueShape: str = ""
+    note: str = ""
 
 
 @dataclass
@@ -33,9 +33,9 @@ class CSVShape:
     # pylint: disable=invalid-name
     # True that propertyID, etc, do not conform to snake-case naming style.
 
-    shapeID: str = None
-    shapeLabel: str = None
-    shapeClosed: str = None
+    shapeID: str = ""
+    shapeLabel: str = ""
+    shapeClosed: str = ""
     start: bool = False
     tc_list: List[CSVTripleConstraint] = field(default_factory=list)
 
