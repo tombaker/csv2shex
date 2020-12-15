@@ -33,7 +33,7 @@ def get_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:
 #    if csv_tc.valueShape:
 #        if rval:
 #            raise ValueError(
-#                "Triple constraint cannot have both "
+#                "Statement constraint cannot have both "
 #                "a NodeConstraint and a ValueConstraint"
 #            )
 #        return IRIREF(csv_tc.valueShape)

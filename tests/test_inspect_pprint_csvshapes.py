@@ -70,13 +70,13 @@ def test_get_csvshape_dicts_list_two_shapes():
         Shape
             shapeID: :a
             start: True
-            Triple Constraint
+            Statement Constraint
                 propertyID: dct:creator
-            Triple Constraint
+            Statement Constraint
                 propertyID: dct:date
         Shape
             shapeID: :b
-            Triple Constraint
+            Statement Constraint
                 propertyID: foaf:name
     """
     )
@@ -93,7 +93,7 @@ def test_get_csvshape_dicts_list_two_shapes_verbose():
             shapeLabel: None
             shapeClosed: False
             start: True
-            Triple Constraint
+            Statement Constraint
                 propertyID: dct:creator
                 propertyLabel: None
                 mandatory: False
@@ -104,7 +104,7 @@ def test_get_csvshape_dicts_list_two_shapes_verbose():
                 valueConstraintType: None
                 valueShape: None
                 note: None
-            Triple Constraint
+            Statement Constraint
                 propertyID: dct:date
                 propertyLabel: None
                 mandatory: False
@@ -120,7 +120,7 @@ def test_get_csvshape_dicts_list_two_shapes_verbose():
             shapeLabel: None
             shapeClosed: False
             start: False
-            Triple Constraint
+            Statement Constraint
                 propertyID: foaf:name
                 propertyLabel: None
                 mandatory: False

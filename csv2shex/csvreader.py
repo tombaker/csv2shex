@@ -21,8 +21,7 @@ def _get_rows(csvfile):
     """Return list of row dicts from CSV file."""
     csv_dictreader = DictReader(Path(csvfile).open(newline="", encoding="utf-8-sig"))
     rows = list(csv_dictreader)
-    breakpoint(context=5) 
-    if "propertyID" not in list(rows[0].keys()):
+    if "propertyID" not in csv_dictreader.fieldnames:
         raise CsvError("Valid DCTAP CSV must have a 'propertyID' column.")
     return rows
 

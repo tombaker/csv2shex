@@ -22,7 +22,7 @@ def pprint_csvshapes(csvshapes_list, verbose=False):
                 pprint_output.append(8 * " " + key + ": " + str(csvshape_dict[key]))
 
         for tc_dict in csvshape_dict.get("tc_list"):
-            pprint_output.append("        Triple Constraint")
+            pprint_output.append("        Statement Constraint")
             for key in tconstraint_elements:
                 if not verbose and tc_dict[key]:
                     pprint_output.append(12 * " " + str(key) + ": " + str(tc_dict[key]))
