@@ -1,4 +1,4 @@
-shapeID,shape_label,prop_id,prop_label,mand,repeat,constraint_value,value_type,annot
+shapeID,shapeLabel,propertyID,propertyLabel,mandatory,repeatable,valueConstraint,valueConstraintType,note
 book,Book,dct:creator,Author,N,Y,person,entity,Author is not required; no limit on the number
 ,,dct:title,Title,Y,N,,literal,Each book must have a title
 ,,dct:date,Year of publication,Y,N,,xsd:year,"Only the year, 9999"
