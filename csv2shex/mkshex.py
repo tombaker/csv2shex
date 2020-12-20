@@ -11,7 +11,7 @@ from ShExJSG.ShExJ import (
     shapeExpr,
     EachOf,
 )
-from csv2shex.csvshape import CSVShape, CSVTripleConstraint
+from .csvshape import CSVShape, CSVTripleConstraint
 
 
 def get_node_constraint(csv_tc: CSVTripleConstraint) -> Optional[shapeExpr]:

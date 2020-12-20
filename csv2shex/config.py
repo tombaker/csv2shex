@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 import ruamel.yaml as yaml
-from csv2shex.exceptions import ConfigError
+from .exceptions import ConfigError
 
 
 DEFAULT_CONFIGFILE_NAME = ".csv2rc"
