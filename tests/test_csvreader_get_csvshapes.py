@@ -38,6 +38,19 @@ def test_get_csvshapes_twoshapes_first_is_default():
     assert expected_shapes[1].shapeID == ":author"
 
 
+def test_get_csvshapes_twoshapes_mixed_statements():
+    """CSV: two shapes in three rows, in mixed order (ABA)."""
+    rows = [
+        {"shapeID": ":book", "propertyID": "dc:creator"},
+        {"shapeID": ":author", "propertyID": "foaf:name"},
+        {"shapeID": ":book", "propertyID": "dc:type"},
+    ]
+    expected_shapes = _get_csvshapes(rows)
+    assert expected_shapes[0].shapeID == ":book"
+    assert len(expected_shapes[0].tc_list) == 2
+    assert expected_shapes[1].shapeID == ":author"
+
+
 def test_get_csvshapes_twoshapes_first_is_default_because_shapeID_empty():
     """CSV: two shapes, first of which is default because shapeID is empty."""
     rows = [

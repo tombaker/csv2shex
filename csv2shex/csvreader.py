@@ -45,26 +45,29 @@ def _get_csvshapes(rows=None, default=DEFAULT_SHAPE_NAME) -> List[CSVShape]:
         return shape                                # Return shape with fields set.
 
     for row in rows:                                # For each row,
-        if not row["propertyID"]:                   # where no propertyID is found,
-            continue                                # skip the row and move to next.
+        if not row["propertyID"]:                   # where no propertyID be found,
+            continue                                # ignore it and move to next.
 
-        if row.get("shapeID"):                      # If true shapeID is found in row,
-            sh_id = row["shapeID"]                  # use it as shape_dicts key,
-            shape = shapes[sh_id] = CSVShape()      # assign a new CSVShape and alias,
-            set_shape_fields(shape, row)            # and set its shape-related fields.
-        else:                                       # If false shapeID is found, and it
-            if first_valid_row_encountered:         # is first valid row encountered,
-                sh_id = row["shapeID"] = default    # use default shapeID as dict key,
-                shape = shapes[sh_id] = CSVShape()  # assign a new CSVShape and alias,
-                set_shape_fields(shape, row)        # and set its shape-related fields.
-            else:                                   # In other rows missing shapeIDs,
-                so_far = list(shapes)               # list shapeIDs used so far,
-                sh_id = so_far[-1]                  # and use latest one as the index
-                shape = shapes[sh_id]               # for the current shape.
+        if first_valid_row_encountered:             # In first valid row,
+            if row.get("shapeID"):                  # if truthy shapeID be found,
+                sh_id = row.get("shapeID")          # be it a key for the shapes dict.
+            else:                                   # If no truthy shapeID be found,
+                sh_id = row["shapeID"] = default    # may default be the key.
+            shape = shapes[sh_id] = CSVShape()      # Add a CSVShape to the dict and
+            set_shape_fields(shape, row)            # set its shape-related fields, and
+            shapes[sh_id].start = True              # set it be the "start" shape,
+            first_valid_row_encountered = False     # the one and only.
 
-        if first_valid_row_encountered:             # First shape encountered is
-            shapes[sh_id].start = True              # marked as "start" shape, but
-            first_valid_row_encountered = False     # only the first.
+        if not first_valid_row_encountered:         # In every valid row thereafter,
+            if row.get("shapeID"):                  # if truthy shapeID be found,
+                sh_id = row["shapeID"]              # be it a key for shapes dict.
+            else:                                   # If no truthy shapeID be found,
+                so_far = list(shapes)               # see list of shapeIDs used so far,
+                sh_id = so_far[-1]                  # and may the latest one be key.
+
+        if sh_id not in shapes:                     # If shape key not be found in dict,
+            shape = shapes[sh_id] = CSVShape()      # add it with value CSVShape, and
+            set_shape_fields(shape, row)            # set its shape-related fields.
 
         tc = CSVTripleConstraint()                  # Make a new TC object, and
         for key in list(asdict(tc)):                # iterate TC-related keys, to
