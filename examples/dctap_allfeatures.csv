@@ -1,8 +1,8 @@
-﻿shapeID,shapeLabel,propertyID,propertyLabel,mandatory,repeatable,valueNodeType,valueDataType,valueConstraint,valueConstraintType,valueShape,valueShape,note
-:book,Book,dct:creator,Author,1,1,IRI,,,,,:author,Writer of the book
+﻿shapeID,shapeLabel,propertyID,propertyLabel,mandatory,repeatable,valueNodeType,valueDataType,valueConstraint,valueConstraintType,valueShape,note
+:book,Book,dct:creator,Author,1,1,IRI,,,,:author,Writer of the book
 ,,dct:date,,,,Literal,xsd:date,,,,,
-,,dct:subject,,,,IRI,,https://id.loc.gov,IRIStem,,,
-,,:status,,,,,,confidential,,,,
-,,:description,,1,1,Literal,rdf:langString,"fr it en",LanguageTag,,,
-,,:colors,,,,,,"blue green",Picklist,,,
-:author,,:nickname,,,,,,John*,Pattern,,,
+,,dct:subject,,,,IRI,,https://id.loc.gov,IRIStem,,
+,,:status,,,,,,confidential,,,
+,,:description,,1,1,Literal,rdf:langString,"fr it en",LanguageTag,,
+,,:colors,,,,,,"blue green",Picklist,,
+:author,,:status,,,,,,confidential-*,Pattern,,
