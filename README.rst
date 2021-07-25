@@ -1,5 +1,5 @@
-Csv2shex
-========
+Csv2shex (superseded by `tap2shex <https://github.com/tombaker/tap2shex>`_)
+===========================================================================
 
 Generate ShEx schemas from application profiles in CSV.
 

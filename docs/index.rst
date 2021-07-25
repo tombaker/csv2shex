@@ -1,5 +1,5 @@
-csv2shex
-========
+csv2shex (superseded by `tap2shex <https://github.com/tombaker/tap2shex>`_)
+===========================================================================
 
 Csv2shex is a command-line utility for reading, interpreting, and verifying CSV files formatted according to the DC Application Profile (DCAP) model. 
 
@@ -15,6 +15,5 @@ The goals of this project are to make the ShEx data validation language, with it
    cli/Cli
    basics/Basics
    normalizations/Normalizations
-   sources/Sources
 
 .. [#dcapig] https://www.dublincore.org/groups/application_profiles_ig/
