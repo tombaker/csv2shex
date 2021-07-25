@@ -13,7 +13,7 @@ from .mkshex import mkshexj
 
 
 @click.group()
-@click.version_option("0.2.1", help="Show version and exit")
+@click.version_option("0.3.0", help="Show version and exit")
 @click.help_option(help="Show help and exit")
 @click.pass_context
 def cli(context):
